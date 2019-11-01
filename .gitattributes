@@ -1,0 +1,8 @@
+Unity3D/NuitrackSDK.unitypackage filter=lfs diff=lfs merge=lfs -text
+Platforms/Nuitrack.apk filter=lfs diff=lfs merge=lfs -text
+Platforms/TVico.apk filter=lfs diff=lfs merge=lfs -text
+Platforms/nuitrack-persee-ubuntu-arm32.deb filter=lfs diff=lfs merge=lfs -text
+Platforms/nuitrack-ubuntu-amd64.deb filter=lfs diff=lfs merge=lfs -text
+Platforms/nuitrack-windows-x64.exe filter=lfs diff=lfs merge=lfs -text
+Platforms/nuitrack-windows-x86.exe filter=lfs diff=lfs merge=lfs -text
+Examples/Room_Unity3D_Demo.zip filter=lfs diff=lfs merge=lfs -text
