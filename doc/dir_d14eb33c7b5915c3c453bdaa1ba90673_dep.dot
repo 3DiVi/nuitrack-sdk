@@ -1,9 +1,0 @@
-digraph "/builds/3d/depth_scanner/depth_scanner/modules/api/wrappers/nuitrack.net/nuitrack.net/Common" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_581281c8a256f508fded39a8f07db3e4 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="nuitrack.net" fontname="Helvetica", fontsize="10", URL="dir_581281c8a256f508fded39a8f07db3e4.html"]
-  dir_d14eb33c7b5915c3c453bdaa1ba90673 [shape=box, label="Common", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_d14eb33c7b5915c3c453bdaa1ba90673.html"];
-  }
-}

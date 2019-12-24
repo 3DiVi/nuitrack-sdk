@@ -1,8 +1,0 @@
-digraph "tdv::nuitrack::SkeletonTracker"
-{
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{tdv::nuitrack::SkeletonTracker\n|# _pimpl\l# _isCopy\l# _onUpdateCallbackStruct\l# _onNewUserCallbackStruct\l# _onLostUserCallbackStruct\l# _callbackWrapper\l|+ SkeletonTracker()\l+ SkeletonTracker()\l+ ~SkeletonTracker()\l+ connectOnUpdate()\l+ disconnectOnUpdate()\l+ connectOnNewUser()\l+ disconnectOnNewUser()\l+ connectOnLostUser()\l+ disconnectOnLostUser()\l+ setNumActiveUsers()\land 9 more...\l+ create()\l# destroySkeletonTracker()\l# onUpdateCallback()\l# onNewUserCallback()\l# onLostUserCallback()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
-  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
-  Node2 [label="{tdv::nuitrack::HeaderOnly\lAPI_Module\n||}",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
-}

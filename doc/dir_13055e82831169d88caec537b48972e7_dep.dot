@@ -1,9 +1,0 @@
-digraph "nuitrack/types/header_only_api" {
-  compound=true
-  node [ fontsize="10", fontname="Helvetica"];
-  edge [ labelfontsize="10", labelfontname="Helvetica"];
-  subgraph clusterdir_bbdae0ff0e787d914458b87880a6cbf4 {
-    graph [ bgcolor="#ddddee", pencolor="black", label="types" fontname="Helvetica", fontsize="10", URL="dir_bbdae0ff0e787d914458b87880a6cbf4.html"]
-  dir_13055e82831169d88caec537b48972e7 [shape=box, label="header_only_api", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_13055e82831169d88caec537b48972e7.html"];
-  }
-}
