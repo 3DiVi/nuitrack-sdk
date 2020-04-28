@@ -424,7 +424,7 @@ public class SkeletonController : MonoBehaviour
 <img width="400" src="img/Urgb_10.png">
 </p>
 
-9. Drag-and-drop the **Simple Skeleton Avatar** prefab to the **Skeleton Avatar** field of the `SkeletonController` script.
+9. Drag-and-drop the **SimpleSkeletonAvatar** prefab to the **Skeleton Avatar** field of the `SkeletonController` script.
 
 <p align="center">
 <img width="400" src="img/Urgb_11.jpg">

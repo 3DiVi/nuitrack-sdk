@@ -87,7 +87,9 @@ private:
 	 */
 	void onNewDepthFrame(tdv::nuitrack::DepthFrame::Ptr frame);
 	void onNewRGBFrame(tdv::nuitrack::RGBFrame::Ptr frame);
-	void onUserUpdate(tdv::nuitrack::UserFrame::Ptr frame);
+	void onUserUpdateCallback(tdv::nuitrack::UserFrame::Ptr frame);
+	void onLostUserCallback(int id);
+	void onNewUserCallback(int id);
 	void onSkeletonUpdate(tdv::nuitrack::SkeletonData::Ptr userSkeletons);
 	void onHandUpdate(tdv::nuitrack::HandTrackerData::Ptr handData);
 	void onNewGesture(tdv::nuitrack::GestureData::Ptr gestureData);

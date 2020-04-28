@@ -62,8 +62,10 @@ void NuitrackGLSample::init(const std::string& config)
 	_height = _outputMode.yres;
 
 	_userTracker = UserTracker::create();
-	// Bind to event update user tracker
-	_userTracker->connectOnUpdate(std::bind(&NuitrackGLSample::onUserUpdate, this, std::placeholders::_1));
+	// Binds to user tracker events
+	_userTracker->connectOnUpdate(std::bind(&NuitrackGLSample::onUserUpdateCallback, this, std::placeholders::_1));
+	_userTracker->connectOnNewUser(std::bind(&NuitrackGLSample::onNewUserCallback, this, std::placeholders::_1));
+	_userTracker->connectOnLostUser(std::bind(&NuitrackGLSample::onLostUserCallback, this, std::placeholders::_1));
 
 	_skeletonTracker = SkeletonTracker::create();
 	// Bind to event update skeleton tracker
@@ -230,7 +232,7 @@ void NuitrackGLSample::onNewRGBFrame(RGBFrame::Ptr frame)
 	}
 }
 // Colorize user segments using Nuitrack User Tracker data
-void NuitrackGLSample::onUserUpdate(UserFrame::Ptr frame)
+void NuitrackGLSample::onUserUpdateCallback(UserFrame::Ptr frame)
 {
 	if(_viewMode != DEPTH_SEGMENT_MODE)
 		return;
@@ -300,6 +302,18 @@ void NuitrackGLSample::onUserUpdate(UserFrame::Ptr frame)
 			}
 		}
 	}
+}
+
+// Callback for onLostUser event
+void NuitrackGLSample::onLostUserCallback(int id)
+{
+	std::cout << "Lost User " << id << std::endl;
+}
+
+// Callback for onNewUser event
+void NuitrackGLSample::onNewUserCallback(int id)
+{
+	std::cout << "New User " << id << std::endl;
 }
 
 // Prepare visualization of skeletons, received from Nuitrack

@@ -1,0 +1,179 @@
+<skeleton>
+	<bones>
+		<bone name="root" id="0" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="0.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="tolshoulder" id="1" length="180.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="lshoulder" id="2" length="285.0">
+			<rotation angle="90">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="lelbow" id="3" length="275.0">
+			<rotation angle="-5.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="lwrist" id="4" length="90.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="torshoulder" id="6" length="180.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="rshoulder" id="7" length="285.0">
+			<rotation angle="-90">
+				<axis x="0.0" y="0.0" z="1.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="relbow" id="8" length="275.0">
+			<rotation angle="5.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="rwrist" id="9" length="90.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="tocolar" id="11" length="320.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="1.0" z="0.0"/>
+		</bone>
+		<bone name="colar" id="12" length="100.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="1.0" z="0.0"/>
+		</bone>
+		<bone name="neck" id="13" length="130.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="1.0" z="0.0"/>
+		</bone>
+		<bone name="head" id="14" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="1.0" z="0.0"/>
+		</bone>
+		<bone name="waist" id="15" length="215.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="tolhip" id="16" length="100.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="lhip" id="17" length="460.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="lknee" id="18" length="450.0">
+			<rotation angle="10">
+				<axis x="1.0" y="0.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="lfoot" id="19" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="torhip" id="20" length="100.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="rhip" id="21" length="460.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="rknee" id="22" length="450.0">
+			<rotation angle="10">
+				<axis x="1.0" y="0.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="rfoot" id="23" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="0.0" y="-1.0" z="0.0"/>
+		</bone>
+		<bone name="lpalm" id="5" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="1.0" y="0.0" z="0.0"/>
+		</bone>
+		<bone name="rpalm" id="10" length="0.0">
+			<rotation angle="0.0">
+				<axis x="0.0" y="1.0" z="0.0"/>
+			</rotation>
+			<direction x="-1.0" y="0.0" z="0.0"/>
+		</bone>
+	</bones>
+	<hierarchy>
+		<boneparent parent="tocolar" bone="tolshoulder"/>
+		<boneparent parent="tocolar" bone="torshoulder"/>
+		<boneparent parent="tocolar" bone="colar"/>
+		<boneparent parent="root" bone="tocolar"/>
+		<boneparent parent="root" bone="waist"/>
+		
+		<boneparent parent="tolshoulder" bone="lshoulder"/>
+		<boneparent parent="lshoulder" bone="lelbow"/>
+		<boneparent parent="lelbow" bone="lwrist"/>
+		<boneparent parent="lwrist" bone="lpalm"/>
+		
+		<boneparent parent="torshoulder" bone="rshoulder"/>
+		<boneparent parent="rshoulder" bone="relbow"/>
+		<boneparent parent="relbow" bone="rwrist"/>
+		<boneparent parent="rwrist" bone="rpalm"/>
+
+		<boneparent parent="colar" bone="neck"/>
+		<boneparent parent="neck" bone="head"/>
+		<boneparent parent="waist" bone="tolhip"/>
+		<boneparent parent="waist" bone="torhip"/>
+
+		<boneparent parent="tolhip" bone="lhip"/>
+		<boneparent parent="lhip" bone="lknee"/>
+		<boneparent parent="lknee" bone="lfoot"/>
+		
+		<boneparent parent="torhip" bone="rhip"/>
+		<boneparent parent="rhip" bone="rknee"/>
+		<boneparent parent="rknee" bone="rfoot"/>
+
+	</hierarchy>
+</skeleton>

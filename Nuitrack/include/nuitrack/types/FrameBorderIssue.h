@@ -2,7 +2,9 @@
 #define NUITRACK_FRAMEBORDERISSUE_H_
 
 #include "Issue.h"
-
+#ifdef __aarch64__
+#include "nuitrack/types/Export.h"
+#endif
 namespace tdv
 {
 namespace nuitrack
@@ -11,7 +13,12 @@ namespace nuitrack
  * @ingroup CommonElements_group
  * @brief Represents the frame bodrer issue.
  */
+#if defined(ANDROID) && defined(__aarch64__)
+class MIDDLEWARE_API FrameBorderIssue : public Issue
+#else
 class FrameBorderIssue : public Issue
+#endif
+
 {
 public:
 	/**
@@ -53,6 +60,9 @@ public:
 		this->right = isRight;
 	}
 
+#if defined(ANDROID) && defined(__aarch64__)
+	virtual ~FrameBorderIssue();
+#endif
 	/**
 	 * @brief Constructs a default frame border issue object.
 	 */

@@ -1,0 +1,6 @@
+framework module Structure {
+  umbrella header "Structure.h"
+
+  export *
+  module * { export * }
+}

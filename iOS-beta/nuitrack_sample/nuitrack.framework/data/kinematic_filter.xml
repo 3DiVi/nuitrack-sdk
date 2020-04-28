@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<filter_parameters>
+		<binds>
+			<links>
+				<bind bone="14" head="2" tail="1" bodypart="0" />
+				<bind bone="17" head="6" tail="7" bodypart="2" />
+				<bind bone="18" head="7" tail="8" bodypart="4" />
+				<bind bone="23" head="12" tail="13" bodypart="3" />
+				<bind bone="24" head="13" tail="14" bodypart="5" />
+				<bind bone="9" head="17" tail="18" bodypart="9" />
+				<bind bone="10" head="18" tail="19" bodypart="11" />
+				<bind bone="4" head="21" tail="22" bodypart="10" />
+				<bind bone="5" head="22" tail="23" bodypart="12" />
+				<bind bone="13" head="3" tail="2" bodypart="8" />
+				<bind bone="1" head="3" tail="4" bodypart="13" />
+				<bind bone="16" head="2" tail="6" bodypart="14" />
+				<bind bone="22" head="2" tail="12" bodypart="14" />
+			</links>
+		<move>
+			<bind id="0" joint="3" />
+		</move>
+		<rotatesYXZ>
+			<bind id="13">
+				<y joint1Y="6" joint2Y="12" />
+				<xz jointXZ="2" direction="1" />
+			</bind>
+			<bind id="1">
+			<y joint1Y="17" joint2Y="21" />
+			<xz jointXZ="4" direction="-1" />
+			</bind>
+		</rotatesYXZ>
+		<rotates>
+			<!-- <bind id="13" joint="3" /> -->
+			<!-- <bind id="13" joint="2" /> -->
+			<bind id="14" joint="1" />
+			<!-- <bind id="1" joint="4" /> -->
+	
+			<bind id="16" joint="5" />
+			<bind id="16" joint="6" />
+			<bind id="17" joint="7" />
+			<bind id="18" joint="8" />
+			<bind id="19" joint="9" />
+			<bind id="20" joint="10" />
+
+			<bind id="22" joint="11" />
+			<bind id="22" joint="12" />
+			<bind id="23" joint="13" />
+			<bind id="24" joint="14" />
+			<bind id="25" joint="15" />
+			<bind id="26" joint="16" />
+
+			<bind id="8" joint="17" />
+			<bind id="9" joint="18" />
+			<bind id="10" joint="19" />
+			<bind id="11" joint="20" />
+
+			<bind id="3" joint="21" />
+			<bind id="4" joint="22" />
+			<bind id="5" joint="23" />
+			<bind id="6" joint="24" />
+
+		</rotates>
+		<rotatesIK>
+			<bind id="11" joint="19" />
+			<bind id="6" joint="23" />
+			<bind id="19" joint="8" />
+			<bind id="25" joint="14" />
+		</rotatesIK>
+		<connects>
+			<bind id="15" joint="1" />
+			<bind id="14" joint="2" />
+			<bind id="13" joint="3" />
+			<bind id="2" joint="4" />
+
+			<bind id="17" joint="6" />
+			<bind id="18" joint="7" />
+			<bind id="19" joint="8" />
+
+			<bind id="23" joint="12" />
+			<bind id="24" joint="13" />
+			<bind id="25" joint="14" />
+
+			<bind id="9" joint="17" />
+			<bind id="10" joint="18" />
+			<bind id="11" joint="19" />
+							
+			<bind id="4" joint="21" />
+			<bind id="5" joint="22" />
+			<bind id="6" joint="23" />
+		</connects>
+	</binds>
+</filter_parameters>

@@ -128,6 +128,13 @@ public:
 	 */
 	static void release()
 	{
+		CallbackStruct<IssuesData::Ptr>* callbackStruct =
+				(CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
+		if(callbackStruct != NULL)
+		{
+			nuitrack_setIssuesCallbackStruct(NULL);
+			delete callbackStruct;
+		}
 		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_Release());
 	}
 

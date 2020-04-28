@@ -260,7 +260,7 @@ public void GetDamage(float damage)
 5. Select **base**, add **Capsule Collider** and **Rigidbody**, tick **Is Kinematic** (so that the capsule doesn't fall) and set the settings as shown in the screenshot (zombies will encircle the player).
 
 <p align="center">
-<img width="450" src="img/Uzombies_12.png">
+<img width="650" src="img/Uzombies_12.png">
 </p>
 
 6. And now it's time to create a devil's brat, an evil itself – a zombie. Create a new script and name it `ZombieController.cs`. In this script, we'll describe the behavior of zombies in our game. 

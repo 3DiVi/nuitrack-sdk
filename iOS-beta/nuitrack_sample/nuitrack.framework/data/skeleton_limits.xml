@@ -1,0 +1,26 @@
+<!-- 
+  Skeleton Euler angles in degree limits.
+-->
+<?xml version="1.0" ?>
+<SkeletonLimits>
+    <bone id="16" name="XN_SKEL_LEFT_COLLAR">
+      <x enable="true" min="0" max="0" />
+      <y enable="true" min="0" max="0" />
+      <z enable="true" min="0" max="0" />
+    </bone>
+    <bone id="22" name="XN_SKEL_RIGHT_COLLAR">
+      <x enable="true" min="0" max="0" />
+      <y enable="true" min="0" max="0" />
+      <z enable="true" min="0" max="0" />
+    </bone>
+    <bone id="8" name="XN_SKEL_RIGHT_HIPJOINT">
+      <x enable="true" min="0" max="0" />
+      <y enable="true" min="0" max="0" />
+      <z enable="true" min="0" max="0" />
+    </bone>
+    <bone id="3" name="XN_SKEL_RIGHT_HIPJOINT">
+      <x enable="true" min="0" max="0" />
+      <y enable="true" min="0" max="0" />
+      <z enable="true" min="0" max="0" />
+    </bone>
+</SkeletonLimits>

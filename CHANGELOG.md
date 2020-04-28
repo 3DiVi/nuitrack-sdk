@@ -1,3 +1,27 @@
+# Release v0.30.0
+
+**Release Date**: 25 Mar 2020  
+**Nuitrack Runtime version**: 0.30.0  
+**Nuitrack SDK version**: 1.5.0
+
+## Changes
+
+Nuitrack Runtime:
+
+ - added support for Astra Embedded S / Stereo S (Windows/Linux)
+ - fixed error with the Mirror settings for Kinect/Kinect V2
+ - fixed error with double triggering of onLostuserCallback for UserTracker
+ - added HD resolution support of an RGB stream for Orbbec Astra (Windows/Linux/Android)
+
+Nuitrack SDK:
+
+ - added Structure Sensor (Occipital) support for iOS
+
+## Known Issues
+
+ - USB cameras permission issue on **Android 9 (Pie)** devices
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.29.0
 
 **Release Date**: 26 Sep 2019  

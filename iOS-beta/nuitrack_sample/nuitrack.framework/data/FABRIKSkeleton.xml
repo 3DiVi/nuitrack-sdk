@@ -1,0 +1,371 @@
+<?xml version="1.0" ?>
+<skeleton>
+    <height min_height = "800" max_height = "2100"
+    	bones_length_smoother = "0.8" bones_connections_smoother = "0.9"/>
+	<bones count = "21">
+
+		<bone id="0" name = "XN_SKEL_WAIST">
+			<position x = "-25.2808 " y = "-147.592" z = "2631.89" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "0.0" y = "1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "260"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="1" name = "XN_SKEL_TORSO">
+			<position x = "-24.4121" y = "80.868" z = "2632.94" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "0.0" y = "1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "260"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="2" name = "XN_SKEL_NECK">
+			<position x = "-25.1836" y = "514.833" z = "2643.05" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "0.0" y = "1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "150"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="3" name = "XN_SKEL_HEAD">
+			<position x = "-24.5844" y = "514.833" z = "2643.05" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "0.0" y = "1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "-1"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="4" name = "XN_SKEL_LEFT_SHOULDER">
+			<position x = "103.23" y = "316.974" z = "2647.42" />
+			<orientation w = "0.0" x = "1.0" y = "0.0" z = "0.0"/>
+			<direction x = "1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "0.0" z = "-1.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<length  value = "274"/>
+			<left value = "1"/>
+			<angle_threshold value = "2.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "0.0" theta3= "79.0" theta4= "0.0"/>	
+			<rotate_around_direction min_angle = "-90.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="5" name = "XN_SKEL_LEFT_ELBOW">
+			<parent id = "4"/>
+			<child id = "6" />
+			<position x = "376.371" y = "306.513" z = "2646.24" />
+			<orientation w = "0.0" x = "1.0" y = "0.0" z = "0.0"/>
+			<direction x = "1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "1.0" y = "0.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<length  value = "237"/>
+			<left value = "1"/>
+			<angle_threshold value = "2.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "85.0" theta2= "45.0" theta3= "85.0" theta4= "20.0"/>
+			<rotate_around_direction min_angle = "-150.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="6" name = "XN_SKEL_LEFT_WRIST">
+			<position x = "633.388" y = "311.076" z = "2656.56" />
+			<orientation w = "0.0" x = "1.0" y = "0.0" z = "0.0"/>
+			<direction x = "1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "1.0" y = "0.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<length  value = "60"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="7" name = "XN_SKEL_RIGHT_SHOULDER">
+			<position x = "-153.533" y = "317.843" z = "2649.28" />
+			<orientation w = "0.0" x = "-1.0" y = "0.0" z = "0.0"/>
+			<direction x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "0.0" z = "-1.0" />
+			<axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<length  value = "274"/>
+			<left value = "0"/>
+			<angle_threshold value = "2.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "0.0" theta3= "79.0" theta4= "0.0"/>	
+			<rotate_around_direction min_angle = "-90.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="8" name = "XN_SKEL_RIGHT_ELBOW">
+			<position x = "-426.74" y = "309.298" z = "2648.15" />
+			<orientation w = "0.0" x = "-1.0" y = "0.0" z = "0.0"/>
+			<direction x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "-1.0" y = "0.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<length  value = "237"/>
+			<left value = "0"/>
+			<angle_threshold value = "2.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "85.0" theta2= "20.0" theta3= "85.0" theta4= "45.0"/>
+			<rotate_around_direction min_angle = "-150.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="9" name = "XN_SKEL_RIGHT_WRIST">
+			<position x = "-683.189" y = "318.112" z = "2666.63" />
+			<orientation w = "0.0" x = "-1.0" y = "0.0" z = "0.0"/>
+			<direction x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "-1.0" y = "0.0" z = "0.0"/>
+			<axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<length  value = "60"/>
+			<left value = "0"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="10" name = "XN_SKEL_LEFT_HIP">
+			<position x = "50.341" y = "-234.446" z = "2632.27" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "0.0" z = "1.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "402"/>
+			<left value = "1"/>
+			<angle_threshold value = "5.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "0.0" theta3= "60.0" theta4= "0"/>
+			<rotate_around_direction min_angle = "-90.0" max_angle = "90.0"/>
+		</bone>
+
+		<bone id="11" name = "XN_SKEL_LEFT_KNEE">
+			<position x = "170.217" y = "-584.234" z = "2638.85" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "-1.0" z = "0.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "305"/>
+			<left value = "1"/>
+			<angle_threshold value = "5.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="12" name = "XN_SKEL_LEFT_ANKLE">
+			<position x = "281.579" y = "-936.307" z = "2618.62" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "-1.0" z = "0.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "-1"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="13" name = "XN_SKEL_RIGHT_HIP">
+			<position x = "-104.795" y = "-232.803" z = "2632.33" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "0.0" z = "1.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "402"/>
+			<left value = "0"/>
+			<angle_threshold value = "5.0"/>
+			<internal_cone value = "1"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "0.0" theta3= "60.0" theta4= "0"/>
+			<rotate_around_direction min_angle = "-90.0" max_angle = "90.0"/>
+		</bone>
+		<bone id="14" name = "XN_SKEL_RIGHT_KNEE">
+			<position x = "-232.198" y = "-579.919" z = "2639" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "-1.0" z = "0.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "305"/>
+			<left value = "0"/>
+			<angle_threshold value = "5.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="15" name = "XN_SKEL_RIGHT_ANKLE">
+			<position x = "-351.841" y = "-929.269" z = "2618.87" />
+			<orientation w = "0.0" x = "0.0" y = "-1.0" z = "0.0"/>
+			<direction x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "-1.0" z = "0.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<length  value = "-1"/>
+			<left value = "0"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+		
+		<bone id="16" name = "XN_SKEL_LEFT_HAND">
+			<position x = "693.388" y = "311.076" z = "2656.56" />
+			<orientation w = "0.0" x = "-1.0" y = "0.0" z = "0.0"/>
+			<direction x = "1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "1.0" y = "0.0" z = "0.0" />
+			<axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "1.0" z = "0.0" />
+			<length  value = "-1"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="17" name = "XN_SKEL_RIGHT_HAND">
+			<position x = "-743.189" y = "318.112" z = "2666.63" />
+			<orientation w = "0.0" x = "-1.0" y = "0.0" z = "0.0"/>
+			<direction x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "-1.0" y = "0.0" z = "0.0"/>
+			<axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<limit_axis_rotate x = "0.0" y = "-1.0" z = "0.0" />
+			<length  value = "-1"/>
+			<left value = "0"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="18" name = "XN_SKEL_SPINE_SHOULDER">
+			<position x = "-24.4121" y = "80.868" z = "2632.94" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "0.0" y = "1.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "100"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+		
+		<bone id="19" name = "XN_SKEL_LEFT_COLLAR">
+			<position x = "-24.4121" y = "80.868" z = "2632.94" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "160"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+		<bone id="20" name = "XN_SKEL_RIGHT_COLLAR">
+			<position x = "-24.4121" y = "80.868" z = "2632.94" />
+			<orientation w = "1.0" x = "0.0" y = "0.0" z = "0.0"/>
+			<direction x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_direction x = "0.0" y = "1.0" z = "0.0" />
+			<axis_rotate x = "-1.0" y = "0.0" z = "0.0" />
+			<limit_axis_rotate x = "1.0" y = "0.0" z = "0.0" />
+			<length  value = "160"/>
+			<left value = "1"/>
+			<angle_threshold value = "0.0"/>
+			<internal_cone value = "0"/>
+			<rotation_limit_angles theta1= "89.0" theta2= "89.0" theta3= "89.0" theta4= "89.0"/>	
+			<rotate_around_direction min_angle = "-180.0" max_angle = "180.0"/>
+		</bone>
+
+	</bones>
+
+	<bones_chains count = "5">
+		<chain id = "0" sub_base = "1" max_iter_count = "3" stop_iter_count = "3">
+			<bone id = "4" />
+			<bone id = "5" />
+			<bone id = "6" />
+			<bone id = "16" />
+		</chain>
+		<chain id = "1" sub_base = "1" max_iter_count = "3" stop_iter_count = "3">
+			<bone id = "7" />
+			<bone id = "8" />
+			<bone id = "9" />
+			<bone id = "17" />
+		</chain>
+		<chain id = "2" sub_base = "1" max_iter_count = "3" stop_iter_count = "3">
+			<bone id = "10" />
+			<bone id = "11" />
+			<bone id = "12" />
+		</chain>
+		<chain id = "3" sub_base = "1" max_iter_count = "3" stop_iter_count = "3">
+			<bone id = "13" />
+			<bone id = "14" />
+			<bone id = "15" />
+		</chain>
+		<chain id = "4" sub_base = "-1" max_iter_count = "3" stop_iter_count = "3"> 
+			<bone id = "0" />
+			<bone id = "1" />
+			<bone id = "18" />
+			<bone id = "2" />
+			<bone id = "3" />
+		</chain>
+	</bones_chains>
+	
+	<bones_connections  count = "4">
+		<connection id = "0" first = "0" second = "13" length = "160"/>
+		<connection id = "1" first = "0" second = "10" length = "160"/>
+		<connection id = "2" first = "2" second = "7" length = "180"/>
+		<connection id = "3" first = "2" second = "4" length = "180"/>
+	</bones_connections>
+
+	<bones_pairs>
+		<bones_pair first = "4" second = "7" />
+		<bones_pair first = "5" second = "8" />
+		<bones_pair first = "10" second = "13" />
+		<bones_pair first = "11" second = "14" />
+		<bones_pair first = "16" second = "17" />
+	</bones_pairs>
+</skeleton>

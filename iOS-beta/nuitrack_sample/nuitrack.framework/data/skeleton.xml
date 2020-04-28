@@ -1,0 +1,202 @@
+<skeleton >
+  <bones >
+    <bone name="XN_SKEL_ROOT" id="0" >
+      <position y="1232.436768" x="-2.586162" z="-145.188492" />
+      <rotation angle="0.017740" >
+        <axis y="0.027430" x="0.985073" z="-0.175340" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LOWERBACK" id="1" >
+      <position y="-0.717046" x="-0.003106" z="-1.957480" />
+      <rotation angle="3.120983" >
+        <axis y="0.000081" x="0.999992" z="-0.004008" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_WAIST" id="2" >
+      <position y="199.740173" x="-0.000000" z="0.000011" />
+      <rotation angle="3.086387" >
+        <axis y="0.997320" x="0.018803" z="0.070706" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_HIPJOINT" id="3" >
+      <position y="2.396116" x="0.000001" z="-0.000029" />
+      <rotation angle="2.547734" >
+        <axis y="0.912081" x="0.398064" z="-0.098255" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_HIP" id="4" >
+      <position y="114.877014" x="-0.086147" z="-0.083492" />
+      <rotation angle="0.586356" >
+        <axis y="0.703515" x="-0.394233" z="-0.591309" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_KNEE" id="5" >
+      <position y="449.080475" x="-0.000050" z="-0.000011" />
+      <rotation angle="0.078674" >
+        <axis y="0.272071" x="0.775766" z="-0.569369" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_ANKLE" id="6" >
+      <position y="409.103546" x="-0.000015" z="0.000019" />
+      <rotation angle="1.094149" >
+        <axis y="-0.038526" x="-0.931389" z="0.361983" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_FOOT" id="7" >
+      <position y="137.097137" x="-0.000016" z="-0.000017" />
+      <rotation angle="0.678896" >
+        <axis y="0.522503" x="-0.834622" z="0.174345" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_HIPJOINT" id="8" >
+      <position y="2.396116" x="0.000001" z="-0.000029" />
+      <rotation angle="2.437476" >
+        <axis y="-0.926160" x="0.374228" z="0.046711" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_HIP" id="9" >
+      <position y="113.323547" x="-1.769093" z="0.604401" />
+      <rotation angle="0.579752" >
+        <axis y="-0.706515" x="-0.355788" z="0.611762" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_KNEE" id="10" >
+      <position y="449.011749" x="0.000015" z="-0.000019" />
+      <rotation angle="0.079815" >
+        <axis y="-0.292811" x="0.769391" z="0.567750" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_ANKLE" id="11" >
+      <position y="408.785980" x="-0.000008" z="-0.000029" />
+      <rotation angle="1.094646" >
+        <axis y="0.041848" x="-0.938344" z="-0.343161" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_FOOT" id="12" >
+      <position y="137.089493" x="-0.000023" z="-0.000006" />
+      <rotation angle="0.914359" >
+        <axis y="-0.765970" x="-0.642854" z="-0.005397" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_TORSO" id="13" >
+      <position y="2.669291" x="0.210524" z="-0.261881" />
+      <rotation angle="0.020368" >
+        <axis y="-0.158050" x="0.938936" z="0.308874" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_NECK" id="14" >
+      <position y="194.520493" x="0.251835" z="-9.409662" />
+      <rotation angle="0.030572" >
+        <axis y="-0.011963" x="-0.979213" z="-0.203302" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_HEAD" id="15" >
+      <position y="186.829727" x="0.090466" z="27.228777" />
+      <rotation angle="0.230946" >
+        <axis y="-0.000247" x="0.999996" z="-0.003351" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_COLLAR" id="16" >
+      <position y="194.520493" x="0.251835" z="-9.409662" />
+      <rotation angle="2.185874" >
+        <axis y="-0.583668" x="-0.583863" z="-0.564301" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_SHOULDER" id="17" >
+      <position y="173.029984" x="-0.000005" z="0.000079" />
+      <rotation angle="0.048274" >
+        <axis y="-0.000306" x="0.037968" z="0.999322" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_ELBOW" id="18" >
+      <position y="262.449249" x="0.000012" z="0.000033" />
+      <rotation angle="0.107896" >
+        <axis y="0.748632" x="0.520104" z="-0.411185" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_WRIST" id="19" >
+      <position y="300.419281" x="-0.000029" z="-0.000078" />
+      <rotation angle="0.115579" >
+        <axis y="-0.805906" x="-0.074861" z="-0.587304" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_HAND" id="20" >
+      <position y="30.562048" x="-0.000015" z="-0.000051" />
+      <rotation angle="0.118564" >
+        <axis y="0.247391" x="-0.215380" z="0.944674" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_LEFT_FINGERTIP" id="21" >
+      <position y="104.129730" x="-0.000003" z="0.000056" />
+      <rotation angle="0.032034" >
+        <axis y="0.084399" x="0.064654" z="-0.994496" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_COLLAR" id="22" >
+      <position y="194.520493" x="0.251835" z="-9.409662" />
+      <rotation angle="2.186011" >
+        <axis y="0.591084" x="-0.572450" z="0.568261" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_SHOULDER" id="23" >
+      <position y="135.335037" x="-0.000021" z="0.000051" />
+      <rotation angle="0.062533" >
+        <axis y="-0.003260" x="0.035449" z="-0.999355" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_ELBOW" id="24" >
+      <position y="338.043732" x="0.000014" z="-0.000014" />
+      <rotation angle="0.128393" >
+        <axis y="-0.623495" x="0.515583" z="0.587767" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_WRIST" id="25" >
+      <position y="233.032120" x="-0.000015" z="-0.000032" />
+      <rotation angle="0.130175" >
+        <axis y="0.884804" x="-0.242547" z="-0.397849" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_HAND" id="26" >
+      <position y="31.471539" x="-0.000005" z="0.000009" />
+      <rotation angle="0.050458" >
+        <axis y="-0.749604" x="-0.603429" z="-0.272069" />
+      </rotation>
+    </bone>
+    <bone name="XN_SKEL_RIGHT_FINGERTIP" id="27" >
+      <position y="123.037949" x="-0.000001" z="-0.000252" />
+      <rotation angle="0.062981" >
+        <axis y="-0.273592" x="-0.693919" z="-0.666016" />
+      </rotation>
+    </bone>
+  </bones>
+  <bonehierarchy >
+    <boneparent parent="XN_SKEL_ROOT" bone="XN_SKEL_LOWERBACK" />
+    <boneparent parent="XN_SKEL_LOWERBACK" bone="XN_SKEL_WAIST" />
+    <boneparent parent="XN_SKEL_WAIST" bone="XN_SKEL_RIGHT_HIPJOINT" />
+    <boneparent parent="XN_SKEL_RIGHT_HIPJOINT" bone="XN_SKEL_RIGHT_HIP" />
+    <boneparent parent="XN_SKEL_RIGHT_HIP" bone="XN_SKEL_RIGHT_KNEE" />
+    <boneparent parent="XN_SKEL_RIGHT_KNEE" bone="XN_SKEL_RIGHT_ANKLE" />
+    <boneparent parent="XN_SKEL_RIGHT_ANKLE" bone="XN_SKEL_RIGHT_FOOT" />
+    <boneparent parent="XN_SKEL_WAIST" bone="XN_SKEL_LEFT_HIPJOINT" />
+    <boneparent parent="XN_SKEL_LEFT_HIPJOINT" bone="XN_SKEL_LEFT_HIP" />
+    <boneparent parent="XN_SKEL_LEFT_HIP" bone="XN_SKEL_LEFT_KNEE" />
+    <boneparent parent="XN_SKEL_LEFT_KNEE" bone="XN_SKEL_LEFT_ANKLE" />
+    <boneparent parent="XN_SKEL_LEFT_ANKLE" bone="XN_SKEL_LEFT_FOOT" />
+    <boneparent parent="XN_SKEL_ROOT" bone="XN_SKEL_TORSO" />
+    <boneparent parent="XN_SKEL_TORSO" bone="XN_SKEL_NECK" />
+    <boneparent parent="XN_SKEL_NECK" bone="XN_SKEL_HEAD" />
+    <boneparent parent="XN_SKEL_TORSO" bone="XN_SKEL_LEFT_COLLAR" />
+    <boneparent parent="XN_SKEL_LEFT_COLLAR" bone="XN_SKEL_LEFT_SHOULDER" />
+    <boneparent parent="XN_SKEL_LEFT_SHOULDER" bone="XN_SKEL_LEFT_ELBOW" />
+    <boneparent parent="XN_SKEL_LEFT_ELBOW" bone="XN_SKEL_LEFT_WRIST" />
+    <boneparent parent="XN_SKEL_LEFT_WRIST" bone="XN_SKEL_LEFT_HAND" />
+    <boneparent parent="XN_SKEL_LEFT_HAND" bone="XN_SKEL_LEFT_FINGERTIP" />
+    <boneparent parent="XN_SKEL_TORSO" bone="XN_SKEL_RIGHT_COLLAR" />
+    <boneparent parent="XN_SKEL_RIGHT_COLLAR" bone="XN_SKEL_RIGHT_SHOULDER" />
+    <boneparent parent="XN_SKEL_RIGHT_SHOULDER" bone="XN_SKEL_RIGHT_ELBOW" />
+    <boneparent parent="XN_SKEL_RIGHT_ELBOW" bone="XN_SKEL_RIGHT_WRIST" />
+    <boneparent parent="XN_SKEL_RIGHT_WRIST" bone="XN_SKEL_RIGHT_HAND" />
+    <boneparent parent="XN_SKEL_RIGHT_HAND" bone="XN_SKEL_RIGHT_FINGERTIP" />
+  </bonehierarchy>
+  <animations />
+</skeleton>

@@ -125,12 +125,14 @@ namespace nuitrack
 				throw exception;
 			}
 
-			_depthSensor.SetMirror(false);
+			//_depthSensor.SetMirror(false);
 
 			// Add event handlers for all modules
 			_depthSensor.OnUpdateEvent += onDepthSensorUpdate;
 			_colorSensor.OnUpdateEvent += onColorSensorUpdate;
 			_userTracker.OnUpdateEvent += onUserTrackerUpdate;
+			_userTracker.OnNewUserEvent += onUserTrackerNewUser;
+			_userTracker.OnLostUserEvent += onUserTrackerLostUser;
 			_skeletonTracker.OnSkeletonUpdateEvent += onSkeletonUpdate;
 			_handTracker.OnUpdateEvent += onHandTrackerUpdate;
 			_gestureRecognizer.OnNewGesturesEvent += onNewGestures;
@@ -406,6 +408,18 @@ namespace nuitrack
 					_bitmap.Bits[bitmapPtr++] = argb;
 				}
 			}
+		}
+
+		// Event handler for the NewUser event
+		private void onUserTrackerNewUser(int id)
+		{
+			Console.WriteLine("New User {0}", id);
+		}
+
+		// Event handler for the LostUser event
+		private void onUserTrackerLostUser(int id)
+		{
+			Console.WriteLine("Lost User {0}", id);
 		}
 
 		// Event handler for the SkeletonUpdate event
