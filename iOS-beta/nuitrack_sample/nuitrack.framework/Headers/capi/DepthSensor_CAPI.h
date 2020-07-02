@@ -20,7 +20,8 @@ class DepthFrame;
 
 typedef void (*OnNewFrameRawFunctionPtr)(DepthSensorData*, tdv::nuitrack::DepthSensor*);
 
-class DepthSensorCallbackWrapper{
+class DepthSensorCallbackWrapper
+{
  public:
 	DepthSensorCallbackWrapper():_sensor(NULL), _funcPtr(NULL) {}
 	void setDepthSensor(tdv::nuitrack::DepthSensor* sensor)
@@ -50,6 +51,10 @@ extern "C" void NUITRACK_API nuitrack_OnDepthSensorUpdateDisconnect(NuitrackModu
 extern "C" DepthSensorDataPtr NUITRACK_API nuitrack_GetDepthSensorData(NuitrackModulePtr);
 
 extern "C" void NUITRACK_API nuitrack_DestroyDepthSensorData(DepthSensorDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddDepthSensorDataRef(DepthSensorDataPtr);
+
+extern "C" uint16_t NUITRACK_API nuitrack_GetDepthFrameValueAtIndex(DepthSensorDataPtr ptr, int i);
+extern "C" uint16_t NUITRACK_API nuitrack_GetDepthFrameValue(DepthSensorDataPtr ptr, int x, int y);
 
 extern "C" size_t NUITRACK_API nuitrack_GetDepthFrameRows(DepthSensorDataPtr);
 

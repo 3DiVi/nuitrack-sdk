@@ -38,25 +38,25 @@ elseif ( CSHARP_TYPE MATCHES "Mono" )
   include( ${Mono_USE_FILE} )
 endif ( CSHARP_TYPE MATCHES ".NET" )
 
-macro( CSHARP_ADD_LIBRARY target output_directory name defs)
-  CSHARP_ADD_PROJECT( "${target}" "${output_directory}" "library" "${name}" "${defs}" "${ARGN}" )
+macro( CSHARP_ADD_LIBRARY target output_directory name defs flags)
+  CSHARP_ADD_PROJECT( "${target}" "${output_directory}" "library" "${name}" "${defs}" "${flags}" "${ARGN}" )
 endmacro( CSHARP_ADD_LIBRARY )
 
-macro( CSHARP_ADD_EXECUTABLE target output_directory name defs)
-  CSHARP_ADD_PROJECT( "${target}" "${output_directory}" "exe" "${name}" "${defs}" "${ARGN}" )
+macro( CSHARP_ADD_EXECUTABLE target output_directory name defs flags)
+  CSHARP_ADD_PROJECT( "${target}" "${output_directory}" "exe" "${name}" "${defs}" "${flags}" "${ARGN}" )
 endmacro( CSHARP_ADD_EXECUTABLE )
 
 # Private macro
-macro( CSHARP_ADD_PROJECT target output_directory type name defs)
+macro( CSHARP_ADD_PROJECT target output_directory type name defs flags)
   set( refs "/reference:System.dll" )
   set( sources )
   set( sources_dep )
 
-  if( ${type} MATCHES "library" )
+  if( ${type} STREQUAL "library" )
     set( output "dll" )
-  elseif( ${type} MATCHES "exe" )
+  elseif( ${type} STREQUAL "exe" )
     set( output "exe" )
-  endif( ${type} MATCHES "library" )
+  endif( ${type} STREQUAL "library" )
 
   # Step through each argument
   foreach( it ${ARGN} )
@@ -93,7 +93,7 @@ macro( CSHARP_ADD_PROJECT target output_directory type name defs)
 #  else (UNIX)
 #    string( REPLACE "\\" "/" sources ${sources} )
   endif (WIN32)
-  
+
     file(MAKE_DIRECTORY ${output_directory})
 
   # Add custom target and command
@@ -102,7 +102,7 @@ macro( CSHARP_ADD_PROJECT target output_directory type name defs)
     COMMENT "Compiling C# ${type} ${name}: '${CSHARP_COMPILER} /d:${defs} /t:${type} /out:${name}.${output} /platform:${CSHARP_PLATFORM} ${CSHARP_SDK} ${refs} ${sources}'"
     OUTPUT ${CSHARP_BINARY_DIRECTORY}/${target}.${output}
     COMMAND ${CSHARP_COMPILER}
-    ARGS /t:${type} "/d:\"${defs}\"" /out:${name}.${output} /platform:${CSHARP_PLATFORM} ${CSHARP_SDK} ${refs} ${sources} /doc:${name}.xml
+    ARGS ${flags} /t:${type} "/d:\"${defs}\"" /out:${name}.${output} /platform:${CSHARP_PLATFORM} ${CSHARP_SDK} ${refs} ${sources} /doc:${name}.xml
     WORKING_DIRECTORY ${output_directory}
     DEPENDS ${sources_dep}
   )

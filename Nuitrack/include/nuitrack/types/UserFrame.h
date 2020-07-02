@@ -12,14 +12,14 @@ namespace tdv
 namespace nuitrack
 {
 
-/** 
+/**
  * @ingroup UserTracker_group
  * @brief Represents a user map with information about the floor.
- * 
+ *
  * Each UserFrame element stores the ID of a user to which corresponding frame pixel belongs.
- * 
+ *
  * Additional information about detected users can be accessed trough UserFrame::getUsers.
- * 
+ *
  * The floor is represented in the form of a plane: as the point and the normal vector.
  * This properties can be accessed via UserFrame::getFloor and
  * UserFrame::getFloorNormal respectively.
@@ -31,6 +31,7 @@ public:
 	UserFrame(UserTrackerData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddUserTrackerDataRef(pimpl);
 	}
 
 	virtual ~UserFrame()
@@ -40,7 +41,7 @@ public:
 
 	/**
 	 * @brief Returns additional information about detected users.
-	 * 
+	 *
 	 * @return Detected user properties in the form of array of the User structures.
 	 */
 	const std::vector<User> getUsers() const

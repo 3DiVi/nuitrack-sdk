@@ -74,6 +74,7 @@ extern "C" void NUITRACK_API nuitrack_OnSkeletonUpdateDisconnect(NuitrackModuleP
 extern "C" SkeletonTrackerDataPtr NUITRACK_API nuitrack_GetSkeletonTrackerData(NuitrackModulePtr);
 
 extern "C" void NUITRACK_API nuitrack_DestroySkeletonTrackerData(SkeletonTrackerDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddSkeletonTrackerDataRef(SkeletonTrackerDataPtr);
 
 extern "C" int NUITRACK_API nuitrack_GetNumUsers(SkeletonTrackerDataPtr);
 

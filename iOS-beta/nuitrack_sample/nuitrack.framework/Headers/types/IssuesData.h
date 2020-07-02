@@ -28,6 +28,7 @@ public:
 	IssuesData(IssueTrackerData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddIssueTrackerDataRef(pimpl);
 	}
 
 	virtual ~IssuesData()
@@ -42,7 +43,7 @@ public:
 
 	/**
 	 * @brief Returns information about sensor related issue detected.
-	 * 
+	 *
 	 * @tparam T A data type that stores information about the requested issue.
 	 */
 	template<typename T> std::shared_ptr<T> NUITRACK_LOCAL getIssue() const
@@ -67,7 +68,7 @@ public:
 
 	/**
 	 * @brief Returns information about user related issue detected.
-	 * 
+	 *
 	 * @tparam T A data type that stores information about the requested issue.
 	 * @param userId ID of the user of interest.
 	 */

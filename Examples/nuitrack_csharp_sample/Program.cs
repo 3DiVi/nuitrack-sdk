@@ -22,7 +22,7 @@ namespace nuitrack
 			{
 				Application.Run(new MainForm());
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine(exception.ToString());
 			}
@@ -92,7 +92,7 @@ namespace nuitrack
 		private DepthFrame _depthFrame;
 		private SkeletonData _skeletonData;
 		private HandTrackerData _handTrackerData;
-		private IssuesData _issuesData = null;
+		private IssuesData _issuesData;
 
 		public MainForm()
 		{
@@ -103,7 +103,7 @@ namespace nuitrack
 			{
 				Nuitrack.Init("");
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine("Cannot initialize Nuitrack.");
 				throw exception;
@@ -119,7 +119,7 @@ namespace nuitrack
 				_handTracker = HandTracker.Create();
 				_gestureRecognizer = GestureRecognizer.Create();
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine("Cannot create Nuitrack module.");
 				throw exception;
@@ -137,7 +137,7 @@ namespace nuitrack
 			_handTracker.OnUpdateEvent += onHandTrackerUpdate;
 			_gestureRecognizer.OnNewGesturesEvent += onNewGestures;
 
-			// Add an event handler for the IssueUpdate event 
+			// Add an event handler for the IssueUpdate event
 			Nuitrack.onIssueUpdateEvent += onIssueDataUpdate;
 
 			// Create and configure the Bitmap object according to the depth sensor output mode
@@ -170,7 +170,7 @@ namespace nuitrack
 			{
 				Nuitrack.Run();
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine("Cannot start Nuitrack.");
 				throw exception;
@@ -200,7 +200,7 @@ namespace nuitrack
 
 				Nuitrack.Release();
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine("Nuitrack release failed.");
 				throw exception;
@@ -224,12 +224,12 @@ namespace nuitrack
 			{
 				Nuitrack.Update(_skeletonTracker);
 			}
-			catch(LicenseNotAcquiredException exception)
+			catch (LicenseNotAcquiredException exception)
 			{
 				Console.WriteLine("LicenseNotAcquired exception. Exception: ", exception);
 				throw exception;
 			}
-			catch(Exception exception)
+			catch (Exception exception)
 			{
 				Console.WriteLine("Nuitrack update failed. Exception: ", exception);
 			}
@@ -262,7 +262,7 @@ namespace nuitrack
 						HandContent hand = userHands.LeftHand.Value;
 						int size = hand.Click ? 20 : 30;
 						Brush brush = new SolidBrush(Color.Aquamarine);
-						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size/2, hand.Y * _bitmap.Height - size / 2, size, size);
+						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size / 2, hand.Y * _bitmap.Height - size / 2, size, size);
 					}
 
 					if (userHands.RightHand != null)
@@ -270,7 +270,7 @@ namespace nuitrack
 						HandContent hand = userHands.RightHand.Value;
 						int size = hand.Click ? 20 : 30;
 						Brush brush = new SolidBrush(Color.DarkBlue);
-						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size/2, hand.Y * _bitmap.Height - size / 2, size, size);
+						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size / 2, hand.Y * _bitmap.Height - size / 2, size, size);
 					}
 				}
 			}
@@ -281,13 +281,17 @@ namespace nuitrack
 
 		private void onIssueDataUpdate(IssuesData issuesData)
 		{
-			_issuesData = issuesData;
+			if (_issuesData != null)
+				_issuesData.Dispose();
+			_issuesData = (IssuesData)issuesData.Clone();
 		}
 
 		// Event handler for the DepthSensorUpdate event
 		private void onDepthSensorUpdate(DepthFrame depthFrame)
 		{
-			_depthFrame = depthFrame;
+			if (_depthFrame != null)
+				_depthFrame.Dispose();
+			_depthFrame = (DepthFrame)depthFrame.Clone();
 		}
 
 		// Event handler for the ColorSensorUpdate event
@@ -300,41 +304,44 @@ namespace nuitrack
 
 			float wStep = (float)_bitmap.Width / colorFrame.Cols;
 			float hStep = (float)_bitmap.Height / colorFrame.Rows;
-			
+
 			float nextVerticalBorder = hStep;
-			
-			Byte[] data = colorFrame.Data;
+
 			int colorPtr = 0;
 			int bitmapPtr = 0;
 			const int elemSizeInBytes = 3;
 
-			for (int i = 0; i < _bitmap.Height; ++i)
+			unsafe
 			{
-				if (i == (int)nextVerticalBorder)
+				byte* data = (byte*)colorFrame.Data.ToPointer();
+				for (int i = 0; i < _bitmap.Height; ++i)
 				{
-					colorPtr += colorFrame.Cols * elemSizeInBytes;
-					nextVerticalBorder += hStep;
-				}
-
-				int offset = 0;
-				int argb = data[colorPtr]
-					| (data[colorPtr + 1] << 8)
-					| (data[colorPtr + 2] << 16)
-					| (0xFF << 24);
-				float nextHorizontalBorder = wStep;
-				for (int j = 0; j < _bitmap.Width; ++j)
-				{
-					if (j == (int)nextHorizontalBorder)
+					if (i == (int)nextVerticalBorder)
 					{
-						offset += elemSizeInBytes;
-						argb = data[colorPtr + offset]
-							| (data[colorPtr + offset + 1] << 8)
-							| (data[colorPtr + offset + 2] << 16)
-							| (0xFF << 24);
-						nextHorizontalBorder += wStep;
+						colorPtr += colorFrame.Cols * elemSizeInBytes;
+						nextVerticalBorder += hStep;
 					}
 
-					_bitmap.Bits[bitmapPtr++] = argb;
+					int offset = 0;
+					int argb = data[colorPtr]
+						| (data[colorPtr + 1] << 8)
+						| (data[colorPtr + 2] << 16)
+						| (0xFF << 24);
+					float nextHorizontalBorder = wStep;
+					for (int j = 0; j < _bitmap.Width; ++j)
+					{
+						if (j == (int)nextHorizontalBorder)
+						{
+							offset += elemSizeInBytes;
+							argb = data[colorPtr + offset]
+								| (data[colorPtr + offset + 1] << 8)
+								| (data[colorPtr + offset + 2] << 16)
+								| (0xFF << 24);
+							nextHorizontalBorder += wStep;
+						}
+
+						_bitmap.Bits[bitmapPtr++] = argb;
+					}
 				}
 			}
 		}
@@ -342,70 +349,76 @@ namespace nuitrack
 		// Event handler for the UserTrackerUpdate event
 		private void onUserTrackerUpdate(UserFrame userFrame)
 		{
-			if (_visualizeColorImage && _colorStreamEnabled)
-				return;
-			if (_depthFrame == null)
-				return;
-
-			const int MAX_LABELS = 7;
-			bool[] labelIssueState = new bool[MAX_LABELS];
-			for (UInt16 label = 0; label < MAX_LABELS; ++label)
+			using (UserFrame _userFrame = (UserFrame)userFrame.Clone())
 			{
-				labelIssueState[label] = false;
-				if (_issuesData != null)
+				if (_visualizeColorImage && _colorStreamEnabled)
+					return;
+				if (_depthFrame == null)
+					return;
+
+				const int MAX_LABELS = 7;
+				bool[] labelIssueState = new bool[MAX_LABELS];
+				for (UInt16 label = 0; label < MAX_LABELS; ++label)
 				{
-					FrameBorderIssue frameBorderIssue = _issuesData.GetUserIssue<FrameBorderIssue>(label);
-					labelIssueState[label] = (frameBorderIssue != null);
-				}
-			}
-
-			float wStep = (float)_bitmap.Width / _depthFrame.Cols;
-			float hStep = (float)_bitmap.Height / _depthFrame.Rows;
-
-			float nextVerticalBorder = hStep;
-
-			Byte[] dataDepth = _depthFrame.Data;
-			Byte[] dataUser = userFrame.Data;
-			int dataPtr = 0;
-			int bitmapPtr = 0;
-			const int elemSizeInBytes = 2;
-			for (int i = 0; i < _bitmap.Height; ++i)
-			{
-				if (i == (int)nextVerticalBorder)
-				{
-					dataPtr += _depthFrame.Cols * elemSizeInBytes;
-					nextVerticalBorder += hStep;
+					labelIssueState[label] = false;
+					if (_issuesData != null)
+					{
+						FrameBorderIssue frameBorderIssue = _issuesData.GetUserIssue<FrameBorderIssue>(label);
+						labelIssueState[label] = (frameBorderIssue != null);
+					}
 				}
 
-				int offset = 0;
-				int argb = 0;
-				int label = dataUser[dataPtr] | dataUser[dataPtr + 1] << 8;
-				int depth = Math.Min(255, (dataDepth[dataPtr] | dataDepth[dataPtr + 1] << 8) / 32);
-				float nextHorizontalBorder = wStep;
-				for (int j = 0; j < _bitmap.Width; ++j)
+				float wStep = (float)_bitmap.Width / _depthFrame.Cols;
+				float hStep = (float)_bitmap.Height / _depthFrame.Rows;
+
+				float nextVerticalBorder = hStep;
+
+				unsafe
 				{
-					if (j == (int)nextHorizontalBorder)
+					byte* dataDepth = (byte*)_depthFrame.Data.ToPointer();
+					byte* dataUser = (byte*)_userFrame.Data.ToPointer();
+					int dataPtr = 0;
+					int bitmapPtr = 0;
+					const int elemSizeInBytes = 2;
+					for (int i = 0; i < _bitmap.Height; ++i)
 					{
-						offset += elemSizeInBytes;
-						label = dataUser[dataPtr + offset] | dataUser[dataPtr + offset + 1] << 8;
-						if (label == 0)
-							depth = Math.Min(255, (dataDepth[dataPtr + offset] | dataDepth[dataPtr + offset + 1] << 8) / 32);
-						nextHorizontalBorder += wStep;
-					}
+						if (i == (int)nextVerticalBorder)
+						{
+							dataPtr += _depthFrame.Cols * elemSizeInBytes;
+							nextVerticalBorder += hStep;
+						}
 
-					if (label > 0)
-					{
-						int user = label * 40;
-						if (!labelIssueState[label])
-							user += 40;
-						argb = 0 | (user << 8) | (0 << 16) | (0xFF << 24);
-					}
-					else
-					{
-						argb = depth | (depth << 8) | (depth << 16) | (0xFF << 24);
-					}
+						int offset = 0;
+						int argb = 0;
+						int label = dataUser[dataPtr] | dataUser[dataPtr + 1] << 8;
+						int depth = Math.Min(255, (dataDepth[dataPtr] | dataDepth[dataPtr + 1] << 8) / 32);
+						float nextHorizontalBorder = wStep;
+						for (int j = 0; j < _bitmap.Width; ++j)
+						{
+							if (j == (int)nextHorizontalBorder)
+							{
+								offset += elemSizeInBytes;
+								label = dataUser[dataPtr + offset] | dataUser[dataPtr + offset + 1] << 8;
+								if (label == 0)
+									depth = Math.Min(255, (dataDepth[dataPtr + offset] | dataDepth[dataPtr + offset + 1] << 8) / 32);
+								nextHorizontalBorder += wStep;
+							}
 
-					_bitmap.Bits[bitmapPtr++] = argb;
+							if (label > 0)
+							{
+								int user = label * 40;
+								if (!labelIssueState[label])
+									user += 40;
+								argb = 0 | (user << 8) | (0 << 16) | (0xFF << 24);
+							}
+							else
+							{
+								argb = depth | (depth << 8) | (depth << 16) | (0xFF << 24);
+							}
+
+							_bitmap.Bits[bitmapPtr++] = argb;
+						}
+					}
 				}
 			}
 		}
@@ -425,13 +438,17 @@ namespace nuitrack
 		// Event handler for the SkeletonUpdate event
 		private void onSkeletonUpdate(SkeletonData skeletonData)
 		{
-			_skeletonData = skeletonData;
+			if (_skeletonData != null)
+				_skeletonData.Dispose();
+			_skeletonData = (SkeletonData)skeletonData.Clone();
 		}
 
 		// Event handler for the HandTrackerUpdate event
 		private void onHandTrackerUpdate(HandTrackerData handTrackerData)
 		{
-			_handTrackerData = handTrackerData;
+			if (_handTrackerData != null)
+				_handTrackerData.Dispose();
+			_handTrackerData = (HandTrackerData)handTrackerData.Clone();
 		}
 
 		// Event handler for the gesture detection event

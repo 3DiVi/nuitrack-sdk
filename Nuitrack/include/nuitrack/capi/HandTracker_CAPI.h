@@ -50,6 +50,7 @@ extern "C" uint64_t NUITRACK_API nuitrack_GetHandTrackerDataTimestamp(HandTracke
 extern "C" size_t NUITRACK_API nuitrack_HandTrackerGetNumUsers(HandTrackerDataPtr);
 extern "C" void NUITRACK_API nuitrack_HandTrackerGetUserHands(HandTrackerDataPtr, int, int*, tdv::nuitrack::Hand*, tdv::nuitrack::Hand*);
 extern "C" void NUITRACK_API nuitrack_DestroyHandTrackerData(HandTrackerDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddHandTrackerDataRef(HandTrackerDataPtr);
 extern "C" void NUITRACK_API nuitrack_ReceiveInnerHandTrackerData(NuitrackModule*, HandTrackerDataInner**);
 
 

@@ -50,6 +50,10 @@ extern "C" void NUITRACK_API nuitrack_OnColorSensorUpdateDisconnect(NuitrackModu
 extern "C" ColorSensorDataPtr NUITRACK_API nuitrack_GetColorSensorData(NuitrackModulePtr);
 
 extern "C" void NUITRACK_API nuitrack_DestroyColorSensorData(ColorSensorDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddColorSensorDataRef(ColorSensorDataPtr);
+
+extern "C" tdv::nuitrack::Color3 NUITRACK_API nuitrack_GetColorFrameValueAtIndex(ColorSensorDataPtr ptr, int i);
+extern "C" tdv::nuitrack::Color3 NUITRACK_API nuitrack_GetColorFrameValue(ColorSensorDataPtr ptr, int x, int y);
 
 extern "C" size_t NUITRACK_API nuitrack_GetColorFrameRows(ColorSensorDataPtr);
 

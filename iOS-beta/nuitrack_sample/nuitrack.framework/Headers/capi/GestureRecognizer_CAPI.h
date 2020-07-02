@@ -74,6 +74,7 @@ extern "C" uint64_t NUITRACK_API nuitrack_GetUserGesturesTimestamp(GestureRecogn
 extern "C" size_t NUITRACK_API nuitrack_GetUserGesturesNumGestures(GestureRecognizerDataPtr);
 extern "C" void NUITRACK_API nuitrack_GetUserGesture(GestureRecognizerDataPtr, int, tdv::nuitrack::Gesture*);
 extern "C" void NUITRACK_API nuitrack_DestroyGestureRecognizerData(GestureRecognizerDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddGestureRecognizerDataRef(GestureRecognizerDataPtr);
 
 // OnUsersStateChangedCallback
 typedef struct UsersStateChanges* UsersStateChangesPtr;
@@ -86,11 +87,13 @@ extern "C" uint64_t NUITRACK_API nuitrack_GetUsersStateChangesTimestamp(UsersSta
 extern "C" size_t NUITRACK_API nuitrack_GetNumUsersStateChanges(UsersStateChangesPtr);
 extern "C" void NUITRACK_API nuitrack_GetUserStateChange(UsersStateChangesPtr, int, tdv::nuitrack::UserState*);
 extern "C" void NUITRACK_API nuitrack_DestroyUsersStateChanges(UsersStateChangesPtr);
+extern "C" void NUITRACK_API nuitrack_AddUsersStateChangesRef(UsersStateChangesPtr);
 
 // OnUpdateCallback
 typedef void(*GestureRecognizerUpdateCallback)(GestureRecognizerUserGesturesStateDataPtr);
 
 extern "C" void NUITRACK_API nuitrack_DestroyUsersStateData(GestureRecognizerUserGesturesStateDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddUsersStateDataRef(GestureRecognizerUserGesturesStateDataPtr);
 
 extern "C" uint64_t NUITRACK_API nuitrack_OnGesturesUpdate(NuitrackModulePtr, GestureRecognizerUpdateCallback);
 extern "C" void NUITRACK_API nuitrack_OnGesturesUpdateDisconnect(NuitrackModulePtr, uint64_t);

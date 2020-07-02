@@ -20,6 +20,7 @@ public:
 	GestureData(GestureRecognizerData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddGestureRecognizerDataRef(pimpl);
 	}
 
 	virtual ~GestureData()
@@ -29,7 +30,7 @@ public:
 
 	/**
 	 * @brief Returns the data timestamp in microseconds.
-	 * 
+	 *
 	 * The timestamp characterizes the time point to which the gesture
 	 * data corresponds.
 	 * @note The exact meaning of this value depends on the depth provider.
@@ -87,6 +88,7 @@ public:
 	UserStateData(UsersStateChanges* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddUsersStateChangesRef(pimpl);
 	}
 
 	virtual ~UserStateData()
@@ -104,7 +106,7 @@ public:
 
 	/**
 	 * @brief Returns the data timestamp in microseconds.
-	 * 
+	 *
 	 * The timestamp characterizes the time point to which the user state
 	 * data corresponds.
 	 * @note The exact meaning of this value depends on the depth provider.
@@ -154,6 +156,7 @@ public:
 	UserGesturesStateData(GestureRecognizerUserGesturesStateData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddUsersStateDataRef(pimpl);
 	}
 
 	virtual ~UserGesturesStateData()
@@ -171,7 +174,7 @@ public:
 
 	/**
 	 * @brief Returns the data timestamp in microseconds.
-	 * 
+	 *
 	 * The timestamp characterizes the time point to which the gesture state
 	 * data corresponds.
 	 * @note The exact meaning of this value depends on the depth provider.

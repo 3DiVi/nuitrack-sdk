@@ -19,6 +19,7 @@ public:
 	DepthFrame(DepthSensorData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddDepthSensorDataRef(pimpl);
 	}
 
 	virtual ~DepthFrame()

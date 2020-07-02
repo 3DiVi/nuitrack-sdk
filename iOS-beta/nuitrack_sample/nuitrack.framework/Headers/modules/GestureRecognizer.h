@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/GestureData.h"
 #include "nuitrack/capi/GestureRecognizer_CAPI.h"
@@ -20,7 +19,7 @@ namespace nuitrack
  * @ingroup GestureRecognizer_group
  * @brief Represents the interface to the capabilities of the
  * @ref GestureRecognizer_group "Nuitrack Gesture Recognizer" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor GestureRecognizer::create.
  * This instance is called %GestureRecognizer module object.
@@ -38,7 +37,7 @@ public:
 
 	/**
 	 * @brief The callback type of the new gesture detection event.
-	 * 
+	 *
 	 * This callback is called when it is detected that the user is
 	 * performing a new gesture.
 	 * This callback receive a smart pointer to GestureData.
@@ -49,7 +48,7 @@ public:
 
 	/**
 	 * @brief The callback type of the user state change event.
-	 * 
+	 *
 	 * This callback will be called when it is detected that the
 	 * user state has changed.
 	 * This callback receive a smart pointer to UserStateData.
@@ -79,8 +78,8 @@ public:
 	static GestureRecognizer::Ptr create()
 	{
 		NuitrackModule* pimpl = NULL;
-  	ExceptionType exception_code = nuitrack_CreateGestureRecognizer(&pimpl);
-  	ExceptionTranslator::generateExceptionByErrorCode(exception_code);
+		ExceptionType exception_code = nuitrack_CreateGestureRecognizer(&pimpl);
+		ExceptionTranslator::generateExceptionByErrorCode(exception_code);
 		return std::shared_ptr<GestureRecognizer>(new GestureRecognizer(pimpl));
 	}
 
@@ -188,10 +187,10 @@ public:
 
 	/**
 	 * @brief Set control gesture recognition state.
-	 * 
+	 *
 	 * Call setControlGesturesStatus(true) to enable control gestures.
 	 * Call setControlGesturesStatus(false) to disable control gestures.
-	 * 
+	 *
 	 * @param [in] status Control gesture recognition state to be set.
 	 */
 	void setControlGesturesStatus(bool status)
@@ -217,7 +216,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the last estimation of gestures.
 	 * @note The exact meaning of this value depends on the depth provider.
 	 */
@@ -230,7 +229,7 @@ protected:
 	/** @warning For internal use only. */
 	static void onNewGesturesCallback(GestureRecognizerData* data, GestureRecognizer* tracker)
 	{
-		GestureData::Ptr newFrame = GestureData::Ptr(new GestureData(data));
+		GestureData::Ptr newFrame(new GestureData(data));
 		tracker->_onNewGesturesCallbackStruct->executeAllCallbacks(newFrame);
 	}
 	/** @warning For internal use only. */

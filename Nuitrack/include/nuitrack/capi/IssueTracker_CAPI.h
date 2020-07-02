@@ -50,6 +50,8 @@ extern "C" void NUITRACK_API nuitrack_OnIssueTrackerUpdateDisconnect(uint64_t);
 extern "C" void NUITRACK_API nuitrack_CreateIssueTrackerData(IssueTrackerDataPtr*, tdv::nuitrack::IssuesData*);
 extern "C" void NUITRACK_API nuitrack_DestroyIssueTrackerData(IssueTrackerDataPtr);
 
+extern "C" void NUITRACK_API nuitrack_AddIssueTrackerDataRef(IssueTrackerDataPtr);
+
 extern "C" bool NUITRACK_API nuitrack_GetOcclusionIssue(IssueTrackerDataPtr dataPtr, int userId);
 extern "C" void NUITRACK_API nuitrack_GetFrameBorderIssue(IssueTrackerDataPtr dataPtr, int userId,
 	bool* left, bool* right, bool* top);

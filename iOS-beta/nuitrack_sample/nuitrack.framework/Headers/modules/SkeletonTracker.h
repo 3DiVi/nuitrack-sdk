@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/SkeletonData.h"
 #include "nuitrack/capi/SkeletonTracker_CAPI.h"
@@ -19,7 +18,7 @@ namespace nuitrack
  * @ingroup SkeletonTracker_group
  * @brief Represents the interface to the capabilities of the
  * @ref SkeletonTracker_group "Nuitrack Skeleton Tracker" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor SkeletonTracker::create.
  * This instance is called %SkeletonTracker module object.
@@ -41,7 +40,7 @@ public:
 
 	/**
 	 * @brief The callback type of the skeleton data update request.
-	 * 
+	 *
 	 * This callback receive a smart pointer to SkeletonData, which contains @ref Skeleton array.
 	 * @see tdv::nuitrack::SkeletonData
 	 * @see tdv::nuitrack::Skeleton
@@ -52,7 +51,7 @@ public:
 
 	/**
 	 * @brief The callback type of the new active user apearance event.
-	 * 
+	 *
 	 * This callback will be called if a new active user appears.
 	 * This callback receive the ID of the new active user.
 	 * @see connectOnNewUser
@@ -62,7 +61,7 @@ public:
 
 	/**
 	 * @brief The callback type of the active user disapearance event.
-	 * 
+	 *
 	 * This callback will be called if an active user disapears.
 	 * This callback receive the ID of the lost active user.
 	 * @see connectOnLostUser
@@ -158,7 +157,6 @@ public:
 	uint64_t connectOnNewUser(const OnNewUser& callback)
 	{
 		return _onNewUserCallbackStruct->addCallback(callback);
-
 	}
 
 	/**
@@ -198,7 +196,7 @@ public:
 
 	/**
 	 * @brief Set maximum number of users for tracking.
-	 * 
+	 *
 	 * @note The function supports tracking from 0 to 6 users.
 	 * By default, the skeleton of 2 users is tracked.
 	 * Tracking of more than 2 users may lead to performance loss.
@@ -221,14 +219,14 @@ public:
 
 	/**
 	 * @brief Set user skeleton auto tracking state.
-	 * 
+	 *
 	 * Call setAutoTracking(true) to enable auto tracking.
 	 * Call setAutoTracking(false) to disable auto tracking.
-	 * 
+	 *
 	 * When auto tracking is enabled, tracking of the skeleton of a user begins
 	 * immediately when the user appears in the frame. Otherwise, you must manually
 	 * start tracking of the user's skeleton.
-	 * 
+	 *
 	 * @param [in] tracking Auto tracking state to be set.
 	 * @see startTracking
 	 * @see connectOnNewUser
@@ -281,7 +279,7 @@ public:
 	SkeletonData::Ptr getSkeletons()
 	{
 		SkeletonTrackerDataPtr data = nuitrack_GetSkeletonTrackerData(_pimpl);
-		SkeletonData::Ptr newFrame = SkeletonData::Ptr(new SkeletonData(data));
+		SkeletonData::Ptr newFrame(new SkeletonData(data));
 		return newFrame;
 	}
 
@@ -300,7 +298,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the last estimation of the skeletal pose.
 	 * @note The exact meaning of this value depends on the depth provider.
 	 */
@@ -313,7 +311,7 @@ protected:
 	/** @warning For internal use only. */
 	static void onUpdateCallback(SkeletonTrackerData* frame, SkeletonTracker* tracker)
 	{
-		SkeletonData::Ptr newFrame = SkeletonData::Ptr(new SkeletonData(frame));
+		SkeletonData::Ptr newFrame(new SkeletonData(frame));
 
 		tracker->_onUpdateCallbackStruct->executeAllCallbacks(newFrame);
 	}
@@ -359,7 +357,6 @@ protected:
 	CallbackStruct2p<SkeletonTracker::Ptr, int>* _onLostUserCallbackStruct; ///< @warning For internal use only.
 
 	SkeletonTrackerCallbackWrapper _callbackWrapper; ///< @warning For internal use only.
-
 };
 
 } /* namespace nuitrack */

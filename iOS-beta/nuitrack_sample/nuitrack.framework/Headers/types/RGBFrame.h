@@ -20,6 +20,7 @@ public:
 	RGBFrame(ColorSensorData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddColorSensorDataRef(pimpl);
 	}
 
 	virtual ~RGBFrame()

@@ -21,6 +21,7 @@ public:
 	HandTrackerData(HandTrackerDataInner* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddHandTrackerDataRef(_pimpl);
 	}
 
 	virtual ~HandTrackerData()
@@ -30,7 +31,7 @@ public:
 
 	/**
 	 * @brief Returns the data timestamp in microseconds.
-	 * 
+	 *
 	 * The timestamp characterizes the time point to which the hand
 	 * tracking data corresponds.
 	 * @note The exact meaning of this value depends on the depth provider.

@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/utils/ExceptionTranslator.h"
 #include "nuitrack/types/RGBFrame.h"
@@ -24,7 +23,7 @@ namespace nuitrack
  * @ingroup ColorSensor_group
  * @brief Represents the interface to the capabilities of the
  * @ref ColorSensor_group "Nuitrack Color Sensor" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor ColorSensor::create.
  * This instance is called %ColorSensor module object.
@@ -43,7 +42,7 @@ public:
 
 	/**
 	 * @brief The callback type of the new color frame request.
-	 * 
+	 *
 	 * @see tdv::nuitrack::RGBFrame
 	 * @see connectOnNewFrame
 	 */
@@ -104,7 +103,6 @@ public:
 		return _callbackStruct->addCallback(callback);
 	}
 
-
 	/**
 	 * @brief Remove a callback of the new color frame request.
 	 *
@@ -119,11 +117,10 @@ public:
 	/**
 	 * @brief Returns smart pointer to the last available RGBFrame.
 	 */
-
 	RGBFrame::Ptr getColorFrame()
 	{
 		ColorSensorDataPtr data = nuitrack_GetColorSensorData(_pimpl);
-		RGBFrame::Ptr newFrame = RGBFrame::Ptr(new RGBFrame(data));
+		RGBFrame::Ptr newFrame(new RGBFrame(data));
 		return newFrame;
 	}
 
@@ -134,7 +131,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the last available color frame.
 	 * @note The exact meaning of this value depends on the depth provider.
 	 */
@@ -147,7 +144,7 @@ private:
 
 	static void onNewFrameCallback(ColorSensorData* colorFrameImpl, ColorSensor* sensor)
 	{
-		RGBFrame::Ptr newFrame = RGBFrame::Ptr(new RGBFrame(colorFrameImpl));
+		RGBFrame::Ptr newFrame(new RGBFrame(colorFrameImpl));
 		sensor->_callbackStruct->executeAllCallbacks(newFrame);
 	}
 
@@ -156,8 +153,6 @@ private:
 	ColorSensorCallbackWrapper _callbackWrapper;
 
 	CallbackStruct<RGBFrame::Ptr>* _callbackStruct;
-
-
 };
 
 } /* namespace nuitrack */

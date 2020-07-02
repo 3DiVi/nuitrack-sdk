@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/UserFrame.h"
 #include "nuitrack/capi/UserTracker_CAPI.h"
@@ -21,7 +20,7 @@ namespace nuitrack
  * @ingroup UserTracker_group
  * @brief Represents the interface to the capabilities of the
  * @ref UserTracker_group "Nuitrack User Tracker" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor UserTracker::create.
  * This instance is called %UserTracker module object.
@@ -42,7 +41,7 @@ public:
 
 	/**
 	 * @brief The callback type of the user frame update request.
-	 * 
+	 *
 	 * @see tdv::nuitrack::UserFrame
 	 * @see tdv::nuitrack::User
 	 * @see connectOnUpdate
@@ -53,7 +52,7 @@ public:
 
 	/**
 	 * @brief The callback type of the new user apearance event.
-	 * 
+	 *
 	 * This callback will be called if a new user appears in the frame.
 	 * This callback receive the ID of the new user.
 	 * @see connectOnNewUser
@@ -64,7 +63,7 @@ public:
 
 	/**
 	 * @brief The callback type of the user disapearance event.
-	 * 
+	 *
 	 * This callback will be called if a user disapears from the frame.
 	 * This callback receive the ID of the lost user.
 	 * @see connectOnLostUser
@@ -188,7 +187,7 @@ public:
 	UserFrame::Ptr getUserFrame()
 	{
 		UserTrackerDataPtr data = nuitrack_GetUserTrackerData(_pimpl);
-		UserFrame::Ptr newFrame = UserFrame::Ptr(new UserFrame(data));
+		UserFrame::Ptr newFrame(new UserFrame(data));
 		return newFrame;
 	}
 
@@ -207,7 +206,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the depth data used
 	 * in the last user detection.
 	 * @note The exact meaning of this value depends on the depth provider.
@@ -221,7 +220,7 @@ private:
 
 	static void onUpdateCallback(UserTrackerData* userFrameImpl, UserTracker* tracker)
 	{
-		UserFrame::Ptr newFrame = UserFrame::Ptr(new UserFrame(userFrameImpl));
+		UserFrame::Ptr newFrame(new UserFrame(userFrameImpl));
 		tracker->_onUpdateCallbackStruct->executeAllCallbacks(newFrame);
 	}
 
@@ -251,7 +250,6 @@ private:
 	CallbackStruct<UserFrame::Ptr>* _onUpdateCallbackStruct;
 	CallbackStruct<int>* _onNewUserCallbackStruct;
 	CallbackStruct<int>* _onLostUserCallbackStruct;
-
 };
 
 } /* namespace nuitrack */

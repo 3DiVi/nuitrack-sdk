@@ -4,7 +4,6 @@
 #include <functional>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/HandTrackerData.h"
 #include "nuitrack/capi/HandTracker_CAPI.h"
@@ -19,7 +18,7 @@ namespace nuitrack
  * @ingroup HandTracker_group
  * @brief Represents the interface to the capabilities of the
  * @ref HandTracker_group "Nuitrack Hand Tracker" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor HandTracker::create.
  * This instance is called %HandTracker module object.
@@ -37,9 +36,9 @@ public:
 
 	/**
 	 * @brief The callback type of the hand data update request.
-	 * 
+	 *
 	 * This callback receive a smart pointer to SkeletonData, which contains @ref Skeleton array.
-	 * 
+	 *
 	 * @see tdv::nuitrack::HandTrackerData
 	 * @see tdv::nuitrack::Hand
 	 * @see connectOnUpdate
@@ -110,7 +109,7 @@ public:
 	{
 		HandTrackerDataInner* data = NULL;
 		nuitrack_ReceiveInnerHandTrackerData(_pimpl, &data);
-		HandTrackerData::Ptr newFrame = HandTrackerData::Ptr(new HandTrackerData(data));
+		HandTrackerData::Ptr newFrame(new HandTrackerData(data));
 		return newFrame;
 	}
 
@@ -129,7 +128,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the last hand tracking data estimation.
 	 * @note The exact meaning of this value depends on the depth provider.
 	 */
@@ -142,7 +141,7 @@ protected:
 	/** @warning For internal use only. */
 	static void onUpdateCallback(HandTrackerDataInner* data, HandTracker* tracker)
 	{
-		HandTrackerData::Ptr newFrame = HandTrackerData::Ptr(new HandTrackerData(data));
+		HandTrackerData::Ptr newFrame(new HandTrackerData(data));
 		tracker->_callbackStruct->executeAllCallbacks(newFrame);
 	}
 	/** @warning For internal use only. */

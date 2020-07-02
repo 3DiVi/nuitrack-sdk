@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "nuitrack/modules/HeaderOnlyAPI_Module.h"
-#include "nuitrack/ModuleFunctions.h"
 #include "nuitrack/types/Export.h"
 #include "nuitrack/utils/ExceptionTranslator.h"
 #include "nuitrack/types/DepthFrame.h"
@@ -24,7 +23,7 @@ namespace nuitrack
  * @ingroup DepthSensor_group
  * @brief Represents the interface to the capabilities of the
  * @ref DepthSensor_group "Nuitrack Depth Sensor" module.
- * 
+ *
  * To enable the module, you must create an instance of this class.
  * To create the instance, use a special named constructor DepthSensor::create.
  * This instance is called %DepthSensor module object.
@@ -46,7 +45,7 @@ public:
 
 	/**
 	 * @brief The callback type of the new depth frame request.
-	 * 
+	 *
 	 * @see tdv::nuitrack::DepthFrame
 	 * @see connectOnNewFrame
 	 */
@@ -111,10 +110,10 @@ public:
 	 *
 	 * Call setMirror(true) to enable mirror mode.
 	 * Call setMirror(false) to disable mirror mode.
-	 * 
+	 *
 	 * If the mirror mode is on, the depth map from the sensor will be
 	 * reflected horizontally before consequent processing.
-	 * 
+	 *
 	 * @param[in] mirror Mirror mode state to be set.
 	 * @see isMirror
 	 */
@@ -135,7 +134,6 @@ public:
 		return _callbackStruct->addCallback(callback);
 	}
 
-
 	/**
 	 * @brief Remove a callback of the new depth frame request.
 	 *
@@ -154,7 +152,7 @@ public:
 	DepthFrame::Ptr getDepthFrame()
 	{
 		DepthSensorDataPtr data = nuitrack_GetDepthSensorData(_pimpl);
-		DepthFrame::Ptr newFrame = DepthFrame::Ptr(new DepthFrame(data));
+		DepthFrame::Ptr newFrame(new DepthFrame(data));
 		return newFrame;
 	}
 
@@ -206,7 +204,7 @@ public:
 
 	/**
 	 * @brief Returns the last processed data timestamp in microseconds.
-	 * 
+	 *
 	 * Returns timestamp corresponding to the last available depth frame.
 	 * @note The exact meaning of this value depends on the depth provider.
 	 */
@@ -219,7 +217,7 @@ private:
 
 	static void onNewFrameCallback(DepthSensorData* depthFrameImpl, DepthSensor* sensor)
 	{
-		DepthFrame::Ptr newFrame = DepthFrame::Ptr(new DepthFrame(depthFrameImpl));
+		DepthFrame::Ptr newFrame(new DepthFrame(depthFrameImpl));
 		sensor->_callbackStruct->executeAllCallbacks(newFrame);
 	}
 
@@ -228,8 +226,6 @@ private:
 	DepthSensorCallbackWrapper _callbackWrapper;
 
 	CallbackStruct<DepthFrame::Ptr>* _callbackStruct;
-
-
 };
 
 } /* namespace nuitrack */

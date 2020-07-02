@@ -22,6 +22,7 @@ public:
 	SkeletonData(SkeletonTrackerData* pimpl)
 	{
 		_pimpl = pimpl;
+		nuitrack_AddSkeletonTrackerDataRef(pimpl);
 	}
 
 	virtual ~SkeletonData()
@@ -54,7 +55,6 @@ public:
 		size_t numUsers = nuitrack_GetNumUsers(dataHolder);
 		size_t maxJoints = 25;
 
-
 		for (size_t i = 0; i < numUsers; i++)
 		{
 			Skeleton skeleton;
@@ -76,7 +76,7 @@ public:
 
 	/**
 	 * @brief Returns the data timestamp in microseconds.
-	 * 
+	 *
 	 * The timestamp characterizes the time point to which the skeleton
 	 * data corresponds.
 	 * @note The exact meaning of this value depends on the depth provider.

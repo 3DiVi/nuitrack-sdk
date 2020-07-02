@@ -72,6 +72,10 @@ extern "C" void NUITRACK_API nuitrack_UserTrackerOnLostUserDisconnect(NuitrackMo
 extern "C" UserTrackerDataPtr NUITRACK_API nuitrack_GetUserTrackerData(NuitrackModulePtr);
 
 extern "C" void NUITRACK_API nuitrack_DestroyUserTrackerData(UserTrackerDataPtr);
+extern "C" void NUITRACK_API nuitrack_AddUserTrackerDataRef(UserTrackerDataPtr);
+
+extern "C" uint16_t NUITRACK_API nuitrack_GetUserFrameValueAtIndex(UserTrackerDataPtr ptr, int i);
+extern "C" uint16_t NUITRACK_API nuitrack_GetUserFrameValue(UserTrackerDataPtr ptr, int x, int y);
 
 extern "C" size_t NUITRACK_API nuitrack_GetUserFrameRows(UserTrackerDataPtr);
 
