@@ -53,14 +53,15 @@ public:
 		{
 			Issue* issue = NULL;
 
-			int bufferSize = 300;
-			char* buffer = new char[bufferSize];
-			if(nuitrack_GetSensorIssue(_pimpl, buffer, bufferSize))
+			const int bufferSize = 300;
+			std::string buffer;
+			buffer.resize(bufferSize);
+			if(nuitrack_GetSensorIssue(_pimpl, (char *)buffer.c_str(), bufferSize))
 			{
-				issue = new SensorIssue(SENSOR_ISSUE, std::string(buffer));
+				buffer.resize(strlen(buffer.c_str()));
+				issue = new SensorIssue(SENSOR_ISSUE, buffer);
 			}
 
-			delete[] buffer;
 			result = std::shared_ptr<T>(static_cast<T*>(issue));
 		}
 		return result;

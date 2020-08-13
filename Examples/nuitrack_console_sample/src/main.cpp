@@ -1,5 +1,6 @@
 #include <nuitrack/Nuitrack.h>
 
+#include <signal.h>
 #include <iomanip>
 #include <iostream>
 
@@ -42,9 +43,18 @@ void onHandUpdate(HandTrackerData::Ptr handData)
                  "z = " << rightHand->zReal << std::endl;
 }
 
+bool finished;
+void signalHandler(int signal)
+{
+    if (signal == SIGINT)
+        finished = true;
+}
+
 int main(int argc, char* argv[])
 {
     showHelpInfo();
+
+    signal(SIGINT, &signalHandler);
 
     std::string configPath = "";
     if (argc > 1)
@@ -80,7 +90,7 @@ int main(int argc, char* argv[])
     }
 
     int errorCode = EXIT_SUCCESS;
-    while (true)
+    while (!finished)
     {
         try
         {

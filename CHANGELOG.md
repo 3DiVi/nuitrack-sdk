@@ -1,3 +1,37 @@
+# Release v0.32.0
+
+**Release Date**: 13 Aug 2020
+**Nuitrack Runtime version**: 0.32.0
+**Nuitrack SDK version**: 1.7.0
+
+## API Changes
+
+* **`Nuitrack SDK v1.7.0` requires `Nuitrack v0.32.0` to be installed**
+
+### C++/C# API
+
+* **Nuitrack Device API** has been implemented. This API allows you to:
+  * enumerate and activate compatible depth sensors
+  * run Nuitrack with a selected depth sensor
+
+Please refer to [C++](https://download.3divi.com/Nuitrack/doc/nuitrack_device_api_sample_2src_2main_8cpp-example.html) or [C#](https://download.3divi.com/Nuitrack/doc/nuitrack_csharp_device_api_sample_2Program_8cs-example.html) examples for more details.
+
+* New function that you can use to get Nuitrack version: `nuitrack::getVersion()` (`nuitrack.GetVersion()` for C#).
+
+## New Features
+
+* Support for **Astra Stereo S U3**.
+
+## Bug Fixes and Improvements
+
+* Fixed performance issue on `Windows x86`.
+
+## Known Issues
+
+ - Exception handling issue in `nuitrack-windows-x86.exe`
+ - USB cameras permission issue on **Android 9 (Pie)** devices
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.31.0
 
 **Release Date**: 2 Jul 2020  

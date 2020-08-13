@@ -171,6 +171,9 @@ public:
 	}
 };
 
+struct nuitrack_error
+{
+};
 
 } /* namespace nuitrack */
 } /* namespace tdv */

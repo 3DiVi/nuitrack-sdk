@@ -18,6 +18,7 @@
 using namespace sample;
 
 using namespace tdv::nuitrack;
+using namespace tdv::nuitrack::device;
 
 @interface ViewController ()
 {
@@ -30,6 +31,7 @@ using namespace tdv::nuitrack;
 - (IBAction)mainButtonClick:(id)sender;
 - (void)logMessage:(NSString *)format, ...;
 - (void)update;
+- (void)tryToActivateDevice;
 
 @end
 
@@ -41,8 +43,11 @@ using namespace tdv::nuitrack;
     _workInProccess = false;
     _performColor = false;
 
-    NSString* version = [[[NSBundle bundleWithIdentifier:@"com.tdv.nuitrack"] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    self.labelVersionNumber.text = [NSString stringWithFormat:@"v%@", version];
+    int version = Nuitrack::getVersion();
+    self.labelVersionNumber.text = [NSString stringWithFormat:@"v%d.%d.%d",
+                                        version / 10000,
+                                        (version / 100) % 100,
+                                        version % 100];
 
     [AVCaptureDevice
         requestAccessForMediaType:AVMediaTypeVideo
@@ -52,6 +57,74 @@ using namespace tdv::nuitrack;
     ];
 
     _calbackReceiver = [[StructureCallbackReceiver alloc] init];
+}
+
+- (void) tryToActivateDevice
+{
+    // only one connected device is possible for iOS
+    printf("Try to select device\n");
+
+    auto devices = Nuitrack::getDeviceList();
+
+    if (!devices.empty())
+    {
+        printf("Devices:\n");
+        for(int i = 0; i < devices.size(); i++)
+           printf("    [%d] %s (%s): %s\n",
+                i,
+                devices[i]->getInfo(DeviceInfoType::SERIAL_NUMBER).c_str(),
+                devices[i]->getInfo(DeviceInfoType::DEVICE_NAME).c_str(),
+                (devices[i]->getActivationStatus() ? "ACTIVATED" : "NO-LICENSE"));
+
+        int dev_index = 0; //choose first one (should be only one there)
+
+        std::vector<std::string> title({"Depth", "Color"});
+        for(int vm = 0; vm < StreamType::Count; vm++)
+        {
+            auto modes = devices[dev_index]->getAvailableVideoModes(static_cast<StreamType>(vm));
+            printf(" %s\n", (modes.empty() ? "No " + title[vm] + " video modes." : title[vm] + " video modes:").c_str());
+
+            if (modes.empty())
+                continue;
+
+            for(int i = 0; i < modes.size(); i++)
+                printf("    [%d] %d x %d @ %d\n",
+                    i,
+                    modes[i].width,
+                    modes[i].height,
+                    modes[i].fps);
+
+            int vm_index = 0; //set first video mode
+
+            if(vm_index != -1)
+                devices[dev_index]->setVideoMode(
+                                                 static_cast<StreamType>(vm),
+                                                 modes[vm_index]
+                                                 );
+        }
+
+        //Nuitrack::setConfigValue("Network.ProxyUrl", "192.168.1.2:1234");
+        std::string activationKey = "";
+
+        if(activationKey.empty())
+            printf("ActivationKey is empty\n");
+        else
+        {
+            printf("Try to activate sensor\n");
+            try {
+                devices[dev_index]->activate(activationKey);
+                bool activationStatus = devices[dev_index]->getActivationStatus();
+                printf("Activation status: %s\n", (activationStatus ? "ACTIVATED" : "NO-LICENSE"));
+            } catch(Exception &e) {
+                printf("Activation Error: %s\n", e.what());
+            }
+        }
+
+        Nuitrack::setDevice(devices[dev_index]);
+    }
+    else{
+        printf("No device found\n");
+    }
 }
 
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -107,9 +180,8 @@ using namespace tdv::nuitrack;
         // inintialize nuitrack
         Nuitrack::init();
 
-        // change/set config
-        //Nuitrack::setConfigValue("ActivationKey", ""); // if you dont have any, then get free trial for tests
-        //Nuitrack::setConfigValue("Network.ProxyUrl", ""); // if you use proxy, it might be necessary for activation
+        // activate device
+        [self tryToActivateDevice];
 
         // inintialize nuitrack modules
         NuitrackModules::instance()->init();

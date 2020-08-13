@@ -2,6 +2,7 @@
 #define EXCEPTIONTRANSLATOR_H_
 
 #include "nuitrack/types/Error.h"
+#include "nuitrack/capi/Nuitrack_CAPI.h"
 
 namespace tdv
 {
@@ -65,6 +66,23 @@ public:
 		if (errorCode != ExceptionType::OK)
 			std::terminate();
 #endif
+	}
+	static void handle(nuitrack_error* e)
+	{
+		if (e == nullptr)
+			return;
+
+		ExceptionType errorCode = nuitrack_GetErrorType(e);
+
+		const char* msg = nuitrack_GetErrorMessage(e);
+		std::string errorMessage = (msg == nullptr ? "" : msg);
+
+		nuitrack_DestroyError(e);
+
+		if (errorMessage.empty())
+			ExceptionTranslator::generateExceptionByErrorCode(errorCode);
+		else
+			ExceptionTranslator::generateExceptionByErrorCode(errorCode, errorMessage.c_str());
 	}
 };
 

@@ -18,9 +18,11 @@
 #include "nuitrack/modules/GestureRecognizer.h"
 #include "nuitrack/modules/HandTracker.h"
 #include "nuitrack/types/IssuesData.h"
+#include "nuitrack/types/NuitrackDevice.h"
 
 #include "nuitrack/capi/Public_Nuitrack_CAPI.h"
 #include "nuitrack/capi/IssueTracker_CAPI.h"
+#include "nuitrack/capi/NuitrackDevice_CAPI.h"
 
 namespace tdv
 {
@@ -159,13 +161,13 @@ public:
 	 */
 	static std::string getConfigValue(const std::string& key)
 	{
-		int bufferSize = 5000;
-		char* buffer = new char[bufferSize];
-		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetConfigValue(key.c_str(), buffer, bufferSize));
+		const int bufferSize = 5000;
+		std::string result;
+		result.resize(bufferSize);
+		ExceptionTranslator::generateExceptionByErrorCode(
+			nuitrack_GetConfigValue(key.c_str(), (char *)result.c_str(), bufferSize));
 
-		std::string result = std::string(buffer);
-		delete[] buffer;
-
+		result.resize(strlen(result.c_str()));
 		return result;
 	}
 
@@ -177,14 +179,32 @@ public:
 	 */
 	static std::string getInstancesJson()
 	{
-		int bufferSize = (6000 * 6);
-		char* buffer = new char[bufferSize];
-		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetInstancesJson(buffer, bufferSize));
+		int size = 0;
+		nuitrack_error* e = nullptr;
+		nuitrack_GetInstancesJsonSize(&size, &e);
+		ExceptionTranslator::handle(e);
 
-		std::string result = std::string(buffer);
-		delete[] buffer;
+		std::string result;
+		result.resize(size);
+		nuitrack_GetInstancesJsonData((char *)result.c_str(), &e);
+		ExceptionTranslator::handle(e);
 
 		return result;
+	}
+
+	/**
+	 * @brief Get Nuitrack version.
+	 * The version is calculated by the formula: major * 10000 + minor * 100 + revision
+	 *
+	 * @return An integer value of Nuitrack version.
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static int getVersion()
+	{
+		int version;
+		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetVersion(&version));
+
+		return version;
 	}
 
 	/**
@@ -248,6 +268,41 @@ public:
 		if(callbackStruct == NULL)
 			return;
 		callbackStruct->deleteCallback(handler);
+	}
+
+	/**
+	 * @brief Get a list of available devices.
+	 *
+	 * @return List of available devices.
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static std::vector<device::NuitrackDevice::Ptr> getDeviceList()
+	{
+		std::vector<device::NuitrackDevice::Ptr> result;
+		int device_limit = 0;
+		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_nuitrackDevice_getDeviceListLimitConst(device_limit));
+		std::vector<NuitrackDeviceDataPtr> bufferOfDevices(device_limit);
+		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetDeviceList(bufferOfDevices.data(), device_limit));
+
+		for(int i = 0; i < device_limit; i++)
+		{
+			if(bufferOfDevices[i] == NULL)
+				break;
+			result.emplace_back(new device::NuitrackDevice(bufferOfDevices[i]));
+		}
+
+		return result;
+	}
+
+	/**
+	 * @brief Setting a device to run.
+	 *
+	 * @param dev A configured device that you want to use.
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static void setDevice(device::NuitrackDevice::Ptr dev)
+	{
+		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_SetDevice(dev->_pimpl));
 	}
 };
 

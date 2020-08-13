@@ -4,10 +4,10 @@
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/Error.h"
 
-
 #include "nuitrack/modules/NuitrackModule.h"
 
 typedef NuitrackModule* NuitrackModulePtr;
+using tdv::nuitrack::nuitrack_error;
 
 extern "C"
 {
@@ -37,10 +37,20 @@ NUITRACK_API uint64_t nuitrack_GetNuitrackModuleTimestamp(NuitrackModule*);
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetLicense(char* value, int bufferSize);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetInstancesJson(char* value, int bufferSize);
+NUITRACK_API void nuitrack_GetInstancesJsonSize(int* size, nuitrack_error** error);
+NUITRACK_API void nuitrack_GetInstancesJsonData(char* data, nuitrack_error** error);
+
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetVersion(int* version);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetExceptionType(NuitrackModulePtr module);
 
 NUITRACK_API void nuitrack_GetExceptionMessage(NuitrackModulePtr module, char * message, int size);
+
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetErrorType(nuitrack_error* e);
+
+NUITRACK_API const char* nuitrack_GetErrorMessage(nuitrack_error* e);
+
+NUITRACK_API void nuitrack_DestroyError(nuitrack_error* e);
 
 }
 

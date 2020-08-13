@@ -73,7 +73,7 @@ _**Note:** The Structure SDK uses the main thread at least during the initializa
 
 You can configure Nuitrack in two ways: after Nuitrack initialization or using a configuration file.
 The configuration file contains the main parameters by default. You can find it in the framework `nuitrack.framework/data/nuitrack.config`.
-To override the parameters specified in `nuitrack.config`, you have to call the function `Nuitrack::setConfigValue(*,*)` after Nuitrack initialization.
+To override the parameters specified in `nuitrack.config`, you have to call the function `Nuitrack::setConfigValue(*, *)` after Nuitrack initialization.
 
 Here is a list of useful Nuitrack parameters:
  - `"DepthProvider.RotateAngle"`: Rotation of received frames. _Possible values: `0`, `90`, `180`, `270`_;
@@ -99,28 +99,40 @@ Here is an example of configuring/updating the parameters of Nuitrack initializa
 
 ## Nuitrack Activation
 
-Nuitrack framework contains the tool for automatic activation. Now Nuitrack can be activated directly from the application.
+Nuitrack framework contains activation API. The application should have access to the Internet for activation. If you use proxy, set it in the `"Network.ProxyUrl"` field of the configuration.
 
-To activate the license, you have to specify the key in the `"ActivationKey"` field of the configuration. Also, the application should have access to the Internet for activation. If you use proxy, set it in the `"Network.ProxyUrl"` field of the configuration. To get a result of Nuitrack activation use `Nuitrack::getConfigValue("ActivationResult")` method after DepthSensor module initialization. For example:
+To activate the license, you have to use *Nuitrack Device API*. For example:
 
+```c++
+	using namespace tdv::nuitrack::device;
+	...
+
+	// inintialize nuitrack
+	Nuitrack::init();
+
+	// set proxy
+	Nuitrack::setConfigValue("Network.ProxyUrl", "192.168.1.2:1234");
+
+	// activation key
+	const std::string activationKey = "license_activation_key";
+
+	// find connected device
+	vector<NuitrackDevice::Ptr> devices = Nuitrack::getDeviceList();
+	if (!devices.empty())
+	{
+		devices[0]->activate(activationKey);
+		// get activation result
+		ActivationStatus activationStatus = devices[0]->getActivationStatus();
 		...
 
-		// inintialize nuitrack
-		Nuitrack::init();
-
-		// set config
-		Nuitrack::setConfigValue("ActivationKey", "xxxxxxxxxx");
-		Nuitrack::setConfigValue("Network.ProxyUrl", "192.168.1.2:1234");
-
-		// inintialize DepthSensor module
-		DepthSensor::create();
-
-		// get activation result (possible values: "FAIL" or a name of activated license type)
-		std::string activation_result = Nuitrack::getConfigValue("ActivationResult");
-
+		auto depthSensor = DepthSensor::create();
 		...
+	}
+```
 
-_**Note**: "ActivationKey" and "Network.ProxyUrl" parameters should be set immediately after Nuitrack initialization._
+Please refer to *Nuitrack Device API* [C++ example](https://download.3divi.com/Nuitrack/doc/nuitrack_device_api_sample_2src_2main_8cpp-example.html) for more details.
+
+_**Note**: "Network.ProxyUrl" parameter should be set immediately after Nuitrack initialization._
 
 ## Nuitrack Sample
 
