@@ -105,26 +105,42 @@ There are two Nuitrack versions: **Nuitrack Trial** and **Nuitrack Pro**.
 You can purchase **Nuitrack Pro Online** and **Nuitrack Pro Perpetual** at [our website](https://nuitrack.com/#pricing). You can manage all your Nuitrack licenses (Trial and Pro) in your [personal account](https://cognitive.3divi.com/).
 
 ## 3D Sensor Known Issues 
+
 ### All Sensors
+
 * Make sure that the date and time settings on your device are correct.
-* [For Windows 10] Make sure that you allowed apps to access your camera: select **Settings → Privacy → Camera** and turn on **"Allow apps to access your camera"**.
-* [For Ubuntu and Nuitrack v0.28.0 or later] If you installed the .deb package and encounter the following error:
-```
-WARNING: Can not load library module: /usr/etc/nuitrack/middleware/libNuitrackModule.so
-ERROR: Empty factory for DepthProvider
-```
+* [Windows 10] Make sure that you allowed apps to access your camera: select **Settings → Privacy → Camera** and turn on **"Allow apps to access your camera"**.
+* [Ubuntu and Nuitrack v0.28.0 or later] If you installed the .deb package and encounter the following error:
+  ```
+  WARNING: Can not load library module: /usr/etc/nuitrack/middleware/libNuitrackModule.so
+  ERROR: Empty factory for DepthProvider
+  ```
 
-it can indicate that the *libcurl4-openssl-dev* package is not installed to your system. Run the following command to check the presence of this package:
-```
-ldd /usr/etc/nuitrack/middleware/libNuitrackModule.so | grep curl
-```
+  it can indicate that the *libcurl4-openssl-dev* package is not installed to your system. Run the following command to check the presence of this package:
+  ```
+  ldd /usr/etc/nuitrack/middleware/libNuitrackModule.so | grep curl
+  ```
 
-If you see the output `libcurl.so => not found`, install the package by executing the command:
-```
-sudo apt-get install libcurl4-openssl-dev
-```
+  If you see the output `libcurl.so => not found`, install the package by executing the command:
+  ```
+  sudo apt-get install libcurl4-openssl-dev
+  ```
+
+* [Unity] If you run your project with Nuitrack in Unity and encounter the following exception: 
+
+  ```
+  NuitrackException (TerminateException): WARNING: Cannot load library module: C:\Program Files\Nuitrack\nuitrack\nuitrack/middleware/NuitrackModule.dll
+  ERROR: TBB version mismatch: runtime library version is 9102, but the application was compiled with the 11102 version!
+  ```
+  follow the steps below (refer to [the Intel® Threading Building Blocks documentation](https://www.threadingbuildingblocks.org/docs/help/reference/appendices/known_issues/interoperability.html) for more details):
+    * close the Unity editor;
+    * replace the TBB library in your Unity editor with the library from Nuitrack:
+      * *Windows*: copy the `tbb.dll` library from `%NUITRACK_HOME%/bin` to your Unity editor folder (for example, `C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor`);
+      * *Linux*: copy the `libtbb.so.2` library from `/usr/local/lib/nuitrack/` to your Unity editor folders (for example, `/home/user/2019.3.3f1/Editor` and `/home/user/2019.3.3f1/Editor/Data/Tools`);
+    * run the Unity editor again.
 
 ### Kinect V1
+
 To install the driver for Kinect V1, download [Kinect SDK v1.8](https://www.microsoft.com/en-us/download/details.aspx?id=40278) and follow the [Install Instructions](https://www.microsoft.com/en-us/download/confirmation.aspx?id=40278).
 
 _**Note**: If you use Windows 10, we recommend to run *KinectSDK-v1.8-Setup.exe* in compatibility mode for Windows 8._
@@ -135,11 +151,11 @@ Starting from v0.24.0, Nuitrack supports Kinect V2 on Windows (64-bit) and Linux
 
 _**Warning**: Kinect SDK v2.0 does not support 32-bit version of Windows._
 
-### Intel® RealSense™ Depth Camera D415
+### Intel® RealSense™ Depth Camera D400 series
 
 #### Windows/Linux 
 
-* Supported OS versions: Windows 8.1, Windows 10 and Ubuntu 14.04 or higher.
+* Supported OS versions: Windows 7, Windows 8.1, Windows 10 and Ubuntu 14.04 or higher.
 * Before using the sensor, you need to download and install Intel® RealSense™ SDK 2.0 [for Windows](https://goo.gl/hkhUdR) or [for Linux](https://goo.gl/wmFSuG).
 * Supported camera firmware version: 5.8.15 or higher. To update the camera firmware, please, download the latest firmware from [the official Intel website](https://downloadcenter.intel.com/download/27514/Windows-Device-Firmware-Update-Tool-for-Intel-RealSense-D400-Product-Family?v=t).
 
