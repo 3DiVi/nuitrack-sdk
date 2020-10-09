@@ -10,7 +10,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 
 ## Setting up the Environment
 
-1. As a first step, download and install Nuitrack following our [installation instructions](Install.md). 
+1. As a first step, download and install Nuitrack following our [installation instructions](Installation_instructions.md). 
 2. Download Unity [from the official website](https://unity3d.com/get-unity/download).
 
 _**Note**: To ensure stable operation of a project, we recommend you to use Unity 2017.4 or higher for Windows and Linux projects and Unity 2017.4 for Android projects._

@@ -54,13 +54,13 @@
 			</rotation>
 			<direction x="-1.0" y="0.0" z="0.0"/>
 		</bone>
-		<bone name="tocolar" id="11" length="320.0">
+		<bone name="tocolar" id="11" length="250.0">
 			<rotation angle="0.0">
 				<axis x="0.0" y="1.0" z="0.0"/>
 			</rotation>
-			<direction x="0.0" y="1.0" z="0.0"/>
+			<direction x="0.0" y="-1.0" z="0.0"/>
 		</bone>
-		<bone name="colar" id="12" length="100.0">
+		<bone name="colar" id="12" length="320.0">
 			<rotation angle="0.0">
 				<axis x="0.0" y="1.0" z="0.0"/>
 			</rotation>
@@ -146,24 +146,24 @@
 		</bone>
 	</bones>
 	<hierarchy>
-		<boneparent parent="tocolar" bone="tolshoulder"/>
-		<boneparent parent="tocolar" bone="torshoulder"/>
-		<boneparent parent="tocolar" bone="colar"/>
 		<boneparent parent="root" bone="tocolar"/>
-		<boneparent parent="root" bone="waist"/>
-		
+		<boneparent parent="tocolar" bone="colar"/>
+		<boneparent parent="colar" bone="neck"/>
+		<boneparent parent="neck" bone="head"/>
+
 		<boneparent parent="tolshoulder" bone="lshoulder"/>
 		<boneparent parent="lshoulder" bone="lelbow"/>
 		<boneparent parent="lelbow" bone="lwrist"/>
 		<boneparent parent="lwrist" bone="lpalm"/>
-		
+
 		<boneparent parent="torshoulder" bone="rshoulder"/>
 		<boneparent parent="rshoulder" bone="relbow"/>
 		<boneparent parent="relbow" bone="rwrist"/>
 		<boneparent parent="rwrist" bone="rpalm"/>
 
-		<boneparent parent="colar" bone="neck"/>
-		<boneparent parent="neck" bone="head"/>
+		<boneparent parent="tocolar" bone="waist"/>
+		<boneparent parent="tocolar" bone="tolshoulder"/>
+		<boneparent parent="tocolar" bone="torshoulder"/>
 		<boneparent parent="waist" bone="tolhip"/>
 		<boneparent parent="waist" bone="torhip"/>
 

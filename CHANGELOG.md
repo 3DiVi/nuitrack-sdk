@@ -1,7 +1,57 @@
+# Release v0.34.0
+**Release Date**: 09 Oct 2020  
+**Nuitrack Runtime version**: 0.34.0  
+**Nuitrack SDK version**: 1.8.1
+
+## New Features
+
+* added AMD CPUs compatibility for **Nuitrack AI Skeleton Tracking**
+* added support for **Moving Sensor** on `Windows x86_64` and `iOS`
+* **Realsense SDK** has been updated to `2.38.1`
+* added *Async Init* support to `NuitrackScripts.prefab` in **NuitrackSDK.unitypackage**
+
+## Bug Fixes and Improvements
+
+* **Nuitrack AI Skeleton Tracking**: the model is updated; added estimation of joint orientations
+* fixed the memory leak on `Linux x86_64` that occurred in **Moving Sensor** mode
+* installation of `libpng12-0` and `libssl1.0.0` on `Ubuntu 20.04 LTS` is no longer required
+* fixed the low FPS issue for **Kinect V2** on `Windows x86_64`
+* fixed the `Realsense2Module.DeviceHardwareReset` option in `nuitrack.config`
+* edited the [Creating an Interactive Multi-Touch Gallery](doc/Unity_Gallery.md) tutorial
+* fixed the application crush on `Android` when starting without a plugged sensor
+
+## Known Issues
+
+ - Exception handling issue in `nuitrack-windows-x86.exe`
+ - USB cameras permission issue on **Android 9 (Pie)** devices
+ - Gesture recognition may fail for sitting pose
+
+# Release v0.33.0
+
+**Release Date**: 04 Sept 2020  
+**Nuitrack Runtime version**: 0.33.0  
+**Nuitrack SDK version**: 1.8.0  
+
+## API Changes
+
+* **`Nuitrack SDK v1.8.0` requires `Nuitrack v0.33.0` to be installed**
+
+## New Features
+
+* [AI Skeletal Tracking](/doc/Nuitrack_AI.md#ai-skeleton-tracking)
+* [AI Object Detection](/doc/Nuitrack_AI.md#ai-object-detection)
+* [Moving Sensor](/doc/Moving_Sensor.md)
+
+## Known Issues
+
+ - Exception handling issue in `nuitrack-windows-x86.exe`
+ - USB cameras permission issue on **Android 9 (Pie)** devices
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.32.0
 
-**Release Date**: 13 Aug 2020
-**Nuitrack Runtime version**: 0.32.0
+**Release Date**: 13 Aug 2020  
+**Nuitrack Runtime version**: 0.32.0  
 **Nuitrack SDK version**: 1.7.0
 
 ## API Changes
@@ -14,7 +64,7 @@
   * enumerate and activate compatible depth sensors
   * run Nuitrack with a selected depth sensor
 
-Please refer to [C++](https://download.3divi.com/Nuitrack/doc/nuitrack_device_api_sample_2src_2main_8cpp-example.html) or [C#](https://download.3divi.com/Nuitrack/doc/nuitrack_csharp_device_api_sample_2Program_8cs-example.html) examples for more details.
+Please refer to [C++](/Examples/nuitrack_device_api_sample/src/main.cpp) or [C#](/Examples/nuitrack_csharp_device_api_sample/Program.cs) examples for more details.
 
 * New function that you can use to get Nuitrack version: `nuitrack::getVersion()` (`nuitrack.GetVersion()` for C#).
 

@@ -59,7 +59,9 @@ public:
 	 */
 	static void init(const std::string& config = "")
 	{
-		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_InitializeFromConfig(config.c_str()));
+		nuitrack_error* e = nullptr;
+		nuitrack_InitializeFromConfig_E(config.c_str(), &e);
+		ExceptionTranslator::handle(e);
 	}
 
 	/**
@@ -303,6 +305,24 @@ public:
 	static void setDevice(device::NuitrackDevice::Ptr dev)
 	{
 		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_SetDevice(dev->_pimpl));
+	}
+
+	/**
+	 * @brief Get current device license.
+	 *
+	 * @return JSON string.
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static std::string getLicense()
+	{
+		const int bufferSize = 5000;
+		std::string result;
+		result.resize(bufferSize);
+		ExceptionTranslator::generateExceptionByErrorCode(
+					nuitrack_GetLicense((char *)result.c_str(), bufferSize));
+
+		result.resize(strlen(result.c_str()));
+		return result;
 	}
 };
 

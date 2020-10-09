@@ -42,12 +42,14 @@ void Update()
 }
 ```
 
-3. If the user is identified, we move the the calculation of the model position. In indirect mapping, the position of the whole model is calculated using the torso joint position. The position is then rotated 180 degrees along the y axis, otherwise, the model will move in the opposite direction. 
+3. If the user is identified, we move the the calculation of the model position. In indirect mapping, the position of the whole model is calculated using the torso joint position. The position is then rotated 180 degrees along the y axis, otherwise, the model will move in the opposite direction. The root joint for our model is *LeftCollar*, however, you can set a different root joint in the editor. 
 
 ```cs
+[SerializeField] nuitrack.JointType rootJoint = nuitrack.JointType.LeftCollar;
+
 void ProcessSkeleton(nuitrack.Skeleton skeleton)    
 {    
-	Vector3 torsoPos = Quaternion.Euler(0f, 180f, 0f) * (0.001f * skeleton.GetJoint(nuitrack.JointType.Torso).ToVector3());
+	Vector3 torsoPos = Quaternion.Euler(0f, 180f, 0f) * (0.001f * skeleton.GetJoint(rootJoint).ToVector3());
 	transform.position = torsoPos;
 }
 ```

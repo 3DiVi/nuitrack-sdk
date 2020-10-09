@@ -41,9 +41,18 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
 
    - or [this link](./Platforms).
 
-3. Install **Nuitrack** to your system following the [Installation Instructions](https://download.3divi.com/Nuitrack/doc/Installation_page.html).
+3. Download `NuitrackSDK.unitypackage`:
+   - using Git LFS:
 
-4. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing).
+   ```bash
+   $ git lfs pull --include "Unity3D/*"
+   ```
+  
+   - or [this link](./Unity3D).
+
+4. Install **Nuitrack** to your system following the [Installation Instructions](https://download.3divi.com/Nuitrack/doc/Installation_page.html).
+
+5. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing).
 
 Now you can use **Nuitrack** and run the samples from the `Examples` folder.
 

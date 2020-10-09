@@ -44,7 +44,18 @@ public class DrawColorFrame : MonoBehaviour
 
 _**Note:** Why do we use `RawImage` instead of `Image` in this project? `Image` is used for displaying Sprites only. `RawImage` is used for displaying any type of texture. Sprites are easier to work with, but `Sprite.Create` is an expensive operation. It takes a comparatively long time and uses a lot of memory. By using a `RawImage` you can skip the step of creating a sprite. `RawImage` accepts the texture, which we've created with `ToTexture2D()` from the data received from Nuitrack (frame)._
 
-7. In the `DrawColor` method, get the texture of `ColorFrame` and pass it to the `background` texture.
+7. Unsubscribe from the `onColorUpdate` event.
+
+```cs
+...
+    void Destroy()
+    {
+        NuitrackManager.onColorUpdate -= DrawColor;
+    }
+...
+```
+
+8. In the `DrawColor` method, get the texture of `ColorFrame` and pass it to the `background` texture.
 
 ```cs
 public class DrawColorFrame : MonoBehaviour
@@ -59,27 +70,27 @@ public class DrawColorFrame : MonoBehaviour
 
 _**Note**: If you observe memory leak, try to delete the old texture (for example, using `Destroy(oldTexture)`) before you display the new texture._
 
-8. Create a new **Canvas** on the scene (**Create → UI → Canvas**). After this, create a child object to the **Canvas**: **Create → UI → Raw Image**. The received texture (the image from a sensor) is stretched across the **Raw Image**.  
-9. In the **Raw Image** settings, select **Anchor Presets**, press **Alt** and stretch the object across the width and height of the **Canvas**.
+9. Create a new **Canvas** on the scene (**Create → UI → Canvas**). After this, create a child object to the **Canvas**: **Create → UI → Raw Image**. The received texture (the image from a sensor) is stretched across the **Raw Image**.  
+10. In the **Raw Image** settings, select **Anchor Presets**, press **Alt** and stretch the object across the width and height of the **Canvas**.
 
 <p align="center">
 <img width="250" src="img/Urgb_3.png">
 </p>
 
-10. Rotate **RawImage** by 180 degrees along X (otherwise, the output image will be inverted).
+11. Rotate **RawImage** by 180 degrees along X (otherwise, the output image will be inverted).
 
 <p align="center">
 <img width="400" src="img/Urgb_4.png">
 </p>
 
-11. Rename **Canvas** to **ColorFrameCanvas** and add the `DrawColorFrame` script to it. 
-12. Drag-and-drop the **Raw Image** to the **Background** field of the script. 
+12. Rename **Canvas** to **ColorFrameCanvas** and add the `DrawColorFrame` script to it. 
+13. Drag-and-drop the **Raw Image** to the **Background** field of the script. 
 
 <p align="center">
 <img width="400" src="img/Urgb_5.png">
 </p>
 
-13. Run the project. You should see a color image from the sensor displayed on the screen. 
+14. Run the project. You should see a color image from the sensor displayed on the screen. 
 
 <p align="center">
 <img width="500" src="img/Urgb_6.gif">
@@ -402,17 +413,23 @@ public class SkeletonController : MonoBehaviour
 }
 ```
 
-5. In the `OnEnable` method, subscribe to `OnSkeletonUpdateEvent`, which is called each time the skeleton is updated (each frame). Update the skeleton info. 
+5. In the `Start` method, subscribe to `OnSkeletonUpdateEvent`, which is called each time (each frame) the skeleton is updated. Update the skeleton info. In the `OnDestroy` method, unsubscribe from `OnSkeletonUpdateEvent`. 
 
 ```cs
 public class SkeletonController : MonoBehaviour
 {    
-	…    
-	void OnEnable()
-	{
-		NuitrackManager.SkeletonTracker.OnSkeletonUpdateEvent += OnSkeletonUpdate;
-	}
-	...
+    ...    
+    void Start()
+    {
+        ...
+        NuitrackManager.onSkeletonTrackerUpdate += OnSkeletonUpdate;
+    }
+    ...
+    private void OnDestroy()
+    {
+        NuitrackManager.onSkeletonTrackerUpdate -= OnSkeletonUpdate;
+    }
+    ...
 }
 ```
 
@@ -430,7 +447,13 @@ public class SkeletonController : MonoBehaviour
 <img width="400" src="img/Urgb_11.jpg">
 </p>
 
-10. Run the project. Now the skeletons of several users are tracked and displayed on the RGB image. Congratulations! 
+10. Enable *asynchronous initialization* of Nuitrack. This is necessary to avoid short-term freezing when you run your Unity project with Nuitrack. If asynchronous initialization is turned on, the scene and Nuitrack are initialized in different threads. As a result, the project starts without any lags. To do this, go to the **Nuitrack Manager** component and tick **Async Init**. Disable the **Color Frame Canvas** and **Skeletons Canvas** prefabs and set them active only after Nuitrack is initialized (see the image below). 
+
+<p align="center">
+<img width="700" src="img/async_init.png">
+</p>
+
+11. Run the project. Now the skeletons of several users are tracked and displayed on the RGB image. Congratulations! 
 
 <p align="center">
 <img width="500" src="img/Urgb_1.gif">

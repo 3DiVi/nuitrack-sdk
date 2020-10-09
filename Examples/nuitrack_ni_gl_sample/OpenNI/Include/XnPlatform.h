@@ -65,7 +65,7 @@
 	#include "Android-Arm/XnPlatformAndroid-Arm.h"
 #elif (linux && (i386 || __x86_64__))
 	#include "Linux-x86/XnPlatformLinux-x86.h"
-#elif (linux && __arm__)
+#elif (linux && (__arm__ || __aarch64__))
 	#include "Linux-Arm/XnPlatformLinux-Arm.h"
 #elif _ARC
 	#include "ARC/XnPlatformARC.h"

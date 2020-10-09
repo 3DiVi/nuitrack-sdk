@@ -556,12 +556,14 @@ void Start ()
 6. Due to the processing specificities of the animator, we use `LateUpdate` instead of `Update`. In `LateUpdate`, we process the skeleton joints (see our [Animating the Avatar](Unity_Avatar_Animation.md) tutorial).
 
 ```cs
+[SerializeField] nuitrack.JointType rootJoint = nuitrack.JointType.LeftCollar;
+...
 void LateUpdate()
 {
     if (CurrentUserTracker.CurrentSkeleton != null)
     {
         nuitrack.Skeleton skeleton = CurrentUserTracker.CurrentSkeleton;
-        transform.position = Quaternion.Euler(0f, 180f, 0f) * (0.001f * skeleton.GetJoint(nuitrack.JointType.Torso).ToVector3());
+        transform.position = Quaternion.Euler(0f, 180f, 0f) * (0.001f * skeleton.GetJoint(rootJoint).ToVector3());
  
         foreach (SimpleJoint item in joints)
         {
@@ -689,12 +691,12 @@ public AnimationClip GetClip
  
         foreach (KeyValuePair<int, AnimationCurve> data in muscleCurves)
         {
-            clip.SetCurve(null, typeof(Animator), HumanTrait.MuscleName[data.Key], data.Value);
+            clip.SetCurve("", typeof(Animator), HumanTrait.MuscleName[data.Key], data.Value);
         }
  
         foreach (KeyValuePair<string, AnimationCurve> data in rootCurves)
         {
-            clip.SetCurve(null, typeof(Animator), data.Key, data.Value);
+            clip.SetCurve("", typeof(Animator), data.Key, data.Value);
         }
  
         return clip;

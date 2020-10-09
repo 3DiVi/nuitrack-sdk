@@ -15,6 +15,7 @@ extern "C"
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_Initialize();// __attribute__ ((deprecated));
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_InitializeFromConfig(const char*);
+NUITRACK_API void nuitrack_InitializeFromConfig_E(const char*, nuitrack_error** error);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_SetConfigValue(const char*, const char*);
 

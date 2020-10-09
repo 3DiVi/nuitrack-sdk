@@ -187,12 +187,23 @@ public class FaceAnimManager : MonoBehaviour
 		}
  
 		NuitrackManager.SkeletonTracker.SetNumActiveUsers(faceCount);
-		NuitrackManager.SkeletonTracker.OnSkeletonUpdateEvent += OnSkeletonUpdate;
+		NuitrackManager.onSkeletonTrackerUpdate += OnSkeletonUpdate;
 	}
 }
 ```
 
-9. Create the `OnSkeletonUpdateEvent` method: create the `string json` variable and pass the info from JSON to it. Pass the parsed info from JSON to `faceInfo`: replace quotation marks with square brackets to prevent a conversion error in case an array is empty (no info about faces received). If there is no info about faces, the rest of the method is not executed.
+9. Unsubscribe from the `OnSkeletonUpdate` event. 
+
+```cs
+...
+    private void OnDestroy()
+    {
+        NuitrackManager.onSkeletonTrackerUpdate -= OnSkeletonUpdate;
+    }
+...
+```
+
+10. Create the `OnSkeletonUpdateEvent` method: create the `string json` variable and pass the info from JSON to it. Pass the parsed info from JSON to `faceInfo`: replace quotation marks with square brackets to prevent a conversion error in case an array is empty (no info about faces received). If there is no info about faces, the rest of the method is not executed.
 
 ```cs
 public class FaceAnimManager : MonoBehaviour
@@ -209,7 +220,7 @@ public class FaceAnimManager : MonoBehaviour
 }
 ```
 
-10. If a face is received, loop over `faceAnimControllers`. Activate as many faces as many skeletons were found, the rest of the faces are deactivated. By default, 6 faces are activated at startup. Create the `skeleton` variable to store the skeleton corresponding to the face (face ID and skeleton ID are the same). If a skeleton is found, get `headJoint` from it and activate the head joint if its confidence is greater than 0.5. Call the `UpdateFace` method of `faceAnimController`, pass `Instance` (all the face parameters) from JSON and `headJoint`. If a skeleton isn't found, the face is deactivated.
+11. If a face is received, loop over `faceAnimControllers`. Activate as many faces as many skeletons were found, the rest of the faces are deactivated. By default, 6 faces are activated at startup. Create the `skeleton` variable to store the skeleton corresponding to the face (face ID and skeleton ID are the same). If a skeleton is found, get `headJoint` from it and activate the head joint if its confidence is greater than 0.5. Call the `UpdateFace` method of `faceAnimController`, pass `Instance` (all the face parameters) from JSON and `headJoint`. If a skeleton isn't found, the face is deactivated.
 
 ```cs
 public class FaceAnimManager : MonoBehaviour
@@ -238,15 +249,15 @@ public class FaceAnimManager : MonoBehaviour
 }
 ```
 
-11. Drag-and-drop the `FaceAnimManager` script to **Face Canvas**.
-12. Drag-and-drop **Face Canvas** to the **Canvas** field. Drag-and-drop the **Fox Face Model** prefab to the **Face Prefab** field.
+12. Drag-and-drop the `FaceAnimManager` script to **Face Canvas**.
+13. Drag-and-drop **Face Canvas** to the **Canvas** field. Drag-and-drop the **Fox Face Model** prefab to the **Face Prefab** field.
 
 <p align="center">
 <img width="450" src="img/Uanimoji_9.png">
 </p>
 
-13. Drag-and-drop the **Color Frame Canvas** prefab from **NuitrackSDK.unitypackage** to the scene. 
-14. Run the project. You should see the fox faces instead of the users' faces. This looks quite nice, however, they're all the same at this stage! Let's move on and add emotions to our foxes, which will give them some personality.
+14. Drag-and-drop the **Color Frame Canvas** prefab from **NuitrackSDK.unitypackage** to the scene. 
+15. Run the project. You should see the fox faces instead of the users' faces. This looks quite nice, however, they're all the same at this stage! Let's move on and add emotions to our foxes, which will give them some personality.
 
 <p align="center">
 <img width="450" src="img/Uanimoji_10.gif">

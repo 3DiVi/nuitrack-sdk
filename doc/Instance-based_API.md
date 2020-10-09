@@ -1,20 +1,27 @@
 # Nuitrack Instance-based API [Beta]
 
-Current implementation of the Instance-based API allows you to get information about faces of users with detected skeletons.
+Instance-based API allows you to get information about faces of users with detected skeletons and also about [detected objects](Nuitrack_AI.md#ai-object-detection).
 
 Currently supported platforms:
-* Ubuntu amd64
-* Windows x86/x86_64
+* Face detection: 
+	* Ubuntu amd64
+	* Windows x86/x86_64
+* Object detection:
+	* Ubuntu amd64
+	* Windows x86_64
 
 _**Note**: Face modules are by default disabled. To enable face modules, open *nuitrack.config* file and set ```Faces.ToUse``` and ```DepthProvider.Depth2ColorRegistration``` to `true`. You should also set the value of `AstraProPerseeDepthProvider.CameraID` for Orbbec Astra PRO camera on Windows or Linux (usually it’s `0`, but if it doesn’t work, try `1`, `2` and so on)._
 
 ## Getting Information about Instances
 
-Nuitrack allows to get information about people standing in front of the camera in JSON format. To get the information, call the ```tdv::nuitrack::Nuitrack::getInstancesJson "Nuitrack::getInstancesJson"``` (C++) or ```nuitrack.Nuitrack.GetInstancesJson "Nuitrack.GetInstancesJson"``` (C#) function. The result will be returned in the form of a JSON string.
+Nuitrack allows to get information about faces of people standing in front of the camera and objects in JSON format. To get the information, call the ```tdv::nuitrack::Nuitrack::getInstancesJson "Nuitrack::getInstancesJson"``` (C++) or ```nuitrack.Nuitrack.GetInstancesJson "Nuitrack.GetInstancesJson"``` (C#) function. The result will be returned in the form of a JSON string.
 The JSON string includes the following properties:
 
 * **Timestamp** - frame timestamp in microseconds;
-* **Instances** - array with instances tracked by Nuitrack:  
+* **Instances** - array with instances detected by Nuitrack:  
+  <details>
+  <Summary>Faces</Summary>
+
   * **id** - identifier of an instance, corresponds to user segment id;
   * **class** - class of an instance;
   * **face** - characteristics of a detected person’s face:  
@@ -35,17 +42,36 @@ The JSON string includes the following properties:
       * **type** - age group of a person depending on his/her age. <i>Values</i>: `kid | young | adult | senior`
       * **years** - estimated age of a person, returned as a real positive number.
     * **gender** - estimated gender of a person. <i>Values</i>: `male | female`
-
+    
     <p align="center">
     <img width="300" src="img/singlelbf.png"><br>
     <b>Singlelbf set of points</b><br>
     </p>
+  
+  </details>
 
-Here is an example of output JSON data:
+  <details>
+  <Summary>AI Objects</Summary>
+
+  * **id** - identifier of an instance, corresponds to object ID;
+  * **class** - class of an object (values: `bottle | cigarette | phone | laptop | bag | book`);
+  * **score** - confidence score of an object;
+  * **bbox** - coordinates of an object bounding box (a positive real number in the range of [0; 1]):
+    * **left** - X coordinate of the upper-left corner of the rectangle;
+    * **top** - Y coordinate of the upper-left corner of the rectangle;
+    * **width** - rectangle width;
+    * **height** - rectangle height
+
+  </details>
+
+Here is an example of output JSON data (information about a detected face and a "phone" object):
+
+<details>
+<Summary>JSON</Summary>
 
 ```
 {
-    "Timestamp": "21510171",
+    "Timestamp": "1598855990348343",
     "Instances":
     [
         {
@@ -106,7 +132,21 @@ Here is an example of output JSON data:
                 },
                 "gender": "male"
             }
+        },
+        {
+            "id": "101",
+            "class": "phone",
+            "score": "0.999768794",
+            "bbox":
+            {
+                "left": "0.7082358",
+                "top": "0.199744061",
+                "width": "0.131423324",
+                "height": "0.297339976"
+            }
         }
     ]
 }
 ```
+
+</details>
