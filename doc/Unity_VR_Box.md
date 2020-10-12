@@ -2,7 +2,7 @@
 
 So, you've decided to create a VR game with skeleton tracking but don't know what to start with? Well, you're at the right page because in this tutorial you'll learn how to create a VR game using **Nuitrack**. To plunge into the subject and to understand how to animate your avatar's skeleton in a VR game, we recommend you to take a look at our tutorial [Animating the Avatar using Skeleton](Unity_Avatar_Animation.md).
 
-In this tutorial, we'll create a simple VR game, in which your avatar is a boxer and you have to punch a dummy as hard as you can. The maximum punch speed will be measured and displayed at the top of the screen. To make this game, you'll need the **Nuitrack SDK**, a sensor (from the list of supported sensors, see the [Nuitrack website](https://nuitrack.com/)) and a VR headset (any Mobile VR headset or Gear VR headset). Recommended Unity version: 2017.4 or higher.
+In this tutorial, we'll create a simple VR game, in which your avatar is a boxer and you have to punch a dummy as hard as you can. The maximum punch speed will be measured and displayed at the top of the screen. To make this game, you'll need the **Nuitrack SDK**, a sensor (from the list of supported sensors, see the [Nuitrack website](https://nuitrack.com/#sensors)) and a VR headset (any Mobile VR headset or Gear VR headset). Recommended Unity version: 2017.4 or higher.
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → Box** 
 

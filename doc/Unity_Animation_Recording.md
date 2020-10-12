@@ -1,6 +1,6 @@
 # Recording Animation using Nuitrack and Motion Capture
 
-In this tutorial you'll learn how to quickly and easily record the animation of your avatar in Unity with Nuitrack. You won't need any additional tools except a depth sensor (from the [list of supported sensors](https://nuitrack.com/)) to track your skeleton and record the animation. We'll describe three different types of recording animation. You can use any one you like, depending on your needs.
+In this tutorial you'll learn how to quickly and easily record the animation of your avatar in Unity with Nuitrack. You won't need any additional tools except a depth sensor (from the [list of supported sensors](https://nuitrack.com/#sensors)) to track your skeleton and record the animation. We'll describe three different types of recording animation. You can use any one you like, depending on your needs.
 
 **Generic animation** is used to animate any models. In general, this animation is easier to use compared to the Humanoid animation but it is tied to the hierarchy of Game Objects. This means that animation will be displayed incorrectly if you change the name or position of any animated Game Object.  
 
@@ -17,7 +17,7 @@ Choose the suitable animation type and let's get started!
 
 ## Setting Up the Scene
 
-1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](https://assetstore.unity.com/packages/templates/packs/nuitrack-skeleton-tracking-127675) to your project. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. The model should be in a T-Pose so that its joints are matched correctly. To do that, select your model's hands (for example, **EthanLeftArm** and **EthanRightArm** for our model) and set Rotation parameters as in the screenshot below: 
+1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](./Unity3D) to your project. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. The model should be in a T-Pose so that its joints are matched correctly. To do that, select your model's hands (for example, **EthanLeftArm** and **EthanRightArm** for our model) and set Rotation parameters as in the screenshot below: 
 
 <p align="center">
 <img width="500" src="img/Umc_1.png"><br>
@@ -29,7 +29,7 @@ Choose the suitable animation type and let's get started!
 <b>Settings of the "EthanRightArm" Object</b><br>
 </p>
 
-2. If you use your own model, you have to drag-and-drop the `RiggedAvatar` script from **Nuitrack Skeleton Tracking** Unity Package to the model (this script is already attached to **Ethan**). Then, select the joints you'd like to animate. All in all, Nuitrack tracks up to 20 joints, see the list [here](http://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group__csharp.html#ga659db18c8af0cb3d660930d7116709ae). Remove the **Animator** component (if any) from the model so that it doesn't block changes in the `RiggedAvatar` script. Here is an example of selected joints: 
+2. If you use your own model, you have to drag-and-drop the `RiggedAvatar` script from **Nuitrack Skeleton Tracking** Unity Package to the model (this script is already attached to **Ethan**). Then, select the joints you'd like to animate. All in all, Nuitrack tracks up to 20 joints, see the list [here](https://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group__csharp.html#ga659db18c8af0cb3d660930d7116709ae). Remove the **Animator** component (if any) from the model so that it doesn't block changes in the `RiggedAvatar` script. Here is an example of selected joints:
 
 <p align="center">
 <img width="500" src="img/Umc_3.png">

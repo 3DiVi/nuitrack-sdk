@@ -2,7 +2,7 @@
 
 In this tutorial, you'll learn how to integrate Nuitrack with your application. We're using `nuitrack_csharp_sample` from the Nuitrack SDK as an example. 
 
-1. Install Nuitrack on your system (see the [Installation Instructions](Installation_instructions.md)).
+1. Install Nuitrack on your system (see the [Installation Instructions](Install.md)).
 
 2. Create the subfolder `nuitrack` in the application directory `<app_dir>` and copy the following directories from the Nuitrack installation folder to the directory `<app_dir>/nuitrack`:
    * Windows:

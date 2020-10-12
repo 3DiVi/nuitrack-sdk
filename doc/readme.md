@@ -10,7 +10,7 @@
 * [Overview](Overview.md)
 * [Nuitrack SDK Architecture](Architecture.md)
 * [General Preparations](General_preparations.md)
-* [Installation Instructions](Installation_instructions.md)
+* [Installation Instructions](Install.md)
 * [Linking Nuitrack to Your Application](Nuitrack_linking.md)
 * [Integrating Nuitrack with your application (Windows/Ubuntu)](Tutorial_integration.md)
 * [TVico User Guide](TVico_User_Guide.md)
@@ -19,10 +19,10 @@
 * [Nuitrack AI](Nuitrack_AI.md)
 * [Moving Sensor](Moving_Sensor.md)
 * [Nuitrack Samples](Samples.md)
-* Nuitrack Best Practices
+* ###### Nuitrack Best Practices
   * [How to make a VR App with Nuitrack](VR_app.md)
 * [Unreal Engine Tutorial](Unreal_Engine_Tutorial.md)
-* Unity Tutorials
+* ###### Unity Tutorials
   * [Creating your First Unity Project using Nuitrack SDK](Unity_Basic.md)
   * [Displaying Skeletons on an RGB Image](Unity_RGB_Skeletons.md)
   * [Animating the Avatar using Skeleton](Unity_Avatar_Animation.md)
@@ -36,4 +36,4 @@
   * [Face Tracking with Nuitrack](Unity_Face_Tracking.md)
   * [Creating Animated Emoji with Nuitrack](Unity_Animated_Emoji.md)
 * [Open Source Licenses](Open_Source_Licenses.md)
-* [Nuitrack C++ API / C# API](http://download.3divi.com/Nuitrack/doc/annotated.html)
+* [Nuitrack C++ API / C# API](https://download.3divi.com/Nuitrack/doc/annotated.html)

@@ -6,7 +6,7 @@ Supported Windows versions: Windows 7, Windows 8, Windows 10.
 
 To install Nuitrack on Windows, follow the steps below: 
 
-1. Download and run [nuitrack-windows-x86.exe](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/nuitrack-windows-x86.exe) (for Windows 32-bit) or [nuitrack-windows-x64.exe](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/nuitrack-windows-x64.exe) (for Windows 64-bit). Follow the instructions of the Nuitrack setup assistant. 
+1. Download and run [nuitrack-windows-x86.exe](./Platforms/nuitrack-windows-x86.exe) (for Windows 32-bit) or [nuitrack-windows-x64.exe](./Platforms/nuitrack-windows-x64.exe) (for Windows 64-bit). Follow the instructions of the Nuitrack setup assistant. 
 2. **Re-login** to let the system changes take effect. 
 3. [Required] Make sure that you have installed Microsoft Visual C++ Redistributable for Visual Studio on your computer. If not, install this package depending on your VS version and architecture:
     * [Visual C++ Redistributable 2015 (x86)](https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x86.exe)
@@ -50,8 +50,8 @@ Supported Ubuntu version is 14.04 and above. Supported architectures are AMD64 a
 To install Nuitrack on Ubuntu, follow the steps below:
 
 1. Download one of the following Debian packages, depending on the target architecture:
-    * [nuitrack-ubuntu-amd64.deb](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/nuitrack-ubuntu-amd64.deb) for AMD64
-    * [nuitrack-linux-armhf.deb](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/nuitrack-linux-armhf.deb) for ARM 32-bit
+    * [nuitrack-ubuntu-amd64.deb](./Platforms/nuitrack-ubuntu-amd64.deb) for AMD64
+    * [nuitrack-linux-armhf.deb](./Platforms/nuitrack-linux-armhf.deb) for ARM 32-bit
 2. Install the downloaded package using the following command: 
 ```
 sudo dpkg -i <downloaded-package-name>.deb
@@ -79,7 +79,7 @@ sudo chmod -R 777 /dev/bus/usb/
 ## Android
 
 1. Allow your device to install applications from unknown sources. To do this, go to **Settings → Security and tick "Unknown sources"**.
-2. Download [Nuitrack.apk](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/Nuitrack.apk) or [Nuitrack_arm64.apk](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/Nuitrack_arm64.apk) (for Android 64-bit) and install it. To install the APK package, locate it in a file manager, open and tap "INSTALL".
+2. Download [Nuitrack.apk](./Platforms/Nuitrack.apk) or [Nuitrack_arm64.apk](./Platforms/Nuitrack_arm64.apk) (for Android 64-bit) and install it. To install the APK package, locate it in a file manager, open and tap "INSTALL".
 3. Launch the Nuitrack application. 
 
 <p align="center">
@@ -173,4 +173,3 @@ Support for RealSense on Android was added in Nuitrack v.
     * Samsung Galaxy S5 (Android 6 Marshmallow) (non-rooted)
     * Samsung Galaxy S6 (Android 7 Nougat) (non-rooted)
     * Samsung Galaxy S8/S8+ (Android 8 Oreo) (non-rooted)
-

@@ -5,9 +5,9 @@ In this tutorial, you'll learn how to display a color image from your sensor in 
 You can find the finished project in **Nuitrack SDK: Unity 3D → NuitrackSDK.unitypackage → Tutorials → RGB and Skeletons** 
 
 To create this project, you'll need just a couple of things:
-* Nuitrack Runtime and Nuitrack SDK
-* Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/))
-* Unity 2017.4 or higher 
+* [Nuitrack Runtime](./Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
+* Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
+* Unity 2017.4 or higher
 
 <p align="center">
 <img width="500" src="img/Urgb_1.gif">

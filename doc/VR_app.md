@@ -10,15 +10,15 @@ First of all, the hardware, which is:
 * a rather powerful **Android smartphone** with at least 5" screen for comfortable perception;
 * a suitable **VR headset**. To make it perfect, you can use the Gear VR set.
 
-_**Note:** If you use TVico, you have to connect your Android smartphone to TVico via Wi-Fi. See the detailed information in our [TVico User Guide](TVico_User_Guide.md#wireless-case). You can also use other Android device (with one of supported USB sensors for Android platform (see the full list at [Nuitrack website](https://nuitrack.com/)) provided that you installed [TVico.apk](https://download.3divi.com/Nuitrack/platforms/TVico.apk) on this device and connected your Android smartphone to this device via Wi-Fi._
+_**Note:** If you use TVico, you have to connect your Android smartphone to TVico via Wi-Fi. See the detailed information in our [TVico User Guide](TVico_User_Guide.md#wireless-case). You can also use other Android device (with one of supported USB sensors for Android platform (see the full list at [Nuitrack website](https://nuitrack.com/#sensors)) provided that you installed [TVico.apk](Platforms/TVico.apk) on this device and connected your Android smartphone to this device via Wi-Fi._
 
 Secondly, the software, which is:  
 
-* **Unity** (2017.4 or higher);
-* **development environment** (out-of-the-box MonoDevelop would be enough);
-* [**VicoVR**](https://play.google.com/store/apps/details?id=com.vicovr.manager) app installed on your smartphone (VicoVR app is a client app, which allows you to connect to TVico wirelessly);
-* [**TVico**](https://download.3divi.com/Nuitrack/platforms/TVico.apk) app installed on TVico device (in case of using the TVico sensor);
-* **Nuitrack SDK**, which is the most interesting thing here.
+* **Unity** (2017.4 or higher)
+* **development environment** (out-of-the-box MonoDevelop would be enough)
+* [**VicoVR**](https://play.google.com/store/apps/details?id=com.vicovr.manager) app installed on your smartphone (VicoVR app is a client app, which allows you to connect to TVico wirelessly)
+* [**TVico**](./Platforms/TVico.apk) app installed on TVico device (in case of using the TVico sensor)
+* **Nuitrack SDK**, which is the most interesting thing here
 
 ## How does it work?
 

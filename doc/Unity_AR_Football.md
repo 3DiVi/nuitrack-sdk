@@ -11,7 +11,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 To create this game, you'll need a couple of things: 
 
 Hardware: 
-* **TVico** (with the pre-installed Nuitrack.apk) or a desktop with a connected sensor from [the list of supported devices](https://nuitrack.com/) 
+* **TVico** (with the pre-installed Nuitrack.apk) or a desktop with a connected sensor from [the list of supported devices](https://nuitrack.com/#sensors) 
 * [`ARCore compatible device`](https://developers.google.com/ar/discover/supported-devices)
 
 Software:

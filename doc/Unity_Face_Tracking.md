@@ -4,8 +4,8 @@ In this useful tutorial you'll learn how to track and get information about face
 
 To create this wonderful project, only a couple of things are required: 
 
-* Nuitrack;
-* Any supported sensor (see the full list [at our website](https://nuitrack.com/));
+* [Nuitrack](https://github.com/3DiVi/nuitrack-sdk);
+* Any supported sensor (see the full list [at our website](https://nuitrack.com/#sensors));
 * Unity (2017.4 or higher).
 
 You can find the finished project in **Nuitrack SDK: Unity 3D → NuitrackSDK.unitypackage → Tutorials → FaceTracker**.

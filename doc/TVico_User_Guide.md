@@ -20,8 +20,8 @@ Please see the installation instructions for both cases below.
 
 ## Standalone case
 
-1. Download [Nuitrack.apk](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/Nuitrack.apk).
-2. Install *Nuitrack.apk* on TVico following the [installation instructions for Android](Installation_instructions.md#android).
+1. Download [Nuitrack.apk](./Platforms/Nuitrack.apk).
+2. Install *Nuitrack.apk* on TVico following the [installation instructions for Android](Install.md#android).
 3. Launch the Nuitrack application.
 4. Click **Compatibility test** and wait until the test is complete.
 5. Enter your secret key and press **Upgrade to Pro**.
@@ -35,7 +35,7 @@ _**Note**: Check out our [free Android motion controlled games for TVico](https:
 ### Installation of TVico.apk on TVico 
 
 1. Allow your device to install applications from unknown sources. To do this, go to **Settings → Security** and tick **Unknown sources**.
-2. Download [TVico.apk](https://github.com/3DiVi/nuitrack-sdk/blob/master/Platforms/TVico.apk) (beta) and install it. To install the APK package, locate it in the file manager, open and tap **INSTALL**.
+2. Download [TVico.apk](./Platforms/TVico.apk) (beta) and install it. To install the APK package, locate it in the file manager, open and tap **INSTALL**.
 3. Launch the Nuitrack application.
 
 <p align="center">

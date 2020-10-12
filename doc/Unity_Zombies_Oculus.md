@@ -11,16 +11,16 @@ You'll need just a couple of things for this project:
 Hardware: 
 * Powerful PC (check out [minimum system specifications](https://support.oculus.com/170128916778795/))
 * Oculus Rift (headset + 2 sensors + Oculus Touches)
-* Depth sensor (see the list of supported cameras at [our website](https://nuitrack.com/)).
+* Depth sensor (see the list of supported cameras at [our website](https://nuitrack.com/#sensors))
 
 Software:
-* Nuitrack (we used 0.23.1);
-* Windows (we used Windows 10);
+* [Nuitrack Runtime](./Platforms) (we used 0.23.1)
+* Windows (we used Windows 10)
 * [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) package from Unity Asset Store;
-* [Nuitrack Skeleton Tracking](https://assetstore.unity.com/packages/templates/packs/nuitrack-skeleton-tracking-127675) package from Unity Asset Store;
-* Unity (2017.4 or higher).
+* [Nuitrack Skeleton Tracking package](./Unity3D)
+* Unity (2017.4 or higher)
 
-You can find the finished project in Nuitrack SDK: Unity 3D → NuitrackSDK.unitypackage → Tutorials → Zombie Nightmare (RIFT).
+You can find the finished project in Nuitrack SDK: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → Zombie Nightmare (RIFT)**.
 
 ## Setting Up the Project
 
@@ -140,7 +140,7 @@ _**Note:** Learn more about the `MovePosition` method at [Unity website](https:/
 <img width="500" src="img/Uzombies_1.gif">
 </p>
 
-_**Note:** You can use not only leg joints but also all other skeleton joints detected by Nuitrack (21 joints all in all) (see the complete list at  [Nuitrack official website](http://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group.html#gabc259a32c94594974dd3325b7c72d28a)). Don't forget to add the offset!_
+_**Note:** You can use not only leg joints but also all other skeleton joints detected by Nuitrack (21 joints all in all) (see the complete list at  [Nuitrack official website](https://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group.html#gabc259a32c94594974dd3325b7c72d28a)). Don't forget to add the offset!_
 
 ## Determining the Game Logic 
 

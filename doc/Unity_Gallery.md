@@ -1,12 +1,12 @@
 # Creating an Interactive Multi-Touch Gallery
 
-In this tutorial, you'll learn how to create a virtual gallery that can be controlled using gestures. The gallery will have two modes: preview (several images displayed on one page) and view (when you click on an image, it opens in full screen). The gallery can be controlled with one or two hands (multi-touch) and gestures "click", "swipe up", "swipe left", "swipe right". For this project, you'll need Nuitrack and a sensor (from the list of supported sensors, see the [Nuitrack website](https://nuitrack.com/)).
+In this tutorial, you'll learn how to create a virtual gallery that can be controlled using gestures. The gallery will have two modes: preview (several images displayed on one page) and view (when you click on an image, it opens in full screen). The gallery can be controlled with one or two hands (multi-touch) and gestures "click", "swipe up", "swipe left", "swipe right".
 
 To create this project, you'll need just a couple of things:
 
-* Nuitrack Runtime and Nuitrack SDK;
-* Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/));
-* Unity 2017.4 or higher.
+* [Nuitrack Runtime](./Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
+* Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
+* Unity 2017.4 or higher
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → HandTracker** 
 
