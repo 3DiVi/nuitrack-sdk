@@ -4,7 +4,7 @@ In this tutorial, you'll learn how to create a virtual gallery that can be contr
 
 To create this project, you'll need just a couple of things:
 
-* [Nuitrack Runtime](./Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
+* [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
 * Unity 2017.4 or higher
 

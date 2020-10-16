@@ -3,7 +3,9 @@
 Support for moving sensors was added in **`Nuitrack v0.33.0`**. 
 
 Supported platforms:
+  * Windows x86_64
   * Ubuntu amd64
+  * iOS
 
 Hardware requirements:
   * RGBD sensor (RGB is required for processing)  

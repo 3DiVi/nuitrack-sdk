@@ -17,7 +17,7 @@ Choose the suitable animation type and let's get started!
 
 ## Setting Up the Scene
 
-1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](./Unity3D) to your project. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. The model should be in a T-Pose so that its joints are matched correctly. To do that, select your model's hands (for example, **EthanLeftArm** and **EthanRightArm** for our model) and set Rotation parameters as in the screenshot below: 
+1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](/Unity3D) to your project. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. The model should be in a T-Pose so that its joints are matched correctly. To do that, select your model's hands (for example, **EthanLeftArm** and **EthanRightArm** for our model) and set Rotation parameters as in the screenshot below:
 
 <p align="center">
 <img width="500" src="img/Umc_1.png"><br>

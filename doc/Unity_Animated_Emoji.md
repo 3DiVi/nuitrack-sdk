@@ -3,7 +3,7 @@
 In this tutorial you'll learn to create animated emoji using the face info from Nuitrack and blendshapes. You'll be able to track several skeletons (from 1 to 6) and see the fox animated emoji instead of the user's face. Fox face mimics user's facial expressions. When a user turns his/her head, the fox head is also rotated. You can notice that fox fur is slightly moving when the fox turns its face - an incredible thing to watch. The fox face is zoomed in and out, i.e. the closer the user is, the bigger the fox head is, and vice versa.  
 
 To create this project, you'll need just a couple of things:
-* [Nuitrack Runtime](./Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
+* [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Unity (2017.4 or higher)
 * Any compatible sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors)) 
 

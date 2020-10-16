@@ -17,7 +17,7 @@
 * installation of `libpng12-0` and `libssl1.0.0` on `Ubuntu 20.04 LTS` is no longer required
 * fixed the low FPS issue for **Kinect V2** on `Windows x86_64`
 * fixed the `Realsense2Module.DeviceHardwareReset` option in `nuitrack.config`
-* edited the [Creating an Interactive Multi-Touch Gallery](doc/Unity_Gallery.md) tutorial
+* edited the [Creating an Interactive Multi-Touch Gallery](/doc/Unity_Gallery.md) tutorial
 * fixed the application crush on `Android` when starting without a plugged sensor
 
 ## Known Issues

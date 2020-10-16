@@ -130,7 +130,7 @@ To activate the license, you have to use *Nuitrack Device API*. For example:
 	}
 ```
 
-Please refer to *Nuitrack Device API* [C++ example](Examples/nuitrack_device_api_sample/src/main.cpp) for more details.
+Please refer to *Nuitrack Device API* [C++ example](/Examples/nuitrack_device_api_sample/src/main.cpp) for more details.
 
 _**Note**: "Network.ProxyUrl" parameter should be set immediately after Nuitrack initialization._
 

@@ -39,7 +39,7 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
    $ git lfs pull --include "Platforms/*"
    ```
 
-   - or [this link](./Platforms).
+   - or [this link](/Platforms).
 
 3. Download `NuitrackSDK.unitypackage`:
    - using Git LFS:
@@ -48,9 +48,9 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
    $ git lfs pull --include "Unity3D/*"
    ```
   
-   - or [this link](./Unity3D).
+   - or [this link](/Unity3D).
 
-4. Install **Nuitrack** to your system following the [Installation Instructions](doc/Install.md).
+4. Install **Nuitrack** to your system following the [Installation Instructions](/doc/Install.md).
 
 5. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing).
 
@@ -63,5 +63,5 @@ Now you can use **Nuitrack** and run the samples from the `Examples` folder.
 | **Runtime Components** | **Nuitrack Runtime** installers for all supported platforms. ||
 | **C#/.NET Wrapper** | **Nuitrack** supports **C#/.NET API** that allows you to integrate **Nuitrack** with your C# applications. ||
 | **Code Samples** | These basic examples demonstrate how to use **Nuitrack SDK**. You can find **C++**/**C#** cross-platform samples with instructions inside. |
-| **Unity Package** | This package allows you to [easily integrate](doc/readme.md#unity-tutorials) **Nuitrack SDK** into your Unity project. |
-| **Unreal Engine Plugin** | This plugin allows to [develop](doc/Unreal_Engine_Tutorial.md) C++ applications with **UE 4.20** (Android only). |
+| **Unity Package** | This package allows you to [easily integrate](/doc/readme.md#unity-tutorials) **Nuitrack SDK** into your Unity project. |
+| **Unreal Engine Plugin** | This plugin allows to [develop](/doc/Unreal_Engine_Tutorial.md) C++ applications with **UE 4.20** (Android only). |

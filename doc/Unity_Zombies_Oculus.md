@@ -14,10 +14,10 @@ Hardware:
 * Depth sensor (see the list of supported cameras at [our website](https://nuitrack.com/#sensors))
 
 Software:
-* [Nuitrack Runtime](./Platforms) (we used 0.23.1)
+* [Nuitrack Runtime](/Platforms) (we used 0.23.1)
 * Windows (we used Windows 10)
 * [Oculus Integration](https://assetstore.unity.com/packages/tools/integration/oculus-integration-82022) package from Unity Asset Store;
-* [Nuitrack Skeleton Tracking package](./Unity3D)
+* [Nuitrack Skeleton Tracking package](/Unity3D)
 * Unity (2017.4 or higher)
 
 You can find the finished project in Nuitrack SDK: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → Zombie Nightmare (RIFT)**.

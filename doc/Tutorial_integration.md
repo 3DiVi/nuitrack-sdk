@@ -114,7 +114,7 @@ In this tutorial, you'll learn how to integrate Nuitrack with your application. 
     }
     ```
 
-   See the full source code of `nuitrack_csharp_sample` in [Examples/nuitrack_csharp_sample/Program.cs](Examples/nuitrack_csharp_sample/Program.cs). 
+   See the full source code of `nuitrack_csharp_sample` in [Examples/nuitrack_csharp_sample/Program.cs](/Examples/nuitrack_csharp_sample/Program.cs).
 
 5. Follow the steps in `README.txt` to build `nuitrack_csharp_sample`.
 

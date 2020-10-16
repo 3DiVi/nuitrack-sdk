@@ -4,7 +4,7 @@ In this tutorial, you'll learn how to create a point cloud in the Unity editor. 
 
 To create this project, you'll need just a couple of things:
 
-* [Nuitrack Runtime](./Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
+* [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
 * Unity 2017.4 or higher
 
@@ -19,7 +19,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 1. Create a new Scene in Unity: **File → New Scene**
 2. In the scene, create 2 squares: **GameObject → 3D Object → Quad** (x2). We will use them as planes to display the color and depth received from the sensor. For convenience, let's name them **QuadDepth** (for depth) and **QuadColor** (for color).
 3. Then, create 2 materials for depth and color respectively: create the **Materials** folder in the **Assets** folder, then, in the **Project** tab: **RC → Create → Material**. For convenience, let's name the materials  **ColorMaterial** and **DepthMaterial**.
-4. Download  [Nuitrack SDK](./Platforms). Import the **Nuitrack** and  **Plugins** folders from the  **Nuitrack.unitypackage** to the project. Drag-and-drop the **NuitrackScripts** prefab from the **Nuitrack/Prefabs** folder to the scene. In Unity, select the **Inspector** tab → **Nuitrack Manager** and tick two modules: **Color Module On** and **Depth Module On**. As you can see, these Nuitrack modules provide access to the sensor depth and color data. Other Nuitrack modules are not required for this project.
+4. Download  [Nuitrack SDK](/Platforms). Import the **Nuitrack** and  **Plugins** folders from the  **Nuitrack.unitypackage** to the project. Drag-and-drop the **NuitrackScripts** prefab from the **Nuitrack/Prefabs** folder to the scene. In Unity, select the **Inspector** tab → **Nuitrack Manager** and tick two modules: **Color Module On** and **Depth Module On**. As you can see, these Nuitrack modules provide access to the sensor depth and color data. Other Nuitrack modules are not required for this project.
 
 <p align="center">
 <img width="500" src="img/Upoints_1.png"><br>

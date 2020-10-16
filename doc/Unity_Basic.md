@@ -35,7 +35,7 @@ _**Note**: In this tutorial we create an Android project, however, you can creat
 
 _**Note**:_  
 **What sensors can I use with my app?**  
-*You can use any of the supported sensors for your application (see the list of supported sensors at the [Nuitrack official website](https://nuitrack.com/#sensors)). For example, you can use [**TVico**](https://tvico.io/), which is an interactive Android computer with pre-installed Nuitrack. You can find the [TVico User Guide](doc/TVico_User_Guide.md) in our documentation.*
+*You can use any of the supported sensors for your application (see the list of supported sensors at the [Nuitrack official website](https://nuitrack.com/#sensors)). For example, you can use [**TVico**](https://tvico.io/), which is an interactive Android computer with pre-installed Nuitrack. You can find the [TVico User Guide](/doc/TVico_User_Guide.md) in our documentation.*
 
 7.  As a result, you will have a configured development environment with all the necessary components for the build.
 
