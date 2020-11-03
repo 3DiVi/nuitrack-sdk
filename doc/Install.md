@@ -161,7 +161,7 @@ _**Warning**: Kinect SDK v2.0 does not support 32-bit version of Windows._
 
 #### Android
 
-Support for RealSense on Android was added in Nuitrack v.
+Support for RealSense on Android was added in Nuitrack v0.26.0.
 
 * Recommended RealSense D415/D435 firmware version is 5.11.1.0
 * Rooted and non-rooted devices can be used.

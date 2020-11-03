@@ -163,7 +163,8 @@ public:
 	 */
 	Vector3 convertProjToRealCoords(const Vector3& p) const
 	{
-		return nuitrack_ConvertProjToRealCoordsVector3(_pimpl, p);
+		CVector3 c_vec { p.x, p.y, p.z };
+		return Vector3(nuitrack_ctypes_ConvertProjToRealCoordsVector3(_pimpl, c_vec));
 	}
 
 	/**
@@ -174,7 +175,7 @@ public:
 	*/
 	virtual Vector3 convertProjToRealCoords(size_t x, size_t y, DepthFrame::DataType depth) const
 	{
-		return nuitrack_ConvertProjToRealCoordsXYZ(_pimpl, x, y, depth);
+		return Vector3(nuitrack_ctypes_ConvertProjToRealCoordsXYZ(_pimpl, x, y, depth));
 	}
 
 	/**
@@ -184,7 +185,8 @@ public:
 	 */
 	virtual Vector3 convertRealToProjCoords(const Vector3& p) const
 	{
-		return nuitrack_ConvertRealToProjCoordsVector3(_pimpl, p);
+		CVector3 c_vec { p.x, p.y, p.z };
+		return Vector3(nuitrack_ctypes_ConvertRealToProjCoordsVector3(_pimpl, c_vec));
 	}
 
 	/**
@@ -194,7 +196,7 @@ public:
 	*/
 	virtual Vector3 convertRealToProjCoords(float x, float y, float z) const
 	{
-		return nuitrack_ConvertRealToProjCoordsXYZ(_pimpl, x, y, z);
+		return Vector3(nuitrack_ctypes_ConvertRealToProjCoordsXYZ(_pimpl, x, y, z));
 	}
 
 	bool canUpdate() const

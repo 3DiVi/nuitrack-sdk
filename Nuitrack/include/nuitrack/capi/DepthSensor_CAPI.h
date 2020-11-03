@@ -70,11 +70,11 @@ extern "C" NUITRACK_API NUITRACK_DEPRECATED const uint16_t* nuitrack_GetRgbFrame
 
 extern "C" void NUITRACK_API nuitrack_GetDepthSensorOutputMode(NuitrackModulePtr, tdv::nuitrack::OutputMode*);
 
-extern "C" tdv::nuitrack::Vector3 NUITRACK_API nuitrack_ConvertProjToRealCoordsXYZ(NuitrackModulePtr, int, int, uint16_t);
-extern "C" tdv::nuitrack::Vector3 NUITRACK_API nuitrack_ConvertProjToRealCoordsVector3(NuitrackModulePtr, tdv::nuitrack::Vector3);
+extern "C" tdv::nuitrack::CVector3 NUITRACK_API nuitrack_ctypes_ConvertProjToRealCoordsXYZ(NuitrackModulePtr, int, int, uint16_t);
+extern "C" tdv::nuitrack::CVector3 NUITRACK_API nuitrack_ctypes_ConvertProjToRealCoordsVector3(NuitrackModulePtr, tdv::nuitrack::CVector3);
 
-extern "C" tdv::nuitrack::Vector3 NUITRACK_API nuitrack_ConvertRealToProjCoordsXYZ(NuitrackModulePtr, float, float, float);
-extern "C" tdv::nuitrack::Vector3 NUITRACK_API nuitrack_ConvertRealToProjCoordsVector3(NuitrackModulePtr, tdv::nuitrack::Vector3);
+extern "C" tdv::nuitrack::CVector3 NUITRACK_API nuitrack_ctypes_ConvertRealToProjCoordsXYZ(NuitrackModulePtr, float, float, float);
+extern "C" tdv::nuitrack::CVector3 NUITRACK_API nuitrack_ctypes_ConvertRealToProjCoordsVector3(NuitrackModulePtr, tdv::nuitrack::CVector3);
 
 extern "C" bool NUITRACK_API nuitrack_IsDepthSensorMirror(NuitrackModulePtr);
 extern "C" void NUITRACK_API nuitrack_SetDepthSensorMirror(NuitrackModulePtr, bool);

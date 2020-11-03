@@ -1,6 +1,6 @@
-# Creating an AR Football Game using Nuitrack and ARCore
+# Creating an AR Football Game using Nuitrack and ARCore/ARKit
 
-In this tutorial you'll learn how to create an interesting multiplayer game using **ARCore*** and **Nuitrack** - we are excited to present you **AR Football**! At least two players are needed for this game (the more the better). One player - "a striker" - points his Android device's camera at any surface and after that a grid appears on suitable surfaces that you can use to place an ARCore object, which is the goal with a goalkeeper. The striker's goal is to throw the ball and beat the goalkeeper. In turn, the other player - "the goalkeeper" - should catch the ball. The goalkeeper sees the goal on the TV screen or monitor. Several players can play as strikers. Nuitrack tracks the movement of players, the data is synchronized and sent via Wi-Fi network. 
+In this tutorial you'll learn how to create an interesting multiplayer game using **ARCore** (for Android) or **ARKit** (for iOS) and **Nuitrack** - we are excited to present you **AR Football**! At least two players are needed for this game (the more the better). One player - "a striker" - points his Android device's camera at any surface and after that a grid appears on suitable surfaces that you can use to place an AR object, which is the goal with a goalkeeper. The striker's goal is to throw the ball and beat the goalkeeper. In turn, the other player - "the goalkeeper" - should catch the ball. The goalkeeper sees the goal on the TV screen or monitor. Several players can play as strikers. Nuitrack tracks the movement of players, the data is synchronized and sent via Wi-Fi network. 
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → AR Football**
 
@@ -12,55 +12,49 @@ To create this game, you'll need a couple of things:
 
 Hardware: 
 * **TVico** (with the pre-installed Nuitrack.apk) or a desktop with a connected sensor from [the list of supported devices](https://nuitrack.com/#sensors) 
-* [`ARCore compatible device`](https://developers.google.com/ar/discover/supported-devices)
+* [ARCore-](https://developers.google.com/ar/discover/supported-devices) or [ARKit-compatible device](https://developer.apple.com/documentation/arkit/verifying_device_support_and_user_permission)
 
 Software:
-* **ARCore Unity SDK** (we’ve built this project with v1.2.1)
 * **Nuitrack SDK** (we’ve built this project with v1.3.3)
 * **Unity** (2017.4 or higher)
 
 ## Setting Up the Project  
 
-1. To create an ARCore project, you need to download [ARCore SDK](https://developers.google.com/ar/develop/downloads).
-2. Create a new Unity project. 
-3. Select the **Android** platform in **File → Build Settings**. 
+1. Create a new Unity project. 
+2. Select the **Android** or **iOS** platform in **File → Build Settings**. 
 
 <p align="center">
 <img width="250" src="img/UARCore_2.png">
 </p>
 
-4. In **Player Settings**, fill in the **Company Name** and **Product Name**. 
+3. In **Player Settings**, fill in the **Company Name** and **Product Name**. 
 
 <p align="center">
 <img width="450" src="img/UARCore_3.png">
 </p>
 
-5. Go to **XR Settings** and enable **ARCore support**. 
+4. Go to **Window → Package Manager** and install the following plugins: 
+* **AR Foundation** 
+* **ARCore XR Plugin** (for Android) 
+* **ARKit XR Plugin** (for iOS)
+* **Multiplayer HLAPI** (for Multiplayer)
 
 <p align="center">
-<img width="350" src="img/UARCore_4.png">
+<img width="850" src="img/UARCore_4.png">
 </p>
 
-6. In **Other Settings**, select **Minimum API Level 7.0** (which is required by ARCore), disable **Multithreaded Rendering** (which is an ARCore requirement as well) and fill in the **Package Name** in the **Identification** section.
+5. [Android] In **Other Settings**, select **Minimum API Level 7.0** (which is required by ARCore), disable **Multithreaded Rendering** (which is an ARCore requirement as well) and fill in the **Package Name** in the **Identification** section.  
+[iOS] Follow the steps from the section [Unity package for iOS](https://github.com/3DiVi/nuitrack-sdk/tree/master/iOS-beta#unity-package-for-ios).
 
 <p align="center">
 <img width="450" src="img/UARCore_5.png">
 </p>
 
-7. Import **Arcore SDK** and **NuitrackSDk.unitypackage** from Nuitrack SDK to your project: **Assets → Import Package → Custom Package**. 
+## Integrating AR Foundation to the Project
 
-## Integrating ARCore to the Project
-
-1. This project is based on the **HelloAR** project, which is a simple example of using ARCore by Google. Create a new scene and name it, for example, **Striker**. Delete **Main Camera** and **Directional Light** from the scene as we’ll need other objects in this project. Copy all the objects from the HelloAR scene to this scene (**Google ARCore → Examples → HelloAR → Scenes → HelloAR**):
-* **ARCore Device** - an object that contains the camera. The camera moves according to the movement of an Android device; the image received from the  camera of the Android device becomes the background of the project. 
-* **Canvas** - this object is used to display the "Searching for planes" message.
-* **Example Controller** - an object that is responsible for user interaction with gaming ARCore planes.
-* **Plane Generator** - well, you guessed it, this object creates planes.
-* **Point Cloud** - used to visualize a point cloud for creating the planes. 
-
-<p align="center">
-<img width="200" src="img/UARCore_6.png">
-</p>
+1. * Create an empty object and call it **AR Session Origin**. Add the following components to this object: **AR Session Origin**, **AR Plane Manager**, **AR Raycast Manager**. 
+   * Rename the camera to **AR Camera** and make it a child to the **AR Session Origin** object. Add the following components to this object: **Tracked Pose Driver**, **AR Camera Manager**, **AR Camera Background**. 
+   * Create another empty object and call it **AR Session**. Add the following components to this object: **AR Session**, **AR Input Manager**.
 
 2. Drag-and-drop the **Environment** object from Nuitrack SDK to the scene. This object is very important because it represents a goal with a goalkeeper. 
 3. Create a new C# Script `Environment.cs`, in which we'll describe the behavior of this object. This script will contain a reference to the **Target** object (target for the ball) that's already attached to our prefab. Also, the size of the Environment object will be set at start.
@@ -88,11 +82,11 @@ public class Environment : MonoBehaviour
 </p>
 
 5. Rename **Example Controller** to **Football Controller**, just for the sake of convenience. Delete the `HelloARController` script. Instead, let's create our own script `FootballARController.cs`: **Add Component → C# Script → FootballARController**. In this script, we’ll describe interaction of a user with AR.
-6. Add the `GoogleARCore` and `UnityEngine.Networking` namespaces to the script.
+6. Add the `UnityEngine.XR.ARFoundation`, `UnityEngine.XR.ARSubsystems`, and `UnityEngine.Networking` namespaces to the script.
 7. Add some necessary fields:
 
 ```cs
-// After ARCore finds the anchor points in the real world, the camera starts to move around the scene.
+// After AR finds the anchor points in the real world, the camera starts to move around the scene.
 public Camera mainCamera;
 
 // A model to place when a raycast from a user touch hits a plane.
@@ -105,12 +99,16 @@ public GameObject searchingForPlaneUI;
 // The rotation in degrees need to apply to model when model is placed.
 private const float modelRotation = 180.0f; // Rotate the Environment to make it face the camera.
 
-// A list to hold all planes ARCore is tracking in the current frame. 
-// This object is used across the application to avoid per-frame allocations.
-private List<DetectedPlane> allPlanes = new List<DetectedPlane>();
+// A list to hold all planes AR is tracking in the current frame. 
+TrackableCollection<ARPlane> allPlanes;
+
+[SerializeField] ARRaycastManager raycastManager;
+[SerializeField] ARPlaneManager planeManager;
 
 [SerializeField] Transform aRCoreDevice; // Must be the parent of the camera. 
 ```
+
+Then, go to the Unity editor and set the corresponding components in the fields **raycastManager**, **planeManager**.
 
 8. Get found surfaces in `Update`. Create a variable to show / hide a surface. If at least one surface in tracked, the message "Searching for Surface" is hidden.
 
@@ -118,20 +116,13 @@ private List<DetectedPlane> allPlanes = new List<DetectedPlane>();
 public void Update()
 {
 	// Hide snackbar when currently tracking at least one plane.
-	// Get the list of found surfaces.
-	Session.GetTrackables<DetectedPlane>(allPlanes);
+	allPlanes = planeManager.trackables;
+
 	bool showSearchingUI = true;
-	for (int i = 0; i < allPlanes.Count; i++)
-	{
-		// If at least one surface is tracked, the searching stops.
-		if (allPlanes[i].TrackingState == TrackingState.Tracking)
-		{
-			showSearchingUI = false;
-			break;
-		}
-	}
- 
-	// Hide or show the message "Searching for Surfaces..."
+
+	showSearchingUI = allPlanes.count == 0;
+
+	// Hide or show the inscription "Searching for surfaces ..."
 	searchingForPlaneUI.SetActive(showSearchingUI);
 }
 ```
@@ -147,68 +138,54 @@ if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Bega
 }
 ```
 
-10. In `Update`, create a variable to store the information about the ray (after the user touched the screen). It stores the coordinates of the place, from where the ray is cast. Add the filter that specifies the surfaces for collision with the ray. 
+10. In `Update`, create a variable to store the information about the ray (after the user touched the screen). It stores the coordinates of the place, from where the ray is cast. 
 
 ```cs
-// Raycast against the location the player touched to search for planes.
-TrackableHit hit;
-TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
-TrackableHitFlags.FeaturePointWithSurfaceNormal;
+Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+RaycastHit hitRay;
 ```
 
-11. In `Update`, process the raycasting: we make sure that the surface is tracked and then cast the ray from the appropriate side (because it’s against the football rules to throw the ball in the back of the goalkeeper). Then we process the throwing of a ball. The goal should be placed on the way of the ball; if not, we place the goal with the goalkeeper (**Environment**) and turn it accordingly. In this project, we use two rays - one is an ARCore ray (detects the surfaces), and the other is a Unity ray (which detects the required Unity object, the goal). 
+11. In `Update`, process the raycasting: we make sure that the surface is tracked and then cast the ray from the appropriate side (because it’s against the football rules to throw the ball in the back of the goalkeeper). Then we process the throwing of a ball. The goal should be placed on the way of the ball; if not, we place the goal with the goalkeeper (**Environment**) and turn it accordingly. In this project, we use two rays - one is an AR ray (detects the surfaces), and the other is a Unity ray (which detects the required Unity object, the goal). 
 
 ```cs
 environment = FindObjectOfType<Environment>();
 
-// Casting the ray to the surface found by ARCore.
-if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
+if (Physics.Raycast(ray, out hitRay, 100))
 {
-	// Use hit pose and camera pose to check if hittest is from the
-	// back of the plane, if it is, no need to create the anchor.
-	if ((hit.Trackable is DetectedPlane) &&
-		Vector3.Dot(mainCamera.transform.position - hit.Pose.position,
-			hit.Pose.rotation * Vector3.up) < 0)
-	{
-		Debug.Log("Hit at back of the current DetectedPlane");
-	}
-	else
-	{
-		// If the ball touched the correct (not reversed) side of the surface, check, whether there is the goal along the way  If the surface is "empty", place the goal. If there is the goal, then kick the ball.
-		if (KickBall() == false && environment)
-		{
-			environment.transform.position = hit.Pose.position;
-			environment.transform.rotation = hit.Pose.rotation;
-			environment.transform.Rotate(0, modelRotation, 0, Space.Self);
-		}
-	}
-}
-else
-{
-	// If there are no surfaces but the goal on the way of the ARCore ray, then kick the ball.
-	KickBall();
+    if (raycastManager.Raycast(ray, hits, TrackableType.PlaneWithinPolygon) && environment)
+    {
+        // If the beam hits the correct (not the opposite) part of the surface, then we immediately check if there is a gate along the way. If the surface is "empty", then we put the gate on it. If there are gates on the way, then "kick the ball"
+        if (hitRay.transform.name.Contains("ARPlane"))
+        {
+            environment.transform.position = hits[0].pose.position;
+            environment.transform.rotation = hits[0].pose.rotation;
+            environment.transform.Rotate(0, modelRotation, 0, Space.Self);
+        }
+        else
+        {
+            // If there are no surfaces along the path of the beam, but there is a gate, then "kick the ball"
+            KickBall(hitRay.point);
+        }
+    }
+    else
+    {
+        KickBall(hitRay.point);
+    }
 }
 ```
 
-12. Check whether there is the goal on the way of the ball: if yes, kick the ball. Set up our ray, which is cast to the place defined by the user's touch. Put the target point if the ball touched anything. In the script, make the camera child to the **Environment** in order to find the local position (coordinates) of the camera in relation to the **Environment**. We need to do all that stuff to find the point from which the ball should be thrown.  Create a ball on the scene, set its position, rotation and the child object (**Environment**) (the same settings as the camera). Set the target point. Return the camera to the original position above the **ARCoreDevice**. The return method returns true only if the ball hit some object (and there was the goal), otherwise false. 
+12. Check whether there is the goal on the way of the ball: if yes, kick the ball. Set up our ray, which is cast to the place defined by the user's touch. Put the target point if the ball touched anything. In the script, make the camera child to the **Environment** in order to find the local position (coordinates) of the camera in relation to the **Environment**. We need to do all that stuff to find the point from which the ball should be thrown.  Create a ball on the scene, set its position, rotation and the child object (**Environment**) (the same settings as the camera). Set the target point. Return the camera to the original position above the **AR Session Origin**. The return method returns true only if the ball hit some object (and there was the goal), otherwise false. 
 
 ```cs
-// If all conditions are satisfied, kick the ball and return true, otherwise, false.
-bool KickBall()
+// If you can kick the ball, then kick it and return true, if not, then return false
+void KickBall(Vector3 targetPos)
 {
-	Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-	RaycastHit hitRay;
+    // Sending a "kick" message to the server
+    mainCamera.transform.parent = environment.transform; // We temporarily make the camera a child object to our "environment". This is necessary to get its local coordinates relative to the game object "Environment" (GameObject environment)
+    environment.aim.position = targetPos;
+    FindObjectOfType<PlayerController>().Kick(mainCamera.transform.localPosition, environment.aim.transform.localPosition);
 
-	// Cast a standard Unity ray.
-	if (Physics.Raycast(ray, out hitRay, 100)  && environment)
-	{
-		environment.aim.position = hitRay.point;
-
-		mainCamera.transform.parent = envirnoment.transform; // Temporarily make the camera child to the Environment.
-		mainCamera.transform.parent = aRCoreDevice.transform; // Return the camera.
-		return true;
-	}
-	return false;
+    mainCamera.transform.parent = aRDevice.transform; // Return the camera
 }
 ```
 
@@ -218,13 +195,13 @@ bool KickBall()
 <img width="450" src="img/UARCore_8.png">
 </p>
 
-14. Connect your Android device to the PC and run the project. When a user points the camera of the Android device at real surfaces (for example, a table), he will see a grid. As the user touches the grid, an ARCore goal with a goalkeeper are placed. By default, a user sees one goal with a goalkeeper, which is created automatically after the start of the project. 
+14. Connect your device to the PC and run the project. When a user points the camera of the device at real surfaces (for example, a table), he will see a grid. As the user touches the grid, an AR goal with a goalkeeper are placed. By default, a user sees one goal with a goalkeeper, which is created automatically after the start of the project. 
 
 <p align="center">
 <img width="500" src="img/UARCore_9.gif">
 </p>
 
-_**Note:** It's not necessary to build the project to test some ARCore functions - they're available from the Unity editor. You just need to connect your Android device via USB and run the project. If you don't need this function, you can easily disable it: untick **Edit/Project Settings/Arcore/Instant Preview enabled**._ 
+_**Note:** It's not necessary to build the project to test some AR functions - they're available from the Unity editor. You just need to connect your device via USB and run the project. If you don't need this function, you can easily disable it: untick **Edit/Project Settings/Arcore/Instant Preview enabled**._ 
 
 ## Creating a Multiplayer
 
@@ -595,22 +572,16 @@ void Start()
 <img width="200" src="img/UARCore_29.png">
 </p>
 
-13. Go to **Player Settings → XR Settings** and untick **ARCore** (as it's not needed on TVico).
-
-<p align="center">
-<img width="300" src="img/UARCore_30.png">
-</p>
-
-14. Select the **Android version** as on TVico: **Other Settings → Android** (our version on TVico is 5.1.1).
+13. Select the **Android version** as on TVico: **Other Settings → Android** (our version on TVico is 5.1.1).
 
 <p align="center">
 <img width="450" src="img/UARCore_31.png">
 </p>
 
-15. Connect your TVico to your PC via USB, click **Build and Run** or just connect a compatible sensor to the desktop. 
-16. Build the project in two stages: 
-	* First of all, build the <b>Striker</b> scene with ARCore on the Android device.
-	* Then, build the <b>GoalKeeper</b> scene without ARCore on the TVico or PC with a sensor.
+14. Connect your TVico to your PC via USB, click **Build and Run** or just connect a compatible sensor to the desktop. 
+15. Build the project in two stages: 
+	* First of all, build the <b>Striker</b> scene with AR on the Android/iOS device.
+	* Then, build the <b>GoalKeeper</b> scene without AR on the TVico or PC with a sensor.
 
 Our project is almost ready: a "striker" user places the goal and goalkeeper on the grid and throws the ball. In his turn, the "goalkeeper" user tries to catch the ball using the TV screen / desktop. 
 

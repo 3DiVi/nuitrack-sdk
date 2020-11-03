@@ -1,3 +1,34 @@
+# Release v0.34.1
+**Release Date**: 03 Nov 2020  
+**Nuitrack Runtime version**: 0.34.1  
+**Nuitrack SDK version**: 1.9.0
+
+## API Changes
+
+* **`Nuitrack SDK v1.9.0` requires `Nuitrack v0.34.1` to be installed**
+
+### C++ API
+
+* Fixed an occasional compiler error `type has C-linkage specified, but returns UDT which is incompatible with C`
+
+## New Features
+
+* Added support for the **Realsense L515** camera (`Windows x86`, `Windows x86_64`, and `Ubuntu amd64`)
+* `NuitrackSDK.unitypackage`:
+  * connection to the **TVico** and **VicoVR** sensors on `Android` is now possible without installing [VicoVR.apk](https://play.google.com/store/apps/details?id=com.vicovr.manager) (only the `SkeletonTracker` data is transferred)
+
+## Bug Fixes and Improvements
+
+* Fixed the exception handling issue in `nuitrack-windows-x86.exe`
+* `NuitrackSDK.unitypackage`:
+  * fixed issues with *Async Init* mode
+* Edited the [Creating an AR Football Game using Nuitrack and ARCore/ARKit](/doc/Unity_AR_Football.md) tutorial
+
+## Known Issues
+
+ - USB cameras permission issue on **Android 9 (Pie) or higher**
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.34.0
 **Release Date**: 09 Oct 2020  
 **Nuitrack Runtime version**: 0.34.0  

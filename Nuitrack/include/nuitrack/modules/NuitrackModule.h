@@ -10,38 +10,42 @@ class ExceptionHolder
 {
 public:
 	ExceptionHolder(tdv::nuitrack::ExceptionType type = tdv::nuitrack::OK, std::string message = "")
-	    : type(type), message(message)
+		: _type(type), _message(message)
 	{
 	}
 
-	virtual tdv::nuitrack::ExceptionType getType() const { return type; }
-	virtual void setType(tdv::nuitrack::ExceptionType type) { this->type = type; }
-	virtual std::string getMessage() const { return message; }
-	virtual void setMessage(std::string message) { this->message = message; }
+	virtual ~ExceptionHolder() {}
+
+	virtual tdv::nuitrack::ExceptionType getType() const { return _type; }
+	virtual void setType(tdv::nuitrack::ExceptionType type) { _type = type; }
+	virtual std::string getMessage() const { return _message; }
+	virtual void setMessage(std::string message) { _message = message; }
 
 protected:
-	tdv::nuitrack::ExceptionType type;
-	std::string message;
+	tdv::nuitrack::ExceptionType _type;
+	std::string _message;
 };
 
 class AtomicExceptionHolder : public ExceptionHolder {
 public:
 	tdv::nuitrack::ExceptionType getType() const override {
 		std::lock_guard<std::mutex> lock(_mutex);
-		return type;
+		return _type;
 	}
 	void setType(tdv::nuitrack::ExceptionType type) override {
 		std::lock_guard<std::mutex> lock(_mutex);
-		this->type = type;
+		_type = type;
 	}
 	std::string getMessage() const override {
 		std::lock_guard<std::mutex> lock(_mutex);
-		return message;
+		return _message;
 	}
 	void setMessage(std::string message) override {
 		std::lock_guard<std::mutex> lock(_mutex);
-		this->message = message;
+		_message = message;
 	}
+
+	virtual ~AtomicExceptionHolder() {}
 private:
 	mutable std::mutex _mutex;
 };
