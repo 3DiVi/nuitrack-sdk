@@ -35,7 +35,8 @@ public:
 			throw tdv::nuitrack::ModuleNotStartedException();
 		}
 #else
-		std::terminate();
+		if (errorCode != ExceptionType::OK)
+			std::terminate();
 #endif
 	}
 

@@ -148,25 +148,22 @@ Support for iOS was added in the latest release of `NuitrackSDK.unitypackage`. F
 
 3. Open the scene `/Assets/NuitrackSDK/NuitrackDemos/allModulesScene.unity`.
 
-4. Exclude the platforms *"Editor"* and *"Standalone"* for `/Assets/NuitrackSDK/Nuitrack/NuitrackAssembly/nuitrack.net.dll`.
+4. Drag-and-drop `nuitrack.framework` and `Structure.framework` to `/Assets/NuitrackSDK/Nuitrack/NuitrackAssembly/iOS/` or other directory.
 
-5. Include the platforms *"Editor"* and *"Standalone"* for `/Assets/NuitrackSDK/Nuitrack/NuitrackAssembly/iOS/nuitrack.net.dll`.
+5. Tick `Add to Embedded binaries` parameter in `Platform settings` for added frameworks.
 
-6. Drag-and-drop `nuitrack.framework` and `Structure.framework` to `/Assets/NuitrackSDK/Nuitrack/NuitrackAssembly/iOS/` or other directory.
+6. Open `File > Build Settings...` and click *"Add Open Scenes"* to add *"allModulesScene"*.
 
-7. Tick `Add to Embedded binaries` parameter in `Platform settings` for added frameworks.
-
-8. Open `File > Build Settings` and click *"Add Open Scenes"* to add *"allModulesScene"*.
-
-9. In *"Build Settings"*, click *"Player Settings"* and set the following parameters:
+7. In *"Build Settings"*, click *"Player Settings"* and set the following parameters:
 
      - `Target minimum iOS version` to *"11.4"*
      - `Architecture` to *"ARM64"*
+     - add the `use_structure_sensor` define symbol to the `Scripting Define Symbols` field to enable Structure Sensor support
 
-10. Open `File > Build Settings` and click *"Build"* to build the **Xcode** project for **iOS**.
+8. Open `File > Build Settings...` and click *"Build"* to build the **Xcode** project for **iOS**.
 
-11. Open the **XCode** project and set up *Team ID*.
+9. Open the **XCode** project and set up *Team ID*.
 
-12. Select a device and run the **XCode** project.
+10. Select a device and run the **XCode** project.
 
 _**Note**: Unity samples (except `NuitrackDemos/allModulesScene`) weren't updated to be used with Structure SDK (please read "Note" in the section "Setup XCode Project"). Therefore, they might not initilize **Structure Sensor** on a cold boot._

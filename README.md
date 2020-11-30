@@ -29,7 +29,13 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
 
 ## Getting Started
 
-1. Clone or download this repository.
+1. **Clone** this repository. Please note that it's important to clone this repository instead of downloading it. To clone the repository, run the commands below: 
+
+   ```bash
+   $ git clone https://github.com/3DiVi/nuitrack-sdk.git
+   $ cd nuitrack-sdk
+   ```
+ 
 2. Download the **Nuitrack Runtime** installer:
 
    - using Git LFS:

@@ -1,3 +1,30 @@
+# Release v0.35.0
+**Release Date**: 30 Nov 2020  
+**Nuitrack Runtime version**: 0.35.0  
+**Nuitrack SDK version**: 1.10.0
+
+## API Changes
+
+* **`Nuitrack SDK v1.10.0` requires `Nuitrack v0.35.0` to be installed**
+
+## New Features
+
+* Added **Unreal Engine 4.25** plugins for **Windows** and **Android**. Please refer to new tutorials:
+  * [UE4 Basic Project for Windows](/doc/Unreal_Engine_Windows_Tutorial.md)
+  * [UE4 Basic Project for Android](/doc/Unreal_Engine_Android_Tutorial.md)
+* Added digital signature to the installers `nuitrack-windows-x64.exe` and `nuitrack-windows-x86.exe`
+* Added auto-switching between the `nuitrack.net` assembly versions (`Mono`, `IL2CPP`, `iOS`) in the **NuitrackSDK.unitypackage**
+
+## Bug Fixes and Improvements
+
+* Added support for the **Realsense D415/D435/D435i** cameras on **Android 9 (Pie) or higher**
+  * **Realsense SDK** has been updated to `v2.38.1` for **Android**
+
+## Known Issues
+
+ - USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.34.1
 **Release Date**: 03 Nov 2020  
 **Nuitrack Runtime version**: 0.34.1  
@@ -13,7 +40,7 @@
 
 ## New Features
 
-* Added support for the **Realsense L515** camera (`Windows x86`, `Windows x86_64`, and `Ubuntu amd64`)
+* Added support for the **Intel Realsense D455 and L515** cameras (`Windows x86`, `Windows x86_64`, and `Ubuntu amd64`)
 * `NuitrackSDK.unitypackage`:
   * connection to the **TVico** and **VicoVR** sensors on `Android` is now possible without installing [VicoVR.apk](https://play.google.com/store/apps/details?id=com.vicovr.manager) (only the `SkeletonTracker` data is transferred)
 
