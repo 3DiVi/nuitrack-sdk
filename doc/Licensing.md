@@ -1,3 +1,7 @@
+* [Nuitrack Licensing](#nuitrack-licensing)
+* [License Comparison Guide](#license-comparison-guide)
+* [License Activation](#license-activation)
+
 # Nuitrack Licensing 
 
 There are three Nuitrack versions: **Nuitrack Trial**, **Nuitrack Pro**, and **Nuitrack AI**.
@@ -12,7 +16,7 @@ There are three Nuitrack versions: **Nuitrack Trial**, **Nuitrack Pro**, and **N
 
 You can purchase **Nuitrack Pro Perpetual** and **Nuitrack AI Perpetual** on [our website](https://nuitrack.com/#pricing) and in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license_selection/). **Nuitrack Pro Subscription** and **Nuitrack AI Subscuption** are available in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license_selection/) only.
 
-## License Comparison Guide 
+# License Comparison Guide 
 
 <table>
 <thead>
@@ -152,3 +156,35 @@ You can purchase **Nuitrack Pro Perpetual** and **Nuitrack AI Perpetual** on [ou
   </tr>
 </tbody>
 </table>
+
+# License Activation 
+
+Before activating the license, you need to install the **Nuitrack Runtime** (see the [Installation Instructions](/doc/Install.md)). You can activate Nuitrack in one of two ways:
+* [using the Nuitrack licensing tool](#nuitrack-licensing-tool)
+* [using Device API](#device-api)
+
+## Nuitrack Licensing Tool
+
+The Nuitrack licensing tool can be used to check the sensor operation with Nuitrack and activate the Nuitrack license. 
+
+### Running the Licensing Tool 
+
+* **Windows**:
+  * Find the **Nuitrack** application in **Start Menu Windows** and run it. As an option, you can go to `%NUITRACK_HOME%\activation_tool` and run `Nuitrack.exe`.
+* **Linux**:
+  * Open a terminal and run the command: `nuitrack`
+* **Android**:
+  * Launch the **Nuitrack** app.
+
+### Activating the License 
+
+1. Select a depth sensor from the drop-down list in the Nuitrack licensing tool. 
+1. \[optional\] Click the `Test` button and wait for the compatibility test to complete. You can do this to make sure that your sensor works correctly with **Nuitrack**. 
+1. Enter your activation key and click `Activate` to activate the license (see more info about **Nuitrack Trial** and **Nuitrack Pro** in [Nuitrack Licensing](#nuitrack-licensing)).  
+1. To test **Nuitrack**, click the `Test` button.
+
+## Device API
+
+You can activate **Nuitrack** from your application using [Device API](/doc/Device_API.md).
+
+For **Windows** and **Linux**, `nuitrack_device_api_sample` is included into the **Nuitrack Runtime** installation package. To run `nuitrack_device_api_sample`, open a terminal and run the command `nuitrack_device_api_sample`.

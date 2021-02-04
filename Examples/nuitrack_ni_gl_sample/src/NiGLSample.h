@@ -7,10 +7,10 @@
 #include <Windows.h>
 #endif
 
-#ifndef ANDROID
-#include <GL/gl.h>
-#else
+#if defined(ANDROID) || defined(__ANDROID__)
 #include <GLES/gl.h>
+#else
+#include <GL/gl.h>
 #endif
 
 #include <deque>

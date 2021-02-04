@@ -1,3 +1,25 @@
+# Release v0.35.1
+
+**Release Date**: 04 Feb 2021  
+**Nuitrack Runtime version**: 0.35.1  
+**Nuitrack SDK version**: 1.11.0
+
+## SDK Changes
+
+* Added an **Android Studio** project (`nuitrack_android_studio_gl_sample`)
+* Added support for the `__ANDROID__` preprocessor directive in the **Android** examples
+
+## Bug Fixes
+
+* Fixed an issue with access rights to the folder `/usr/etc/nuitrack/data` on **Linux**: edited the installation script
+* Fixed the license issue on **Linux** (the activated license didn't work for some users)
+* Fixed image distortion during rotation in `nuitrack_sample`
+
+## Known Issues
+
+ - USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+ - Gesture recognition may fail for sitting pose
+
 # Release v0.35.0
 **Release Date**: 30 Nov 2020  
 **Nuitrack Runtime version**: 0.35.0  
