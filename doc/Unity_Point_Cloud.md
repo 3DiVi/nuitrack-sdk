@@ -337,7 +337,9 @@ points[pointIndex].transform.localScale = Vector3.one * meshScaling * depthToSca
 <b>Characteristics of the MouseOrbitImproved Script</b><br>
 </p>
 
-16. When the script is applied, you can see the volume of the objects displayed as a point cloud. Well done!
+16. In order to improve the resulting point cloud, we recommend you to turn on depth-to-color registration because a depth map doesn't accurately match an RGB image, therefore, they should be aligned. To turn on depth-to-color registration, open *nuitrack.config* from the folder `<nuitrack_home>\data` and set `DepthProvider.Depth2ColorRegistration` to `true`.
+
+17. When the script is applied, you can see the volume of the objects displayed as a point cloud. Well done!
 
 <p align="center">
 <img width="500" src="img/Upoints_7.gif"><br>

@@ -1,3 +1,24 @@
+# Release v0.35.2
+
+**Release Date**: 22 March 2021  
+**Nuitrack Runtime version**: 0.35.2  
+**Nuitrack SDK version**: 1.11.1
+
+## SDK Changes
+
+* Updated `nuitrack_device_api_sample`: improved console output
+
+## Bug Fixes
+
+* Fixed a crash when disconnecting the **Intel RealSense** sensors with the enabled `Realsense2DepthProvider.DeviceHardwareReset` option
+* Fixed an issue with the detection of **Intel RealSense d455 and L515** sensors on **Android**
+* Fixed the types of some returned exceptions
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.1
 
 **Release Date**: 04 Feb 2021  
