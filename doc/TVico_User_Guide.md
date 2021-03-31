@@ -2,6 +2,8 @@
 
 **TVico** is an interactive Android computer with a 3D sensor and an RGB camera, a product jointly developed by Orbbec and 3DiVI Inc. It is designed for development of interactive Android applications and bundled with Nuitrack SDK.
 
+_**Note:** you will need a **TVico license** to use TVico. The TVico license is a special form of the [Nuitrack Pro Perpetual license](/doc/Licensing.md) and enables the [wireless use case](#wireless-case). The license key is sent to your mail after purchasing TVico on the [official website](https://tvico.io/)._
+
 <p align="center">
 <img width="400" src="img/TVico_0.jpg">
 </p>

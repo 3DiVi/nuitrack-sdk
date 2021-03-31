@@ -1,5 +1,11 @@
 # Installation Instructions
 
+## Hardware Requirements and Minimum System Specifications 
+
+* RGBD sensor (see the [list of compatible sensors and platforms](https://nuitrack.com/#sensors))
+
+There are no strict requirements for hardware performance with Nuitrack. RAM usage is below 200MB. There is only one restriction for desktop processors: support for AVX instructions set is required.
+
 ## Windows
 
 ### Software Requirements 

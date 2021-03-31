@@ -6,7 +6,7 @@ Advantages:
 * 360-degree tracking
 * tracking of difficult poses (for example, tracking of a sitting or a lying person)
 
-Nuitrack AI is available from the Nuitrack v0.33.0 release. 
+Nuitrack AI is available from the Nuitrack v0.33.0 release. You can use Nuitrack AI not only in native C++/C# applications, but also in projects built with Unity or Unreal Engine. There's no need to change the code if your application was made with the standard Nuitrack version: all you need to do is to enable the Nuitrack AI features in the `nuitrack.config` file (see the instructions in the sections below). 
 
 <p align="center">
     <img width="480" src="img/nuitrack_ai_demo.gif">
@@ -46,9 +46,7 @@ Nuitrack AI Object Detection is the Nuitrack AI feature that provides object det
 To turn on Nuitrack AI object detection: 
   * open the `nuitrack.config` file from `%NUITRACK_HOME%/data`
   * set the `"CnnDetectionModule.ToUse"` parameter  to `true`
-
-To test AI object detection, run `nuitrack_sample.exe` from `%NUITRACK_HOME%/bin` (`/usr/bin/nuitrack_sample` for Ubuntu).
-
+  
 The following types of objects can be detected on a color stream:
   * bottle
   * cigarette
@@ -56,3 +54,11 @@ The following types of objects can be detected on a color stream:
   * laptop
   * bag
   * book
+
+To test AI object detection, run `nuitrack_sample.exe` from `%NUITRACK_HOME%/bin` (`/usr/bin/nuitrack_sample` for Ubuntu). 
+
+In addition, we have a sample Unity tutorial that demonstrates how to detect various objects (in our case, a cigarette) on video received from a camera. In case a cigarette is detected, you will hear an audible warning and your screen will turn red:
+
+* [Unity project](https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D): *Assets/NuitrackSDK/Tutorials/NuitrackAI*
+* [video tutorial](https://www.youtube.com/watch?v=75gpVuwygx8)
+
