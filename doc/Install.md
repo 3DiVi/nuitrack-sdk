@@ -174,6 +174,10 @@ _**Note**: To add a new environment variable or change the existing environment 
   sudo apt-get install libcurl4-openssl-dev
   ```
 
+#### Orbbec Astra Pro 
+
+If your sensor is plugged in but is not detected by Nuitrack and is not displayed in the activation tool, please install the Microsoft Visual C++ 2013 redistributable package (instead of the version for Microsoft Visual C++ 2017). You can download this package on the [official Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=40784).
+
 #### Kinect V1
 
 To install the driver for Kinect V1, download [Kinect SDK v1.8](https://www.microsoft.com/en-us/download/details.aspx?id=40278) and follow the [Install Instructions](https://www.microsoft.com/en-us/download/confirmation.aspx?id=40278).
