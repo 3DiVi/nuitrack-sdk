@@ -1,10 +1,15 @@
 #include "NuitrackGLSample.h"
-
-#include <GL/glut.h>
-
+#include <GL/freeglut.h>
 #include <iostream>
 
 NuitrackGLSample sample;
+
+void closeWindow()
+{
+	sample.release();
+	glutDestroyWindow(glutGetWindow());
+	exit(EXIT_FAILURE);
+}
 
 // Keyboard handler
 void keyboard(unsigned char key, int x, int y)
@@ -14,9 +19,7 @@ void keyboard(unsigned char key, int x, int y)
 	// On Esc key press
 	case 27:
 	{
-		sample.release();
-		glutDestroyWindow(glutGetWindow());
-		exit(EXIT_FAILURE);
+		closeWindow();
 	}
 
 	default:
@@ -40,13 +43,10 @@ void display()
 {
 	// Delegate this action to example's main class
 	bool update = sample.update();
-
 	if (!update)
 	{
 		// End the work if update failed
-		sample.release();
-		glutDestroyWindow(glutGetWindow());
-		exit(EXIT_FAILURE);
+		closeWindow();
 	}
 
 	// Do flush and swap buffers to update viewport
@@ -64,8 +64,6 @@ void showHelpInfo()
 	std::cout << "Usage: nuitrack_gl_sample [path/to/nuitrack.config]\n"
 				 "Press Esc to close window." << std::endl;
 }
-
-
 
 int main(int argc, char* argv[])
 {
@@ -91,7 +89,8 @@ int main(int argc, char* argv[])
 	glutDisplayFunc(display);
 	glutIdleFunc(idle);
 	glutMouseFunc(mouseClick);
-
+	glutCloseFunc(closeWindow);
+	
 	// Setup OpenGL
 	glDisable(GL_DEPTH_TEST);
 	glEnable(GL_TEXTURE_2D);

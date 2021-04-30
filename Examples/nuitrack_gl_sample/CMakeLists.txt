@@ -20,7 +20,7 @@ elseif(WIN32)
 	ELSEIF(CMAKE_SIZEOF_VOID_P EQUAL 8)
 		set(PLATFORM_DIR win64)
 	ENDIF()
-	set(OPENGL_LIBS glut32 glu32 opengl32)
+	set(OPENGL_LIBS freeglut glu32 opengl32)
 endif()
 
 set(NUITRACK_LIBRARY_PATH ${CMAKE_CURRENT_LIST_DIR}/../../Nuitrack/lib/${PLATFORM_DIR}) 

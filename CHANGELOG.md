@@ -1,3 +1,19 @@
+# Release v0.35.5
+
+**Release Date**: 29 April 2021  
+**Nuitrack Runtime version**: 0.35.5  
+**Nuitrack SDK version**: 1.11.4
+
+## Bug Fixes and Improvements
+
+* `nuitrack_gl_sample`: fixed incorrect termination of the application when pressing the window close button
+* Fixed application crashes when AI mode is not used
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.4
 
 **Release Date**: 6 April 2021  
