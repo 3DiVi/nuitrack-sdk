@@ -74,7 +74,7 @@ echo "export NUITRACK_HOME=/usr/etc/nuitrack" > /etc/profile.d/nuitrack_env.sh
 echo "export LD_LIBRARY_PATH=/usr/local/lib/nuitrack" >> /etc/profile.d/nuitrack_env.sh
 . /etc/profile.d/nuitrack_env.sh
 ``` 
-5. [For Ubuntu 18.04] Install the [libpng12-0](https://packages.ubuntu.com/xenial/amd64/libpng12-0/download) package.
+5. [For Ubuntu 18.04] Install the [libpng12-0](http://launchpadlibrarian.net/233197129/libpng12-0_1.2.54-1ubuntu1_amd64.deb) package.
 6. Activate Nuitrack following the instructions sent to your email after the license purchase. 
 
 _**Note**: If you see "ERROR: Couldn't open device ..." message when trying to use Nuitrack, try to set permissions for USB devices with the following command:_
@@ -176,7 +176,8 @@ _**Note**: To add a new environment variable or change the existing environment 
 
 #### Orbbec Astra Pro 
 
-If your sensor is plugged in but is not detected by Nuitrack and is not displayed in the activation tool, please install the Microsoft Visual C++ 2013 redistributable package (instead of the version for Microsoft Visual C++ 2017). You can download this package on the [official Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=40784).
+* If your sensor is plugged in but is not detected by Nuitrack and is not displayed in the activation tool, please install the Microsoft Visual C++ 2013 redistributable package (instead of the version for Microsoft Visual C++ 2017). You can download this package on the [official Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=40784).
+* If RGB stream shows a picture from your webcam or doesn't work at all on Windows or Linux then open `nuitrack.config` and set the value of `AstraProPerseeDepthProvider.CameraID` (usually it’s `0`, but if it doesn’t work, try `1`, `2`, and so on).
 
 #### Kinect V1
 

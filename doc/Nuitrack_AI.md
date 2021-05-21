@@ -41,7 +41,7 @@ Nuitrack AI Object Detection is the Nuitrack AI feature that provides object det
   * CUDA compatible GPU (NVIDIA GTX 1050 Ti or better)
 * Software dependencies:
   * [CUDA 9.0](https://developer.nvidia.com/cuda-90-download-archive)
-  * [cuDNN 7](https://developer.nvidia.com/rdp/cudnn-archive#a-collapse765-90)
+  * [cuDNN 7.6.5](https://developer.nvidia.com/rdp/cudnn-archive#a-collapse765-90)
 
 To turn on Nuitrack AI object detection: 
   * open the `nuitrack.config` file from `%NUITRACK_HOME%/data`

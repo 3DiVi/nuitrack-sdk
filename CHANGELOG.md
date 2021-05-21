@@ -1,3 +1,24 @@
+# Release v0.35.6
+
+**Release Date**: 19 May 2021  
+**Nuitrack Runtime version**: 0.35.6  
+**Nuitrack SDK version**: 1.11.5
+
+## New Features
+
+* Added support for the **Orbbec Astra +** cameras (`Windows x86`, `Windows x86_64`, `Ubuntu amd64` and `Linux arm32`)
+* Added support for the **Azure Kinect** cameras (`Windows x86`, `Windows x86_64`, and `Ubuntu amd64`)
+  * Please check [system requirements](https://docs.microsoft.com/en-us/azure/kinect-dk/system-requirements) for **Azure Kinect**
+
+## Bug Fixes and Improvements
+
+* Fixed camera locking issue on Android
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.5
 
 **Release Date**: 29 April 2021  

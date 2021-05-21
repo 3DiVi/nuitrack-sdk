@@ -39,11 +39,18 @@ Run sample:
 
 - Install cmake https://cmake.org/download/
 
+- Download freeglut for Visual Studio https://www.transmissionzero.co.uk/software/freeglut-devel/ and unpack
+
 - Run CMake and set source code directory to "nuitrack_gl_sample" folder, build directory to "nuitrack_gl_sample/build"
 
 - Press Configure button, then select Visual Studio generator
 
 - Press Configure, then Generate
 
-- Open solution "nuitrack_gl_sample.sln" in Visual Studio and use its instruments to build solution
+- Open solution "nuitrack_gl_sample.sln" in Visual Studio 
 
+- Set path to freeglut.dll in Visual Studio: Project > Properties > Configuration Properties > Debugging > Environment: PATH=%PATH%;<path to freeglut.dll>
+
+- Set path to freeglut.lib in Visual Studio: Project > Properties > Linker > General > Additional Library Directory: add path to freeglut.lib
+
+- Use Visual Studio instruments to build solution

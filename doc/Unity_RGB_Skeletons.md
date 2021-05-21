@@ -96,8 +96,6 @@ _**Note**: If you observe memory leak, try to delete the old texture (for exampl
 <img width="500" src="img/Urgb_6.gif">
 </p>
 
-_**Note**: If you use **Orbbec Astra Pro**, you have to turn on the RGB stream manually. Open `nuitrack.config` and set the value of `CameraID` (usually it’s 0, but if it doesn’t work, try 1, 2, and so on)._
-
 ## Displaying the Skeleton
 
 1. All right, color image from the sensor is fun, but we're interested in the skeletons of users (otherwise, what do we need Nuitrack for?) Let's start tracking and displaying skeletons. First of all, turn on **depth-to-color registration** because a depth map doesn't accurately match an RGB image and we have to align them. To turn on depth-to-color registration, you have to open `nuitrack.config` and set `DepthProvider.Depth2ColorRegistration` to `true`. 

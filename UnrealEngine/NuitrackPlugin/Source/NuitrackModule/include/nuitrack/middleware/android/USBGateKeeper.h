@@ -28,7 +28,7 @@ public:
 	void closeFileDescriptor();
 
 private:
-	jobject _object_global_USBGateKeeper;
+	static jobject _object_global_USBGateKeeper;
 };
 
 }

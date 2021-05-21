@@ -10,7 +10,7 @@ Currently supported platforms:
 	* Ubuntu amd64
 	* Windows x86_64
 
-_**Note**: Face modules are by default disabled. To enable face modules, open *nuitrack.config* file and set ```Faces.ToUse``` and ```DepthProvider.Depth2ColorRegistration``` to `true`. You should also set the value of `AstraProPerseeDepthProvider.CameraID` for Orbbec Astra PRO camera on Windows or Linux (usually it’s `0`, but if it doesn’t work, try `1`, `2` and so on)._
+_**Note**: Face modules are by default disabled. To enable face modules, open *nuitrack.config* file and set ```Faces.ToUse``` and ```DepthProvider.Depth2ColorRegistration``` to `true`._
 
 ## Getting Information about Instances
 
