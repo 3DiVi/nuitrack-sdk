@@ -1,3 +1,28 @@
+# Release v0.35.7
+
+**Release Date**: 21 Jul 2021  
+**Nuitrack Runtime version**: 0.35.7  
+**Nuitrack SDK version**: 1.11.6
+
+## New Features
+
+* Added support the **Intel Realsense** sensors for the `Linux arm64` platforms (**Raspberry Pi 4**, **NVIDIA Jetson TX2**)
+
+## Bug Fixes and Improvements
+
+* Fixed the memory leak in the **Nuitrack AI** mode
+* `NuitrackSDK.unitypackage`:
+  * added new tutorials (`AR Nuitrack`, `Jump Trainer`, `Final IK`)
+  * update working with frames
+  * fixed the Unity 2020+ interface problem
+  * added the advanced TBB-file error message
+  * added using `nuitrack.config` features from the `NuitrackManager` component
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.6
 
 **Release Date**: 19 May 2021  

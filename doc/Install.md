@@ -47,7 +47,7 @@ _**Note**: To get started with a new device, you must first install the drivers 
 ### Software Requirements 
 
 * Ubuntu 14.04 or above 
-* Architecture: AMD64 or ARM 32-bit
+* Architecture: AMD64, ARM 32-bit or ARM 64-bit
 
 ### Nuitrack Installation 
 
@@ -56,6 +56,7 @@ To install Nuitrack on Ubuntu, follow the steps below:
 1. Download one of the following Debian packages depending on the target architecture:
     * [nuitrack-ubuntu-amd64.deb](/Platforms/nuitrack-ubuntu-amd64.deb) for AMD64
     * [nuitrack-linux-armhf.deb](/Platforms/nuitrack-linux-armhf.deb) for ARM 32-bit
+    * [nuitrack-linux-arm64.deb](/Platforms/nuitrack-linux-arm64.deb) for ARM 64-bit
 2. Install the downloaded package using the following command: 
 ```
 sudo dpkg -i <downloaded-package-name>.deb
@@ -75,7 +76,11 @@ echo "export LD_LIBRARY_PATH=/usr/local/lib/nuitrack" >> /etc/profile.d/nuitrack
 . /etc/profile.d/nuitrack_env.sh
 ``` 
 5. [For Ubuntu 18.04] Install the [libpng12-0](http://launchpadlibrarian.net/233197129/libpng12-0_1.2.54-1ubuntu1_amd64.deb) package.
-6. Activate Nuitrack following the instructions sent to your email after the license purchase. 
+6. [For Arm] Install the _bluetooth_ and _freeglut_ packages: 
+```
+sudo apt-get install bluetooth freeglut-dev
+```
+7. Activate Nuitrack following the instructions sent to your email after the license purchase. 
 
 _**Note**: If you see "ERROR: Couldn't open device ..." message when trying to use Nuitrack, try to set permissions for USB devices with the following command:_
 ```
