@@ -11,6 +11,7 @@
 * [Nuitrack SDK Architecture](Architecture.md)
 * [General Preparations](General_preparations.md)
 * [Installation Instructions](Install.md)
+* [Troubleshooting](Troubleshooting.md)
 * [Nuitrack Licensing](Licensing.md)
 * [Linking Nuitrack to Your Application](Nuitrack_linking.md)
 * [Integrating Nuitrack with your application (Windows/Ubuntu)](Tutorial_integration.md)

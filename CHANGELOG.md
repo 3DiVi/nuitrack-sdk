@@ -1,3 +1,19 @@
+# Release v0.35.8
+
+**Release Date**: 1 Aug 2021  
+**Nuitrack Runtime version**: 0.35.8  
+**Nuitrack SDK version**: 1.11.7
+
+## Bug Fixes and Improvements
+
+* Improved the user interface of the Nuitrack activation tool
+* Fixed support for some Orbbec Astra+ sensors
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.7
 
 **Release Date**: 21 Jul 2021  

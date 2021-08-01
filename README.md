@@ -7,23 +7,23 @@
 The **Nuitrack™ module** is optimized for ARM based processors, which means that you can use it with Android devices and embedded platforms.
 
  - Features:
-   - Full Body Skeletal Tracking (19 Joints);
-   - 3D Point Cloud;
-   - User Masks;
-   - Gesture Recognition;
-   - Cross-platform SDK for Android, Windows, and Linux;
-   - 3D Sensor independent: supports Kinect v1, Asus Xtion, Orbbec Astra, Orbbec Persee, Intel RealSense;
-   - Unity and Unreal Engine Plugins;
-   - OpenNI 1.5 compatible: OpenNI module allows you to move your OpenNI based apps developed for Kinect and Asus Xtion to other platforms, including Android.
+   - Full Body Skeletal Tracking (19 Joints)
+   - 3D Point Cloud
+   - User Masks
+   - Gesture Recognition
+   - Cross-platform SDK for Android, Windows, and Linux
+   - 3D Sensor independent: supports Kinect v1, Asus Xtion, Orbbec Astra, Orbbec Persee, Intel RealSense
+   - Unity and Unreal Engine Plugins
+   - OpenNI 1.5 compatible: OpenNI module allows you to move your OpenNI based apps developed for Kinect and Asus Xtion to other platforms, including Android
 
  - Application areas:
-   - Natural User Interface (NUI) for Windows/Linux/Android;
-   - Games and Training (Fitness, Dance Lessons);
-   - Medical Rehabilitation;
-   - Smart Home;
-   - Positional and Full Body Tracking for VR;
-   - Audience Analytics;
-   - Robot Vision.
+   - Natural User Interface (NUI) for Windows/Linux/Android
+   - Games and Training (Fitness, Dance Lessons)
+   - Medical Rehabilitation
+   - Smart Home
+   - Positional and Full Body Tracking for VR
+   - Audience Analytics
+   - Robot Vision
 
 You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com).
 
@@ -67,7 +67,7 @@ Now you can use **Nuitrack** and run the samples from the `Examples` folder.
 | --------- | ----------- | 
 | **Documentation** | An offline copy of **Nuitrack** [documentation](doc/readme.md).||
 | **Runtime Components** | **Nuitrack Runtime** installers for all supported platforms. ||
-| **C#/.NET Wrapper** | **Nuitrack** supports **C#/.NET API** that allows you to integrate **Nuitrack** with your C# applications. ||
+| **C#/.NET Wrapper** | **C#/.NET API** that allows you to integrate **Nuitrack** with your C# applications. ||
 | **Code Samples** | These basic examples demonstrate how to use **Nuitrack SDK**. You can find **C++**/**C#** cross-platform samples with instructions inside. |
 | **Unity Package** | This package allows you to [easily integrate](/doc/readme.md#unity-tutorials) **Nuitrack SDK** into your Unity project. |
-| **Unreal Engine Plugin** | This plugin allows to [develop](/doc/Unreal_Engine_Tutorial.md) C++ applications with **UE 4.20** (Android only). |
+| **Unreal Engine Plugin** | This plugin allows you to [develop](/doc/Unreal_Engine_Tutorial.md) C++ applications with **UE 4.20** (Android only). |
