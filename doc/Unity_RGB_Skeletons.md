@@ -102,7 +102,7 @@ _**Note**: If you observe memory leak, try to delete the old texture (for exampl
 2. Create two prefabs to display a user's skeleton (a ball for a joint and a line for a connection). As an option, you can use the prefabs from **NuitrackSDK.unitypackage** (**Assets/NuitrackSDK/Tutorials/RGBandSkeletons/Prefabs (JointUI and ConnectionUI)**). 
 3. Create a new script and name it `SimpleSkeletonAvatar`. In this script, determine tracking and displaying of a single skeleton. 
 4. Create a new bool variable `autoProcessing`. If we need to process only one skeleton, we set the value of this variable to `true` and Nuitrack passes all data about this skeleton. At this stage, this is quite sufficient because we want to display only one skeleton. However, when it comes to displaying several skeletons, we'll need additional components, because multiple skeletons cannot be processed automatically. 
-5. Create two fields for the joint and connection prefabs: `jointPrefab` and `connectionPrefab`.
+5. Create two fields for the joint and connection prefabs: `jointPrefab` and `connectionPrefab`. And field `parentRect` where the avatar RectTransform will be stored
 
 ```cs
 using System.Collections.Generic;
@@ -112,6 +112,7 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 {
 	public bool autoProcessing = true;
 	[SerializeField] GameObject jointPrefab = null, connectionPrefab = null;
+	RectTransform parentRect;
 }
 ```
 
@@ -176,18 +177,18 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 }
 ```
 
-8. Create an array containing ready-made connections and a dictionary with ready-made joints (the key is a joint type and the value is a spawned object). 
+8. Create an list containing ready-made connections and a dictionary with ready-made joints (the key is a joint type and the value is a spawned object). 
 
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
 ...
-	GameObject[] connections;
-	Dictionary<nuitrack.JointType, GameObject> joints;
+	List<RectTransform> connections;
+	Dictionary<nuitrack.JointType, RectTransform> joints;
 }
 ```
 
-9. In `Start`, call the `CreateSkeletonParts` method. 
+9. In `Start`, call the `CreateSkeletonParts` method. And get avatar's RectTransform
 
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
@@ -196,6 +197,7 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 	void Start()
 	{
 		CreateSkeletonParts();
+		parentRect = GetComponent<RectTransform>();
 	}
 }
 ```
@@ -208,27 +210,29 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ...
 	void CreateSkeletonParts()
 	{
-		joints = new Dictionary<nuitrack.JointType, GameObject>();
+		joints = new Dictionary<nuitrack.JointType, RectTransform>();
  
 		for (int i = 0; i < jointsInfo.Length; i++)
 		{
 			if (jointPrefab != null)
 			{
-				GameObject joint = Instantiate(jointPrefab, transform, true);
+				GameObject joint = Instantiate(jointPrefab, transform);
 				joint.SetActive(false);
-				joints.Add(jointsInfo[i], joint);
+				RectTransform jointRectTransform = joint.GetComponent<RectTransform>();
+				joints.Add(jointsInfo[i], jointRectTransform);
 			}
 		}
  
-		connections = new GameObject[connectionsInfo.GetLength(0)];
+		connections = new List<RectTransform>();
  
-		for (int i = 0; i < connections.Length; i++)
+		for (int i = 0; i < connectionsInfo.GetLength(0); i++)
 		{
 			if (connectionPrefab != null)
 			{
-				GameObject connection = Instantiate(connectionPrefab, transform, true);
+				GameObject connection = Instantiate(connectionPrefab, transform);
 				connection.SetActive(false);
-				connections[i] = connection;
+				RectTransform connectionRectTransform = connection.GetComponent<RectTransform>();
+				connections.Add(connectionRectTransform);
 			}
 		}
 	}
@@ -249,7 +253,7 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 }
 ```
 
-12. Loop over the joints. If a specific joint is detected (confidence > 0.5), it's displayed and its position is set in 2D (projective coordinates received from Nuitrack are used). Otherwise, the joint is not displayed. 
+12. Loop over the joints. If a specific joint is detected (confidence > 0.01), it's displayed and its position is set in 2D (projective coordinates received from Nuitrack are used). Otherwise, the joint is not displayed. 
 
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
@@ -260,22 +264,23 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 		for (int i = 0; i < jointsInfo.Length; i++)
 		{
 			nuitrack.Joint j = skeleton.GetJoint(jointsInfo[i]);
-			if (j.Confidence > 0.5f)
+			if (j.Confidence > 0.01f)
 			{
-				joints[jointsInfo[i]].SetActive(true);
+				joints[jointsInfo[i]].gameObject.SetActive(true);
 				// Bring proj coordinates from Nuitrack into accordance with screen coordinates
-				joints[jointsInfo[i]].transform.position = new Vector2(j.Proj.X * Screen.width, Screen.height - j.Proj.Y * Screen.height);
+				Vector2 newPosition = new Vector2(parentRect.rect.width * (Mathf.Clamp01(j.Proj.X) - 0.5f), parentRect.rect.height * (0.5f - Mathf.Clamp01(j.Proj.Y)));
+				joints[jointsInfo[i]].anchoredPosition = newPosition;
 			}
 			else
 			{
-				joints[jointsInfo[i]].SetActive(false);
+				joints[jointsInfo[i]].gameObject.SetActive(false);
 			}
 		}
 	}
 }
 ```
 
-_**Note:** Currently, there are only two values of confidence: 0 (Nuitrack thinks that this isn't a joint) and 0.75 (a joint)._
+_**Note:** Currently, in default Nuitrack skeletonization, there are only two values of confidence: 0 (Nuitrack thinks that this isn't a joint) and 0.75 (a joint)._
 
 13. Loop over the connections. If both joint models required to create the connection are displayed (the initial and end joint), activate the connection. Set the connection position based on the positions of corresponding joint models. To rotate the connection, use the difference between the positions of the initial and end joints. Calculate the connection size: 
 * find the distance between the initial and end joints;
@@ -291,21 +296,21 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 	{
 		for (int i = 0; i < connectionsInfo.GetLength(0); i++)
 		{
-			GameObject startJoint = joints[connectionsInfo[i, 0]];
-			GameObject endJoint = joints[connectionsInfo[i, 1]];
+			RectTransform startJoint = joints[connectionsInfo[i, 0]];
+			RectTransform endJoint = joints[connectionsInfo[i, 1]];
 
-			if (startJoint.activeSelf && endJoint.activeSelf)
+			if (startJoint.gameObject.activeSelf && endJoint.gameObject.activeSelf)
 			{
-				connections[i].SetActive(true);
+				connections[i].gameObject.SetActive(true);
 
-				connections[i].transform.position = startJoint.transform.position;
-				connections[i].transform.right = endJoint.transform.position - startJoint.transform.position;
-				float distance = Vector3.Distance(endJoint.transform.position, 	startJoint.transform.position);
+				connections[i].anchoredPosition = startJoint.anchoredPosition;
+				connections[i].transform.right = endJoint.anchoredPosition - startJoint.anchoredPosition;
+				float distance = Vector3.Distance(endJoint.anchoredPosition, startJoint.anchoredPosition);
 				connections[i].transform.localScale = new Vector3(distance, 1f, 1f);
 			}
 			else
 			{
-				connections[i].SetActive(false);
+				connections[i].gameObject.SetActive(false);
 			}
 		}
 	}
@@ -339,7 +344,13 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 <img width="400" src="img/Urgb_8.png">
 </p>
 
-17. Run the project. At this point, you should see a 2D skeleton displayed over the RGB image from the sensor. However, if there are several users, their skeletons won't be displayed. Let's move on to the next point so as not to upset them. 
+Adjust the alignment of the **RectTransform** as shown in the image
+
+<p align="center">
+<img width="400" src="img/Urgb_11.png">
+</p>
+
+18. Run the project. At this point, you should see a 2D skeleton displayed over the RGB image from the sensor. However, if there are several users, their skeletons won't be displayed. Let's move on to the next point so as not to upset them. 
 
 <p align="center">
 <img width="500" src="img/Urgb_9.gif">

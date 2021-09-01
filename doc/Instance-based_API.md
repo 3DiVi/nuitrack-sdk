@@ -14,7 +14,7 @@ _**Note**: Face modules are by default disabled. To enable face modules, open *n
 
 ## Getting Information about Instances
 
-Nuitrack allows to get information about faces of people standing in front of the camera and objects in JSON format. To get the information, call the ```tdv::nuitrack::Nuitrack::getInstancesJson "Nuitrack::getInstancesJson"``` (C++) or ```nuitrack.Nuitrack.GetInstancesJson "Nuitrack.GetInstancesJson"``` (C#) function. The result will be returned in the form of a JSON string.
+Nuitrack allows to get information about faces of people standing in front of the camera and objects in JSON format. To get the information, call the [`tdv::nuitrack::Nuitrack::getInstancesJson`](https://download.3divi.com/Nuitrack/doc/classtdv_1_1nuitrack_1_1Nuitrack.html#ab987411f5642ad2b2b692b5e9a19e076) (C++) or [`nuitrack.Nuitrack.GetInstancesJson`](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1Nuitrack.html#ad38063e4159f04fed58ec5be1e6c2ba6) (C#) function. The result will be returned in the form of a JSON string.
 The JSON string includes the following properties:
 
 * **Timestamp** - frame timestamp in microseconds;

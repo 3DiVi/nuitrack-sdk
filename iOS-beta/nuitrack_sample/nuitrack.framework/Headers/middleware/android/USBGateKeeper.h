@@ -29,6 +29,7 @@ public:
 
 private:
 	static jobject _object_global_USBGateKeeper;
+	static jclass _class_global_USBGateKeeper;
 };
 
 }

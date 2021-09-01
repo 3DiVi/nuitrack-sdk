@@ -6,22 +6,22 @@
 
 The **Nuitrack™ module** is optimized for ARM based processors, which means that you can use it with Android devices and embedded platforms.
 
- - Features:
+ - Key Features:
    - Full Body Skeletal Tracking (19 Joints)
    - 3D Point Cloud
    - User Masks
    - Gesture Recognition
    - Cross-platform SDK for Android, Windows, and Linux
-   - 3D Sensor independent: supports Kinect v1, Asus Xtion, Orbbec Astra, Orbbec Persee, Intel RealSense
+   - [3D Sensor independent](https://nuitrack.com/#sensors)
    - Unity and Unreal Engine Plugins
    - OpenNI 1.5 compatible: OpenNI module allows you to move your OpenNI based apps developed for Kinect and Asus Xtion to other platforms, including Android
 
- - Application areas:
+ - Application Areas:
    - Natural User Interface (NUI) for Windows/Linux/Android
    - Games and Training (Fitness, Dance Lessons)
    - Medical Rehabilitation
    - Smart Home
-   - Positional and Full Body Tracking for VR
+   - Full Body Tracking for AR / VR
    - Audience Analytics
    - Robot Vision
 
@@ -45,7 +45,7 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
    $ git lfs pull --include "Platforms/*"
    ```
 
-   - or [this link](/Platforms).
+   - or [this link](/Platforms)
 
 3. Download `NuitrackSDK.unitypackage`:
    - using Git LFS:
@@ -54,20 +54,21 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
    $ git lfs pull --include "Unity3D/*"
    ```
   
-   - or [this link](/Unity3D).
+   - or [this link](/Unity3D)
 
-4. Install **Nuitrack** to your system following the [Installation Instructions](/doc/Install.md).
+4. Install **Nuitrack** to your system following the [Installation Instructions](/doc/Install.md)
 
-5. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing).
+5. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing)
 
 Now you can use **Nuitrack** and run the samples from the `Examples` folder.
 
 ## What’s included in the SDK:
 | What | Description |
 | --------- | ----------- | 
-| **Documentation** | An offline copy of **Nuitrack** [documentation](doc/readme.md).||
-| **Runtime Components** | **Nuitrack Runtime** installers for all supported platforms. ||
-| **C#/.NET Wrapper** | **C#/.NET API** that allows you to integrate **Nuitrack** with your C# applications. ||
-| **Code Samples** | These basic examples demonstrate how to use **Nuitrack SDK**. You can find **C++**/**C#** cross-platform samples with instructions inside. |
-| **Unity Package** | This package allows you to [easily integrate](/doc/readme.md#unity-tutorials) **Nuitrack SDK** into your Unity project. |
-| **Unreal Engine Plugin** | This plugin allows you to [develop](/doc/Unreal_Engine_Tutorial.md) C++ applications with **UE 4.20** (Android only). |
+| **[Documentation](doc/readme.md)** | An offline copy of **Nuitrack** documentation ||
+| **[Runtime Components](/Platforms)** | **Nuitrack Runtime** installers for all supported platforms ||
+| **[C#/.NET and C++ API](https://download.3divi.com/Nuitrack/doc/annotated.html)** | It allows you to integrate **Nuitrack** with your **C#/C++** applications ||
+| **[iOS [beta]](/iOS-beta)** | Get started developing for **iOS** with **Nuitrack** ||
+| **[Code Samples](/Examples)** | These basic examples demonstrate how to use **Nuitrack SDK** |
+| **[Unity Package](/doc/readme.md#unity-tutorials)** | This package allows you to easily integrate **Nuitrack SDK** into your Unity project |
+| **[Unreal Engine Plugin](/doc/readme.md#unreal-engine-tutorials)** | This plugin allows you to develop applications with **UE 4.20** |

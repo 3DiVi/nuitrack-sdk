@@ -1,3 +1,24 @@
+# Release v0.35.9
+
+**Release Date**: 1 Sep 2021  
+**Nuitrack Runtime version**: 0.35.9  
+**Nuitrack SDK version**: 1.11.8
+
+## Bug Fixes and Improvements
+
+* Added full support for **Nvidia Jetson**: **Nano**, **TX2**, **Xavier NX**, **AGX Xavier**
+* Added support the **Intel Realsense** sensors for the `Linux arm32` platforms (**Raspberry Pi 4** on **Raspberry Pi OS**)
+* Removed the popup camera choice dialog on **Windows** platform
+* Fixed the memory leak on the **Android** platform
+* Fixed black window after second launch of Nuitrack on **Astra Pro** sensors
+* Fixed option to disable the color frame on **Intel Realsense** sensors
+* **NuitrackSDK.unitypackage**: added helpful hints to error messages
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.8
 
 **Release Date**: 1 Aug 2021  
