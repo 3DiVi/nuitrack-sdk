@@ -27,11 +27,6 @@ Download and install Nuitrack for your platform:
 ### Software Requirements 
 
 * Ubuntu 14.04 or above
-* [For Ubuntu 18.04 or above] Installed the [libpng12-0](http://launchpadlibrarian.net/233197129/libpng12-0_1.2.54-1ubuntu1_amd64.deb) package
-* [For Arm] Installed the _bluetooth_ and _freeglut_ packages: 
-   ```
-   sudo apt-get install bluetooth freeglut-dev
-   ```
 
 ### Nuitrack Installation 
 

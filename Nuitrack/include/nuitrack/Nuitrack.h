@@ -183,13 +183,10 @@ public:
 	{
 		int size = 0;
 		nuitrack_error* e = nullptr;
-		nuitrack_GetInstancesJsonSize(&size, &e);
+		char* resultPtr = nuitrack_GetInstancesJsonDataAlloc(&e);
+		std::string result(resultPtr);
 		ExceptionTranslator::handle(e);
-
-		std::string result;
-		result.resize(size);
-		nuitrack_GetInstancesJsonData((char *)result.c_str(), &e);
-		ExceptionTranslator::handle(e);
+		nuitrack_GetInstancesJsonDataClear(resultPtr);
 
 		return result;
 	}

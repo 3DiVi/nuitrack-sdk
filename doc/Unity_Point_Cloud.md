@@ -47,15 +47,14 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 <b>Characteristics of the Point Cloud object</b><br>
 </p>
 
-2. In the `PointCloud` class, create the fields for displaying depth and color. Then, create the variables that will store the depth and color values:
+2. In the `PointCloud` class, create the fields for displaying depth and color. Then, create the variable that will store the last frame id:
 
 ```cs
 public class PointCloud : MonoBehaviour
 {
 	[SerializeField] Material depthMat, colorMat;
  
-	nuitrack.DepthFrame depthFrame = null;
-	nuitrack.ColorFrame colorFrame = null;
+	ulong lastFrameID = ulong.MaxValue;
 }
 ```
 
@@ -162,16 +161,18 @@ void Update()
 {
 	bool haveNewFrame = false;
  
-	if ((NuitrackManager.DepthFrame != null))
-	{
-		if (depthFrame != null)
-		{
-			haveNewFrame = (depthFrame != NuitrackManager.DepthFrame);
-		}
-		depthFrame = NuitrackManager.DepthFrame;
-		colorFrame = NuitrackManager.ColorFrame;
-		if (haveNewFrame) ProcessFrame(depthFrame, colorFrame);
-	}
+    if (NuitrackManager.DepthFrame != null)
+    {
+        nuitrack.DepthFrame depthFrame = NuitrackManager.DepthFrame;
+        nuitrack.ColorFrame colorFrame = NuitrackManager.ColorFrame;
+
+        bool haveNewFrame = (lastFrameID != depthFrame.ID);
+        if (haveNewFrame)
+        {
+            ProcessFrame(depthFrame, colorFrame);
+            lastFrameID = depthFrame.ID;
+        }
+    }
 }
 ```
 
@@ -195,7 +196,7 @@ void ProcessFrame(nuitrack.DepthFrame depthFrame, nuitrack.ColorFrame colorFrame
 			// If the camera colors are not received, the default color is applied
 			Color rgbCol = defaultColor;
 			if (colorFrame != null)
-			rgbCol = new Color32(colorFrame[i, j].Red, colorFrame[i, j].Green, colorFrame[i, j].Blue, 255);
+				rgbCol = new Color32(colorFrame[i, j].Red, colorFrame[i, j].Green, colorFrame[i, j].Blue, 255);
 			rgbColors[pointIndex] = rgbCol;
 
 			++pointIndex;
@@ -280,17 +281,17 @@ for (int i = 0; i < rgbTexture.height; i++)
 ```
 10. In the `ProcessFrame` method, change the position of the **Point** (cube) along the Z (depth) axis. In some cases, the sensor can't identify the depth of the point. As a result, the Z coordinate has the value of 0. Let's hide the points with Z=0 for correct display of the image. After that, we change the position and size of the **Point** (cube).
 
-```cs
-points[pointIndex].GetComponent<Renderer>().material.color = rgbCol;
- 
-// Change the position of the Point (cube) along the Z axis
-Vector3 newPos = NuitrackManager.DepthSensor.ConvertProjToRealCoords(j, i, depthFrame[i, j]).ToVector3();
- 
+```cs 
 // Hide the Prefabs with the depth = 0
 if (depthFrame[i, j] == 0)
-points[pointIndex].SetActive(false);
+	points[pointIndex].SetActive(false);
 else
 {
+	points[pointIndex].GetComponent<Renderer>().material.color = rgbCol;
+ 
+	// Change the position of the Point (cube) along the Z axis
+	Vector3 newPos = NuitrackManager.DepthSensor.ConvertProjToRealCoords(j, i, depthFrame[i, j]).ToVector3();
+
 	points[pointIndex].SetActive(true);
 	points[pointIndex].transform.position = newPos; // Change the Point position          	         
 }

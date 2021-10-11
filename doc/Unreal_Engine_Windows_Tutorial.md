@@ -280,7 +280,7 @@ FVector ANuiSampleGameModeBase::RealToPosition(Vector3 real)
 
 11. Build a Visual Studio project. 
 
-12. Before running the sample, update the `tbb.dll` library (see more info in [Troubleshooting > Nuitrack Plugins](/doc/Install.md#nuitrack-plugins)). 
+12. Before running the sample, update the `tbb.dll` library (see more info in [Troubleshooting > Nuitrack Plugins](/doc/Troubleshooting.md#unreal-engine)). 
 
 ## Integrating Nuitrack with an Existing Unreal Engine Project
 
