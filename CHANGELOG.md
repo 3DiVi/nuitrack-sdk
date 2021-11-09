@@ -1,3 +1,18 @@
+# Release v0.35.11
+
+**Release Date**: 29 Oct 2021  
+**Nuitrack Runtime version**: 0.35.11  
+**Nuitrack SDK version**: 1.11.10
+
+## Bug Fixes and Improvements
+
+* Fixed infinite resizing of Nuitrack logo on **Windows**
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.10
 
 **Release Date**: 8 Oct 2021  
