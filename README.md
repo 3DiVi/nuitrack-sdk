@@ -68,6 +68,7 @@ Now you can use **Nuitrack** and run the samples from the `Examples` folder.
 | **[Documentation](doc/readme.md)** | An offline copy of **Nuitrack** documentation ||
 | **[Runtime Components](/Platforms)** | **Nuitrack Runtime** installers for all supported platforms ||
 | **[C#/.NET and C++ API](https://download.3divi.com/Nuitrack/doc/annotated.html)** | It allows you to integrate **Nuitrack** with your **C#/C++** applications ||
+| **[Python Wrapper [beta]](/PythonNuitrack-beta)** | **Nuitrack** supports **Python API** that allows you to integrate **Nuitrack** with your Python applications ||
 | **[iOS [beta]](/iOS-beta)** | Get started developing for **iOS** with **Nuitrack** ||
 | **[Code Samples](/Examples)** | These basic examples demonstrate how to use **Nuitrack SDK** |
 | **[Unity Package](/doc/readme.md#unity-tutorials)** | This package allows you to easily integrate **Nuitrack SDK** into your Unity project |

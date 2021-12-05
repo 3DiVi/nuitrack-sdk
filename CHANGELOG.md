@@ -1,3 +1,18 @@
+# Release v0.35.12
+
+**Release Date**: 22 Nov 2021  
+**Nuitrack Runtime version**: 0.35.12  
+**Nuitrack SDK version**: 1.11.11
+
+## New Features
+
+* Added **Python Wrapper(beta)** for **Windows x64** and **Linux x64**, read more in the [readme](PythonNuitrack-beta/README.MD)
+
+## Known Issues
+
+* USB cameras permission issue on **Android 9 (Pie) or higher** except for the **Intel RealSense** sensors
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.11
 
 **Release Date**: 29 Oct 2021  

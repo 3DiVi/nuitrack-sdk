@@ -97,6 +97,10 @@ follow the steps below (refer to [the Intel® Threading Building Blocks document
 
 ## 3D Sensor Known Issues 
 
+### Orbbec Sensors
+
+If your sensor is plugged in but is not detected by Nuitrack and is not active in Windows Device Manager, please install Orbbec Camera Driver for Windows. You can download this package on the official site [Orbbec](https://orbbec3d.com/develop/).
+
 ### Orbbec Astra Pro 
 
 * If your sensor is plugged in but is not detected by Nuitrack and is not displayed in the activation tool, please install the Microsoft Visual C++ 2013 redistributable package (instead of the version for Microsoft Visual C++ 2017). You can download this package on the [official Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=40784).
