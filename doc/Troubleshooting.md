@@ -72,6 +72,7 @@ ERROR: TBB version mismatch: runtime library version is 9102, but the applicatio
 follow the steps below (refer to [the Intel® Threading Building Blocks documentation](https://www.threadingbuildingblocks.org/docs/help/reference/appendices/known_issues/interoperability.html) for more details):
 * Close the Unity editor
 * Replace the TBB library in your Unity editor with the library from Nuitrack:
+  * *Windows*: create a backup copy of tbb.dll in your Unity editor folder (for example, `C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor`) and name it tbb_backup.dll.
   * *Windows*: copy the `tbb.dll` library from `%NUITRACK_HOME%/bin` to your Unity editor folder (for example, `C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor`)
   * *Linux*: copy the `libtbb.so.2` library from `/usr/local/lib/nuitrack/` to your Unity editor folders (for example, `/home/user/2019.3.3f1/Editor` and `/home/user/2019.3.3f1/Editor/Data/Tools`)
 * Run the Unity editor again
