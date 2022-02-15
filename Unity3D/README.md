@@ -1,9 +1,11 @@
 ## How to use?
 - Install Nuitrack Runtime https://github.com/3DiVi/nuitrack-sdk/blob/master/README.md
-- Create new Project in Unity
-- Unpack NuitrackSDK.unitypackage
-- Try to start the scene AllModulesScene (If something doesn't work, follow the on-screen instructions)
-- Complete the tutorials
+- Create new Project in Unity (Or open your project)
+- Import NuitrackSDK.unitypackage into your project (Main menu: "Assets/Import Package/Custom Package..." and click "import" button)
+- Connect supported sensor (https://nuitrack.com/#sensors)
+- In the main menu, select "Nuitrack/Activate Nuitrack"
+- In the main menu, select "Nuitrack/Play Test Unity Scene" (or manually open in Project Tab "Assets/NuitrackSDK/NuitrackDemos/AllModulesScene" and click Play button) (If something doesn't work, follow the on-screen instructions)
+- Сheck out the tutorials "Nuitrack/Help/Open Tutorials List"
 
 ## Requirements
 - Unity 2020.3.1 or later (windows or linux)
