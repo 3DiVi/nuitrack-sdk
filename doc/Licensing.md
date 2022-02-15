@@ -4,7 +4,10 @@
 
 # Nuitrack Licensing 
 
-There are three Nuitrack versions: **Nuitrack Trial**, **Nuitrack Pro**, and **Nuitrack AI**.
+There are three Nuitrack versions:
+- **Nuitrack Trial**
+- **Nuitrack AI** (includes all features of Nuitrack Pro and advanced features, such as object detection)
+- **Nuitrack Pro** (won't be available for purchasing after 15th Feb 2022)
 
 **Nuitrack Trial** is free and has a time limit. This Nuitrack version stops working after running for three minutes, so you need to restart it. To use Nuitrack Trial, you have to download the [Nuitrack runtime](/Platforms), [install it](/doc/Install.md), run the activation tool, and enter the trial license key. You can get the trial license on [our website](https://nuitrack.com/#pricing) or generate a trial key in your [personal account](https://cognitive.3divi.com/). To generate the key in your account, go to the tab “Licenses”, click “Activate” in the box “Trial licenses” and then click “Generate”. Nuitrack Trial is intended for demo and evaluation purposes only. The Trial license is not linked to a sensor but it’s linked to your PC.
 
@@ -14,7 +17,7 @@ There are three Nuitrack versions: **Nuitrack Trial**, **Nuitrack Pro**, and **N
   
 **Nuitrack AI** is an RGBD data processing solution with improved algorithms for face, body, and object tracking. As in the case of Nuitrack Pro, there are two types of Nuitrack AI licenses: *Subscription* and *Perpetual*. See the description of these licenses in the paragraph above. 
 
-You can purchase **Nuitrack Pro Perpetual** and **Nuitrack AI Perpetual** on [our website](https://nuitrack.com/#pricing) and in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license_selection/). **Nuitrack Pro Subscription** and **Nuitrack AI Subscuption** are available in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license_selection/) only.
+You can purchase **Nuitrack Pro Perpetual** and **Nuitrack AI Perpetual** on [our website](https://nuitrack.com/#pricing) and in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license-selection/). **Nuitrack Pro Subscription** and **Nuitrack AI Subscuption** are available in [your personal account](https://cognitive.3divi.com/app/nuitrack/basket/license-selection/) only.
 
 # License Comparison Guide 
 
@@ -23,8 +26,8 @@ You can purchase **Nuitrack Pro Perpetual** and **Nuitrack AI Perpetual** on [ou
   <tr>
     <th></th>
     <th>TRIAL</th>
-    <th>PRO</th>
-    <th>AI</th>
+    <th>PRO (won't be available for purchasing after 15th Feb 2022</th>
+    <th>AI (includes all features of Pro)</th>
   </tr>
 </thead>
 <tbody>

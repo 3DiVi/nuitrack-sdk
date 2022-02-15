@@ -76,7 +76,7 @@ The Nuitrack application can be used to check the sensor operation with Nuitrack
 
 1. Select a depth sensor from the drop-down list in the Nuitrack licensing tool.
 2. \[optional\] Click the `Try Nuitrack!` button and wait for the compatibility test to complete. You can do this to make sure that your sensor works correctly with **Nuitrack**.
-3. Enter your activation key and click `Activate` to activate the license (see more info about **Nuitrack Trial** and **Nuitrack Pro** in [Nuitrack Licensing](#nuitrack-licensing)).
+3. Enter your activation key and click `Activate` to activate the license (see more info about available licenses in [Nuitrack Licensing](/doc/Licensing.md)).
 4. Click the `Try Nuitrack!` button to view the Nuitrack demo
 
 ### Device API
