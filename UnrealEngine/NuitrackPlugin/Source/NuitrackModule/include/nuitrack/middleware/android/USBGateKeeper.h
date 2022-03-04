@@ -22,9 +22,12 @@ public:
 	USBGateKeeper();
 	virtual ~USBGateKeeper();
 
-	bool requestPermission(uint16_t VendorID, uint16_t ProductID);
+	bool requestPermission(uint16_t VendorID, uint16_t ProductID, const std::string& usbPath="", const std::string& sig="(II)Z");
+	bool requestPermissionUsbPath(const std::string& usbPath);
+	bool requestAllPermissions();
 
 	int getFileDescriptor();
+	std::vector<std::pair<int, std::string>> getFileDescriptors();
 	void closeFileDescriptor();
 
 private:

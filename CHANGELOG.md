@@ -1,3 +1,22 @@
+# Release v0.35.13
+
+**Release Date**: 03 March 2022  
+**Nuitrack Runtime version**: 0.35.13  
+**Nuitrack SDK version**: 1.11.12
+
+## New Features
+
+* Added support the **Orbbec Astra** on **Android 9(Pie)** 
+
+## Bug Fixes and Improvements
+
+* Fixed Nuitrack AI Skeletal Tracking for the **Kinect v1 (Linux x64)**
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.12
 
 **Release Date**: 22 Nov 2021  
