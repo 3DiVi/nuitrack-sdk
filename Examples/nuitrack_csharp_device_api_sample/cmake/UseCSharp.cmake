@@ -88,7 +88,7 @@ macro( CSHARP_ADD_PROJECT target output_directory type name defs flags)
   list( SORT sources_dep )
 
   # Perform platform specific actions
-  if (WIN32)
+  if (WIN32 AND NOT CMAKE_CROSSCOMPILING)
     string( REPLACE "/" "\\" sources ${sources} )
 #  else (UNIX)
 #    string( REPLACE "\\" "/" sources ${sources} )

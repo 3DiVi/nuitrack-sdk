@@ -64,6 +64,8 @@ _**Note**: To add a new environment variable or change the existing environment 
 
 ## Unity 
 
+If you are using our NuitrackSDK.unitypackage and there are any problems, then run the `AllModulesScene` scene and follow the on-screen instructions. Also read the [Readme](https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D) for more details
+
 If you run your project with Nuitrack in Unity and encounter the following exception:  
 ```
 NuitrackException (TerminateException): WARNING: Cannot load library module: C:\Program Files\Nuitrack\nuitrack\nuitrack/middleware/NuitrackModule.dll
@@ -74,6 +76,12 @@ follow the steps below (refer to [the Intel® Threading Building Blocks document
 * Replace the TBB library in your Unity editor with the library from Nuitrack:
   * *Windows*: copy the `tbb.dll` library from `%NUITRACK_HOME%/bin` to your Unity editor folder (for example, `C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor`)
   * *Linux*: copy the `libtbb.so.2` library from `/usr/local/lib/nuitrack/` to your Unity editor folders (for example, `/home/user/2019.3.3f1/Editor` and `/home/user/2019.3.3f1/Editor/Data/Tools`)
+* Run the Unity editor again
+
+If you run your project with Nuitrack in Unity with *Nuitrack AI Object Detection* enabled and after that the editor crashes:
+* Close the Unity editor
+* Replace the TBB library in your Unity editor with the library from Nuitrack:
+  * *Windows*: copy the `cudnn64_7.dll` library from `NVIDIA GPU Computing Toolkit/CUDA/v9.0/bin` to your Unity editor folder (for example, `C:\Program Files\Unity\Hub\Editor\2019.4.8f1\Editor`)
 * Run the Unity editor again
 
 ## Unreal Engine

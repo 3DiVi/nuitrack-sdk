@@ -4,40 +4,39 @@ In this tutorial you'll learn how to quickly and easily record the animation of 
 
 **Generic animation** is used to animate any models. In general, this animation is easier to use compared to the Humanoid animation but it is tied to the hierarchy of Game Objects. This means that animation will be displayed incorrectly if you change the name or position of any animated Game Object.  
 
-**Animation using [GameObjectRecorder](https://docs.unity3d.com/ScriptReference/Experimental.Animations.GameObjectRecorder.html)** is an experimental feature by Unity. It can be used only with Unity 2017.4 or 2018.2. This type can be called a simplified version of Generic animation. It is also used to animate models of any form. This is a convenient animation type, however, it is not optimized yet. As a result, you will face a long list of unnecessary keys due to the fact that all Game Objects are recorded (even those avatar's parts that didn't move at all).
-
 **Humanoid animation** is used (as you can guess) to animate humanoid models. It is more versatile than Generic animation because you can record the animation for a particular model and apply it to any other humanoid model. Also you can set the range of motion for specific muscles.
 
 <p align="center">
 <img width="700" src="img/Umc_9.gif"><br>
-<b>Animation recorded with GameObjectRecorder</b><br>
+<b>Animation recorded with Generic animation</b><br>
 </p>
 
 Choose the suitable animation type and let's get started! 
 
 ## Setting Up the Scene
 
-1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](/Unity3D) to your project. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. The model should be in a T-Pose so that its joints are matched correctly. To do that, select your model's hands (for example, **EthanLeftArm** and **EthanRightArm** for our model) and set Rotation parameters as in the screenshot below:
+1. Create a new project. Import [**Nuitrack Skeleton Tracking** Unity Package](/Unity3D) to your project.  
+
+2. Drag-and-drop the **Ethan** model from the downloaded package (or any other humanoid model) to the scene. Drag the `NuitrackAvatar` script onto Ethan and click **Automap** to automatically assign Transform to the joints. 
+
+For the **Left Shoulder** and **Right Shoulder** joints, you must manually specify Transforms.
+Select the **Model bones** mode in `NuitrackAvatar` (Skeleton display mode), highlight the **Left Shoulder** or **Right Shoulder** on the **Avatar map**, then click on the joint on the character model (the Transforms not involved are grayed out). 
 
 <p align="center">
-<img width="500" src="img/Umc_1.png"><br>
-<b>Settings of the "EthanLeftArm" Object</b><br>
+<img width="700" src="img/Umc_1.png"><br>
+<b>Mapping Ethan's skeleton</b><br>
 </p>
 
-<p align="center">
-<img width="500" src="img/Umc_2.png"><br>
-<b>Settings of the "EthanRightArm" Object</b><br>
-</p>
-
-2. If you use your own model, you have to drag-and-drop the `RiggedAvatar` script from **Nuitrack Skeleton Tracking** Unity Package to the model (this script is already attached to **Ethan**). Then, select the joints you'd like to animate. All in all, Nuitrack tracks up to 20 joints, see the list [here](https://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group__csharp.html#ga659db18c8af0cb3d660930d7116709ae). Remove the **Animator** component (if any) from the model so that it doesn't block changes in the `RiggedAvatar` script. Here is an example of selected joints:
+If the model is not in the T-Pose, click **Enforce T-Pose** to fix it. To check the mapping, you can switch to **Assigned bones** mode to see the mapping skeleton.
 
 <p align="center">
-<img width="500" src="img/Umc_3.png">
+<img width="700" src="img/Umc_2.png"><br>
+<b>Checking the skeleton mapping</b><br>
 </p>
 
 3. Place the model so that it is completely in the field of view of the camera.
 4. To indicate the beginning and ending of recording the animation, we'll need a red indicator. Create a **Canvas** and an **Image** on it (make it look like a red recording indicator). Place the indicator in the top left corner.
-5. Drag-and-drop the **NuitrackScripts** prefab from **Nuitrack SDK** to the scene. In settings, tick the modules required for skeleton tracking of our avatar: **Depth Module, SkeletonTracker Module, UserTracker Module**.
+5. Prepare the scene for using Nuitrack, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare The Scene**. The necessary components will be added to the scene    
 
 <p align="center">
 <img width="500" src="img/Umc_4.png">
@@ -54,9 +53,9 @@ using UnityEngine;
  
 public interface IRecordable
 {
-	void TakeSnapshot(float deltaTime);
- 
-	AnimationClip GetClip { get; }
+    void TakeSnapshot(float deltaTime);
+
+    AnimationClip GetClip { get; }
 }
 ```
 
@@ -67,7 +66,7 @@ _**Note**: In this project, we use an interface to simplify the interaction with
 ```cs
 public class GenericRecorder : IRecordable
 {
-	float time = 0.0f;
+    float time = 0.0f;
 }
 ```
 
@@ -76,7 +75,7 @@ public class GenericRecorder : IRecordable
 ```cs
 public void TakeSnapshot(float deltaTime)
 {
-	time += deltaTime;
+    time += deltaTime;
 }
 ``` 
 
@@ -102,21 +101,21 @@ using UnityEditor;
  
 public class UnityAnimationRecorder : MonoBehaviour
 {
-	enum RecordMode { Generic, GenericExperimental, Humanoid };
- 
-	[Header("General")]
-	[SerializeField] RecordMode recordMode = RecordMode.Generic;
- 
-	[Header("Save")]
-	[SerializeField] string savePath = "Assets/Motion Capture/Animations";
-	[SerializeField] string fileName = "Example";
- 
-	[Header("Control")]
-	[SerializeField] TPoseCalibration poseCalibration;
-	[SerializeField] GameObject recordIcon;
- 
-	bool isRecording = false;
-	IRecordable recordable = null;
+    enum RecordMode { Generic, GenericExperimental, Humanoid };
+
+    [Header("General")]
+    [SerializeField] RecordMode recordMode = RecordMode.Generic;
+
+    [Header("Save")]
+    [SerializeField] string savePath = "Assets/NuitrackSDK/Tutorials/Motion Capture/Animations";
+    [SerializeField] string fileName = "Example";
+
+    [Header("Control")]
+    [SerializeField] CalibrationHandler poseCalibration;
+    [SerializeField] GameObject recordIcon;
+
+    bool isRecording = false;
+    IRecordable recordable = null;
 }
 ```
 
@@ -141,7 +140,7 @@ void Start()
 ```cs
 private void OnDestroy()
 {
-        poseCalibration.onSuccess -= PoseCalibration_onSuccess;
+    poseCalibration.onSuccess -= PoseCalibration_onSuccess;
 }
 ```
 
@@ -150,19 +149,19 @@ private void OnDestroy()
 ```cs
 private void PoseCalibration_onSuccess(Quaternion rotation)
 {
-        if (!isRecording)
-        {
-        	Debug.Log("Start recording");
-        	isRecording = true;
-        }
-        else
-        {
-        	Debug.Log("Stop recording");
-        	isRecording = false;
-        	SaveToFile(recordable.GetClip);
-        }
- 
-        recordIcon.SetActive(isRecording);
+    if (!isRecording)
+    {
+        Debug.Log("Start recording");
+        isRecording = true;
+    }
+    else
+    {
+        Debug.Log("Stop recording");
+        isRecording = false;
+        SaveToFile(recordable.GetClip);
+    }
+
+    recordIcon.SetActive(isRecording);
 }
 ```
 
@@ -171,8 +170,8 @@ private void PoseCalibration_onSuccess(Quaternion rotation)
 ```cs
 void Update()
 {
-        if (isRecording)
-            recordable.TakeSnapshot(Time.deltaTime);
+    if (isRecording)
+        recordable.TakeSnapshot(Time.deltaTime);
 }
 ```
 
@@ -181,11 +180,11 @@ void Update()
 ```cs
 void SaveToFile(AnimationClip clip)
 {
-        string path = savePath + "/" + fileName + ".anim";
-        clip.name = fileName;
- 
-        AssetDatabase.CreateAsset(clip, path);
-        Debug.Log("Save to: " + path);
+    string path = savePath + "/" + fileName + ".anim";
+    clip.name = fileName;
+
+    AssetDatabase.CreateAsset(clip, path);
+    Debug.Log("Save to: " + path);
 }
 ``` 
 
@@ -210,16 +209,16 @@ _**Note**: The [AssetDatabase](https://docs.unity3d.com/ScriptReference/AssetDat
 ```cs
 class CurveContainer
 {
-	public string Property { get; private set; }
-	public AnimationCurve Curve { get; private set; }
- 
-	float? lastValue = null;
- 
-	public CurveContainer(string _propertyName)
-	{
-    	    Curve = new AnimationCurve();
-    	    Property = _propertyName;
-	}
+    public string Property { get; private set; }
+    public AnimationCurve Curve { get; private set; }
+
+    float? lastValue = null;
+
+    public CurveContainer(string _propertyName)
+    {
+        Curve = new AnimationCurve();
+        Property = _propertyName;
+    }
 }
 ```
 
@@ -229,16 +228,16 @@ class CurveContainer
 class CurveContainer
 {
 ...
-	public void AddValue(float time, float value)
-	{
-            // If the current value is first or not equal to the previous one
-    	    if (lastValue == null || !Mathf.Approximately((float)lastValue, value))
-       	    {
-            	Keyframe key = new Keyframe(time, value);
-            	Curve.AddKey(key);
-            	lastValue = value;
-    	    }
-	}
+    public void AddValue(float time, float value)
+    {
+        // If the current value is first or not equal to the previous one
+        if (lastValue == null || !Mathf.Approximately((float)lastValue, value))
+       	{
+            Keyframe key = new Keyframe(time, value);
+            Curve.AddKey(key);
+            lastValue = value;
+        }
+    }
 ...
 }
 ```
@@ -248,29 +247,29 @@ class CurveContainer
 ```cs
 class ObjectAnimation
 {
-	Transform transform;
+    Transform transform;
+
+    public List<CurveContainer> Curves { get; private set; }
+
+    public string Path { get; private set; }
+
+    public ObjectAnimation(string hierarchyPath, Transform recordableTransform)
+    {
+        Path = hierarchyPath;
+        transform = recordableTransform;
  
-	public List<CurveContainer> Curves { get; private set; }
- 
-	public string Path { get; private set; }
- 
-	public ObjectAnimation(string hierarchyPath, Transform recordableTransform)
-	{
-    	     Path = hierarchyPath;
-    	     transform = recordableTransform;
- 
-    	     Curves = new List<CurveContainer>
-             {
-            	new CurveContainer("localPosition.x"),
-            	new CurveContainer("localPosition.y"),
-            	new CurveContainer("localPosition.z"),
- 
-            	new CurveContainer("localRotation.x"),
-            	new CurveContainer("localRotation.y"),
-            	new CurveContainer("localRotation.z"),
-            	new CurveContainer("localRotation.w")
-             };
-	}
+        Curves = new List<CurveContainer>
+        {
+            new CurveContainer("localPosition.x"),
+            new CurveContainer("localPosition.y"),
+            new CurveContainer("localPosition.z"),
+
+            new CurveContainer("localRotation.x"),
+            new CurveContainer("localRotation.y"),
+            new CurveContainer("localRotation.z"),
+            new CurveContainer("localRotation.w")
+        };
+    }
 }
 ```
 
@@ -280,17 +279,17 @@ class ObjectAnimation
 class ObjectAnimation
 {
 ...
-	public void TakeSnapshot(float time)
-	{
-    	    Curves[0].AddValue(time, transform.localPosition.x);
-    	    Curves[1].AddValue(time, transform.localPosition.y);
-    	    Curves[2].AddValue(time, transform.localPosition.z);
- 
-    	    Curves[3].AddValue(time, transform.localRotation.x);
-    	    Curves[4].AddValue(time, transform.localRotation.y);
-    	    Curves[5].AddValue(time, transform.localRotation.z);
-            Curves[6].AddValue(time, transform.localRotation.w);
-	}
+    public void TakeSnapshot(float time)
+    {
+        Curves[0].AddValue(time, transform.localPosition.x);
+        Curves[1].AddValue(time, transform.localPosition.y);
+        Curves[2].AddValue(time, transform.localPosition.z);
+
+        Curves[3].AddValue(time, transform.localRotation.x);
+        Curves[4].AddValue(time, transform.localRotation.y);
+        Curves[5].AddValue(time, transform.localRotation.z);
+        Curves[6].AddValue(time, transform.localRotation.w);
+    }
 ...
 }
 ```
@@ -301,7 +300,7 @@ class ObjectAnimation
 public class GenericRecorder : IRecordable
 {
 ...
-        List<ObjectAnimation> objectAnimations = new List<ObjectAnimation>();
+    List<ObjectAnimation> objectAnimations = new List<ObjectAnimation>();
 ...
 }
 ```
@@ -340,15 +339,15 @@ public AnimationClip GetClip
         AnimationClip clip = new AnimationClip();
         foreach (ObjectAnimation animation in objectAnimations)
         {
-             foreach (CurveContainer container in animation.Curves)
-             {
-                 if (container.Curve.keys.Length > 1)
-                     clip.SetCurve(animation.Path, typeof(Transform), container.Property, container.Curve);
-             }
-         }
- 
+            foreach (CurveContainer container in animation.Curves)
+            {
+                if (container.Curve.keys.Length > 1)
+                    clip.SetCurve(animation.Path, typeof(Transform), container.Property, container.Curve);
+            }
+        }
+
         return clip;
-      }
+    }
 }
 ```
 
@@ -357,7 +356,7 @@ public AnimationClip GetClip
 ```cs
 void Start()
 {
-…
+...
     switch (recordMode)
     {
         case RecordMode.Generic:
@@ -379,110 +378,6 @@ void Start()
 <img width="1300" src="img/Umc_8.gif">
 </p>
 
-## GameObject Recorder
-
-1. Create the `ExperimentalRecorder` script, which acts as a shell for `GameObjectRecorder`. Add the `UnityEditor.Experimental.Animations` namespace. Inherit it from the `IRecordable` interface. Declare the `m_Recorder` object.
-
-```cs
-using UnityEngine;
-using UnityEditor.Experimental.Animations;
- 
-public class ExperimentalRecorder : IRecordable
-{
-	GameObjectRecorder m_Recorder;
-}
-```
-
-2. Create a constructor to accept the root object. Initialize the object in different ways depending on the Unity version used and pass the root object. After that, all objects below the root one are processed hierarchically. In case an incorrect Unity version is used, an error is displayed (see the `PrintErrorVersion` method). 
-
-```cs
-public ExperimentalRecorder(GameObject rootObject)
-{
-#if UNITY_2017_4
- 
-    m_Recorder = new GameObjectRecorder();
-    m_Recorder.root = rootObject;
-    m_Recorder.BindComponent<Transform>(rootObject, true);
- 
-#elif UNITY_2018_2
- 
-    m_Recorder = new GameObjectRecorder(gameObject);
-    m_Recorder.BindComponentsOfType<Transform>(gameObject, true);
- 
-#else
-    PrintErrorVersion();
-#endif
- 
-}
-
-void PrintErrorVersion()
-{
-    Debug.Log("Check your Unity version");
-}
-```
-
-_**Note**: At the moment, this type of animation recording is available only in two versions of Unity. To distinguish between the code parts that run depending on the Unity version, we use the preprocessor directives `if, elif, else, endif`._
-
-3. Create the `TakeSnapShot` method to take a snapshot of each frame. 
-
-```cs
-public void TakeSnapshot(float deltaTime)
-{
-#if UNITY_2017_4 || UNITY_2018_2
-    m_Recorder.TakeSnapshot(deltaTime);
-#else
-    PrintErrorVersion();
-#endif
-}
-```
-
-4. In the `GetClip` method, crate an empty clip and save the recorded animation. Empty `m_Recorder` when the recording is over. Return the clip. 
-
-```cs
-public AnimationClip GetClip
-{
-    get
-    {
-#if UNITY_2017_4 || UNITY_2018_2
- 
-        AnimationClip clip = new AnimationClip();
-        m_Recorder.SaveToClip(clip);
-        m_Recorder.ResetRecording();
- 
-        return clip;
-#else
-        PrintErrorVersion();
-        return null;
-#endif
-    }
-}
-```
-
-5. Go back to the `UnityAnimationRecorder` script and add the recorder initialization using `GameObjectRecorder` to the `Start` method.
-
-```cs
-void Start()
-{
-…
-        case RecordMode.GenericExperimental:
-            recordable = new ExperimentalRecorder(root.gameObject);
-            break;
-}
-```
-
-6. Run the project and check the animation recording using `GameObjectRecorder`. 
-
-<p align="center">
-<img width="700" src="img/Umc_9.gif">
-</p>
-
-To play the recorded animation clip, drag-and-drop it to the model and untick the "Avatar" component in the "Animator" section. 
-
-<p align="center">
-<img width="1300" src="img/Umc_10.gif">
-</p>
-
-</ol>
 
 ## Humanoid Recorder
 
@@ -505,27 +400,29 @@ _**Note**: Now the model is animated not due to the change in the rotation and p
 </p>
 
 3. Remove the used model (without **Animator**) from the scene. Drag-and-drop the new model (with **Animator**) to the scene. The model should be in the T-Pose.
-4. Create the `AnimatorAvatar` script to animate the model. Add fields for the animator and list of joints. Create the `SimpleJoint` class to store the `nuitrackJoint` joint type (which is received from Nuitrack), `Offset` (to compensate the skeleton offset relative to the sensor) and joint transform. 
+4. Create the `AnimatorAvatar` script to animate the model. Inherit the `AnimatorAvatar` class from `BaseAvatar`, this will allow you to easily get the data of the **Current User** or user by the specified **ID**.
+
+Add fields for the animator and list of joints. Create the `SimpleJoint` class to store the `nuitrackJoint` joint type (which is received from Nuitrack), `Offset` (to compensate the skeleton offset relative to the sensor) and joint transform. 
 
 ```cs
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
  
-public class AnimatorAvatar : MonoBehaviour
+public class AnimatorAvatar : BaseAvatar
 {
-	[SerializeField] Animator animator;
-	[SerializeField] List<SimpleJoint> joints = new List<SimpleJoint>();
+    [SerializeField] Animator animator;
+    [SerializeField] List<SimpleJoint> joints = new List<SimpleJoint>();
 }
 
 [System.Serializable]
 class SimpleJoint
 {
-	public nuitrack.JointType nuitrackJoint;
- 
-	public Quaternion Offset { get; set; }
- 
-	public Transform Bone { get; set; }
+    public nuitrack.JointType nuitrackJoint;
+
+    public Quaternion Offset { get; set; }
+
+    public Transform Bone { get; set; }
 }
 ```
 
@@ -534,44 +431,44 @@ class SimpleJoint
 ```cs
 void Start ()
 {
-     foreach (SimpleJoint item in joints)
-     {
-            HumanBodyBones unityBoneType = item.nuitrackJoint.ToUnityBones();
-        	Transform bone = animator.GetBoneTransform(unityBoneType);
+    foreach (SimpleJoint item in joints)
+    {
+        HumanBodyBones unityBoneType = item.nuitrackJoint.ToUnityBones();
+        Transform bone = animator.GetBoneTransform(unityBoneType);
  
-        	if (bone == null)
-        	{
-            	Debug.LogError("The bone " + unityBoneType + " is not found (check configuration of the humanoid in the Rig tab)");
-            	enabled = false;
-        	}
-        	else
-        	{
-            	item.Bone = bone;
-            	item.Offset = bone.rotation;
-        	}
-     }
+        if (bone == null)
+        {
+            Debug.LogError("The bone " + unityBoneType + " is not found (check configuration of the humanoid in the Rig tab)");
+            enabled = false;
+        }
+        else
+        {
+            item.Bone = bone;
+            item.Offset = bone.rotation;
+        }
+    }
 }
 ```
 
-6. Due to the processing specificities of the animator, we use `LateUpdate` instead of `Update`. In `LateUpdate`, we process the skeleton joints (see our [Animating the Avatar](Unity_Avatar_Animation.md) tutorial).
+6. To implement the behavior add `Update` method. Controller User property gets the data of the **Current user** if **User current user tracker** is enabled, or user data by a given **ID** if user tracking is disabled (see in the component's inspector).
 
 ```cs
 [SerializeField] nuitrack.JointType rootJoint = nuitrack.JointType.LeftCollar;
 ...
-void LateUpdate()
+void Update()
 {
-    if (CurrentUserTracker.CurrentSkeleton != null)
+    if (ControllerUser == null || ControllerUser.Skeleton == null)
+                return;
+
+    UserData.SkeletonData skeleton = ControllerUser.Skeleton;
+    transform.position = Quaternion.Euler(0f, 180f, 0f) * skeleton.GetJoint(rootJoint).Position;
+
+    foreach (SimpleJoint item in joints)
     {
-        nuitrack.Skeleton skeleton = CurrentUserTracker.CurrentSkeleton;
-        transform.position = Quaternion.Euler(0f, 180f, 0f) * (0.001f * skeleton.GetJoint(rootJoint).ToVector3());
- 
-        foreach (SimpleJoint item in joints)
-        {
-            nuitrack.Joint joint = skeleton.GetJoint(item.nuitrackJoint);
- 
-            Quaternion rotation = Quaternion.Inverse(CalibrationInfo.SensorOrientation) * joint.ToQuaternionMirrored() * item.Offset;
-            item.Bone.rotation = rotation;
-        }
+        UserData.SkeletonData.Joint joint = skeleton.GetJoint(item.nuitrackJoint);
+
+        Quaternion rotation = Quaternion.Inverse(CalibrationInfo.SensorOrientation) * joint.RotationMirrored * item.Offset;
+        item.Bone.rotation = rotation;
     }
 }
 ``` 
@@ -609,16 +506,15 @@ using System.Collections.Generic;
  
 public class HumanoidRecoder : IRecordable
 {
-	float time = 0;
- 
-	HumanPose humanPose = new HumanPose();  
-	HumanPoseHandler humanPoseHandler;
-	 
- 
-	Dictionary<int, AnimationCurve> muscleCurves = new Dictionary<int, AnimationCurve>();
-	Dictionary<string, AnimationCurve> rootCurves = new Dictionary<string, AnimationCurve>();
- 
-	Vector3 rootOffset;
+    float time = 0;
+
+    HumanPose humanPose = new HumanPose();  
+    HumanPoseHandler humanPoseHandler;
+
+    Dictionary<int, AnimationCurve> muscleCurves = new Dictionary<int, AnimationCurve>();
+    Dictionary<string, AnimationCurve> rootCurves = new Dictionary<string, AnimationCurve>();
+
+    Vector3 rootOffset;
 }
 ```
 
@@ -629,7 +525,7 @@ public HumanoidRecoder(Animator animator, HumanBodyBones[] humanBodyBones)
 {
     rootOffset = animator.transform.position;
     humanPoseHandler = new HumanPoseHandler(animator.avatar, animator.transform);
- 
+
     foreach (HumanBodyBones unityBoneType in humanBodyBones)
     {
         for (int dofIndex = 0; dofIndex < 3; dofIndex++)
@@ -640,7 +536,7 @@ public HumanoidRecoder(Animator animator, HumanBodyBones[] humanBodyBones)
                 muscleCurves.Add(muscle, new AnimationCurve());
         }
     }
- 
+
     rootCurves.Add("RootT.x", new AnimationCurve());
     rootCurves.Add("RootT.y", new AnimationCurve());
     rootCurves.Add("RootT.z", new AnimationCurve());
@@ -653,7 +549,7 @@ public HumanoidRecoder(Animator animator, HumanBodyBones[] humanBodyBones)
 public void TakeSnapshot(float deltaTime)
 {
     time += deltaTime;
- 
+
     humanPoseHandler.GetHumanPose(ref humanPose);
  
     foreach (KeyValuePair<int, AnimationCurve> data in muscleCurves)
@@ -661,9 +557,9 @@ public void TakeSnapshot(float deltaTime)
         Keyframe key = new Keyframe(time, humanPose.muscles[data.Key]);
         data.Value.AddKey(key);
     }
- 
+
     Vector3 rootPosition = humanPose.bodyPosition - rootOffset;
- 
+
     AddRootKey("RootT.x", rootPosition.x);
     AddRootKey("RootT.y", rootPosition.y);
     AddRootKey("RootT.z", rootPosition.z);
@@ -688,17 +584,17 @@ public AnimationClip GetClip
     get
     {
         AnimationClip clip = new AnimationClip();
- 
+
         foreach (KeyValuePair<int, AnimationCurve> data in muscleCurves)
         {
             clip.SetCurve("", typeof(Animator), HumanTrait.MuscleName[data.Key], data.Value);
         }
- 
+
         foreach (KeyValuePair<string, AnimationCurve> data in rootCurves)
         {
             clip.SetCurve("", typeof(Animator), data.Key, data.Value);
         }
- 
+
         return clip;
     }
 }
@@ -713,9 +609,9 @@ public AnimationClip GetClip
 void Start()
 {
 ...
-        case RecordMode.Humanoid:
-            recordable = new HumanoidRecoder(animatorAvatar.GetAnimator, animatorAvatar.GetHumanBodyBones);
-            break;
+    case RecordMode.Humanoid:
+        recordable = new HumanoidRecoder(animatorAvatar.GetAnimator, animatorAvatar.GetHumanBodyBones);
+        break;
 }
 ```
 

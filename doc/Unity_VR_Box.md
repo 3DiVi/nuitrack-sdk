@@ -2,7 +2,8 @@
 
 So, you've decided to create a VR game with skeleton tracking but don't know what to start with? Well, you're at the right page because in this tutorial you'll learn how to create a VR game using **Nuitrack**. To plunge into the subject and to understand how to animate your avatar's skeleton in a VR game, we recommend you to take a look at our tutorial [Animating the Avatar using Skeleton](Unity_Avatar_Animation.md).
 
-In this tutorial, we'll create a simple VR game, in which your avatar is a boxer and you have to punch a dummy as hard as you can. The maximum punch speed will be measured and displayed at the top of the screen. To make this game, you'll need the **Nuitrack SDK**, a sensor (from the list of supported sensors, see the [Nuitrack website](https://nuitrack.com/#sensors)) and a VR headset (any Mobile VR headset or Gear VR headset). Recommended Unity version: 2017.4 or higher.
+In this tutorial, we'll create a simple VR game, in which your avatar is a boxer and you have to punch a dummy as hard as you can. The maximum punch speed will be measured and displayed at the top of the screen. To make this game, you'll need the **Nuitrack SDK**, a sensor (from the list of supported sensors, see the [Nuitrack website](https://nuitrack.com/#sensors)) and a VR headset (any Mobile VR headset or Gear VR headset). 
+* Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → Box** 
 
@@ -43,8 +44,6 @@ _**Note:** **Nuitrack** provides improved automatic calibration for Android and 
 <b>Setting Up the Head</b><br>
 </p>
 
-_**Note:** The default platform in a project is **Android**. Before building the project, you can select the appropriate platform: **iOS, Android (default) or GearVR**. To do that, select **Windows → Platform Changer → TargetPlatform → Change Platform**._
-
 6. Build and run the project. Calibration should run and reach 100%. After that, check that your avatar is displayed correctly and her movements correspond to yours. 
 
 <p align="center">
@@ -67,16 +66,16 @@ _**Note:** The default platform in a project is **Android**. Before building the
 ```cs
 private void Awake()
 {
-	dummy.SetActive(false);
+    dummy.SetActive(false);
 }
 ```
 
-4. Create the `OnEnable` method. Subscribe to the `onSuccess` event from the `TPoseCalibration` script. It's called if calibration is successful. 
+4. Create the `OnEnable` method. Subscribe to the `onSuccess` event from the `CalibrationHandler` script. It's called if calibration is successful. 
 
 ```cs
 private void OnEnable()
-{    
-	TPoseCalibration.Instance.onSuccess += OnSuccessCalibration;
+{
+    CalibrationHandler.Instance.onSuccess += OnSuccessCalibration;
 }
 ```
 
@@ -85,8 +84,8 @@ private void OnEnable()
 ```cs
 void OnSuccessCalibration(Quaternion rotation)
 {
-	dummy.SetActive(true);
-	transform.position = transformTarget.position + new Vector3(0, -1, 1);
+    dummy.SetActive(true);
+    transform.position = transformTarget.position + new Vector3(0, -1, 1);
 }
 ```
 
@@ -95,7 +94,8 @@ void OnSuccessCalibration(Quaternion rotation)
 ```cs
 private void OnDisable()
 {
-	TPoseCalibration.Instance.onSuccess -= OnSuccessCalibration;
+    if (CalibrationHandler.Instance)
+        CalibrationHandler.Instance.onSuccess -= OnSuccessCalibration;
 }
 ```
 
@@ -121,9 +121,9 @@ private void OnDisable()
 using UnityEngine.UI;
 
 public class PunchSpeedMeter : MonoBehaviour {
-	...
-	[SerializeField] Text speedMeterText;
-	...
+    ...
+    [SerializeField] Text speedMeterText;
+    ...
 }
 ```
 
@@ -136,25 +136,25 @@ float maximumPunchSpeed = 0;
 3. Create the `CalculateMaxPunchSpeed` method (which takes the punch speed). If the new speed is greater than the current speed, the counter will be updated, otherwise the result will not change. 
 
 ```cs
-public void CalculateMaxHitSpeed(float speed)
+public void CalculateMaxPunchSpeed(float speed)
 {
-	if (maximumPunchSpeed < speed)
-	    maximumPunchSpeed = speed;
-	speedMeterText.text = maximumPunchSpeed + " m/s ";
+    if (maximumPunchSpeed < speed)
+        maximumPunchSpeed = speed;
+    speedMeterText.text = maximumPunchSpeed.ToString("f2") + " m/s";
 }
 ```
 
 4. Create a new script `PunchSpeedSender.cs`. We need a handler for punches, since we can punch the dummy in several body parts (**TorsoBone** and **NeckBone**). When you punch the dummy in one of these parts, the **PunchSpeedSender** sends the info about that event to the **PunchSpeedMeter**. In this script, make a reference to the **PunchSpeedMeter** and create the  `OnCollisionEnter` method. When two objects collide, we'll get the relative punch speed. 
 
 ```cs
-public class HitSpeedSender : MonoBehaviour {
+public class PunchSpeedSender : MonoBehaviour {
  
-	[SerializeField] HitSpeedMeter hitSpeedMeter;
+    [SerializeField] PunchSpeedMeter punchSpeedMeter;
  
-	private void OnCollisionEnter(Collision collision)
-	{
-		hitSpeedMeter.CalculateMaxHitSpeed(collision.relativeVelocity.magnitude);
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        punchSpeedMeter.CalculateMaxPunchSpeed(collision.relativeVelocity.magnitude);
+    }
 }
 ```
 
@@ -179,9 +179,9 @@ _**Note:** The `relativeVelocity` property allows to determine the correct colli
 ```cs
 public class RigidbodyFollower : MonoBehaviour
 {
-	[SerializeField] Transform target;
+    [SerializeField] Transform target;
  
-	Rigidbody rigidbody;
+    Rigidbody rigidbody;
 }
 ```
 
@@ -190,7 +190,7 @@ public class RigidbodyFollower : MonoBehaviour
 ```cs
 void Start()
 {
-	rigidbody = GetComponent<Rigidbody>();
+    rigidbody = GetComponent<Rigidbody>();
 }
 ```
 
@@ -199,8 +199,8 @@ void Start()
 ```cs
 void FixedUpdate()
 {
-	rigidbody.MovePosition(target.position);
-	rigidbody.MoveRotation(target.rotation);
+    rigidbody.MovePosition(target.position);
+    rigidbody.MoveRotation(target.rotation);
 }
 ```
 

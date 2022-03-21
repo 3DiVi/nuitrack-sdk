@@ -6,7 +6,7 @@ To create this project, you'll need just a couple of things:
 
 * [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
-* Unity 2017.4 or higher
+* Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → Point Cloud**
 
@@ -19,11 +19,11 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 1. Create a new Scene in Unity: **File → New Scene**
 2. In the scene, create 2 squares: **GameObject → 3D Object → Quad** (x2). We will use them as planes to display the color and depth received from the sensor. For convenience, let's name them **QuadDepth** (for depth) and **QuadColor** (for color).
 3. Then, create 2 materials for depth and color respectively: create the **Materials** folder in the **Assets** folder, then, in the **Project** tab: **RC → Create → Material**. For convenience, let's name the materials  **ColorMaterial** and **DepthMaterial**.
-4. Download  [Nuitrack SDK](/Platforms). Import the **Nuitrack** and  **Plugins** folders from the  **Nuitrack.unitypackage** to the project. Drag-and-drop the **NuitrackScripts** prefab from the **Nuitrack/Prefabs** folder to the scene. In Unity, select the **Inspector** tab → **Nuitrack Manager** and tick two modules: **Color Module On** and **Depth Module On**. As you can see, these Nuitrack modules provide access to the sensor depth and color data. Other Nuitrack modules are not required for this project.
+4. Download  [Nuitrack SDK](/Platforms). Import the **Nuitrack** and  **Plugins** folders from the  **Nuitrack.unitypackage** to the project. 
+Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="500" src="img/Upoints_1.png"><br>
-<b>Tick the required modules in the Nuitrack Manager</b><br>
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
 5. Create an empty object and name it **Visualization**. We'll use this object to visualize depth and color.
@@ -52,9 +52,9 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 ```cs
 public class PointCloud : MonoBehaviour
 {
-	[SerializeField] Material depthMat, colorMat;
+    [SerializeField] Material depthMat, colorMat;
  
-	ulong lastFrameID = ulong.MaxValue;
+    ulong lastFrameID = ulong.MaxValue;
 }
 ```
 
@@ -80,7 +80,7 @@ _**Note:** Recommended image resolution: 128х96. You can set a higher resolutio
 5. Set the texture for two created planes. Then, create an array with depths and an array with colors to store the data received from the sensor.
 
 ```cs
-...	
+...
 Texture2D depthTexture, rgbTexture;
 Color[] depthColors; // Array with depths
 Color[] rgbColors; // Array with colors
@@ -100,7 +100,8 @@ bool initialized = false;
 ```cs
 void Start()
 {
-	if (!initialized) Initialize();
+    if (!initialized) 
+        Initialize();
 }
 ```
 
@@ -109,17 +110,21 @@ void Start()
 ```cs
 void Initialize()
 {
-	initialized = true;
- 
-	nuitrack.OutputMode mode = NuitrackManager.DepthSensor.GetOutputMode(); // Return the struct with resolution, FPS and FOV of the sensor
-	frameStep = mode.XRes / hRes;
-	if (frameStep <= 0) frameStep = 1; // frameStep must be > 0
-	hRes = mode.XRes / frameStep;
-	// Define height and width, create mesh (cube) instances
-	InitMeshes(
-	((mode.XRes / frameStep) ), // Width
-	((mode.YRes / frameStep) ),  // Height
-	mode.HFOV);
+    initialized = true;
+
+    nuitrack.OutputMode mode = NuitrackManager.DepthSensor.GetOutputMode(); // Return the struct with resolution, FPS and FOV of the sensor
+    frameStep = mode.XRes / hRes;
+
+    if (frameStep <= 0) 
+        frameStep = 1; // frameStep must be > 0
+
+    hRes = mode.XRes / frameStep;
+
+    // Define height and width, create mesh (cube) instances
+    InitMeshes(
+      (mode.XRes / frameStep), // Width
+      (mode.YRes / frameStep),  // Height
+      mode.HFOV);
 }
 ```
 
@@ -130,25 +135,25 @@ You may wonder why do we have to set the `if (frameStep <= 0) frameStep = 1` con
 ```cs
 void InitMeshes(int cols, int rows, float hfov)
 {
-	// Set the size of the arrays
-	depthColors = new Color[cols * rows];
-	rgbColors = new Color[cols * rows];
- 
-	// Create a depth texture
-	depthTexture = new Texture2D(cols, rows, TextureFormat.RFloat, false);
-	depthTexture.filterMode = FilterMode.Point;
-	depthTexture.wrapMode = TextureWrapMode.Clamp;
-	depthTexture.Apply();
+    // Set the size of the arrays
+    depthColors = new Color[cols * rows];
+    rgbColors = new Color[cols * rows];
 
-	// Create an RGB texture
-	rgbTexture = new Texture2D(cols, rows, TextureFormat.ARGB32, false);
-	rgbTexture.filterMode = FilterMode.Point;
-	rgbTexture.wrapMode = TextureWrapMode.Clamp;
-	rgbTexture.Apply();
- 
-	//Applying textures to the materials
-	depthMat.mainTexture = depthTexture;
-	colorMat.mainTexture = rgbTexture;
+    // Create a depth texture
+    depthTexture = new Texture2D(cols, rows, TextureFormat.RFloat, false);
+    depthTexture.filterMode = FilterMode.Point;
+    depthTexture.wrapMode = TextureWrapMode.Clamp;
+    depthTexture.Apply();
+
+    // Create an RGB texture
+    rgbTexture = new Texture2D(cols, rows, TextureFormat.ARGB32, false);
+    rgbTexture.filterMode = FilterMode.Point;
+    rgbTexture.wrapMode = TextureWrapMode.Clamp;
+    rgbTexture.Apply();
+
+    //Applying textures to the materials
+    depthMat.mainTexture = depthTexture;
+    colorMat.mainTexture = rgbTexture;
 }
 ```
 
@@ -159,8 +164,6 @@ _**Note:** We recommend you to use the following sensors for better quality of y
 ```cs
 void Update()
 {
-	bool haveNewFrame = false;
- 
     if (NuitrackManager.DepthFrame != null)
     {
         nuitrack.DepthFrame depthFrame = NuitrackManager.DepthFrame;
@@ -183,25 +186,25 @@ _**Note:** You can also request new depth and color frames by subscribing to eve
 ```cs
 void ProcessFrame(nuitrack.DepthFrame depthFrame, nuitrack.ColorFrame colorFrame)
 {
-	int pointIndex = 0;
- 
-	for (int i = 0; i < depthFrame.Rows; i += frameStep)
-	{
-		for (int j = 0; j < depthFrame.Cols; j += frameStep)
-		{
-			// Take the frame depths and include it in the depthColors array
-			depthColors[pointIndex].r = depthFrame[i, j] / 16384f;
- 
-			// Take the frame RGB colors and include it in the rgbColors array
-			// If the camera colors are not received, the default color is applied
-			Color rgbCol = defaultColor;
-			if (colorFrame != null)
-				rgbCol = new Color32(colorFrame[i, j].Red, colorFrame[i, j].Green, colorFrame[i, j].Blue, 255);
-			rgbColors[pointIndex] = rgbCol;
+    int pointIndex = 0;
 
-			++pointIndex;
-		}
-	}
+    for (int i = 0; i < depthFrame.Rows; i += frameStep)
+    {
+        for (int j = 0; j < depthFrame.Cols; j += frameStep)
+        {
+            // Take the frame depths and include it in the depthColors array
+            depthColors[pointIndex].r = depthFrame[i, j] / 16384f;
+
+            // Take the frame RGB colors and include it in the rgbColors array
+            // If the camera colors are not received, the default color is applied
+            Color rgbCol = defaultColor;
+            if (colorFrame != null)
+                rgbCol = new Color32(colorFrame[i, j].Red, colorFrame[i, j].Green, colorFrame[i, j].Blue, 255);
+            rgbColors[pointIndex] = rgbCol;
+
+            ++pointIndex;
+        }
+    }
 }
 ```
 
@@ -210,7 +213,7 @@ The `depthColors[pointIndex].r = depthFrame[i, j] / 16384f` string is responsibl
 12. Color the pixels in the depth and color textures:
 
 ```cs
-...	
+...
 depthTexture.SetPixels(depthColors);
 rgbTexture.SetPixels(rgbColors);
 ...
@@ -219,7 +222,7 @@ rgbTexture.SetPixels(rgbColors);
 13. Apply the pixels in the depth and color textures to the <b>Visualization</b> object:
 
 ```cs
-...	
+...
 depthTexture.Apply();
 rgbTexture.Apply();
 ...
@@ -261,7 +264,7 @@ GameObject[] points;
 8. In the `InitMeshes` method, set the size of the array with the **Points** prefabs (multiply the number of rows by the number of columns with points):
 
 ```cs
-...	
+...
 points = new GameObject[cols * rows];
 ...
 ```
@@ -273,10 +276,10 @@ int pointId = 0;
  
 for (int i = 0; i < rgbTexture.height; i++)
 {
-	for (int j = 0; j < rgbTexture.width; j++)
-	{
-		points[pointId++] = Instantiate(pointMesh, transform);
-	}
+    for (int j = 0; j < rgbTexture.width; j++)
+    {
+        points[pointId++] = Instantiate(pointMesh, transform);
+    }
 }
 ```
 10. In the `ProcessFrame` method, change the position of the **Point** (cube) along the Z (depth) axis. In some cases, the sensor can't identify the depth of the point. As a result, the Z coordinate has the value of 0. Let's hide the points with Z=0 for correct display of the image. After that, we change the position and size of the **Point** (cube).
@@ -284,23 +287,23 @@ for (int i = 0; i < rgbTexture.height; i++)
 ```cs 
 // Hide the Prefabs with the depth = 0
 if (depthFrame[i, j] == 0)
-	points[pointIndex].SetActive(false);
+    points[pointIndex].SetActive(false);
 else
 {
-	points[pointIndex].GetComponent<Renderer>().material.color = rgbCol;
- 
-	// Change the position of the Point (cube) along the Z axis
-	Vector3 newPos = NuitrackManager.DepthSensor.ConvertProjToRealCoords(j, i, depthFrame[i, j]).ToVector3();
+    points[pointIndex].GetComponent<Renderer>().material.color = rgbCol;
 
-	points[pointIndex].SetActive(true);
-	points[pointIndex].transform.position = newPos; // Change the Point position          	         
+    // Change the position of the Point (cube) along the Z axis
+    Vector3 newPos = NuitrackManager.DepthSensor.ConvertProjToRealCoords(j, i, depthFrame[i, j]).ToVector3();
+
+    points[pointIndex].SetActive(true);
+    points[pointIndex].transform.position = newPos; // Change the Point position
 }
 ```
 
 11. If we want our point cloud look realistic when changing the distance in Unity, we need to scale the mesh size, so that the sized of the cubes changes according to the distance. In the `PointCloud` class, add the following strings:
 
 ```cs
-...	
+...
 [SerializeField] float meshScaling = 1f;
 float depthToScale;
 ...
@@ -309,11 +312,13 @@ float depthToScale;
 12. In the `ProcessFrame`, calculate the size of the cubes according to the depth by adding the following strings to the `if (depthFrame[i, j] == 0)... else...` condition:
 
 ```cs
-else             
-...	
-float distancePoints = Vector3.Distance(newPos, NuitrackManager.DepthSensor.ConvertProjToRealCoords(j + 1, i, depthFrame[i, j]).ToVector3()); //Distance between the Points
-depthToScale = distancePoints * depthFrame.Cols / hRes; //Calculate the size of the cubes depending on the depth
-...
+else
+{
+    ...
+    float distancePoints = Vector3.Distance(newPos, NuitrackManager.DepthSensor.ConvertProjToRealCoords(j + 1, i, depthFrame[i, j]).ToVector3()); //Distance between the Points
+    depthToScale = distancePoints * depthFrame.Cols / hRes; //Calculate the size of the cubes depending on the depth
+    ...
+}
 ```
 
 13. In the `ProcessFrame` method, change the cube size:
@@ -331,11 +336,11 @@ points[pointIndex].transform.localScale = Vector3.one * meshScaling * depthToSca
 <b>Created point cloud</b><br>
 </p>
 
-15. All right, now that we created the point cloud, it seems kind of flat. To see the actual volume of our point cloud and position of objects in the room, we need to apply the [MouseOrbitImproved](http://wiki.unity3d.com/index.php?title=MouseOrbitImproved#Code_C.23) script. Drag-and-drop the script to the camera in Unity. Create an empty object and name it, for example, rotation point. Move the object to x:0 y:0 z:600 (the camera will rotate around this object). In the script settings, specify the object around which the camera (**rotation point**) will rotate. The settings must be as shown in the picture below.
+15. All right, now that we created the point cloud, it seems kind of flat. To see the actual volume of our point cloud and position of objects in the room, we need to apply the [TouchCameraControls] script. Create an empty object and name it, for example, CameraRotationPoint. Add component [TouchCameraControls]. Make the camera a child of this object. Unity camera will rotate around the position of CameraRotationPoint. The settings must be as shown in the picture below.
 
 <p align="center">
 <img width="250" src="img/Upoints_6.png"><br>
-<b>Characteristics of the MouseOrbitImproved Script</b><br>
+<b>Characteristics of the TouchCameraControls Script</b><br>
 </p>
 
 16. In order to improve the resulting point cloud, we recommend you to turn on depth-to-color registration because a depth map doesn't accurately match an RGB image, therefore, they should be aligned. To turn on depth-to-color registration, open *nuitrack.config* from the folder `<nuitrack_home>\data` and set `DepthProvider.Depth2ColorRegistration` to `true`.
@@ -344,7 +349,7 @@ points[pointIndex].transform.localScale = Vector3.one * meshScaling * depthToSca
 
 <p align="center">
 <img width="500" src="img/Upoints_7.gif"><br>
-<b>3D Point Cloud after the MouseOrbitImproved script is applied</b><br>
+<b>3D Point Cloud after the TouchCameraControls script is applied</b><br>
 </p>
 
 Useful links:

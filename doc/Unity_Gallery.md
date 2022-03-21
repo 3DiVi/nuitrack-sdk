@@ -16,66 +16,42 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 
 ## Setting Up the Scene
 
-1. Drag-and-drop the **NuitrackScripts** prefab from the **Nuitrack SDK** and tick the required modules in the **Nuitrack Manager** section: **Skeleton Tracker Module** (tracking of a user), **Hands Tracker Module** (detecting user's hands), **Gestures Recognizer Module** (gesture recognition).
+1. Prepare the scene for using Nuitrack, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare The Scene**. The necessary components will be added to the scene    
 
 <p align="center">
-<img width="450" src="img/Ugallery_1.png"><br>
-<b>Required Nuitrack modules for this project</b><br>
+<img width="500" src="img/PrepareScene.png">
 </p>
 
-2. Create a new script `Pointer.cs`. It will store the settings of a pointer that is used to control the gallery. In the `Start` method, subscribe to the `onHandsTrackerUpdate` event to receive data on the state of user's hands. 
+2. Create a new script `Pointer.cs`. It will store the settings of a pointer that is used to control the gallery. In the `Update` method, check whether the left or the right hand is used for control. Add the processing of data on user's hands to move the corresponding pointer. Define that the "click" event occurs when a user clenches his hand into a fist. If a hand is inactive, it is hidden. 
 
 ```cs
-private void Start()
-{
-    NuitrackManager.onHandsTrackerUpdate += NuitrackManager_onHandsTrackerUpdate;
-
-    // Updating the time of the last frame (required to calculate the velocity of the pointer movement)
-    lastTime = Time.time; 
-}
-```
-
-3. Unsubscribe from this event in the `OnDestroy` method in order to prevent issues with null references when switching to another scene. 
-
-```cs
-private void OnDestroy()
-{
-	NuitrackManager.onHandsTrackerUpdate -= NuitrackManager_onHandsTrackerUpdate;
-}
-```
-
-4. In the `NuitrackManager_onHandsTrackerUpdate` method, check whether the left or the right hand is used for control. Add the processing of data on user's hands to move the corresponding pointer. Define that the "click" event occurs when a user clenches his hand into a fist. If a hand is inactive, it is hidden. 
-
-```cs
-private void NuitrackManager_onHandsTrackerUpdate(nuitrack.HandTrackerData handTrackerData)
+private void Update()
 {
     active = false;
 
-    nuitrack.UserHands userHands = handTrackerData.GetUserHandsByID(CurrentUserTracker.CurrentUser);    
+    UserData user = NuitrackManager.Users.Current;
 
-    if (userHands != null)
+    if (user != null)
     {
-        nuitrack.HandContent? handContent = currentHand == Hands.right ? userHands.RightHand : userHands.LeftHand;
+        UserData.Hand handContent = currentHand == Hands.right ? user.RightHand : user.LeftHand;
 
         if (handContent != null)
         {
-            Vector2 pageSize = parentRectTransform.rect.size;
             Vector3 lastPosition = baseRect.position;
-            baseRect.anchoredPosition = new Vector2(handContent.Value.X * pageSize.x, -handContent.Value.Y * pageSize.y);
+            baseRect.anchoredPosition = handContent.AnchoredPosition(parentRectTransform.rect, baseRect);
 
-            float velocity = (baseRect.position - lastPosition).magnitude / (Time.time - lastTime);
-            
+            float velocity = (baseRect.position - lastPosition).magnitude / Time.deltaTime;
+
             // To avoid false positives, check the hand clenching
             // if the movement velocity is lower than the set speed
-            if (velocity < minVelocityInteractivePoint) 
-                Press = handContent.Value.Click;
+            if (velocity < minVelocityInteractivePoint)
+                Press = handContent.Click;
 
             active = true;
         }
     }
 
     Press = Press && active;
-    lastTime = Time.time; // Updating the time of the last frame
 }
 ```
 
@@ -92,7 +68,7 @@ public class Pointer : MonoBehaviour
     [SerializeField]
     Hands currentHand;
 
-    [Header ("Visualization")]
+    [Header("Visualization")]
     [SerializeField]
     RectTransform parentRectTransform;
 
@@ -110,9 +86,8 @@ public class Pointer : MonoBehaviour
 
     [SerializeField]
     [Range(0, 50)]
-    float minVelocityInteractivePoint = 8f;
+    float minVelocityInteractivePoint = 2f;
 
-    float lastTime = 0;
     bool active = false;
 }
 ```
@@ -121,7 +96,7 @@ public class Pointer : MonoBehaviour
 
 ```cs
 background.enabled = active;
-background.sprite = active && press ? pressSprite : defaultSprite;
+background.sprite = active && Press ? pressSprite : defaultSprite;
 ```
 
 _**Note:** Learn more about `?:` operator at the [Microsoft website](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator)._
@@ -178,15 +153,15 @@ _**Note:** We disable **Vertical** in our project because we would like to scrol
 ```cs
 public class GalleryControl : MonoBehaviour
 {
-	enum ViewMode { Preview, View };
-	ViewMode currentViewMode = ViewMode.Preview;
-	 
-	[Header("Visualization")]
-	 
-	[SerializeField] ScrollRect scrollRect;
-	[SerializeField] Sprite[] spriteCollection;
-	[SerializeField] RectTransform content;
-	[SerializeField] GameObject imageItemPrefab;
+    enum ViewMode { Preview, View };
+    ViewMode currentViewMode = ViewMode.Preview;
+
+    [Header("Visualization")]
+ 
+    [SerializeField] ScrollRect scrollRect;
+    [SerializeField] Sprite[] spriteCollection;
+    [SerializeField] RectTransform content;
+    [SerializeField] GameObject imageItemPrefab;
 }
 ```
 
@@ -214,19 +189,23 @@ IEnumerator Start()
     yield return null; 
 
     pageSize = scrollRect.viewport.rect.size;
-    defaultSize = new Vector2(pageSize.x / colsNumber, pageSize.y / rowsNumber);  // calculate the size of an image in the preview mode
+
+    // calculate the size of an image in the preview mode
+    defaultSize = new Vector2(pageSize.x / colsNumber, pageSize.y / rowsNumber);
 
     Vector2 halfAdd = new Vector2(defaultSize.x / 2, -defaultSize.y / 2);
 
     int imagesOnPage = rowsNumber * colsNumber;
-    numberOfPages = (int)Mathf.Ceil((float)spriteCollection.Length / imagesOnPage);  // divide the total number of pictures by the number of pictures on one page and round it up
 
+    // divide the total number of pictures by the number of pictures on one page and round it up
+    numberOfPages = (int)Mathf.Ceil((float)spriteCollection.Length / imagesOnPage);  
 
     int imageIndex = 0;
 
     for (int p = 0; p < numberOfPages; p++) // iterate over the pages
     {
-        int imagesOnCurrentPage = Mathf.Min(spriteCollection.Length - p * imagesOnPage, imagesOnPage); // set the number of images on a current page
+         // set the number of images on a current page
+        int imagesOnCurrentPage = Mathf.Min(spriteCollection.Length - p * imagesOnPage, imagesOnPage);
 
         for (int i = 0; i < imagesOnCurrentPage; i++) // fill the current page with images
         {
@@ -288,18 +267,16 @@ float startScroll = 0;
 float scrollT = 0;
 ```
 
-2. In the `GalleryControl.cs` script in the `Start` method, subscribe the `NuitrackManager_onNewGesture` method to the `onNewGesture` event of the **NuitrackManager** component to receive events of gestures. Unsubscribe from this event in the `OnDestroy` method.
+2. In the `GalleryControl.cs`script in the `Update` method, check whether the gesture was performed by the current user (the data is relevant for one frame)
 
 ```cs
-IEnumerator Start()
+void Update()
 {
-    ...
-    NuitrackManager.onNewGesture += NuitrackManager_onNewGesture;
-}
+    UserData user = NuitrackManager.Users.Current;
 
-private void OnDestroy()
-{
-    NuitrackManager.onNewGesture -= NuitrackManager_onNewGesture;
+    if (user != null && user.GestureType != null)
+        NuitrackManager_onNewGesture(user.GestureType.Value);
+    ...
 }
 ```
 
@@ -307,7 +284,7 @@ private void OnDestroy()
 
 ```cs
 if (numberOfPages > 1)
-	scrollStep = 1f / (numberOfPages - 1); // 1/(n-1) given that the Scrollbar takes values from 0 to 1 and one page is already displayed
+    scrollStep = 1f / (numberOfPages - 1); // 1/(n-1) given that the Scrollbar takes values from 0 to 1 and one page is already displayed
 ```
 
 4. First, check the gallery mode (View, Preview) in the `NuitrackManager_onNewGesture` method, then define the gesture type and, depending on the result, increment or decrement the number of the current page. To ensure that the page number is not out of range, let's set the value in the range  from 0 to the total number of pages in the `Mathf.Clamp` function. Since the scrolling starts from an arbitrary position, then it is necessary to determine the current page, if we scrolled through dragging `scrollRect.horizontalScrollbar`.
@@ -352,16 +329,18 @@ _**Note:** **Nuitrack** supports the following types of gestures: Waving, Push, 
 ```cs
 private void Update()
 {
+    ...
+
     switch (currentViewMode)
     {
         case ViewMode.Preview:
-	    if (scrollT < 1)
-	    {
-                scrollT += Time.deltaTime * scrollSpeed;
-		scrollRect.horizontalScrollbar.value = Mathf.Lerp(startScroll, scrollStep * currentPage, animationCurve.Evaluate(scrollT));
-	    }
-	    else
-		scrollRect.horizontalScrollbar.interactable = true;
+        if (scrollT < 1)
+        {
+            scrollT += Time.deltaTime * scrollSpeed;
+            scrollRect.horizontalScrollbar.value = Mathf.Lerp(startScroll, scrollStep * currentPage, animationCurve.Evaluate(scrollT));
+        }
+        else
+            scrollRect.horizontalScrollbar.interactable = true;
         break;
     }
 }
@@ -402,6 +381,7 @@ public class HandsInputModule : StandaloneInputModule
         foreach (Pointer p in pointers)
         {
             MouseButtonEventData pointerData = new MouseButtonEventData();
+
             pointerData.buttonData = new PointerEventData(eventSystem);
             // Set Touch id when simulating touches on a non-touch device.
             pointerData.buttonData.pointerId = kFakeTouchesId;
@@ -427,12 +407,13 @@ public override void Process()
         PointerEventData pointerEventData = buttonEventData.buttonData;
 
         // Update position & delta pointer
-
         Vector2 pointOnScreenPosition = Camera.main.WorldToScreenPoint(pointer.Position);
         pointerEventData.delta = pointOnScreenPosition - pointerEventData.position;
         pointerEventData.position = pointOnScreenPosition;
     }
-    base.Process(); // process the classic mouse pointer or Touch
+
+    // process the classic mouse pointer or Touch
+    base.Process();
 }
 ```
 
@@ -442,8 +423,8 @@ public override void Process()
 foreach (KeyValuePair<Pointer, MouseButtonEventData> pe in pointerEvents)
 {
     ...
-    // Update UI Raycast data
 
+    // Update UI Raycast data
     raycastResults.Clear();
     eventSystem.RaycastAll(pointerEventData, raycastResults);
     pointerEventData.pointerCurrentRaycast = FindFirstRaycast(raycastResults);
@@ -457,7 +438,6 @@ foreach (KeyValuePair<Pointer, MouseButtonEventData> pe in pointerEvents)
 {
     ...
     // Update the press state
-
     PointerEventData.FramePressState framePressState = PointerEventData.FramePressState.NotChanged;
 
     if (pointer.Press && !lastPressState[pointer])
@@ -476,8 +456,8 @@ foreach (KeyValuePair<Pointer, MouseButtonEventData> pe in pointerEvents)
 foreach (KeyValuePair<Pointer, MouseButtonEventData> pe in pointerEvents)
 {
     ...
-    // Call the processes of a parent class
 
+    // Call the processes of a parent class
     ProcessMove(pointerEventData);
     ProcessDrag(pointerEventData);
     ProcessMousePress(buttonEventData);
@@ -526,12 +506,12 @@ IEnumerator Start()
     ...
     for (int p = 0; p < numberOfPages; p++)
     {
-         ... 
-         for (int i = 0; i < imagesOnCurrentPage; i++)
-         {
-              ...     
-              currentImageItem.onClick.AddListener(delegate { CurrentImageItem_OnClick(currentImageItem); });
-          }
+        ... 
+        for (int i = 0; i < imagesOnCurrentPage; i++)
+        {
+            ...     
+            currentImageItem.onClick.AddListener(delegate { CurrentImageItem_OnClick(currentImageItem); });
+        }
     }
 }
 ```
@@ -608,7 +588,6 @@ case ViewMode.Preview:
             canvasGroup.alpha = Mathf.Lerp(0, 1, shift);
 
             selectedItem.Rect.sizeDelta = Vector2.Lerp(startRectSize, defaultSize, shift);
-
             selectedItem.Rect.anchoredPosition = Vector2.Lerp(startAnchorPosition, viewRectAnchor, shift);
             selectedItem.Rect.localRotation = Quaternion.Lerp(startRotation, Quaternion.identity, shift);
             selectedItem.Rect.localScale = Vector3.Lerp(startScale, Vector3.one, shift);
@@ -617,9 +596,11 @@ case ViewMode.Preview:
         {
             // Make the image a child of the content
             selectedItem.transform.SetParent(content, true);
+
             // Return interactivity to all elements
             selectedItem.ExitViewMode();
             canvasGroup.interactable = true;
+
              // Discard the selected image and stop the animation
             selectedItem = null;
             animated = false;
@@ -628,7 +609,12 @@ case ViewMode.Preview:
     else
     {
         if (scrollT < 1)
-        ...
+        {
+            scrollT += Time.deltaTime * scrollSpeed;
+            scrollRect.horizontalScrollbar.value = Mathf.Lerp(startScroll, scrollStep * currentPage, animationCurve.Evaluate(scrollT));
+        }
+        else
+            scrollRect.horizontalScrollbar.interactable = true;
     }
     break;
 ```

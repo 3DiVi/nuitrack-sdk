@@ -32,7 +32,7 @@ if( DEFINED CSHARP_MONO_FOUND )
 endif( DEFINED CSHARP_MONO_FOUND )
 
 unset( CSHARP_MONO_VERSIONS CACHE ) # Clear versions
-if( WIN32 )
+if( WIN32 AND NOT CMAKE_CROSSCOMPILING)
   # Search for Mono on Win32 systems
   # See http://mono-project.com/OldReleases and http://www.go-mono.com/mono-downloads/download.html
   set( csharp_mono_bin_dirs )
@@ -103,7 +103,7 @@ if( WIN32 )
     set( CSHARP_MONO_FOUND 1 CACHE INTERNAL "Boolean indicating if C# Mono was found" )
   endforeach( csharp_mono_bin_dir )
 
-else( UNIX )
+else( UNIX OR CMAKE_CROSSCOMPILING )
   # Search for Mono on non-Win32 systems
   set( chsarp_mono_names "mcs" "mcs.exe" "dmcs" "dmcs.exe" "smcs" "smcs.exe" "gmcs" "gmcs.exe" )
   set(

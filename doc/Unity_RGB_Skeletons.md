@@ -7,7 +7,7 @@ You can find the finished project in **Nuitrack SDK: Unity 3D → NuitrackSDK.un
 To create this project, you'll need just a couple of things:
 * [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
-* Unity 2017.4 or higher
+* Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D
 
 <p align="center">
 <img width="500" src="img/Urgb_1.gif">
@@ -17,15 +17,14 @@ To create this project, you'll need just a couple of things:
 
 1. Create a new project.
 2. Download **Nuitrack SDK** and import **NuitrackSDK.unitypackage** to your project (**Assets → Import Package → Custom Package...**) except **Tutorials/RGBandSkeletons/FinalAssets** and **Tutorials/FaceTracker/Final Assets**. 
-3. Drag-and-drop the **NuitrackScripts** prefab to the scene (this prefab allows you to use Nuitrack modules in your project). 
-4. In the **Nuitrack Manager** section of the **NuitrackScripts** prefab, tick the necessary modules: **Color Module On** (to display the RGB image), **Skeleton Tracker Module On** (for skeleton tracking, as you can guess).
+3. Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="400" src="img/Urgb_2.png">
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
-5. Create a new script and name it `DrawColorFrame`. In this script, determine the output of an RGB image to the scene. 
-6. Create a public field `RawImage background` to display the image. In `Start`, subscribe to update each color frame. 
+4. Create a new script and name it `DrawColorFrame`. In this script, determine the output of an RGB image to the scene. 
+5. Create a public field `RawImage background` to display the image. In `Start`, subscribe to update each color frame. 
 
 ```cs
 using UnityEngine;
@@ -33,18 +32,18 @@ using UnityEngine.UI;
  
 public class DrawColorFrame : MonoBehaviour
 {
-	[SerializeField] RawImage background;
+    [SerializeField] RawImage background;
  
-	void Start()
-	{
-		NuitrackManager.onColorUpdate += DrawColor;
-	}
+    void Start()
+    {
+        NuitrackManager.onColorUpdate += DrawColor;
+    }
 }
 ```
 
 _**Note:** Why do we use `RawImage` instead of `Image` in this project? `Image` is used for displaying Sprites only. `RawImage` is used for displaying any type of texture. Sprites are easier to work with, but `Sprite.Create` is an expensive operation. It takes a comparatively long time and uses a lot of memory. By using a `RawImage` you can skip the step of creating a sprite. `RawImage` accepts the texture, which we've created with `ToTexture2D()` from the data received from Nuitrack (frame)._
 
-7. Unsubscribe from the `onColorUpdate` event.
+6. Unsubscribe from the `onColorUpdate` event.
 
 ```cs
 ...
@@ -55,42 +54,42 @@ _**Note:** Why do we use `RawImage` instead of `Image` in this project? `Image` 
 ...
 ```
 
-8. In the `DrawColor` method, get the texture of `ColorFrame` and pass it to the `background` texture.
+7. In the `DrawColor` method, get the texture of `ColorFrame` and pass it to the `background` texture.
 
 ```cs
 public class DrawColorFrame : MonoBehaviour
 {
-...
-	void DrawColor(nuitrack.ColorFrame frame)
-	{ 
-		background.texture = frame.ToTexture2D();
-	}
+    ...
+    void DrawColor(nuitrack.ColorFrame frame)
+    { 
+        background.texture = frame.ToTexture2D();
+    }
 }
 ```
 
 _**Note**: If you observe memory leak, try to delete the old texture (for example, using `Destroy(oldTexture)`) before you display the new texture._
 
-9. Create a new **Canvas** on the scene (**Create → UI → Canvas**). After this, create a child object to the **Canvas**: **Create → UI → Raw Image**. The received texture (the image from a sensor) is stretched across the **Raw Image**.  
-10. In the **Raw Image** settings, select **Anchor Presets**, press **Alt** and stretch the object across the width and height of the **Canvas**.
+8. Create a new **Canvas** on the scene (**Create → UI → Canvas**). After this, create a child object to the **Canvas**: **Create → UI → Raw Image**. The received texture (the image from a sensor) is stretched across the **Raw Image**.  
+9. In the **Raw Image** settings, select **Anchor Presets**, press **Alt** and stretch the object across the width and height of the **Canvas**.
 
 <p align="center">
 <img width="250" src="img/Urgb_3.png">
 </p>
 
-11. Rotate **RawImage** by 180 degrees along X (otherwise, the output image will be inverted).
+10. Rotate **RawImage** by 180 degrees along X (otherwise, the output image will be inverted).
 
 <p align="center">
 <img width="400" src="img/Urgb_4.png">
 </p>
 
-12. Rename **Canvas** to **ColorFrameCanvas** and add the `DrawColorFrame` script to it. 
-13. Drag-and-drop the **Raw Image** to the **Background** field of the script. 
+11. Rename **Canvas** to **ColorFrameCanvas** and add the `DrawColorFrame` script to it. 
+12. Drag-and-drop the **Raw Image** to the **Background** field of the script. 
 
 <p align="center">
 <img width="400" src="img/Urgb_5.png">
 </p>
 
-14. Run the project. You should see a color image from the sensor displayed on the screen. 
+13. Run the project. You should see a color image from the sensor displayed on the screen. 
 
 <p align="center">
 <img width="500" src="img/Urgb_6.gif">
@@ -110,9 +109,9 @@ using UnityEngine;
  
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-	public bool autoProcessing = true;
-	[SerializeField] GameObject jointPrefab = null, connectionPrefab = null;
-	RectTransform parentRect;
+    public bool autoProcessing = true;
+    [SerializeField] GameObject jointPrefab = null, connectionPrefab = null;
+    RectTransform parentRect;
 }
 ```
 
@@ -121,29 +120,29 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	nuitrack.JointType[] jointsInfo = new nuitrack.JointType[]
-	{
-		nuitrack.JointType.Head,
-		nuitrack.JointType.Neck,
-		nuitrack.JointType.LeftCollar,
-		nuitrack.JointType.Torso,
-		nuitrack.JointType.Waist,
-		nuitrack.JointType.LeftShoulder,
-		nuitrack.JointType.RightShoulder,
-		nuitrack.JointType.LeftElbow,
-		nuitrack.JointType.RightElbow,
-		nuitrack.JointType.LeftWrist,
-		nuitrack.JointType.RightWrist,
-		nuitrack.JointType.LeftHand,
-		nuitrack.JointType.RightHand,
-		nuitrack.JointType.LeftHip,
-		nuitrack.JointType.RightHip,
-		nuitrack.JointType.LeftKnee,
-		nuitrack.JointType.RightKnee,
-		nuitrack.JointType.LeftAnkle,
-		nuitrack.JointType.RightAnkle
-	};
+    ...
+    nuitrack.JointType[] jointsInfo = new nuitrack.JointType[]
+    {
+        nuitrack.JointType.Head,
+        nuitrack.JointType.Neck,
+        nuitrack.JointType.LeftCollar,
+        nuitrack.JointType.Torso,
+        nuitrack.JointType.Waist,
+        nuitrack.JointType.LeftShoulder,
+        nuitrack.JointType.RightShoulder,
+        nuitrack.JointType.LeftElbow,
+        nuitrack.JointType.RightElbow,
+        nuitrack.JointType.LeftWrist,
+        nuitrack.JointType.RightWrist,
+        nuitrack.JointType.LeftHand,
+        nuitrack.JointType.RightHand,
+        nuitrack.JointType.LeftHip,
+        nuitrack.JointType.RightHip,
+        nuitrack.JointType.LeftKnee,
+        nuitrack.JointType.RightKnee,
+        nuitrack.JointType.LeftAnkle,
+        nuitrack.JointType.RightAnkle
+    };
 }
 ```
 
@@ -152,28 +151,28 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	nuitrack.JointType[,] connectionsInfo = new nuitrack.JointType[,]
-	{ 
-		{nuitrack.JointType.Neck,		nuitrack.JointType.Head},
-		{nuitrack.JointType.LeftCollar,		nuitrack.JointType.Neck},
-		{nuitrack.JointType.LeftCollar, 	nuitrack.JointType.LeftShoulder},
-		{nuitrack.JointType.LeftCollar, 	nuitrack.JointType.RightShoulder},
-		{nuitrack.JointType.LeftCollar, 	nuitrack.JointType.Torso},
-		{nuitrack.JointType.Waist,		nuitrack.JointType.Torso},
-		{nuitrack.JointType.Waist,		nuitrack.JointType.LeftHip},
-		{nuitrack.JointType.Waist,		nuitrack.JointType.RightHip},
-		{nuitrack.JointType.LeftShoulder, 	nuitrack.JointType.LeftElbow},
-		{nuitrack.JointType.LeftElbow, 		nuitrack.JointType.LeftWrist},
-		{nuitrack.JointType.LeftWrist, 		nuitrack.JointType.LeftHand},
-		{nuitrack.JointType.RightShoulder, 	nuitrack.JointType.RightElbow},
-		{nuitrack.JointType.RightElbow, 	nuitrack.JointType.RightWrist},
-		{nuitrack.JointType.RightWrist, 	nuitrack.JointType.RightHand},
-		{nuitrack.JointType.LeftHip, 		nuitrack.JointType.LeftKnee},
-		{nuitrack.JointType.LeftKnee, 		nuitrack.JointType.LeftAnkle},
-		{nuitrack.JointType.RightHip, 		nuitrack.JointType.RightKnee},
-		{nuitrack.JointType.RightKnee, 		nuitrack.JointType.RightAnkle}
-	};
+    ...
+    nuitrack.JointType[,] connectionsInfo = new nuitrack.JointType[,]
+    { 
+        {nuitrack.JointType.Neck,		nuitrack.JointType.Head},
+        {nuitrack.JointType.LeftCollar,		nuitrack.JointType.Neck},
+        {nuitrack.JointType.LeftCollar, 	nuitrack.JointType.LeftShoulder},
+        {nuitrack.JointType.LeftCollar, 	nuitrack.JointType.RightShoulder},
+        {nuitrack.JointType.LeftCollar, 	nuitrack.JointType.Torso},
+        {nuitrack.JointType.Waist,		nuitrack.JointType.Torso},
+        {nuitrack.JointType.Waist,		nuitrack.JointType.LeftHip},
+        {nuitrack.JointType.Waist,		nuitrack.JointType.RightHip},
+        {nuitrack.JointType.LeftShoulder, 	nuitrack.JointType.LeftElbow},
+        {nuitrack.JointType.LeftElbow, 		nuitrack.JointType.LeftWrist},
+        {nuitrack.JointType.LeftWrist, 		nuitrack.JointType.LeftHand},
+        {nuitrack.JointType.RightShoulder, 	nuitrack.JointType.RightElbow},
+        {nuitrack.JointType.RightElbow, 	nuitrack.JointType.RightWrist},
+        {nuitrack.JointType.RightWrist, 	nuitrack.JointType.RightHand},
+        {nuitrack.JointType.LeftHip, 		nuitrack.JointType.LeftKnee},
+        {nuitrack.JointType.LeftKnee, 		nuitrack.JointType.LeftAnkle},
+        {nuitrack.JointType.RightHip, 		nuitrack.JointType.RightKnee},
+        {nuitrack.JointType.RightKnee, 		nuitrack.JointType.RightAnkle}
+    };
 }
 ```
 
@@ -182,9 +181,9 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	List<RectTransform> connections;
-	Dictionary<nuitrack.JointType, RectTransform> joints;
+    ...
+    List<RectTransform> connections;
+    Dictionary<nuitrack.JointType, RectTransform> joints;
 }
 ```
 
@@ -193,12 +192,12 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	void Start()
-	{
-		CreateSkeletonParts();
-		parentRect = GetComponent<RectTransform>();
-	}
+    ...
+    void Start()
+    {
+        CreateSkeletonParts();
+        parentRect = GetComponent<RectTransform>();
+    }
 }
 ```
 
@@ -207,35 +206,35 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	void CreateSkeletonParts()
-	{
-		joints = new Dictionary<nuitrack.JointType, RectTransform>();
+    ...
+    void CreateSkeletonParts()
+    {
+        joints = new Dictionary<nuitrack.JointType, RectTransform>();
  
-		for (int i = 0; i < jointsInfo.Length; i++)
-		{
-			if (jointPrefab != null)
-			{
-				GameObject joint = Instantiate(jointPrefab, transform);
-				joint.SetActive(false);
-				RectTransform jointRectTransform = joint.GetComponent<RectTransform>();
-				joints.Add(jointsInfo[i], jointRectTransform);
-			}
-		}
+        for (int i = 0; i < jointsInfo.Length; i++)
+        {
+            if (jointPrefab != null)
+            {
+                GameObject joint = Instantiate(jointPrefab, transform);
+                joint.SetActive(false);
+                RectTransform jointRectTransform = joint.GetComponent<RectTransform>();
+                joints.Add(jointsInfo[i], jointRectTransform);
+            }
+        }
  
-		connections = new List<RectTransform>();
+        connections = new List<RectTransform>();
  
-		for (int i = 0; i < connectionsInfo.GetLength(0); i++)
-		{
-			if (connectionPrefab != null)
-			{
-				GameObject connection = Instantiate(connectionPrefab, transform);
-				connection.SetActive(false);
-				RectTransform connectionRectTransform = connection.GetComponent<RectTransform>();
-				connections.Add(connectionRectTransform);
-			}
-		}
-	}
+        for (int i = 0; i < connectionsInfo.GetLength(0); i++)
+        {
+            if (connectionPrefab != null)
+            {
+                GameObject connection = Instantiate(connectionPrefab, transform);
+                connection.SetActive(false);
+                RectTransform connectionRectTransform = connection.GetComponent<RectTransform>();
+                connections.Add(connectionRectTransform);
+            }
+        }
+    }
 }
 ```
 
@@ -244,12 +243,12 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	public void ProcessSkeleton(nuitrack.Skeleton skeleton)
-	{
-		if (skeleton == null)
-			return;
-	}
+    ...
+    public void ProcessSkeleton(UserData user)
+    {
+        if (user == null || user.Skeleton == null)
+            return;
+    }
 }
 ```
 
@@ -258,25 +257,25 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	public void ProcessSkeleton(nuitrack.Skeleton skeleton)
-	{
-		for (int i = 0; i < jointsInfo.Length; i++)
-		{
-			nuitrack.Joint j = skeleton.GetJoint(jointsInfo[i]);
-			if (j.Confidence > 0.01f)
-			{
-				joints[jointsInfo[i]].gameObject.SetActive(true);
-				// Bring proj coordinates from Nuitrack into accordance with screen coordinates
-				Vector2 newPosition = new Vector2(parentRect.rect.width * (Mathf.Clamp01(j.Proj.X) - 0.5f), parentRect.rect.height * (0.5f - Mathf.Clamp01(j.Proj.Y)));
-				joints[jointsInfo[i]].anchoredPosition = newPosition;
-			}
-			else
-			{
-				joints[jointsInfo[i]].gameObject.SetActive(false);
-			}
-		}
-	}
+    ...
+    public void ProcessSkeleton(UserData user)
+    {
+        ...
+        for (int i = 0; i < jointsInfo.Length; i++)
+        {
+            UserData.SkeletonData.Joint j = user.Skeleton.GetJoint(jointsInfo[i]);
+
+            if (j.Confidence > 0.01f)
+            {
+                joints[jointsInfo[i]].gameObject.SetActive(true);
+                joints[jointsInfo[i]].anchoredPosition = j.AnchoredPosition(parentRect.rect, joints[jointsInfo[i]]);
+            }
+            else
+            {
+                joints[jointsInfo[i]].gameObject.SetActive(false);
+            }
+        }
+    }
 }
 ```
 
@@ -291,43 +290,44 @@ If any joint required to create the connection is not displayed, the connection 
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-...
-	public void ProcessSkeleton(nuitrack.Skeleton skeleton)
-	{
-		for (int i = 0; i < connectionsInfo.GetLength(0); i++)
-		{
-			RectTransform startJoint = joints[connectionsInfo[i, 0]];
-			RectTransform endJoint = joints[connectionsInfo[i, 1]];
+    ...
+    public void ProcessSkeleton(nuitrack.Skeleton skeleton)
+    {
+        ...
+        for (int i = 0; i < connectionsInfo.GetLength(0); i++)
+        {
+            RectTransform startJoint = joints[connectionsInfo[i, 0]];
+            RectTransform endJoint = joints[connectionsInfo[i, 1]];
 
-			if (startJoint.gameObject.activeSelf && endJoint.gameObject.activeSelf)
-			{
-				connections[i].gameObject.SetActive(true);
+            if (startJoint.gameObject.activeSelf && endJoint.gameObject.activeSelf)
+            {
+                connections[i].gameObject.SetActive(true);
 
-				connections[i].anchoredPosition = startJoint.anchoredPosition;
-				connections[i].transform.right = endJoint.anchoredPosition - startJoint.anchoredPosition;
-				float distance = Vector3.Distance(endJoint.anchoredPosition, startJoint.anchoredPosition);
-				connections[i].transform.localScale = new Vector3(distance, 1f, 1f);
-			}
-			else
-			{
-				connections[i].gameObject.SetActive(false);
-			}
-		}
-	}
+                connections[i].anchoredPosition = startJoint.anchoredPosition;
+                connections[i].transform.right = endJoint.position - startJoint.position;
+                float distance = Vector3.Distance(endJoint.anchoredPosition, startJoint.anchoredPosition);
+                connections[i].transform.localScale = new Vector3(distance, 1f, 1f);
+            }
+            else
+            {
+                connections[i].gameObject.SetActive(false);
+            }
+        }
+    }
 }
 ```
 
-14. In `Update`, if `autoProcessing` is set to `true`, call the `ProcessSkeleton` and pass the parameters `CurrentUserTracker.CurrentSkeleton`. 
+14. In `Update`, if `autoProcessing` is set to `true`, call the `ProcessSkeleton` and pass the parameters `NuitrackManager.Users.Current`. 
 
 ```cs
 public class SimpleSkeletonAvatar : MonoBehaviour
 {
-…    
-	void Update()
-	{
-		if (autoProcessing)
-			ProcessSkeleton(CurrentUserTracker.CurrentSkeleton);
-	}
+    ...
+    void Update()
+    {
+        if (autoProcessing)
+            ProcessSkeleton(NuitrackManager.Users.Current);
+    }
 }
 ```
 
@@ -368,11 +368,11 @@ using System.Collections.Generic;
  
 public class SkeletonController : MonoBehaviour
 {
-	[Range(0, 6)]
-	public int skeletonCount = 6;         
-	[SerializeField] SimpleSkeletonAvatar skeletonAvatar;
+    [Range(0, 6)]
+    public int skeletonCount = 6;         
+    [SerializeField] SimpleSkeletonAvatar skeletonAvatar;
  
-	List<SimpleSkeletonAvatar> avatars = new List<SimpleSkeletonAvatar>();
+    List<SimpleSkeletonAvatar> avatars = new List<SimpleSkeletonAvatar>();
 }
 ```
 
@@ -383,86 +383,69 @@ _**Note:** We set the range from 0 to 6 because Nuitrack tracks up to 6 skeleton
 ```cs
 public class SkeletonController : MonoBehaviour
 {    
-...
-	void Start()
-	{
-		for (int i = 0; i < skeletonCount; i++)
-		{
-			GameObject newAvatar = Instantiate(skeletonAvatar.gameObject, transform, true);
-			SimpleSkeletonAvatar simpleSkeleton = 	newAvatar.GetComponent<SimpleSkeletonAvatar>();
-			simpleSkeleton.autoProcessing = false;
-			avatars.Add(simpleSkeleton);
-		}
-		NuitrackManager.SkeletonTracker.SetNumActiveUsers(skeletonCount);
-	}
-}
-```
-
-4. Create the `OnSkeletonUpdate` method, which accepts all the info about the received skeletons (`skeletonData`). Loop over all the spawned skeletons depending on the number of tracked skeletons specified in Unity. If there is a skeleton received from Nuitrack for a skeleton avatar, it's processed and displayed, otherwise, it's hidden. 
-
-```cs
-public class SkeletonController : MonoBehaviour
-{    
-...
-	void OnSkeletonUpdate(SkeletonData skeletonData)
-	{
-		for (int i = 0; i < avatars.Count; i++)
-		{
-			if (i < skeletonData.Skeletons.Length)
-			{
-				avatars[i].gameObject.SetActive(true);
-				avatars[i].ProcessSkeleton(skeletonData.Skeletons[i]);
-			}
-			else
-			{
-				avatars[i].gameObject.SetActive(false);
-			}
-		}
-	}
-}
-```
-
-5. In the `Start` method, subscribe to `OnSkeletonUpdateEvent`, which is called each time (each frame) the skeleton is updated. Update the skeleton info. In the `OnDestroy` method, unsubscribe from `OnSkeletonUpdateEvent`. 
-
-```cs
-public class SkeletonController : MonoBehaviour
-{    
-    ...    
+    ...
     void Start()
     {
-        ...
-        NuitrackManager.onSkeletonTrackerUpdate += OnSkeletonUpdate;
+        for (int i = 0; i < skeletonCount; i++)
+        {
+            GameObject newAvatar = Instantiate(skeletonAvatar.gameObject, transform, true);
+            SimpleSkeletonAvatar simpleSkeleton = newAvatar.GetComponent<SimpleSkeletonAvatar>();
+            simpleSkeleton.autoProcessing = false;
+            avatars.Add(simpleSkeleton);
+        }
+        NuitrackManager.SkeletonTracker.SetNumActiveUsers(skeletonCount);
     }
-    ...
-    private void OnDestroy()
-    {
-        NuitrackManager.onSkeletonTrackerUpdate -= OnSkeletonUpdate;
-    }
-    ...
 }
 ```
 
-6. Save the **SimpleSkeletonAvatar** prefab and delete it from the scene. 
-7. Add the `SkeletonController` script to `SkeletonsCanvas`. 
-8. Set the desired number of tracked skeletons with a slider. 
+4. Create the `Update` method, which accepts all the info about the received users. Loop over all the spawned skeletons depending on the number of tracked skeletons specified in Unity. If there is a skeleton received from Nuitrack for a skeleton avatar, it's processed and displayed, otherwise, it's hidden. 
+
+```cs
+public class SkeletonController : MonoBehaviour
+{    
+    ...
+    void Update()
+    {
+        for (int i = 0; i < avatars.Count; i++)
+        {
+            int id = i + 1;
+            UserData user = NuitrackManager.Users.GetUser(id);
+
+            if (user != null && user.Skeleton != null)
+            {
+                avatars[i].gameObject.SetActive(true);
+                avatars[i].ProcessSkeleton(user);
+            }
+            else
+            {
+                avatars[i].gameObject.SetActive(false);
+            }
+        }
+    }
+}
+```
+
+5. Save the **SimpleSkeletonAvatar** prefab and delete it from the scene. 
+6. Add the `SkeletonController` script to `SkeletonsCanvas`. 
+7. Set the desired number of tracked skeletons with a slider. 
 
 <p align="center">
 <img width="400" src="img/Urgb_10.png">
 </p>
 
-9. Drag-and-drop the **SimpleSkeletonAvatar** prefab to the **Skeleton Avatar** field of the `SkeletonController` script.
+8. Drag-and-drop the **SimpleSkeletonAvatar** prefab to the **Skeleton Avatar** field of the `SkeletonController` script.
 
 <p align="center">
 <img width="400" src="img/Urgb_11.jpg">
 </p>
 
-10. Enable *asynchronous initialization* of Nuitrack. This is necessary to avoid short-term freezing when you run your Unity project with Nuitrack. If asynchronous initialization is turned on, the scene and Nuitrack are initialized in different threads. As a result, the project starts without any lags. To do this, go to the **Nuitrack Manager** component and tick **Async Init**. Disable the **Color Frame Canvas** and **Skeletons Canvas** prefabs and set them active only after Nuitrack is initialized (see the image below). 
+9. **Optional:** Enable *asynchronous initialization* of Nuitrack. This is necessary to avoid short-term freezing when you run your Unity project with Nuitrack. If asynchronous initialization is turned on, the scene and Nuitrack are initialized in different threads. As a result, the project starts without any lags. To do this, go to the **Nuitrack Manager** component and tick **Async Init**. Disable the **Color Frame Canvas** and **Skeletons Canvas** prefabs and set them active only after Nuitrack is initialized (see the image below). 
 
 <p align="center">
 <img width="700" src="img/async_init.png">
 </p>
 
-11. Run the project. Now the skeletons of several users are tracked and displayed on the RGB image. Congratulations! 
+10. Run the project. Now the skeletons of several users are tracked and displayed on the RGB image. Congratulations! 
 
 <p align="center">
 <img width="500" src="img/Urgb_1.gif">

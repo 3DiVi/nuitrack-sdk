@@ -13,7 +13,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 1. As a first step, download and install Nuitrack following our [installation instructions](Install.md). 
 2. Download Unity [from the official website](https://unity3d.com/get-unity/download).
 
-_**Note**: To ensure stable operation of a project, we recommend you to use Unity 2017.4 or higher for Windows and Linux projects and Unity 2017.4 for Android projects._
+_**Note**: To ensure stable operation of a project, we recommend you to use Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D._
 
 3.  Create a new project.
 
@@ -21,23 +21,13 @@ _**Note**: To ensure stable operation of a project, we recommend you to use Unit
 <img width="650" src="img/Ubasic_image1.png">
 </p>
 
-4.  To create a project, select the appropriate platform, for example, Android: **File → Build Settings → Android** and then select **Switch Platform**.
-
-_**Note**: In this tutorial we create an Android project, however, you can create a project using Nuitrack SDK for any platform that you like._
-
-5.  Download and install **SDK** and **JDK**. To do this, select **Edit → Preferences → External Tools** and click **Download** in the relevant sections. After that, your browser will open the web sites, where you can download the required **SDK** and **JDK**.
-
-<p align="center">
-<img width="450" src="img/Ubasic_image3.png">
-</p>
-
-6.  And now, here is the most interesting part that will allow us to create projects with skeleton detection and tracking. Download [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk) and import it to the project (except for the folder **Tutorials/First Project**). To import **Nuitrack SDK**, select **Assets → Import Package → Custom Package → {Root}/NuitrackSDK/Unity3d/Nuitrack.unitypackage** by right-clicking in the **Project** tab.
+4.  And now, here is the most interesting part that will allow us to create projects with skeleton detection and tracking. Download [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk) and import it to the project (except for the folder **Tutorials/First Project**). To import **Nuitrack SDK**, select **Assets → Import Package → Custom Package → NuitrackSDK.unitypackage** by right-clicking in the **Project** tab.
 
 _**Note**:_  
 **What sensors can I use with my app?**  
 *You can use any of the supported sensors for your application (see the list of supported sensors at the [Nuitrack official website](https://nuitrack.com/#sensors)). For example, you can use [**TVico**](https://tvico.io/), which is an interactive Android computer with pre-installed Nuitrack. You can find the [TVico User Guide](/doc/TVico_User_Guide.md) in our documentation.*
 
-7.  As a result, you will have a configured development environment with all the necessary components for the build.
+5.  As a result, you will have a configured development environment with all the necessary components for the build.
 
 <p align="center">
 <img width="450" src="img/Ubasic_image2.png">
@@ -55,84 +45,77 @@ _**Note**:_
     
 _**Note**: Do not use numbers when typing in your CompanyName and ProductName._
 
-5.  Also, select minimum API level in this section for correct operation of Nuitrack: **Minimum API Level → Android 4.4 'Kit Kat' (API Level 19)**.
-
 <p align="center">
 <img width="450" src="img/Ubasic_image5.png">
 </p>
 
-_**Note**: To reduce the size of a final .apk file, select **ARMv7** type of architecture in the **Device Filter** section._
-
-6.  Now that everything is set up, let\'s build the project: **File → Build Settings → Build**
+5.  Now that everything is set up, let\'s build the project: **File → Build Settings → Build**
 
 _**Note**_  
 *Hotkeys:*  
 _**Ctrl + Shift + B** - Build Settings_  
 _**Ctrl + B** - Build_  
 
-7.  If the build was successful, a new window will open with your application in the ```.apk``` format, which can be run on the Android device. When you run the app on your device, you will see the image as shown below:
+6.  If the build was successful, a new window will open with your builded App, which can be run on the device. When you run the app on your device, you will see the image as shown below:
 
 <p align="center">
 <img width="450" src="img/Ubasic_image4.png">
 </p>
 
-8.  During the project build, all errors and warnings (if any) are displayed in the **Console**.
+7.  During the project build, all errors and warnings (if any) are displayed in the **Console**.
 
-_**Note**: After the first build, when you have a ready-made .apk file, you can perform build and installation on the device in one click using **Ctrl + B**. To do this, activate **Developer Mode** in the settings of the mobile device and connect it to the computer via USB. Then press **Ctrl + B** in Unity. As a result, the project will be built, installed and launched on your mobile device._
+_**Note**: After the first build, when you have a ready-made App, you can perform build and installation on the device in one click using **Ctrl + B**. (To do this on Android, activate **Developer Mode** in the settings of the mobile device and connect it to the computer via USB.) Then press **Ctrl + B** in Unity. As a result, the project will be built, installed and launched on your device._
 
 ## Initializing the Nuitrack SDK, Setting up the Scene and Checking the Skeleton Detection
 
-1.  Now that your environment is set up, you're set to start doing work. In the **Project** tab, select **Asset → Nuitrack → Prefabs** and drag-and-drop the **NuitrackScripts.prefab** object to the scene or to the **Hierarchy** tab. There must be only one object in the scene. This object contains the scripts that interact with Nuitrack.
-
-2.  Set up the characteristics of the **NuitrackScripts** object by right-clicking on it. Check **Skeleton Tracker Module On** in the **Nuitrack Manager** section in the **Inspector** tab. This very module takes care of detection and tracking of a user's skeleton.
+1.  Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="550" src="img/Ubasic_image7.png">
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
-As you can see, there are several more modules in this field. We'll cover them in the following tutorials.
-
-3.  Create an empty C\# Script: **Create C\# Script** by right-clicking in the Project tab.
+2.  Create an empty C\# Script: **Create C\# Script** by right-clicking in the Project tab.
     
-4.  To get information about joints, we first need to detect the user. First, let's check whether the user is in the frame or not using the ```CurrentUserTracker.CurrentUser! = 0``` condition. The result will be displayed as a 'User found' or 'User not found' message, which is stored in the ```message``` variable and displayed by the ```OnGUI()``` method. See the link at the end of the document to learn more about Execution Order of Event Functions.
+3.  To get information about joints, we first need to detect the user. First, let's check whether the user is in the frame or not using the ```NuitrackManager.Users.Current != null && NuitrackManager.Users.Current.Skeleton != null``` condition. The result will be displayed as a 'User found' or 'User not found' message, which is stored in the ```message``` variable and displayed by the ```OnGUI()``` method. To work with Nuitrack scripts, you need to use the NuitrackSDK namespace. See the link at the end of the document to learn more about Execution Order of Event Functions.
 
 ```cs
 using UnityEngine;
+using NuitrackSDK;
  
-    public class NativeAvatar : MonoBehaviour
+public class NativeAvatar : MonoBehaviour
+{
+    string message = "";
+        
+    void Update()
     {
-        string message = "";
-        
-        void Update()
+        if (NuitrackManager.Users.Current != null && NuitrackManager.Users.Current.Skeleton != null)
         {
-            if (CurrentUserTracker.CurrentUser != 0)
-            {
-                message = "User found";
-            }
-            else
-            {
-                message = "User not found";
-            }
+            message = "User found";
         }
-        
-        // Display the message on the screen
-        void OnGUI()
+        else
         {
-            GUI.color = Color.red;
-            GUI.skin.label.fontSize = 50;
-            GUILayout.Label(message);
+            message = "User not found";
         }
     }
+        
+    // Display the message on the screen
+    void OnGUI()
+    {
+        GUI.color = Color.red;
+        GUI.skin.label.fontSize = 50;
+        GUILayout.Label(message);
+    }
+}
 
 ```
 _**Note**: Save changes in the script code so that they take effect in the Unity editor._
 
-5.  Create an empty object on the scene so that Unity can execute **NativeAvatar.cs**: **GameObject → Create Empty** and then
+4.  Create an empty object on the scene so that Unity can execute **NativeAvatar.cs**: **GameObject → Create Empty** and then
 drag-and-drop the script to that object.
 
-6.  Build the project (Ctrl + B) and check the app operation on your device.
+5.  Build the project (Ctrl + B) and check the app operation on your device.
 
-7.  If everything is done correctly, at this stage the user will be detected. Depending on the result, you will see a message 'User found' or 'User not found' in the scene in the upper right corner. Time to move onto more complex things!
+6.  If everything is done correctly, at this stage the user will be detected. Depending on the result, you will see a message 'User found' or 'User not found' in the scene in the upper right corner. Time to move onto more complex things!
 
 <p align="center">
 <img width="450" src="img/Ubasic_image6.png">
@@ -187,30 +170,24 @@ void Start()
 
 1.  As soon as we created the objects for visualization of the joints, let's match their positions with the positions of the joints of a real user's skeleton.
 
-2.  Get data on the detected skeleton using ```CurrentUserTracker.CurrentSkeleton```. After this, we process the
+2.  Get data on the detected skeleton using ```NuitrackManager.Users.Current.Skeleton```. After this, we process the
 information about the joints in the loop.
 
 3.  To receive data on the required joint, call the ```GetJoint``` function from the obtained ```skeleton``` specifying the ```typeJoint[q]```.
 
-4.  Let's calculate the joint position by calling the ```ToVector3()``` function from the current joint: ```Vector3 newPosition = 0.001f*joint.ToVector3()```. To learn more about Vectors in Unity, see the link at the end of this tutorial.
-
-_**Note**: Keep in mind that 1 Unity unit is about 1 m, so we need to adjust the obtained data. To do that, multiply the received values by 0.001 (convert m to mm)._
-
-5.  Set the calculated position ```newPosition``` to the ```CreatedJoint\[q\]``` object, which is matched with the ```typeJoint \[q\]:CreatedJoint\[q\].transform.localPosition = newPosition```.
+4.  Let's get the position of this joint and set it for ```CreatedJoint[q].transform.localPosition```
 
 ```cs
 void Update()
 {
-    if (CurrentUserTracker.CurrentUser != 0)
+    if (NuitrackManager.Users.Current != null && NuitrackManager.Users.Current.Skeleton != null)
     {
-        nuitrack.Skeleton skeleton = CurrentUserTracker.CurrentSkeleton;
         message = "Skeleton found";
         
         for (int q = 0; q < typeJoint.Length; q++)
         {
-            nuitrack.Joint joint = skeleton.GetJoint(typeJoint[q]);
-            Vector3 newPosition = 0.001f * joint.ToVector3();
-            CreatedJoint[q].transform.localPosition = newPosition;
+            UserData.SkeletonData.Joint joint = NuitrackManager.Users.Current.Skeleton.GetJoint(typeJoint[q]);
+            CreatedJoint[q].transform.localPosition = joint.Position;
         }
     }
     else
@@ -220,9 +197,9 @@ void Update()
 }
 ```
 
-_**Note**: For correct detection of the user, the camera in Unity should be set at a distance of approximately 2-3 m from the object, which contains the script. Make sure the camera is facing the object._
+_**Note**: For correct detection of the user, it is desirable to be about two meters from the sensor.
 
-6.  And now we are down to the final stretch! Build the project and run the app on your mobile device. Now, if everything was done properly, your skeleton will be detected, tracked and displayed in the app. Good job!
+5.  And now we are down to the final stretch! Build the project and run the app on your mobile device. Now, if everything was done properly, your skeleton will be detected, tracked and displayed in the app. Good job!
 
 <p align="center">
 <img width="450" src="img/Ubasic_image10.gif">

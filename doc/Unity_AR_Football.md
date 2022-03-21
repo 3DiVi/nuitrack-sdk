@@ -2,7 +2,7 @@
 
 In this tutorial you'll learn how to create an interesting multiplayer game using **ARCore** (for Android) or **ARKit** (for iOS) and **Nuitrack** - we are excited to present you **AR Football**! At least two players are needed for this game (the more the better). One player - "a striker" - points his Android device's camera at any surface and after that a grid appears on suitable surfaces that you can use to place an AR object, which is the goal with a goalkeeper. The striker's goal is to throw the ball and beat the goalkeeper. In turn, the other player - "the goalkeeper" - should catch the ball. The goalkeeper sees the goal on the TV screen or monitor. Several players can play as strikers. Nuitrack tracks the movement of players, the data is synchronized and sent via Wi-Fi network. 
 
-You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → AR Football**
+You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → AR Football** in **Finish Assets.zip** (just unzip in **AR Football** folder).
 
 <p align="center">
 <img width="500" src="img/UARCore_1.gif">
@@ -15,8 +15,8 @@ Hardware:
 * [ARCore-](https://developers.google.com/ar/discover/supported-devices) or [ARKit-compatible device](https://developer.apple.com/documentation/arkit/verifying_device_support_and_user_permission)
 
 Software:
-* **Nuitrack SDK** (we’ve built this project with v1.3.3)
-* **Unity** (2017.4 or higher)
+* **Nuitrack SDK** [NuitrackSDK.unitypackage](https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D)
+* **Unity** version from [Readme](https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D)
 
 ## Setting Up the Project  
 
@@ -65,13 +65,13 @@ using UnityEngine.Networking;
 
 public class Environment : MonoBehaviour 
 {
-	public Transform aim;
-	[SerializeField] Vector3 clientSize;
+    public Transform aim;
+    [SerializeField] Vector3 clientSize;
 
-	void Start()
-	{
-		transform.localScale = clientSize;
-	}
+    void Start()
+    {
+        transform.localScale = clientSize;
+    }
 }
 ```
 
@@ -115,15 +115,15 @@ Then, go to the Unity editor and set the corresponding components in the fields 
 ```cs
 public void Update()
 {
-	// Hide snackbar when currently tracking at least one plane.
-	allPlanes = planeManager.trackables;
+    // Hide snackbar when currently tracking at least one plane.
+    allPlanes = planeManager.trackables;
 
-	bool showSearchingUI = true;
+    bool showSearchingUI = true;
 
-	showSearchingUI = allPlanes.count == 0;
+    showSearchingUI = allPlanes.count == 0;
 
-	// Hide or show the inscription "Searching for surfaces ..."
-	searchingForPlaneUI.SetActive(showSearchingUI);
+    // Hide or show the inscription "Searching for surfaces ..."
+    searchingForPlaneUI.SetActive(showSearchingUI);
 }
 ```
 
@@ -134,7 +134,7 @@ public void Update()
 Touch touch;
 if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
 {
-	return;
+    return;
 }
 ```
 
@@ -220,18 +220,18 @@ Since several players can participate in our game (one goalkeeper and several st
 ```cs
 using UnityEngine.Networking;
 
-public class QuickConnectNetworkDiscovery : NetworkDiscovery {
+public class QuickConnectNetworkDiscovery : NetworkDiscovery 
+{
+    public override void OnReceivedBroadcast(string fromAddress, string data)
+    {
+        base.OnReceivedBroadcast(fromAddress, data);
 
-	public override void OnReceivedBroadcast(string fromAddress, string data)
-	{
-		base.OnReceivedBroadcast(fromAddress, data);
- 
-		if(NetworkManager.singleton.IsClientConnected()) 
-			return;
- 
-		NetworkManager.singleton.networkAddress = fromAddress; // Found server IP is added to Network Manager.
-		NetworkManager.singleton.StartClient(); // Connection.
-	}
+        if(NetworkManager.singleton.IsClientConnected()) 
+            return;
+
+        NetworkManager.singleton.networkAddress = fromAddress; // Found server IP is added to Network Manager.
+        NetworkManager.singleton.StartClient(); // Connection.
+    }
 }
 ```
 
@@ -265,27 +265,27 @@ public bool isClient; // Select the client or server.
 ```cs
 private void Start()
 {
-	// If it's not a client, create a server.
-	if (isClient == false)
-	{
-		StartServer();
-	}
+    // If it's not a client, create a server.
+    if (isClient == false)
+    {
+        StartServer();
+    }
 }
 
 public void StartClient()
 {
-	FindObjectOfType<NetworkDiscovery>().Initialize();
-	FindObjectOfType<NetworkDiscovery>().StartAsClient();
+    FindObjectOfType<NetworkDiscovery>().Initialize();
+    FindObjectOfType<NetworkDiscovery>().StartAsClient();
 }
 
 void StartServer()
 {
-	FindObjectOfType<NetworkDiscovery>().Initialize();
-	FindObjectOfType<NetworkDiscovery>().StartAsServer();
-	NetworkManager.singleton.StartHost();
+    FindObjectOfType<NetworkDiscovery>().Initialize();
+    FindObjectOfType<NetworkDiscovery>().StartAsServer();
+    NetworkManager.singleton.StartHost();
 
-	GameObject environment = (GameObject)Instantiate(environmentPrefab);
-	NetworkServer.Spawn(environment);
+    GameObject environment = (GameObject)Instantiate(environmentPrefab);
+    NetworkServer.Spawn(environment);
 }
 ```
 
@@ -296,18 +296,18 @@ _**Note:** You can learn more about clients and servers in Unity [here](https://
 ```cs
 private void Update()
 {
-	if (isClient == false)
-	{
-		scoreText.text = “Scores: ” + score.ToString(); // Update the scores counter.
-		connectionsText.text = "connected: " + NetworkManager.singleton.numPlayers; // 	Number of connected clients.
-	}
-	else
-	{
-		if(NetworkManager.singleton.IsClientConnected())
-			connectText.text = "Connected";
-		else
-			connectText.text = "Connect";
-	}
+    if (isClient == false)
+    {
+        scoreText.text = "Scores: " + score.ToString(); // Update the scores counter.
+        connectionsText.text = "connected: " + NetworkManager.singleton.numPlayers; //     Number of connected clients.
+    }
+    else
+    {
+        if(NetworkManager.singleton.IsClientConnected())
+            connectText.text = "Connected";
+        else
+            connectText.text = "Connect";
+    }
 }
 ```
 
@@ -337,10 +337,10 @@ private void Update()
 <img width="450" src="img/UARCore_15.png">
 </p>
 
-19. Add the **NuitrackScripts** prefab from **NuitrackSDK.unitypackage** to the scene. Tick **Skeleton Module On** for skeleton tracking.
+19. Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="450" src="img/UARCore_16.png">
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
 20. Create a **Canvas** on this scene and create two text fields - **ScoreText** and **ConnectedText** - for displaying the scores and connection text. Place the text fields on the **Canvas** the way you want.
@@ -392,31 +392,32 @@ NetworkController networkController;
 
 void Start()
 {
-	// Get a reference to the RigidBody component.
-	rb = GetComponentInChildren<Rigidbody>();
-	// Destroy the ball in 7 seconds after Start.
-	Destroy(gameObject, 7.0f);
-	transform.parent = FindObjectOfType<Environment>().transform;
+    // Get a reference to the RigidBody component.
+    rb = GetComponentInChildren<Rigidbody>();
+    // Destroy the ball in 7 seconds after Start.
+    Destroy(gameObject, 7.0f);
+    transform.parent = FindObjectOfType<Environment>().transform;
 
-	transform.localScale = Vector3.one;
-	transform.localPosition = Vector3.zero;
-	transform.localEulerAngles = Vector3.zero;
+    transform.localScale = Vector3.one;
+    transform.localPosition = Vector3.zero;
+    transform.localEulerAngles = Vector3.zero;
 
-	ball.transform.localPosition = startPosition;
+    ball.transform.localPosition = startPosition;
 
-	networkController = FindObjectOfType<NetworkController>();
+    networkController = FindObjectOfType<NetworkController>();
 }
 ```
 
 8. In `Update`, define the movement of our ball if it's in play. When the ball is in game, it moves to a specified point. The movement of the ball according to the script and Unity physics is processed on the server. The clients only receives the position of the ball.
 
 ```cs
-void Update () {
-	if (inGame && networkController.isClient == false) 
-	{
-		ball.transform.localPosition = Vector3.MoveTowards(ball.transform.localPosition, endPosition, ballSpeed * Time.deltaTime); // Current position, end position, speed.
-		ball.transform.Rotate(Vector3.one * ballSpeed); // Rotating the ball when it moves (just for fun).
-	}
+void Update () 
+{
+    if (inGame && networkController.isClient == false) 
+    {
+        ball.transform.localPosition = Vector3.MoveTowards(ball.transform.localPosition, endPosition, ballSpeed * Time.deltaTime); // Current position, end position, speed.
+        ball.transform.Rotate(Vector3.one * ballSpeed); // Rotating the ball when it moves (just for fun).
+    }
 }
 ```
 
@@ -427,8 +428,8 @@ _**Note:** You can learn more about Vector3.MoveTowards in Unity [here](https://
 ```cs
 public void Setup(Vector3 startPos, Vector3 endPos)
 {
-	endPosition = endPos;
-	startPosition = startPos;
+    endPosition = endPos;
+    startPosition = startPos;
 }
 ```
 
@@ -437,18 +438,18 @@ public void Setup(Vector3 startPos, Vector3 endPos)
 ```cs
 public void OnCollide(Collision collision)
 {
-	// If the ball touched something, the inGame variable changes its status to false so that collisions are no longer processed.
-	if (inGame && networkController.isClient == false) 
-	{
-		Debug.Log("Ball collide");
-		// If the ball touched the hand, add one point.
-		if (collision.transform.tag == "Hand")
-			FindObjectOfType<NetworkController>().score++;
+    // If the ball touched something, the inGame variable changes its status to false so that collisions are no longer processed.
+    if (inGame && networkController.isClient == false) 
+    {
+        Debug.Log("Ball collide");
+        // If the ball touched the hand, add one point.
+        if (collision.transform.tag == "Hand")
+            FindObjectOfType<NetworkController>().score++;
 
-		// Enable gravity to make our ball fall.
-		rb.useGravity = true;
-		inGame = false;
-	}
+        // Enable gravity to make our ball fall.
+        rb.useGravity = true;
+        inGame = false;
+    }
 }
 ```
 
@@ -459,10 +460,10 @@ using UnityEngine;
  
 public class CollideChecker : MonoBehaviour 
 {
-	private void OnCollisionEnter(Collision collision)
-	{
-		GetComponentInParent<BallController>().OnCollide(collision); // If the ball touched any object, send this information to BallController, which is attached to a parenting object.
-	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        GetComponentInParent<BallController>().OnCollide(collision); // If the ball touched any object, send this information to BallController, which is attached to a parenting object.
+    }
 }
 ```
 
@@ -488,22 +489,22 @@ public class CollideChecker : MonoBehaviour
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : NetworkBehaviour 
+{
+    [SerializeField] GameObject ballPrefab;
 
-	[SerializeField] GameObject ballPrefab;
+    [Command] 
+    void CmdKick(Vector3 startPos, Vector3 endPos)
+    {
+        GameObject ball = (GameObject)Instantiate(ballPrefab);
+        ball.GetComponent<BallController>().Setup(startPos, endPos);
+        NetworkServer.Spawn(ball);
+    }
 
-	[Command] 
-	void CmdKick(Vector3 startPos, Vector3 endPos)
-	{
-		GameObject ball = (GameObject)Instantiate(ballPrefab);
-		ball.GetComponent<BallController>().Setup(startPos, endPos);
-		NetworkServer.Spawn(ball);
-	}
-
-	public void Kick(Vector3 startPos, Vector3 endPos)
-	{
-		CmdKick(startPos, endPos);
-	}
+    public void Kick(Vector3 startPos, Vector3 endPos)
+    {
+        CmdKick(startPos, endPos);
+    }
 }
 ```
 
@@ -513,15 +514,15 @@ public class PlayerController : NetworkBehaviour {
 ```cs
 bool KickBall()
 {
-...
-	if (Physics.Raycast(ray, out hitRay, 100) && environment)
-	{
-...
+    ...
+    if (Physics.Raycast(ray, out hitRay, 100) && environment)
+    {
+        ...
 
-		FindObjectOfType<PlayerController>().Kick(mainCamera.transform.localPosition, environment.aim.transform.localPosition);
-...
-		return true;
-	}
+        FindObjectOfType<PlayerController>().Kick(mainCamera.transform.localPosition, environment.aim.transform.localPosition);
+        ...
+        return true;
+    }
 }
 ```
 
@@ -561,8 +562,8 @@ bool KickBall()
 ```cs
 void Start()
 {
-	if(FindObjectOfType<NetworkIdentity>().isServer == false)
-		transform.localScale = clientSize;
+    if(FindObjectOfType<NetworkIdentity>().isServer == false)
+        transform.localScale = clientSize;
 }
 ```
 
@@ -606,25 +607,25 @@ using UnityEngine.Networking;
  
 public class AvatarSync : NetworkBehaviour 
 {
-	[SerializeField] Transform[] syncBones;  
-	[SerializeField] Transform avatar;  
+    [SerializeField] Transform[] syncBones;  
+    [SerializeField] Transform avatar;  
 }
 
 [ClientRpc] // Server sends a message to all clients.
 public void RpcOnBonesTransformUpdate(BonesInfoMessage boneMsg)
 {
-	for (int i = 0; i < boneMsg.bonesRot.Length; i++)
-	{
-		syncBones[i].localRotation = boneMsg.bonesRot[i];
-}
+    for (int i = 0; i < boneMsg.bonesRot.Length; i++)
+    {
+        syncBones[i].localRotation = boneMsg.bonesRot[i];
+    }
  
-	avatar.localPosition = boneMsg.avatarPos;
+    avatar.localPosition = boneMsg.avatarPos;
 }
 
 public class BonesInfoMessage : MessageBase
 {
-	public Quaternion[] bonesRot;  // Rotations of bones.
-	public Vector3 avatarPos;  // Avatar position.
+    public Quaternion[] bonesRot;  // Rotations of bones.
+    public Vector3 avatarPos;  // Avatar position.
 }
 ```
 
@@ -633,10 +634,10 @@ public class BonesInfoMessage : MessageBase
 ```cs
 private void FixedUpdate()
 {
-	if (isServer)
-	{
-		BoneUpdate(syncBones);
-	}
+    if (isServer)
+    {
+        BoneUpdate(syncBones);
+    }
 }
 ```
 
@@ -645,18 +646,18 @@ private void FixedUpdate()
 ```cs
 public void BoneUpdate(Transform[] bones)
 {
-	List<Quaternion> rotations = new List<Quaternion>();
+    List<Quaternion> rotations = new List<Quaternion>();
  
-	for (int i = 0; i < bones.Length; i++)
-		rotations.Add(bones[i].localRotation);
+    for (int i = 0; i < bones.Length; i++)
+        rotations.Add(bones[i].localRotation);
  
-	BonesInfoMessage msg = new BonesInfoMessage
-	{
-		bonesRot = rotations.ToArray(), // Rotations of bones.
-		avatarPos = avatar.position,
-	};
+    BonesInfoMessage msg = new BonesInfoMessage
+    {
+        bonesRot = rotations.ToArray(), // Rotations of bones.
+        avatarPos = avatar.position,
+    };
  
-	RpcOnBonesTransformUpdate(msg); // Sending the message. 
+    RpcOnBonesTransformUpdate(msg); // Sending the message. 
 }
 ```
 

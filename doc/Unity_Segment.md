@@ -6,7 +6,7 @@ To create this project, you'll need just a couple of things:
 
 * [Nuitrack Runtime](/Platforms) and [Nuitrack SDK](https://github.com/3DiVi/nuitrack-sdk)
 * Any supported sensor (see the complete list at [Nuitrack website](https://nuitrack.com/#sensors))
-* Unity 2017.4 or higher
+* Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D
 
 You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSDK.unitypackage → Tutorials → SegmentExample**
 
@@ -20,11 +20,10 @@ In this part of our tutorial, we'll describe the process of segment visualizatio
 
 ### Checking User Presence 
 
-1. Before we begin to visualize the user segment, we first need to check whether the user is detected by the camera or not. First of all, import the **NuitrackScripts Prefab** from the **Nuitrack SDK** to your Unity project. Tick the Nuitrack modules required for this project (**Depth Module, User Tracker Module, Skeleton Tracker Module**). We'll need these very modules, because in our sample we'll use the depth data of the sensor, as well as the data about the users standing in front of the sensor.
+1. Before we begin to visualize the user segment, we first need to check whether the user is detected by the camera or not. Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="400" src="img/Usegment_1.png"><br>
-<b>Nuitrack Modules Required for this Project</b><br>
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
 2. Let's create a script and name it `SegmentPaint.cs`. This script will contain all the information about our user segment. In the `Start` method, subscribe to updating the frame with the user.
@@ -32,7 +31,7 @@ In this part of our tutorial, we'll describe the process of segment visualizatio
 ```cs
 void Start()
 {
-	NuitrackManager.onUserTrackerUpdate += ColorizeUser;
+    NuitrackManager.onUserTrackerUpdate += ColorizeUser;
 }
 ```
 
@@ -41,9 +40,33 @@ void Start()
 ```cs
 void OnDestroy()
 {
-	NuitrackManager.onUserTrackerUpdate -= ColorizeUser;
+    NuitrackManager.onUserTrackerUpdate -= ColorizeUser;
 }
 ```
+
+**Note:**  
+NuitrackSDK has ready-made methods for quickly converting **RGB**, **Depth** and **Users** frames into Unity textures, we will look at converting to textures for a better understanding. For **Color**, **Depth** and **Users** frames, methods are available-extensions of the conversion to Unity textures (`.ToTexture()`, `.ToRenderTexture()`, `.ToTexture2D()` from `NuitrackSDK.Frame` namespace)
+
+```cs
+using UnityEngine;
+using NuitrackSDK.Frame;
+
+public class SegmentPaint : MonoBehaviour
+{
+    TextureCache localCache = new TextureCache();
+
+    private void OnDestroy()
+    {
+        localCache.Dispose();
+    }
+
+    void Update()
+    {
+        Texture2D segmentTexture = NuitrackManager.UserFrame.ToTexture2D(textureCache: localCache);
+    }
+}
+```
+
 
 4. Process the received frames and check the presence of the user in front of the sensor. First of all, declare the `msg` variable for displaying either 'User found' (if there is at least one user in front of the camera) or 'User not found' message. The condition is processed in the `ColorizeUser` method. Also, don't forget to set the characteristics of the 'User found / User not found' message (color and size) in the `OnGUI` method.
 
@@ -52,17 +75,17 @@ string msg = "";
 
 void ColorizeUser(nuitrack.UserFrame frame)
 {
-	if (frame.Users.Length > 0)
-		msg = "User found";
-	else
-		msg = "User not found";
+    if (frame.Users.Length > 0)
+        msg = "User found";
+    else
+        msg = "User not found";
 }
  
 private void OnGUI()
 {
-	GUI.color = Color.red;
-	GUI.skin.label.fontSize = 50;
-	GUILayout.Label(msg);
+    GUI.color = Color.red;
+    GUI.skin.label.fontSize = 50;
+    GUILayout.Label(msg);
 }
 ```
 
@@ -93,20 +116,20 @@ _**Note**: You can select either **Orthographic** or **Perspective** camera proj
 ```cs
 public class SegmentPaint : MonoBehaviour
 {
-	[SerializeField]
-	Color32[] colorsList;
-	 
-	Rect imageRect;
-	 
-	[SerializeField]
-	Image segmentOut;
-	 
-	Texture2D segmentTexture;
-	Sprite segmentSprite;
-	byte[] outSegment;
-	 
-	int cols = 0;
-	int rows = 0;
+    [SerializeField]
+    Color32[] colorsList;
+
+    Rect imageRect;
+
+    [SerializeField]
+    Image segmentOut;
+
+    Texture2D segmentTexture;
+    Sprite segmentSprite;
+    byte[] outSegment;
+
+    int cols = 0;
+    int rows = 0;
 }
 ```
 
@@ -115,7 +138,7 @@ public class SegmentPaint : MonoBehaviour
 ```cs
 void Start()
 {
-	NuitrackManager.DepthSensor.SetMirror(true);
+    NuitrackManager.DepthSensor.SetMirror(true);
 }
 ```
 
@@ -132,7 +155,7 @@ rows = mode.YRes;
 7. Create the `Rect` rectangle to define the texture boundaries.
 
 ```cs
-...	
+...
 imageRect = new Rect(0, 0, cols, rows);
 ...
 ```
@@ -156,7 +179,7 @@ outSegment = new byte[cols * rows * 4];
 10. Set the `Image` type to `Simple` as our image should be displayed in regular mode (no stretching, etc.), and set the `preserveAspect = true` flag so that the image retains the aspect ratio.
 
 ```cs
-...	
+...
 segmentOut.type = Image.Type.Simple;
 segmentOut.preserveAspect = true;
 ...
@@ -166,23 +189,25 @@ segmentOut.preserveAspect = true;
 
 ```cs
 void ColorizeUser(nuitrack.UserFrame frame)
-...	
-	for (int i = 0; i < (cols * rows); i++)
-	{
-		Color32 currentColor = colorsList[frame[i]];
-	 
-		int ptr = i * 4;
-		outSegment[ptr] = currentColor.a;
-		outSegment[ptr + 1] = currentColor.r;
-		outSegment[ptr + 2] = currentColor.g;
-		outSegment[ptr + 3] = currentColor.b;
-	}
+{
+    ...
+    for (int i = 0; i < (cols * rows); i++)
+    {
+        Color32 currentColor = colorsList[frame[i]];
+     
+        int ptr = i * 4;
+        outSegment[ptr] = currentColor.a;
+        outSegment[ptr + 1] = currentColor.r;
+        outSegment[ptr + 2] = currentColor.g;
+        outSegment[ptr + 3] = currentColor.b;
+    }
+}
 ```
 
 12. Pass an array for texture filling and apply it.
 
 ```cs
-...	
+...
 segmentTexture.LoadRawTextureData(outSegment);
 segmentTexture.Apply();
 ...
@@ -239,22 +264,22 @@ In this section of our tutorial, we are going to make a simple game, in which th
 ```cs
 public class GameColliders : MonoBehaviour
 {
-	[SerializeField]
-	Transform parentObject; // parent object for colliders
-	 
-	[SerializeField]
-	GameObject userPixelPrefab; // object that acts as a user pixel
-	[SerializeField]
-	GameObject bottomLinePrefab; // bottom line object 
-	 
-	GameObject[,] colliderObjects; // matrix of colliders (game objects)
-	 
-	int cols = 0; // columns to display the matrix 
-	int rows = 0; // rows to display the matrix 
-	 
-	[Range (0.1f, 1)]
-	[SerializeField]
-	float colliderDetails = 1f; // set the detail of colliders
+    [SerializeField]
+    Transform parentObject; // parent object for colliders
+
+    [SerializeField]
+    GameObject userPixelPrefab; // object that acts as a user pixel
+    [SerializeField]
+    GameObject bottomLinePrefab; // bottom line object 
+
+    GameObject[,] colliderObjects; // matrix of colliders (game objects)
+
+    int cols = 0; // columns to display the matrix 
+    int rows = 0; // rows to display the matrix 
+
+    [Range (0.1f, 1)]
+    [SerializeField]
+    float colliderDetails = 1f; // set the detail of colliders
 }
 ```
 
@@ -263,15 +288,15 @@ public class GameColliders : MonoBehaviour
 ```cs
 public void CreateColliders(int imageCols, int imageRows)
 {
-	cols = (int)(colliderDetails * imageCols);
-	rows = (int)(colliderDetails * imageRows);
+    cols = (int)(colliderDetails * imageCols);
+    rows = (int)(colliderDetails * imageRows);
 }
 ```
 
 5. Create an array of objects and set its size.
 
 ```cs
-...	
+...
 colliderObjects = new GameObject[cols, rows];
 ...
 ```
@@ -289,16 +314,20 @@ float imageScale = Mathf.Min((float)Screen.width / cols, (float)Screen.height / 
 ```cs
 for (int c = 0; c < cols; c++)
 {
-	for (int r = 0; r < rows; r++)
-	{
-		GameObject currentCollider = Instantiate(userPixelPrefab); // create an object from UserPixel
-		 
-		currentCollider.transform.SetParent(parentObject, false); // set a parent
-		currentCollider.transform.localPosition = new Vector3((cols / 2 - c) * imageScale, (rows / 2 - r) * imageScale, 0); // update the local position, arrange pixel objects relative to the Image center
-		currentCollider.transform.localScale = Vector3.one * imageScale; // set the scale to make it larger 
-		 
-		colliderObjects[c, r] = currentCollider; // put a collider into the matrix of colliders  
-	}
+    for (int r = 0; r < rows; r++)
+    {
+        // create an object from UserPixel
+        GameObject currentCollider = Instantiate(userPixelPrefab); 
+
+        // set a parent
+        currentCollider.transform.SetParent(parentObject, false); 
+
+        // update the local position, arrange pixel objects relative to the Image center
+        currentCollider.transform.localPosition = new Vector3((cols / 2 - c) * imageScale, (rows / 2 - r) * imageScale, 0);
+        currentCollider.transform.localScale = Vector3.one * imageScale; // set the scale to make it larger 
+
+        colliderObjects[c, r] = currentCollider; // put a collider into the matrix of colliders  
+    }
 }
 ```
 
@@ -316,7 +345,7 @@ bottomLine.transform.localScale = new Vector3(imageScale * cols, imageScale, ima
 9. In the `SegmentPaint` script, add the `gameColliders` field for passing the image width and height.
 
 ```cs
-...	
+...
 [SerializeField]
 GameColliders gameColliders;
 ...
@@ -359,18 +388,18 @@ gameColliders.CreateColliders(cols, rows);
 ```cs
 public void UpdateFrame(nuitrack.UserFrame frame) // update the frame
 {
-	for (int c = 0; c < cols; c++) // loop over the columns
-	{
-		for (int r = 0; r < rows; r++) // loop over the rows 
-		{
-			ushort userId = frame[(int)(r / colliderDetails), (int)(c / colliderDetails)]; // request a user id according to colliderDetails 
+    for (int c = 0; c < cols; c++) // loop over the columns
+    {
+        for (int r = 0; r < rows; r++) // loop over the rows 
+        {
+            ushort userId = frame[(int)(r / colliderDetails), (int)(c / colliderDetails)]; // request a user id according to colliderDetails 
  
-			if (userId == 0)
-				colliderObjects[c, r].SetActive(false);
-			else
-				colliderObjects[c, r].SetActive(true);
-		}
-	}
+            if (userId == 0)
+                colliderObjects[c, r].SetActive(false);
+            else
+                colliderObjects[c, r].SetActive(true);
+        }
+    }
 }
 ```
 
@@ -379,8 +408,8 @@ public void UpdateFrame(nuitrack.UserFrame frame) // update the frame
 ```cs
 void ColorizeUser(nuitrack.UserFrame frame)
 {
-...
-	gameColliders.UpdateFrame(frame);
+    ...
+    gameColliders.UpdateFrame(frame);
 }
 ...
 ```
@@ -408,23 +437,23 @@ void ColorizeUser(nuitrack.UserFrame frame)
 
 ### Creating Falling Objects
 
-1. Create a new script named `ObjectSpawner.cs`. In this script, create an array with objects: `GameObject[] fallingObjects`. Specify the minimum (1 sec) and maximum (2 sec) time interval between falling of objects. The `halfWidth` variable defines the distance from the center of the image to one of its edges in width.
+1. Create a new script named `ObjectSpawner.cs`. In this script, create an array with objects: `GameObject[] fallingObjectsPrefabs`. Specify the minimum (1 sec) and maximum (2 sec) time interval between falling of objects. The `halfWidth` variable defines the distance from the center of the image to one of its edges in width.
 
 ```cs
 public class ObjectSpawner : MonoBehaviour
 {
-	[SerializeField]
-	GameObject[] fallingObjects;
-	 
-	[Range(0.5f, 2f)]
-	[SerializeField]
-	float minTimeInterval = 1;
-	 
-	[Range(2f, 4f)]
-	[SerializeField]
-	float maxTimeInterval = 2;
-	 
-	float halfWidth;
+    [SerializeField]
+    GameObject[] fallingObjectsPrefabs;
+
+    [Range(0.5f, 2f)]
+    [SerializeField]
+    float minTimeInterval = 1;
+
+    [Range(2f, 4f)]
+    [SerializeField]
+    float maxTimeInterval = 2;
+
+    float halfWidth;
 }
 ```
 
@@ -433,8 +462,8 @@ public class ObjectSpawner : MonoBehaviour
 ```cs
 public void StartSpawn(float widthImage)
 {
-	halfWidth = widthImage / 2;
-	StartCoroutine(SpawnObject(0f));
+    halfWidth = widthImage / 2;
+    StartCoroutine(SpawnObject(0f));
 }
 ```
 
@@ -443,17 +472,17 @@ public void StartSpawn(float widthImage)
 ```cs
 IEnumerator SpawnObject(float waitingTime)
 {
-	yield return new WaitForSeconds(waitingTime); // delay 
-	 
-	float randX = Random.Range(-halfWidth, halfWidth); // random X position
-	Vector3 localSpawnPosition = new Vector3(randX, 0, 0); // position for object spawning 
-	 
-	GameObject currentObject = Instantiate(fallingObjects[Random.Range(0, fallingObjects.Length)]); // create a random object from the array
-	 
-	currentObject.transform.SetParent(gameObject.transform, true); // set a parent 
-	currentObject.transform.localPosition = localSpawnPosition; // set a local position
-	 
-	StartCoroutine(SpawnObject(Random.Range(minTimeInterval, maxTimeInterval))); // restart the coroutine for the next object
+    yield return new WaitForSeconds(waitingTime); // delay 
+
+    float randX = Random.Range(-halfWidth, halfWidth); // random X position
+    Vector3 localSpawnPosition = new Vector3(randX, 0, 0); // position for object spawning 
+
+    GameObject currentObject = Instantiate(fallingObjectsPrefabs[Random.Range(0, fallingObjectsPrefabs.Length)]); // create a random object from the array
+
+    currentObject.transform.SetParent(gameObject.transform, true); // set a parent 
+    currentObject.transform.localPosition = localSpawnPosition; // set a local position
+
+    StartCoroutine(SpawnObject(Random.Range(minTimeInterval, maxTimeInterval))); // restart the coroutine for the next object
 } 
 ```
 
@@ -466,7 +495,7 @@ Objects will fall from the top in a random number of seconds in the range of [mi
 <b>ObjectSpawner Settings</b><br>
 </p>
 
-5. In Unity, create two prefabs: **Capsule** and **Cube**, which will be used for displaying the game objects falling from the top. The user has to 'destroy' these objects. Add the **RigidBody** component to these prefabs. Drag-and-drop the objects to the **ObjectSpawner** section of the **MainCamera**. Fill in the `fallingObjects` array with the created prefabs.
+5. In Unity, create two prefabs: **Capsule** and **Cube**, which will be used for displaying the game objects falling from the top. The user has to 'destroy' these objects. Add the **RigidBody** component to these prefabs. Drag-and-drop the objects to the **ObjectSpawner** section of the **MainCamera**. Fill in the `fallingObjectsPrefabs` array with the created prefabs.
 
 <p align="center">
 <img width="400" src="img/Usegment_14.png"><br>
@@ -496,19 +525,19 @@ ObjectSpawner objectSpawner;
 ```cs
 void Start()
 {
-...
-	gameColliders.CreateColliders(cols, rows);
-	objectSpawner.StartSpawn(cols);
+    ...
+    gameColliders.CreateColliders(cols, rows);
+    objectSpawner.StartSpawn(cols);
 }
 ...
 ```
 
-9. Create a script named `FallingObjects.cs`, in which we'll define the condition for destruction our falling objects in a collision with other objects. Create the `OnCollisionEnter` method and call the `Destroy` method. We use this method because in our game the falling objects are destroyed in a collision with any object.
+9. Create a script named `FallingObject.cs`, in which we'll define the condition for destruction our falling objects in a collision with other objects. Create the `OnCollisionEnter` method and call the `Destroy` method. We use this method because in our game the falling objects are destroyed in a collision with any object.
 
 ```cs
 private void OnCollisionEnter(Collision collision)
 {
-	Destroy(gameObject);
+    Destroy(gameObject);
 }
 ```
 
@@ -535,20 +564,20 @@ private void OnCollisionEnter(Collision collision)
 ```cs
 public class GameProgress : MonoBehaviour
 {
-	public static GameProgress instance = null;
-	 
-	[SerializeField]
-	Text scoreText;
-	 
-	int currentScore = 0;
+    public static GameProgress instance = null;
+
+    [SerializeField]
+    Text scoreText;
+
+    int currentScore = 0;
 }
 
 void Awake()
 {
-	if (instance == null)
-		instance = this;
-	else if (instance != this)
-		Destroy(gameObject);
+    if (instance == null)
+        instance = this;
+    else if (instance != this)
+        Destroy(gameObject);
 }
 ```
 
@@ -557,7 +586,7 @@ void Awake()
 ```cs
 void UpdateScoreText()
 {
-	scoreText.text = "Your score: " + currentScore;
+    scoreText.text = "Your score: " + currentScore;
 }
 ```
 
@@ -566,14 +595,14 @@ void UpdateScoreText()
 ```cs
 public void AddScore(int val)
 {
-	currentScore += val;
-	UpdateScoreText();
+    currentScore += val;
+    UpdateScoreText();
 }
 
 public void RemoveScore(int val)
 {
-	currentScore -= val;
-	UpdateScoreText();
+    currentScore -= val;
+    UpdateScoreText();
 }
 ```
 
@@ -593,17 +622,17 @@ bool active = true;
 
 private void OnCollisionEnter(Collision collision)
 {
-	if (!active)
-		return;
+    if (!active)
+        return;
 
-	active = false; 
+    active = false; 
 
-	Destroy(gameObject);
+    Destroy(gameObject);
  
-	if (collision.transform.tag == "UserPixel")
-		GameProgress.AddScore(scoreValue);
-	else if (collision.transform.tag == "BottomLine")
-		GameProgress.RemoveScore(scoreValue);
+    if (collision.transform.tag == "UserPixel")
+        GameProgress.AddScore(scoreValue);
+    else if (collision.transform.tag == "BottomLine")
+        GameProgress.RemoveScore(scoreValue);
 }
 ```
 

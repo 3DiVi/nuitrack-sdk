@@ -1,3 +1,19 @@
+# Release v0.35.14
+
+**Release Date**: 18 March 2022  
+**Nuitrack Runtime version**: 0.35.14  
+**Nuitrack SDK version**: 1.11.13
+
+## Bug Fixes and Improvements
+
+* Fixed TBB conflicts with Unity, UE4, etc.
+* Fixed Nuitrack signature
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.13
 
 **Release Date**: 03 March 2022  

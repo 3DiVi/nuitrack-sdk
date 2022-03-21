@@ -6,7 +6,7 @@ To create this wonderful project, only a couple of things are required:
 
 * [Nuitrack](https://github.com/3DiVi/nuitrack-sdk);
 * Any supported sensor (see the full list [at our website](https://nuitrack.com/#sensors));
-* Unity (2017.4 or higher).
+* Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D
 
 You can find the finished project in **Nuitrack SDK: Unity 3D → NuitrackSDK.unitypackage → Tutorials → FaceTracker**.
 
@@ -20,10 +20,10 @@ _**Note:** Nuitrack displays the info about a face **only after the user's skele
 
 1. Create a new Unity project. 
 2. Import **NuitrackSDK.unitypackage** from **Nuitrack SDK/Unity3D** to the project (except for the folder **Tutorials/FaceTracker/FinalAssets**, because this folder contains the scripts and other files that we're going to create in this tutorial): **Assets → Import Package → Custom Package...**
-3. Drag-and-drop the **NuitrackScripts** prefab for skeleton tracking to the scene. In the **NuitrackManager** section, tick the required modules: **Color Module On** (to output an RGB image from a sensor), **Skeleton Module On** (for skeleton tracking).
+3. Prepare the scene for using Nuitrack in one click, to do this, click: **Main menu** -> **Nuitrack** -> **Prepare the scene**. The necessary components will be added to the scene. When you run the scene, **NuitrackScripts** automatically marked as **DontDestroyOnLoad**.
 
 <p align="center">
-<img width="450" src="img/Uface_2.png">
+<img width="450" src="img/PrepareScene.png"><br>
 </p>
 
 4. Drag-and-drop the **Color Frame Canvas** prefab to the scene. Please note that in this tutorial we use ready-made prefabs and scripts to output the RGB image from the sensor and display tracked skeletons. If you want to learn how to do this in details, take a look at our [Displaying Skeletons on an RGB Image](Unity_RGB_Skeletons.md) tutorial.
@@ -36,7 +36,7 @@ _**Note:** **Color Frame Canvas** displays the RGB image from a sensor on the st
 <img width="450" src="img/Uface_3.png">
 </p>
 
-_**Note:** If your skeleton looks shifted, you have to turn on **depth-to-color registration** using the  `nuitrack.config` file: find the section `“DepthProvider”` and set `“Depth2ColorRegistration”` to `true`._
+_**Note:** If your skeleton looks shifted, you have to turn on **depth-to-color registration** in the NuitrackManager component (or using the  `nuitrack.config` file: find the section `“DepthProvider”` and set `“Depth2ColorRegistration”` to `true`.)_
 
 _**Note:** In this project, we display a 2D skeleton on the user's body because it's a simpler and more versatile implementation. To display a 3D skeleton, you have to take into account the aspect, position, and FOV of your sensor in the Unity editor._
 
@@ -48,110 +48,13 @@ _**Note:** In this project, we display a 2D skeleton on the user's body because 
 
 ## Creating the Faces
 
-1. Create a new script and name it `FaceInfo`. This script will contain the parameters and values from the JSON response received from Nuitrack (see a sample JSON response [in our documentation](Instance-based_API.md)). 
+1. NuitrackSDK has a `JsonInfo` script. This script will contain the parameters and values from the JSON response received from Nuitrack (see a sample JSON response [in our documentation](Instance-based_API.md)). 
 
-_**Note:** By default, face tracking in Nuitrack is turned off. To turn on this function, open the  `nuitrack.config` file and set `“Faces.ToUse”` and `“DepthProvider.Depth2ColorRegistration”` to `true`._ 
+_**Note:** By default, face tracking in Nuitrack is turned off. To turn on this function in the NuitrackManager component (or open the `nuitrack.config` file and set `“Faces.ToUse”` and `“DepthProvider.Depth2ColorRegistration”` to `true`.)_ 
 
-```cs
-using UnityEngine;
- 
-[System.Serializable]
-public class FaceInfo 
-{
-    public string Timestamp;
-    public Instances[] Instances;
-}
- 
-[System.Serializable]
-public class Instances
-{
-    public int id;
-    public string @class;
-    public Face face;
-}
- 
-[System.Serializable]
-public class Face
-{
-    public Rectangle rectangle;
-    public Vector2[] landmark;
-    public Vector2 left_eye;
-    public Vector2 right_eye;
-    public Angles angles;
-    public Emotions emotions;
-    public Age age;
-    public string gender;
-}
- 
-[System.Serializable]
-public class Rectangle
-{
-    public float left;
-    public float top;
-    public float width;
-    public float height;
-}
- 
-[System.Serializable]
-public class Angles
-{
-    public float yaw;
-    public float pitch;
-    public float roll;
-}
- 
-[System.Serializable]
-public class Emotions
-{
-    public float neutral;
-    public float angry;
-    public float surprise;
-    public float happy;
-}
- 
-[System.Serializable]
-public class Age
-{
-    public string type;
-    public float years;
-}
-```
+2. Create a new script and name it `FaceManager`.
 
-_**Note:** A keyword cannot be used as an identifier (name of variable, class, interface etc). However, they can be used with the prefix `@`. For example, `class` is a reserved keyword so it cannot be used as an identifier, but `@class` can be used._
-
-2. Create a new script and name it `FaceManager`. Create enumerators for genders, age types, and emotions and list all possible values. 
-
-```cs
-using System.Collections.Generic;
-using UnityEngine;
- 
-public enum Gender
-{
-    any,
-    male,
-    female
-}
- 
-public enum AgeType
-{
-    any,
-    kid,
-    young,
-    adult,
-    senior
-}
- 
-public enum Emotions
-{
-    any,
-    happy,
-    surprise,
-    neutral,
-    angry
-}
-```
-
-3. Add the `canvas` field for the **Canvas** displaying the emojis, `faceController` field for an emoji prefab, `skeletonController` field, list of `FaceControllers`, and an array with the data about faces. 
+3. Add the `canvas` field for the **Canvas** displaying the emojis, `faceController` field for an emoji prefab, `skeletonController` field, list of `FaceControllers`. 
 
 ```cs
 ...
@@ -161,9 +64,6 @@ public class FaceManager : MonoBehaviour
     [SerializeField] GameObject faceController;
     [SerializeField] SkeletonController skeletonController;
     List<FaceController> faceControllers = new List<FaceController>();
-    Instances[] faces;
- 
-    FaceInfo faceInfo;    
 }
 ```
 
@@ -182,132 +82,84 @@ _**Note:** Here are sample emojis for 2 genders, 4 age types, and 4 emotions (ju
 ```cs
 public class FaceManager : MonoBehaviour 
 {
-...
-     void Start()
-     {
+    ...
+    void Start()
+    {
         for (int i = 0; i < skeletonController.skeletonCount; i++)
         {
-                 faceControllers.Add(Instantiate(faceController, canvas.transform).GetComponent<FaceController>());
+            faceControllers.Add(Instantiate(faceController, canvas.transform).GetComponent<FaceController>());
         }
-     }
+    }
 }
 ```
 
-5. In `Update`, get a JSON response and include the data from JSON to the `faceInfo` class, which stores the received face info. Add the faces from `faceInfo` (`faceInfo.Instances`) to the `faces` array. Loop over the `FaceControllers`: if the face info is available, the emoji is displayed, otherwise, it's hidden. Create the `id` variable and `currentFace` variable that stores the info about a current face. Pass the face info to `FaceController` and display the face. Get the `id` parameter from the face info and pass it to the `id` variable. Each of the detected users has his/her own id. User id and skeleton id in Nuitrack are always the same. Create a user's skeleton. If skeleton data from Nuitrack is received, we try to get a skeleton with the same id. If a skeleton is found, create the `joint` variable and call it `head`, get the `joint head` from the skeleton and place it in the coordinates received from the skeleton. An emoji will be displayed in place of the joint head.
+5. In `Update`, loop over the `FaceControllers`: if a skeleton is found and the face info is available, the emoji is displayed, otherwise, it's hidden. Create the `id` variable and `user` variable that stores the info about a current user. Pass the face info to `FaceController` and display the face. Each of the detected users has his/her own id. Create the `joint` (`UserData.SkeletonData.Joint`) variable and call it `head`, get the `joint head` from the skeleton and place it in the coordinates received from the skeleton. An emoji will be displayed in place of the joint head.
 
 ```cs
-public class FaceManager : MonoBehaviour {
-...
-void Update () 
+public class FaceManager : MonoBehaviour 
 {
-	// Pass the data from JSON to faceInfo
-	string json = nuitrack.Nuitrack.GetInstancesJson();
-	// Replace quotation marks with square brackets to prevent a conversion error 
-	// in case an array is empty (no info about faces received)
-	faceInfo = JsonUtility.FromJson<FaceInfo>(json.Replace("\"\"", "[]"));
- 
-	// Get all faces (faceInfo.Instances) from FaceInfo
-	faces = faceInfo.Instances;
-	for (int i = 0; i < faceControllers.Count; i++)
-	{
-		if(faces != null && i < faces.Length - 1)
-		{
-			int id = 0;
-			Face currentFace = faces[i].face;
- 
-			// Pass face to FaceController
-			faceControllers[i].SetFace(currentFace);
-			faceControllers[i].gameObject.SetActive(true);
- 
-			// Face ids and skeleton ids are the same
-			id = faces[i].id;
- 
-			nuitrack.Skeleton skeleton = null;
-			if (NuitrackManager.SkeletonData != null)
-			    skeleton = NuitrackManager.SkeletonData.GetSkeletonByID(id);
- 
-			if(skeleton != null)
-			{
-				nuitrack.Joint head = skeleton.GetJoint(nuitrack.JointType.Head);
-				faceControllers[i].transform.position = new Vector2(head.Proj.X * Screen.width, Screen.height - head.Proj.Y * Screen.height);
-				//stretch the face to fit the rectangle
-				if(currentFace.rectangle != null) faceControllers[i].transform.localScale = new Vector2(currentFace.rectangle.width * Screen.width, currentFace.rectangle.height * Screen.height);
-			}
-		}
-		else
-		{
-			faceControllers[i].gameObject.SetActive(false);
-		}
-	}
+    ...
+    void Update () 
+    {
+        for (int i = 0; i < faceControllers.Count; i++)
+        {
+            int id = i + 1;
+            UserData user = NuitrackManager.Users.GetUser(id);
+
+            if (user != null && user.Skeleton != null && user.Face != null)
+            {
+                // Pass the face to FaceController
+                faceControllers[i].SetFace(user.Face);
+                faceControllers[i].gameObject.SetActive(true);
+
+                UserData.SkeletonData.Joint head = user.Skeleton.GetJoint(nuitrack.JointType.Head);
+
+                faceControllers[i].transform.position = head.RelativePosition(Screen.width, Screen.height);
+                //stretch the face to fit the rectangle
+
+                faceControllers[i].transform.localScale = user.Face.ScreenRect(Screen.width, Screen.height).size;
+            }
+            else
+            {
+                faceControllers[i].gameObject.SetActive(false);
+            }
+        }
+    }
 }
 ```
 
 _**Note:** Learn more about [JsonUtility](https://docs.unity3d.com/ScriptReference/JsonUtility.html) (utility functions for working with JSON data)._
 
-6. Create a new script and name it `FaceController`. Create public fields for gender, emotions, and age, and a text field for age. Age types and emotions are stored in the dictionaries `Dictionary<string, AgeType> age` and `Dictionary<EmotionType, float> emotionDict`. You can get "age type" by age name (string), and get "emotion value" (float) by "emotion type". 
+6. Create a new script and name it `FaceController`. 
 
 ```cs
 using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
 
-public class FaceController : MonoBehaviour 
+public class FaceController : MonoBehaviour
 {
-	public Gender genderType;
-	public EmotionType emotions;
-	public AgeType ageType;
-
-	Dictionary<string, AgeType> age = new Dictionary<string, AgeType>()
-	{
-		{ "kid", AgeType.kid },
-		{ "young", AgeType.young }
-		{ "adult", AgeType.adult },
-		{ "senior", AgeType.senior },
-	};
-
-	Dictionary<EmotionType, float> emotionDict = new Dictionary<EmotionType, float>()
-	{
-		{ EmotionType.happy, 0 },
-		{ EmotionType.surprise, 0 },
-		{ EmotionType.neutral, 0 },
-		{ EmotionType.angry, 0 },
-	};
+    public nuitrack.Face.GenderType genderType;
+    public nuitrack.Emotions.Type emotionType;
+    public nuitrack.Age.Type ageType;
 }
 ```
 
-7. The `SetFace` method takes the `Face` class from the `FaceInfo` script that stores all the info about the face. In this method, all characteristics of a particular face are assigned. Assign gender (either male or female). Get the age type by its name. Emotion is defined as follows: the values stored in the dictionare are looped over, and an emotion with the highest value is selected. 
+7. The `SetFace` method takes the `Face` class from the `JsonInfo` script that stores all the info about the face. In this method, all characteristics of a particular face are assigned. Assign gender (either male or female). Get the age type (kid, young, adult, senior). And an emotion with a prevailing meaning is given out (happy, surprise, neutral, angry).
 
 ```cs
 public class FaceController : MonoBehaviour 
 {
-...
-	public void SetFace(Face newFace)
-	{
-		//Gender
-		if (newFace.gender == "female")
-			genderType = Gender.female;
-		else
-			genderType = Gender.male;
+    ...
+    public void SetFace(nuitrack.Face newFace)
+    {
+        //Gender
+        genderType = newFace.Gender;
 
-		//Age
-		if(newFace.age != null)
-			age.TryGetValue(newFace.age.type, out ageType);
+        //Age
+        ageType = newFace.AgeType;
 
-		//Emotion
-		if (newFace.emotions != null)
-		{
-			emotionDict[EmotionType.happy] = newFace.emotions.happy;
-			emotionDict[EmotionType.surprise] = newFace.emotions.surprise;
-			emotionDict[EmotionType.neutral] = newFace.emotions.neutral;
-			emotionDict[EmotionType.angry] = newFace.emotions.angry;
-
-			KeyValuePair<EmotionType, float> prevailingEmotion = emotionDict.First();
-			foreach (KeyValuePair<EmotionType, float> emotion in emotionDict)
-			if (emotion.Value > prevailingEmotion.Value) prevailingEmotion = emotion;
-
-			emotions = prevailingEmotion.Key;
-		}
-	}
+        //Emotion
+        emotionType = newFace.PrevailingEmotion;
+    }
 }
 ```
 
@@ -333,12 +185,12 @@ using UnityEngine;
  
 public class FaceSwitcher : MonoBehaviour 
 {
-    [SerializeField] Gender gender;
-    [SerializeField] AgeType ageType;
-    [SerializeField] Emotions emotions;
+    [SerializeField] nuitrack.Face.GenderType gender;
+    [SerializeField] nuitrack.Age.Type ageType;
+    [SerializeField] nuitrack.Emotions.Type emotions;
     [SerializeField] GameObject enabledObject;
     [SerializeField] GameObject disabledObject;
- 
+
     FaceController faceController;
     bool display = false;
 }
@@ -349,11 +201,11 @@ public class FaceSwitcher : MonoBehaviour
 ```cs
 public class FaceSwitcher : MonoBehaviour 
 {
-...
-     void Start () 
-     {
+    ...
+    void Start () 
+    {
         faceController = GetComponentInParent<FaceController>();
-     }
+    }
 }
 ```
 
@@ -362,15 +214,15 @@ public class FaceSwitcher : MonoBehaviour
 ```cs
 public class FaceSwitcher : MonoBehaviour 
 {
-...
-     void SwitchObjects()
-     {
-        if (enabledObject != null)
+    ...
+    void SwitchObjects()
+    {
+        if (enabledObject)
             enabledObject.SetActive(display);
- 
-        if (disabledObject != null)
+
+        if (disabledObject)
             disabledObject.SetActive(!display);
-     }
+    }
 }
 ```
 
@@ -379,15 +231,15 @@ public class FaceSwitcher : MonoBehaviour
 ```cs
 public class FaceSwitcher : MonoBehaviour 
 {
-...
-     void Update()
-     {
-        display = (gender == Gender.any ||gender == faceController.genderType) &&
-                  (ageType == AgeType.any || ageType == faceController.ageType) &&
-                  (emotions == EmotionType.any ||emotions==faceController.emotions);
- 
+    ...
+    void Update()
+    {
+        display = (gender == nuitrack.Face.GenderType.any || gender == faceController.genderType) &&
+                  (ageType == nuitrack.Age.Type.any || ageType == faceController.ageType) &&
+                  (emotions == nuitrack.Emotions.Type.any || emotions == faceController.emotionType);
+
         SwitchObjects();
-     }
+    }
 }
 ```
 
