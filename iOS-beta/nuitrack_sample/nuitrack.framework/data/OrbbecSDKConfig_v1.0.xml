@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+    <Log>
+    </Log>
+    <Device>
+        <Mini>
+            <!--支持基本int,string float,double类型,以”comment=“开始的内容是注释-->
+            <Gain comment="camera gain">10</Gain>
+            <!--int类型-->
+            <Exposuration>10</Exposuration>
+            <!--int类型-->
+            <ID>31415926</ID>
+            <!--string类型-->
+            <!--支持数组/矩阵,以[开始，以]结尾,并且中间元素以逗号隔开,支持int,string float,double类型的数组或矩阵,其中string类型的数组元素的内容不能有逗号-->
+            <DistCoeffs>[3.18432,-0.0651732,-2.41988,-0.010874,-0.0465708,3.99616,-0.168908,-0.142619,2.42032,0.162638,3.1805,-0.039495,0,0,0,4]</DistCoeffs>
+            <!--float类型的数组,支持指数形式-->
+            <DistCoeffs_change>[6.36864,-0.130346,-4.83976,-0.021748,-0.0931416,7.99232,-0.337816,-0.285238,4.84064,0.325276,6.361,-0.07899,0,0,0,8]</DistCoeffs_change>
+            <DistCoeffs_Error_1>4.79425e+02, 0., 3.25448e+02, 0., 4.79424e+02, 2.00541e+02, 0., 0., 1. ]</DistCoeffs_Error_1>
+            <!--float类型的数组错误示范１-->
+            <DistCoeffs_Error_2>[4.79425e+02, 0., 3.25448e+02, 0., 4.79424e+02, 2.00541e+02, 0., 0., 1. </DistCoeffs_Error_2>
+            <!--float类型的数组错误示范２-->
+        </Mini>
+        <TOF>
+            <Gain comment="camera gain">10</Gain>
+            <Exposuration>10</Exposuration>
+            <!--double类型的矩阵,支持指数形式-->
+            <Matrix>[1.59216,-0.0325866,-1.20994,-0.005437,-0.0232854,1.99808,-0.0844542,-0.0713096,1.21016,0.0813192,1.59025,-0.0197475,0,0,0,2]</Matrix>
+            <Matrix_change>[3.18432,-0.0651732,-2.41988,-0.010874,-0.0465708,3.99616,-0.168908,-0.142619,2.42032,0.162638,3.1805,-0.039495,0,0,0,4]</Matrix_change>
+        </TOF>
+    </Device>
+    <SDK>
+        <!--    <comment>文本节点并不一定是叶节点,程序中并不判定最终节点是否是叶节点，只判定最终节点转换文本节点是否可以成功,不建议这种写法</comment>-->
+        <test>other properties                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         <a>aaaaaaaaaaaaa</a>
+            <b>bbbbbbbbbbbbb</b>
+            <c>ccccccccccccc</c>
+        </test>
+        <SDKControllerConfig>
+            <!--bool变量类型支持0,1,false,true不区分大小写-->
+            <IsConCurrent>1</IsConCurrent>
+            <IsConCurrent_1>0</IsConCurrent_1>
+            <IsConCurrent_2>false</IsConCurrent_2>
+            <IsConCurrent_3>true</IsConCurrent_3>
+            <XXX>other properties</XXX>
+        </SDKControllerConfig>
+        <SDKArithmeticConfig>
+            <IsRegister>false</IsRegister>
+            <Episode>20</Episode>
+            <XXX>other Arithmetic Para</XXX>
+        </SDKArithmeticConfig>
+    </SDK>
+</Config>

@@ -18,14 +18,9 @@
 - IOS 
 
 ## Tutorials:  
-- In Unity menu click **Nuitrack/Help/Open tutorial list**
-- Assets for tutorials in a package in the **Tutorials** folder
-- [GitHub tutorials page](../doc/readme.md#unity-tutorials)
-
-## Documentation:
-- [Components](doc/Components.md)
-- [Development](doc/Development.md)
+- In Unity menu click "Nuitrack\Help\Open tutorial list"
+- Assets for tutorials in a package in the Tutorials folder
 
 ## Troubleshooting
 - If you tried everything, but still nothing started, look at the page https://github.com/3DiVi/nuitrack-sdk/blob/master/doc/Troubleshooting.md
-- If you have any problems with NuitrackSDK components, you can contact our support team. Please provide as much information as possible in your request, including your OS, Nuitrack version, Unity version, the editor's log, perhaps an archive with the minimum version of your project on which we could repeat your problem, etc.
+- If you want to contact support, provide as much information as possible.  Which OS, which version of Nuitrack, which version of Unity, the editor's log, perhaps an archive with the minimum version of your project on which we could repeat your problem, etc.

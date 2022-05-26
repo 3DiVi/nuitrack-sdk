@@ -1,3 +1,19 @@
+# Release v0.35.15
+
+**Release Date**: 25 May 2022  
+**Nuitrack Runtime version**: 0.35.15  
+**Nuitrack SDK version**: 1.11.14
+
+## New Features
+
+* Added support for the new revision of Orbbec Astra Plus for **Windows x64** and **Linux x64**.
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* **Linux x64** rules do not apply for Orbbec Astra Plus. See the first item from [here](doc/Troubleshooting.md#linux) to apply the workaround 
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.35.14
 
 **Release Date**: 18 March 2022  
