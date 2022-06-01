@@ -1,22 +1,43 @@
+<p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
+
+## What's New ? 
+- **:white_check_mark: May'22 - 0.35.15 - Official support for Orbbec Astra+**
+- :white_check_mark: Nov'21 - 0.35.12 - [Python API](/PythonNuitrack-beta)
+
+*Coming soon*:
+- :soon: Holistic skeletal tracking on multiple sensors
+- :soon: Person re-identification
+- :soon: Support for new Orbbec Astra Pro+, Persee+
+
 ## What is Nuitrack™ SDK?
 
-**Nuitrack™** is a 3D tracking middleware developed by **3DiVi Inc**. This is a solution for skeleton tracking and gesture recognition that enables capabilities of Natural User Interface (NUI) on **Android**, **Windows**, and **Linux**.
+**Nuitrack™** is an ultimate 3D body tracking solution developed by **[3DiVi Inc](https://www.3divi.com/)**.
 
-**Nuitrack™ framework** is multi-language and cross-platform. **Nuitrack™ API**s include the set of interfaces for developing applications, which utilize Natural Interaction. The main purpose of **Nuitrack™** is to establish an API for communication with 3D sensors.
+It enables skeletal tracking and body motion analytics applications for virtually any widespread 
+- depth sensors (Orbbec Astra, Microsoft Kinect, Intel Realsense, Asus Xtion, LIPS, Structure Sensor, etc.)
+- hardware platforms (x64, x86, ARMv7, ARMv8)
+- OSes (Windows, Linux, Android, iOS)
+- and development environments (C++, C#, Python, Unity, Unreal)
 
-The **Nuitrack™ module** is optimized for ARM based processors, which means that you can use it with Android devices and embedded platforms.
+Being initially inspired by Microsoft Kinect, **Nuitrack™**'s mission is to provide strong skeletal tracking baseline for next generation of immersive and analytical applications beyond any specific platform or hardware. Think of it as *"Kinect for anything"*.
 
- - Key Features:
+With its performance and flexibility resulting from 10 years of development **Nuitrack™** is capable to support wide range of applications:
+- starting from a real-time gesture recognition on small-footprint embedded hardware (with less than 50Mb of available RAM)
+- to a large-scale multisensor analytical system (which is launched on 18-Cores workstation system)
+
+Now it's all yours - Try it, Use it, Challenge it!
+
+You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com).
+
+## Key Features
    - Full Body Skeletal Tracking (19 Joints)
    - 3D Point Cloud
    - User Masks
    - Gesture Recognition
-   - Cross-platform SDK for Android, Windows, and Linux
    - [3D Sensor independent](https://nuitrack.com/#sensors)
    - Unity and Unreal Engine Plugins
-   - OpenNI 1.5 compatible: OpenNI module allows you to move your OpenNI based apps developed for Kinect and Asus Xtion to other platforms, including Android
 
- - Application Areas:
+## Application Areas
    - Natural User Interface (NUI) for Windows/Linux/Android
    - Games and Training (Fitness, Dance Lessons)
    - Medical Rehabilitation
@@ -24,8 +45,6 @@ The **Nuitrack™ module** is optimized for ARM based processors, which means th
    - Full Body Tracking for AR / VR
    - Audience Analytics
    - Robot Vision
-
-You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com).
 
 ## Getting Started
 
