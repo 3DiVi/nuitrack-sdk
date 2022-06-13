@@ -1,7 +1,7 @@
 <p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
 
 ## What's New ? 
-- **:white_check_mark: May'22 - 0.35.15 - Official support for Orbbec Astra+**
+- **:white_check_mark: May'22 - 0.35.15 - Official support for [Orbbec Astra+](https://youtu.be/NP5ayeqUr4I)**
 - :white_check_mark: Nov'21 - 0.35.12 - [Python API](/PythonNuitrack-beta)
 
 *Coming soon*:
@@ -11,10 +11,12 @@
 
 ## What is Nuitrack™ SDK?
 
+<p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-teaser.gif" width="50%" /></a></p>
+
 **Nuitrack™** is an ultimate 3D body tracking solution developed by **[3DiVi Inc](https://www.3divi.com/)**.
 
 It enables skeletal tracking and body motion analytics applications for virtually any widespread 
-- depth sensors (Orbbec Astra, Microsoft Kinect, Intel Realsense, Asus Xtion, LIPS, Structure Sensor, etc.)
+- depth sensors (Orbbec Astra, Kinect v1/v2, [Kinect Azure](https://youtu.be/K7O-361UlfI), [Intel Realsense](https://youtu.be/gMPtV4NXtUo), Asus Xtion, LIPS, Structure Sensor, etc.)
 - hardware platforms (x64, x86, ARMv7, ARMv8)
 - OSes (Windows, Linux, Android, iOS)
 - and development environments (C++, C#, Python, Unity, Unreal)
@@ -22,7 +24,7 @@ It enables skeletal tracking and body motion analytics applications for virtuall
 Being initially inspired by Microsoft Kinect, **Nuitrack™**'s mission is to provide strong skeletal tracking baseline for next generation of immersive and analytical applications beyond any specific platform or hardware. Think of it as *"Kinect for anything"*.
 
 With its performance and flexibility resulting from 10 years of development **Nuitrack™** is capable to support wide range of applications:
-- starting from a real-time gesture recognition on small-footprint embedded hardware (with less than 50Mb of available RAM)
+- starting from a real-time gesture recognition on small-footprint embedded platform like [Raspberry Pi4](https://youtu.be/qyt4U7ZBj90) 
 - to a large-scale multisensor analytical system (which is launched on 18-Cores workstation system)
 
 Now it's all yours - Try it, Use it, Challenge it!
