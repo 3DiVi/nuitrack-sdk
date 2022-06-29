@@ -21,6 +21,7 @@
 * [Nuitrack AI](Nuitrack_AI.md)
 * [Moving Sensor](Moving_Sensor.md)
 * [Nuitrack Samples](Samples.md)
+* [Using Nuitrack with Multiple Depth Sensors](Multiple_Depth_Sensors.md)
 * ###### Nuitrack Best Practices
   * [How to make a VR App with Nuitrack](VR_app.md)
 * ###### Unreal Engine Tutorials

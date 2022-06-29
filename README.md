@@ -11,7 +11,7 @@
 
 ## What is Nuitrack™ SDK?
 
-<p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-teaser.gif" width="50%" /></a></p>
+<p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-teaser.gif" width="70%" /></a></p>
 
 **Nuitrack™** is an ultimate 3D body tracking solution developed by **[3DiVi Inc](https://www.3divi.com/)**.
 
@@ -19,7 +19,7 @@ It enables skeletal tracking and body motion analytics applications for virtuall
 - depth sensors (Orbbec Astra, Kinect v1/v2, [Kinect Azure](https://youtu.be/K7O-361UlfI), [Intel Realsense](https://youtu.be/gMPtV4NXtUo), Asus Xtion, LIPS, Structure Sensor, etc.)
 - hardware platforms (x64, x86, ARMv7, ARMv8)
 - OSes (Windows, Linux, Android, iOS)
-- and development environments (C++, C#, Python, Unity, Unreal)
+- and development environments (C++, C#, [Python](/PythonNuitrack-beta), [Unity](/Unity3D), Unreal)
 
 Being initially inspired by Microsoft Kinect, **Nuitrack™**'s mission is to provide strong skeletal tracking baseline for next generation of immersive and analytical applications beyond any specific platform or hardware. Think of it as *"Kinect for anything"*.
 
@@ -32,8 +32,8 @@ Now it's all yours - Try it, Use it, Challenge it!
 You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com).
 
 ## Key Features
-   - Full Body Skeletal Tracking (19 Joints)
-   - 3D Point Cloud
+   - [Full Body Skeletal Tracking (19 Joints)](https://youtu.be/-PSN1AWc5Ro)
+   - [3D Point Cloud](https://youtu.be/nX7kLXv65kU)
    - User Masks
    - Gesture Recognition
    - [3D Sensor independent](https://nuitrack.com/#sensors)
@@ -44,50 +44,26 @@ You can learn more about **Nuitrack™** on [nuitrack.com](https://nuitrack.com)
    - Games and Training (Fitness, Dance Lessons)
    - Medical Rehabilitation
    - Smart Home
-   - Full Body Tracking for AR / VR
+   - [Full Body Tracking for AR / VR](https://youtu.be/7JqtB6Dt_9c)
    - Audience Analytics
    - Robot Vision
 
 ## Getting Started
 
-1. **Clone** this repository. Please note that it's important to clone this repository instead of downloading it. To clone the repository, run the commands below: 
+1. Try Nuitrack with your sensor !  
+To quickly try out the Nuitrack please download the **Nuitrack Runtime** package for your [platform of choice](/Platforms) and install it.  
+Installation is straightforward, in case of any issues please follow the [Installation Instructions](/doc/Install.md).  
+Then just launch Nuitrack executable from start menu. You will need [Trial or Commercial license](https://nuitrack.com/#pricing) which could be requested from nuitrack.com.  
 
-   ```bash
-   $ git clone https://github.com/3DiVi/nuitrack-sdk.git
-   $ cd nuitrack-sdk
-   ```
- 
-2. Download the **Nuitrack Runtime** installer:
+2. (Optional) If you use Unity for development please also download `Unity Package` and import it according to [this link](/Unity3D)
 
-   - using Git LFS:
-
-   ```bash
-   $ git lfs install
-   $ git lfs pull --include "Platforms/*"
-   ```
-
-   - or [this link](/Platforms)
-
-3. Download `NuitrackSDK.unitypackage`:
-   - using Git LFS:
-
-   ```bash
-   $ git lfs pull --include "Unity3D/*"
-   ```
-  
-   - or [this link](/Unity3D)
-
-4. Install **Nuitrack** to your system following the [Installation Instructions](/doc/Install.md)
-
-5. Activate **Nuitrack** with our [Trial, Perpetual, or Online license](https://nuitrack.com/#pricing)
-
-Now you can use **Nuitrack** and run the samples from the `Examples` folder.
+3. Clone this repository to get started with development and get hands-on experience with Nuitrack examples.
 
 ## What’s included in the SDK:
 | What | Description |
 | --------- | ----------- | 
-| **[Documentation](doc/readme.md)** | An offline copy of **Nuitrack** documentation ||
-| **[Runtime Components](/Platforms)** | **Nuitrack Runtime** installers for all supported platforms ||
+| **[Documentation](doc/readme.md)** | **Nuitrack** documentation ||
+| **[Runtime Components](/Platforms)** | **Nuitrack Runtime** packages for all supported platforms ||
 | **[C#/.NET and C++ API](https://download.3divi.com/Nuitrack/doc/annotated.html)** | It allows you to integrate **Nuitrack** with your **C#/C++** applications ||
 | **[Python Wrapper [beta]](/PythonNuitrack-beta)** | **Nuitrack** supports **Python API** that allows you to integrate **Nuitrack** with your Python applications ||
 | **[iOS [beta]](/iOS-beta)** | Get started developing for **iOS** with **Nuitrack** ||

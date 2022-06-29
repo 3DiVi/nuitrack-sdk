@@ -70,7 +70,8 @@ int main(int argc, char* argv[])
         std::cerr << "Can not initialize Nuitrack (ExceptionType: " << e.type() << ")" << std::endl;
         return EXIT_FAILURE;
     }
-    
+    auto devices = Nuitrack::getDeviceList();
+    Nuitrack::setDevice(devices[0]);    
     // Create HandTracker module, other required modules will be
     // created automatically
     auto handTracker = HandTracker::create();
@@ -100,7 +101,7 @@ int main(int argc, char* argv[])
         catch (LicenseNotAcquiredException& e)
         {
             std::cerr << "LicenseNotAcquired exception (ExceptionType: " << e.type() << ")" << std::endl;
-            errorCode = EXIT_FAILURE;
+            errorCode = EXIT_SUCCESS;
             break;
         }
         catch (const Exception& e)
