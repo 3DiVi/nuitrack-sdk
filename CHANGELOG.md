@@ -1,3 +1,19 @@
+# Release v0.36.1
+
+**Release Date**: 19 Aug 2022  
+**Nuitrack Runtime version**: 0.36.1  
+**Nuitrack SDK version**: 1.12.1
+
+## New Features
+
+* Added the [**person re-identification**](doc/Person_Reidentification.md) feature
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* **Linux x64** rules do not apply for Orbbec Astra Plus. See the first item from [here](doc/Troubleshooting.md#linux) to apply the workaround 
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.0
 
 **Release Date**: 28 June 2022  

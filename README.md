@@ -1,12 +1,12 @@
 <p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
 
 ## What's New ? 
-- **:white_check_mark: May'22 - 0.35.15 - Official support for [Orbbec Astra+](https://youtu.be/NP5ayeqUr4I)**
+- **:white_check_mark: Aug'22 - 0.36.1 - [Person re-identification](/doc/Person_Reidentification.md)**
+- :white_check_mark: May'22 - 0.35.15 - Official support for [Orbbec Astra+](https://youtu.be/NP5ayeqUr4I)
 - :white_check_mark: Nov'21 - 0.35.12 - [Python API](/PythonNuitrack-beta)
 
 *Coming soon*:
 - :soon: Holistic skeletal tracking on multiple sensors
-- :soon: Person re-identification
 - :soon: Support for new Orbbec Astra Pro+, Persee+
 
 ## What is Nuitrack™ SDK?
