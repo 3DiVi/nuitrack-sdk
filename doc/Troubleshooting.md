@@ -113,6 +113,7 @@ If your sensor is plugged in but is not detected by Nuitrack and is not active i
 
 * If your sensor is plugged in but is not detected by Nuitrack and is not displayed in the activation tool, please install the Microsoft Visual C++ 2013 redistributable package (instead of the version for Microsoft Visual C++ 2017). You can download this package on the [official Microsoft website](https://www.microsoft.com/en-us/download/details.aspx?id=40784).
 * If RGB stream shows a picture from your webcam or doesn't work at all on Windows or Linux then open `nuitrack.config` and set the value of `AstraProPerseeDepthProvider.CameraID` (usually it’s `0`, but if it doesn’t work, try `1`, `2`, and so on).
+* If your're observing flipped RGB stream compared to the depth, please change `flipRGB.flip` field to the opposite one inside `rgbConf.cfg` file which is located in `$NUITRACK_HOME/data/` folder on Linux systems and `C:\Program Files\Nuitrack\nuitrack\nuitrack\data` folder on Windows systems  
 
 ### Kinect V1
 

@@ -1,3 +1,19 @@
+# Release v0.36.2
+
+**Release Date**: 03 Sep 2022  
+**Nuitrack Runtime version**: 0.36.2  
+**Nuitrack SDK version**: 1.12.2
+
+## New Features
+
+* New [**Nuitrack Daemon**](doc/Nuitrack_Daemon.md) application, which allows you to get data from Nuitrack using REST api
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* **Linux x64** rules do not apply for Orbbec Astra Plus. See the first item from [here](doc/Troubleshooting.md#linux) to apply the workaround 
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.1
 
 **Release Date**: 19 Aug 2022  
