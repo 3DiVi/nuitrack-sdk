@@ -1,3 +1,20 @@
+# Release v0.36.3
+
+**Release Date**: 08 Sep 2022  
+**Nuitrack Runtime version**: 0.36.3  
+**Nuitrack SDK version**: 1.12.3
+
+## Bug Fixes and Improvements
+
+* Fixed **Nuitrack** working in headless mode on the **Linux x64** with **Kinect v2**
+* Fixed work of Orbbec Astra sensors on the **Linux arm32**
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* **Linux x64** rules do not apply for Orbbec Astra Plus. See the first item from [here](doc/Troubleshooting.md#linux) to apply the workaround 
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.2
 
 **Release Date**: 03 Sep 2022  

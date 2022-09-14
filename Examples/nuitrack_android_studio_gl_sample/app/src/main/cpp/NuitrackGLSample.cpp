@@ -4,6 +4,11 @@
 #include <cstring>
 #include <iostream>
 
+#if defined(ANDROID) || defined(__ANDROID__)
+#include <android/log.h>
+#define LOGGING(...){__android_log_print(ANDROID_LOG_INFO, "NUITRACK", __VA_ARGS__);}
+#endif
+
 using namespace tdv::nuitrack;
 
 NuitrackGLSample::NuitrackGLSample() :
@@ -190,6 +195,9 @@ void NuitrackGLSample::onNewDepthFrame(DepthFrame::Ptr frame)
 			texturePtr[2] = depthValue;
 		}
 	}
+#if defined(ANDROID) || defined(__ANDROID__)
+	LOGGING("Update onNewDepthFrame callback");
+#endif
 }
 
 // Copy color frame data, received from Nuitrack, to texture to visualize
@@ -230,6 +238,9 @@ void NuitrackGLSample::onNewRGBFrame(RGBFrame::Ptr frame)
 			texturePtr[2] = (colorPtr + col)->blue;
 		}
 	}
+#if defined(ANDROID) || defined(__ANDROID__)
+	LOGGING("Update onNewRGBFrame callback");
+#endif
 }
 // Colorize user segments using Nuitrack User Tracker data
 void NuitrackGLSample::onUserUpdateCallback(UserFrame::Ptr frame)
