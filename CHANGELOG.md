@@ -1,3 +1,18 @@
+# Release v0.36.4
+
+**Release Date**: 30 Sep 2022  
+**Nuitrack Runtime version**: 0.36.4  
+**Nuitrack SDK version**: 1.12.4
+
+## New Features
+* Added the [**failure case recorder**](doc/Failure_Case_Recorder.md) feature
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* **Linux x64** rules do not apply for Orbbec Astra Plus. See the first item from [here](doc/Troubleshooting.md#linux) to apply the workaround 
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.3
 
 **Release Date**: 08 Sep 2022  

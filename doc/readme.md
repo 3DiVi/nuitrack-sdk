@@ -23,6 +23,7 @@
 * [Nuitrack Samples](Samples.md)
 * [Using Nuitrack with Multiple Depth Sensors](Multiple_Depth_Sensors.md)
 * [Person Re-identification](Person_Reidentification.md)
+* [Failure Case Recorder](Failure_Case_Recorder.md)
 * [Nuitrack Daemon [Beta]](Nuitrack_Daemon.md)
 * ###### Nuitrack Best Practices
   * [How to make a VR App with Nuitrack](VR_app.md)
