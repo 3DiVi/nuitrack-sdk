@@ -1,3 +1,17 @@
+# Release v0.36.5
+
+**Release Date**: 06 Oct 2022  
+**Nuitrack Runtime version**: 0.36.5  
+**Nuitrack SDK version**: 1.12.5
+
+## Bug Fixes and Improvements
+* Fixed an issue where Orbbec Astra Pro sensors could have incorrect RGB streams on Linux platforms
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.4
 
 **Release Date**: 30 Sep 2022  

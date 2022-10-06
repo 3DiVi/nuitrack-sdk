@@ -1,7 +1,7 @@
 <p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
 
 ## What's New ? 
-- **:white_check_mark: Sep'30 - 0.36.4 - [Failure Case Recorder](/doc/Failure_Case_Recorder.md)**
+- **:white_check_mark: Sep'22 - 0.36.4 - [Failure Case Recorder](/doc/Failure_Case_Recorder.md)**
 - :white_check_mark: Sep'22 - 0.36.2 - [Nuitrack Daemon [Beta]](/doc/Nuitrack_Daemon.md) - use Nuitrack in a language-agnostic way through REST API
 - :white_check_mark: Aug'22 - 0.36.1 - [Person re-identification](/doc/Person_Reidentification.md)
 - :white_check_mark: Jun'22 - 0.36.0 - Astra Pro+ supported
