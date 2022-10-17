@@ -120,10 +120,17 @@ std::string toString(ActivationStatus status) {
 }
 
 NuitrackDevice::Ptr selectDevice() {
-		std::vector<NuitrackDevice::Ptr> devices = Nuitrack::getDeviceList();
+		std::vector<NuitrackDevice::Ptr> devices;
+		while (true)
+		{
+			devices = Nuitrack::getDeviceList();
+			
+			if (!devices.empty())
+				break;
 
-		if (devices.empty())
-			throw Exception("No devices found.");
+			std::cout << "\nConnect sensor and press Enter to continue" << std::endl;
+			std::cin.ignore();
+		}
 
 		console::Table<4> table({"Index", "Name", "Serial Number", "License"});
 		for (std::size_t i = 0; i < devices.size(); i++)

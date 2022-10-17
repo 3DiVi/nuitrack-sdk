@@ -1,3 +1,18 @@
+# Release v0.36.6
+
+**Release Date**: 17 Oct 2022  
+**Nuitrack Runtime version**: 0.36.6  
+**Nuitrack SDK version**: 1.12.6
+
+## Bug Fixes and Improvements
+* Fixed an issue with inability to activate some Orbbec Astra Plus sensors
+* Fixed rare cases of Nuitrack hanging while calling `getDeviceList` using Kinect V2 sensors
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.5
 
 **Release Date**: 06 Oct 2022  
