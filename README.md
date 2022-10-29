@@ -1,8 +1,12 @@
 <p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
 
-## What's New ? 
-- **:white_check_mark: Sep'22 - 0.36.4 - [Failure Case Recorder](/doc/Failure_Case_Recorder.md)**
-- :white_check_mark: Sep'22 - 0.36.2 - [Nuitrack Daemon [Beta]](/doc/Nuitrack_Daemon.md) - use Nuitrack in a language-agnostic way through REST API
+## What's New ?
+- :white_check_mark: Oct'22 - 0.36.7 - [**Multisensor tracking**](/doc/Multiple_Depth_Sensors.md) :rocket:  
+Nuitrack finally could work with [multiple depth sensors](/doc/Multiple_Depth_Sensors.md).  This opens up a huge opportunities like room-scale tracking with increased accuracy. Please stay tuned to get a firsthand experience of the coming **Nuitrack Holistic**.
+- :white_check_mark: Sep'22 - 0.36.4 - **[Failure cases recorder](/doc/Failure_Case_Recorder.md)** :gear:  
+Not satisfied with the tracking results? Nuitrack now helps to [report](/doc/Failure_Case_Recorder.md) failure cases to facilitate improvements of tracking engine. 
+- :white_check_mark: Sep'22 - 0.36.2 - [**Nuitrack Daemon [Beta]**](/doc/Nuitrack_Daemon.md)  
+Use Nuitrack in a language-agnostic way through REST API
 - :white_check_mark: Aug'22 - 0.36.1 - [Person re-identification](/doc/Person_Reidentification.md)
 - :white_check_mark: Jun'22 - 0.36.0 - Astra Pro+ supported
 - :white_check_mark: May'22 - 0.35.15 - Official support for [Orbbec Astra+](https://youtu.be/NP5ayeqUr4I)

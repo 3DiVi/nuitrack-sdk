@@ -1,3 +1,17 @@
+# Release v0.36.7
+
+**Release Date**: 21 Oct 2022  
+**Nuitrack Runtime version**: 0.36.7  
+**Nuitrack SDK version**: 1.12.7
+
+## New Features
+* **Nuitrack** now could process data from [**multiple depth sensors**](doc/Multiple_Depth_Sensors.md) simultaneously
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.6
 
 **Release Date**: 17 Oct 2022  

@@ -4,6 +4,7 @@ Nuitrack SDK includes a set of sample C++ and C# demo programs that you can buil
 
 | Example | Description |
 | ------- | ----------- |
+| [Nuitrack Multi-Sensor sample](/Examples/nuitrack_multisensor_sample) | This simple example shows how to use Nuitrack with multiple sensors to get a depth maps and tracking results. In this example, the resulting data is rendered using OpenCV.|
 | [Nuitrack console sample](/Examples/nuitrack_console_sample) | This simple example shows how to use Nuitrack to get a user's right hand position. The example covers the basic stages of the Nuitrack API usage: initialization, module creation, callback registration, Nuitrack startup, data retrieval, and resource release. The received data is displayed in the console. |
 | [Nuitrack OpenGL sample](/Examples/nuitrack_gl_sample) | This example shows how to use Nuitrack to get a depth map, data on the tracking of users, skeletons, hands, and gesture recognition. In the example, the resulting data is rendered using OpenGL. |
 | [Nuitrack OpenGL sample with OpenNI API](/Examples/nuitrack_ni_gl_sample) | This example is similar to the previous one, but it is based on the OpenNI API. |
