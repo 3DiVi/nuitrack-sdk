@@ -1,3 +1,18 @@
+# Release v0.36.8
+
+**Release Date**: 22 Feb 2023  
+**Nuitrack Runtime version**: 0.36.8  
+**Nuitrack SDK version**: 1.12.8
+
+## Bug Fixes and Improvements
+* Fixed `Mirror` and `RotateAngle` options for **Azure Kinect** sensor
+* Fixed head position detection in **Nuitrack AI Skeletal Tracking** in a case when a person is turned backwards to the camera
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.7
 
 **Release Date**: 21 Oct 2022  

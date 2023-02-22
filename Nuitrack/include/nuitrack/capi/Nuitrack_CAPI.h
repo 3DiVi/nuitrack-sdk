@@ -43,6 +43,9 @@ NUITRACK_API void nuitrack_GetInstancesJsonData(char* data, nuitrack_error** err
 NUITRACK_API char* nuitrack_GetInstancesJsonDataAlloc(nuitrack_error** error);
 NUITRACK_API void nuitrack_GetInstancesJsonDataClear(char* resultPtr);
 
+NUITRACK_API char* nuitrack_GetInternalParamsJsonAlloc(nuitrack_error** error);
+NUITRACK_API void nuitrack_GetInternalParamsJsonClear(char* resultPtr);
+
 NUITRACK_API void nuitrack_SetParam(const char* value);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetVersion(int* version);

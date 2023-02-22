@@ -178,7 +178,7 @@ int main()
     {
         try
         {
-            // Wait and update Nuitrack data for all Nuitrack instances
+            // Wait and update Nuitrack data for all Nuitrack instance
             for (const auto& tracker : trackers)
             {
                 Nuitrack::waitUpdate(tracker.skeletonTracker);

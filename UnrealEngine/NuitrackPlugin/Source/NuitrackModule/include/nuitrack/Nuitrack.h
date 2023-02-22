@@ -192,6 +192,24 @@ public:
 	}
 
 	/**
+	 * @brief Get the JSON string with internal Nuitrack parameters (for internal use only).
+	 *
+	 * @return JSON string
+	 * @throw tdv::nuitrack::Exception
+	 */
+	static std::string getInternalParamsJson()
+	{
+		int size = 0;
+		nuitrack_error* e = nullptr;
+		char* resultPtr = nuitrack_GetInternalParamsJsonAlloc(&e);
+		std::string result(resultPtr);
+		ExceptionTranslator::handle(e);
+		nuitrack_GetInternalParamsJsonClear(resultPtr);
+
+		return result;
+	}
+
+	/**
 	 * @brief Get Nuitrack version.
 	 * The version is calculated by the formula: major * 10000 + minor * 100 + revision
 	 *
