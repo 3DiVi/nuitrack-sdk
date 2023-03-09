@@ -1,3 +1,18 @@
+# Release v0.36.9
+
+**Release Date**: 09 Mar 2023  
+**Nuitrack Runtime version**: 0.36.9  
+**Nuitrack SDK version**: 1.12.9
+
+## Bug Fixes and Improvements
+* Reduced Nuitrack initialization time
+* Fixed runability of Nuitrack on bag/oni records using `Nuitrack::setConfigValue` API function
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.8
 
 **Release Date**: 22 Feb 2023  
