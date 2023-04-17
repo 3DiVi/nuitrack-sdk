@@ -37,11 +37,17 @@ NUITRACK_API uint64_t nuitrack_GetNuitrackModuleTimestamp(NuitrackModule*);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetLicense(char* value, int bufferSize);
 
+char* _nuitrack_stringAlloc(const std::string &str);
+void _nuitrack_stringClear(char* str);
+
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_GetInstancesJson(char* value, int bufferSize);
 NUITRACK_API void nuitrack_GetInstancesJsonSize(int* size, nuitrack_error** error);// deprecated
 NUITRACK_API void nuitrack_GetInstancesJsonData(char* data, nuitrack_error** error); // deprecated
 NUITRACK_API char* nuitrack_GetInstancesJsonDataAlloc(nuitrack_error** error);
 NUITRACK_API void nuitrack_GetInstancesJsonDataClear(char* resultPtr);
+
+NUITRACK_API char* nuitrack_GetMultiSensorSkeletonsJsonDataAlloc(nuitrack_error** error);
+NUITRACK_API void nuitrack_GetMultiSensorSkeletonsJsonDataClear(char* resultPtr);
 
 NUITRACK_API char* nuitrack_GetInternalParamsJsonAlloc(nuitrack_error** error);
 NUITRACK_API void nuitrack_GetInternalParamsJsonClear(char* resultPtr);

@@ -1,3 +1,17 @@
+# Release v0.36.11
+
+**Release Date**: 17 Apr 2023  
+**Nuitrack Runtime version**: 0.36.11  
+**Nuitrack SDK version**: 1.12.11  
+
+## Bug Fixes and Improvements
+* Fixed Nuitrack SDK conflicts with applications that use OpenVINO
+
+## Known Issues
+
+* Unstable work of Nuitrack on the **Android arm32** platform
+* Gesture recognition may fail for a sitting pose
+
 # Release v0.36.10
 
 **Release Date**: 18 Mar 2023  
