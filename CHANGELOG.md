@@ -1,3 +1,14 @@
+# Release v0.36.12
+
+**Release Date**: 19 May 2023  
+**Nuitrack Runtime version**: 0.36.12  
+**Nuitrack SDK version**: 1.12.12  
+
+## Bug Fixes and Improvements
+* Init phase / start-up time was significantly optimized
+* Nuitrack now supports multiple Kinect 2.0 sensors on Windows (even official Microsoft SDK can't do it)
+* Correct operation with Orbbec Astra sensors on Windows w/ Kinect 2.0 Runtime installed
+
 # Release v0.36.11
 
 **Release Date**: 17 Apr 2023  

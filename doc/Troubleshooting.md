@@ -5,9 +5,9 @@ In this section, you can find the information about the most common errors relat
 ## Windows
 
 * If the installation freezes at 66%, please follow the steps below:
-  1. Run `clear_sys_env.bat` as Administrator
-  2. Run `maintenance_tool.exe`
-  3. Install Nuitrack from scratch
+  * Run `clear_sys_env.bat` as Administrator
+  * Run `maintenance_tool.exe`
+  * Install Nuitrack from scratch
 * If there were any errors during the automatic setup, please check the environment variables:
   * There should be the `NUITRACK_HOME` variable with the value of `<install-folder>\nuitrack`
   * The 'PATH' variable should include the path to `<install-folder>\nuitrack\bin`
@@ -29,6 +29,10 @@ _**Note**: To add a new environment variable or change the existing environment 
   "C:\Program Files\OpenNI\Bin64\niReg64.exe" -r <install-folder>\nuitrack\bin\libnuitrack_ni.dll <install-folder>\nuitrack\data
   ```
 * If you have any problems with your sensor, make sure that you allowed apps to access your camera: select **Settings → Privacy → Camera** and turn on **"Allow apps to access your camera"**.
+
+* During installation, Nuitrack grants write permissions to the directory _%NUITRACK_HOME%\data_ (the directory where the license is stored) for the current user. If you need to activate via another user in the future, you need to give write permissions for this directory yourself. Run this command from Windows CMD: `icacls %NUITRACK_HOME%\data /grant <your_user_name>:F /T`
+
+
 
 ## Linux
 
