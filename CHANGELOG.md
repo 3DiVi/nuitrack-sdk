@@ -1,3 +1,14 @@
+# Release v0.36.13
+
+**Release Date**: 20 Jul 2023  
+**Nuitrack Runtime version**: 0.36.13  
+**Nuitrack SDK version**: 1.12.13  
+
+## Bug Fixes and Improvements
+* Added support for **Orbbec Persee Plus (Android and Linux)**
+* Added support for **Orbbec Astra Plus** on **Android arm32/arm64** and **Linux arm32/arm64** platforms
+* Added support for **Orbbec Femto** and **Orbbec Femto W** on **Windows x64**, **Linux arm32/arm64/x64**, and **Android arm32/arm64** platforms
+
 # Release v0.36.12
 
 **Release Date**: 19 May 2023  

@@ -1,22 +1,21 @@
 <p align="center"><a href="https://nuitrack.com/"><img src="doc/img/nuitrack-logo.png" width="70%" /></a></p>
 
 ## What's New ?
-- :white_check_mark: Oct'22 - 0.36.7 - [**Multisensor tracking**](/doc/Multiple_Depth_Sensors.md) :rocket:  
-Nuitrack finally could work with [multiple depth sensors](/doc/Multiple_Depth_Sensors.md).  This opens up a huge opportunities like room-scale tracking with increased accuracy. Please stay tuned to get a firsthand experience of the coming **Nuitrack Holistic**.
-- :white_check_mark: Sep'22 - 0.36.4 - **[Failure cases recorder](/doc/Failure_Case_Recorder.md)** :gear:  
+- :soon: *Holistic skeletal tracking with multiple sensors*
+- :soon: *Major update on tracking accuracy*
+- :soon: *Native UE5 support* 
+- :new: **TouchDesigner** :fireworks: package is in beta, please follow [this post](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) to try it out !
+- :white_check_mark: Jul'23 - 0.36.13 - :movie_camera: **Orbbec Persee+ and Femto (W)** are finally supported !
+---
+- :white_check_mark: Oct'22 - 0.36.7 - :camera: :camera: [**Multisensor tracking**](/doc/Multiple_Depth_Sensors.md)  
+This opens up a huge opportunities like room-scale tracking with increased accuracy. Please stay tuned to get a firsthand experience of the coming **Nuitrack Holistic**.
+- :white_check_mark: Sep'22 - 0.36.4 - :gear: **[Failure cases recorder](/doc/Failure_Case_Recorder.md)**  
 Not satisfied with the tracking results? Nuitrack now helps to [report](/doc/Failure_Case_Recorder.md) failure cases to facilitate improvements of tracking engine. 
-- :white_check_mark: Sep'22 - 0.36.2 - [**Nuitrack Daemon [Beta]**](/doc/Nuitrack_Daemon.md)  
-Use Nuitrack in a language-agnostic way through REST API
-- :white_check_mark: Aug'22 - 0.36.1 - [Person re-identification](/doc/Person_Reidentification.md)
-- :white_check_mark: Jun'22 - 0.36.0 - Astra Pro+ supported
-- :white_check_mark: May'22 - 0.35.15 - Official support for [Orbbec Astra+](https://youtu.be/NP5ayeqUr4I)
+- :white_check_mark: Sep'22 - 0.36.2 - [Nuitrack Daemon [Beta]](/doc/Nuitrack_Daemon.md)  
+- :white_check_mark: Aug'22 - 0.36.1 - :memo: [Person re-identification](/doc/Person_Reidentification.md)
+- :white_check_mark: Jun'22 - 0.36.0 - :movie_camera: [Orbbec Astra+ and Astra Pro+](https://youtu.be/NP5ayeqUr4I) are supported
 - :white_check_mark: Nov'21 - 0.35.12 - [Python API](/PythonNuitrack-beta)
 
-*Coming soon*:
-- :soon: Holistic skeletal tracking on multiple sensors
-- :soon: Support for new Orbbec Persee+, Femto (W) devices
-- :soon: TouchDesigner support (depth map and skeletons export)
-- :soon: Major update on tracking accuracy
 
 ## What is Nuitrack™ SDK?
 
@@ -24,17 +23,17 @@ Use Nuitrack in a language-agnostic way through REST API
 
 **Nuitrack™** is an ultimate 3D body tracking solution developed by **[3DiVi Inc](https://www.3divi.com/)**.
 
-It enables skeletal tracking and body motion analytics applications for virtually any widespread:
-- depth sensors (Orbbec Astra, Kinect v1/v2, [Kinect Azure](https://youtu.be/K7O-361UlfI), [Intel Realsense](https://youtu.be/gMPtV4NXtUo), Asus Xtion, LIPS, Structure Sensor, etc.)
-- hardware platforms (x64, x86, ARMv7, ARMv8)
-- OSes (Windows, Linux, Android, iOS)
-- and development environments (C++, C#, [Python](/PythonNuitrack-beta), [Unity](/Unity3D), Unreal)
+It enables body motion analytics applications for virtually any widespread:
+- depth sensors - Orbbec Astra/Persee/Femto, Kinect v1/v2, [Kinect Azure](https://youtu.be/K7O-361UlfI), [Intel Realsense](https://youtu.be/gMPtV4NXtUo), Asus Xtion, LIPS, Structure Sensor, etc.
+- hardware platforms - x64, x86, ARMv7, ARMv8
+- OSes - Windows, Linux, Android, iOS
+- and development environments - C++, C#, [Python](/PythonNuitrack-beta), [Unity](/Unity3D), Unreal
 
 Inspired initially by Microsoft Kinect, **Nuitrack™**'s mission is to provide strong skeletal tracking baseline for the next generation of immersive and analytical applications beyond any specific platform or hardware. Think of it as a *"Kinect for anything"*.
 
 With its performance and flexibility resulting from 10 years of development **Nuitrack™** is capable to support the wide range of applications:
 - from a real-time gesture recognition on embedded platforms like [Raspberry Pi4](https://youtu.be/qyt4U7ZBj90)
-- to a large-scale multisensor analytical systems (launched on 18-Cores workstation system)
+- to a large-scale multisensor analytical systems
 
 Now it's all yours - try it, use it, challenge it!
 
