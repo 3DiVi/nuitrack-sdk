@@ -12,9 +12,6 @@ There are no strict requirements for hardware performance with Nuitrack. RAM usa
 ### Software Requirements 
 
 * Windows 7 or above
-* Installed Microsoft Visual C++ Redistributable:
-  * [Visual C++ Redistributable (x86)](https://aka.ms/vs/16/release/vc_redist.x86.exe)
-  * [Visual C++ Redistributable (x64)](https://aka.ms/vs/16/release/vc_redist.x64.exe)
 
 ### Nuitrack Installation  
 

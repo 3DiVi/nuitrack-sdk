@@ -1,3 +1,14 @@
+# Release v0.36.14
+
+**Release Date**: 28 Jul 2023  
+**Nuitrack Runtime version**: 0.36.14  
+**Nuitrack SDK version**: 1.12.14  
+
+## Bug Fixes and Improvements
+* Microsoft Visual C++ Redistributable packages are built into Nuitrack (no need to install separately anymore)
+* Fixed the installation error related to UsbDk on **Windows x86** platform
+* Fixed the correct operation of Nuitrack on **Windows x86** platform
+
 # Release v0.36.13
 
 **Release Date**: 20 Jul 2023  
