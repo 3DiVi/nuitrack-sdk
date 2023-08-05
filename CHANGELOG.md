@@ -1,3 +1,13 @@
+# Release v0.36.15
+
+**Release Date**: 5 Aug 2023  
+**Nuitrack Runtime version**: 0.36.15  
+**Nuitrack SDK version**: 1.12.15  
+
+## Bug Fixes and Improvements
+* Fixed crash when Face Tracking is manually enabled
+* Fixed crash when Gesture Recognition is enabled and trying to perform gestures
+
 # Release v0.36.14
 
 **Release Date**: 28 Jul 2023  
