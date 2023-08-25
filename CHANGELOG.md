@@ -1,3 +1,14 @@
+# Release v0.36.16
+
+**Release Date**: 25 Aug 2023  
+**Nuitrack Runtime version**: 0.36.16  
+**Nuitrack SDK version**: 1.12.16  
+
+## Bug Fixes and Improvements
+* Increased the number of facial points from 21 to 47 (_FDA_ set was replaced by _ESR_)
+* Fixed crash when running Nuitrack via Unity on **Android arm32** platform
+* Fixed Nuitrack operation with Unity on **Orbbec Persee Plus (Android)**
+
 # Release v0.36.15
 
 **Release Date**: 5 Aug 2023  

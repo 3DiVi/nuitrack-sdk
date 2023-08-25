@@ -30,7 +30,7 @@ The JSON string includes the following properties:
       * **top** - Y coordinate of the upper-left corner of the rectangle;  
       * **width** - rectangle width;  
       * **height** - rectangle height;  
-    * **landmark** - facial landmarks. The *singlelbf* set of anthropometric points is used (31 points). Normalized coordinates of each point from the set are returned.     
+    * **landmark** - facial landmarks. The *esr* set of anthropometric points is used (47 points). Normalized coordinates of each point from the set are returned.     
     * **left_eye** - normalized coordinates of the center of a person’s left eye;
     * **right_eye** - normalized coordinates of the center of a person’s right eye;
     * **angles** - face orientation angles in degrees:
@@ -44,8 +44,8 @@ The JSON string includes the following properties:
     * **gender** - estimated gender of a person. <i>Values</i>: `male | female`
     
     <p align="center">
-    <img width="300" src="img/singlelbf.png"><br>
-    <b>Singlelbf set of points</b><br>
+    <img width="300" src="img/points_esr.png"><br>
+    <b>Esr set of points</b><br>
     </p>
   
   </details>

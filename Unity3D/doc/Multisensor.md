@@ -5,20 +5,9 @@ In this case, it becomes possible to work with several sensors on the same scene
 
 To receive data from Nuitrack modules, you need to specify the id of the sensor you want to work with (id is the number of the required sensor in the list of connected sensors(0, 1, 2...).
 You can get device list using `nuitrack.Nuitrack.GetDeviceList()` or view it using `NuitrackActivationTool`)
-### Modules:  
-[DepthSensors[sensorId]](https://download.3divi.com/Nuitrack/doc/group__DepthSensor__group__csharp.html)   
-[ColorSensors[sensorId]](https://download.3divi.com/Nuitrack/doc/group__ColorSensor__group__csharp.html)   
-[SkeletonTrackers[sensorId]](https://download.3divi.com/Nuitrack/doc/group__SkeletonTracker__group__csharp.html)  
-[UserTrackers[sensorId]](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1UserTracker.html)  
-[HandTrackers[sensorId]](https://download.3divi.com/Nuitrack/doc/group__HandTracker__group__csharp.html)  
 
 ### Data:  
-[ColorFrames[sensorId]](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1ColorFrame.html)  
-[DepthFrames[sensorId]](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1DepthFrame.html)  
-[UserFrames[sensorId]](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1UserFrame.html)  
-
-[UsersList[sensorId]](https://github.com/3DiVi/nuitrack-sdk/blob/master/Unity3D/doc/Development.md#users) - tracked users per sensor  
-[Floors[sensorId]](https://download.3divi.com/Nuitrack/doc/classnuitrack_1_1UserFrame.html#a3ac5d1090492d8f2c98a3ef47d6b2c5b) - floor planes per sensor from UserFrame
+[NuitrackManager.SensorsData[sensorId]] - Getting ColorFrame, DepthFrame, etc from a specific sensor
 
 `GetSensorIdBySerialNumber("Sensor Serial Number", out sensorId)` - The sensor id may change, so if you need to guarantee that a specific sensor will be used in your script, you can get its current id using the serial number. 
 
@@ -51,7 +40,7 @@ public class ShowColorImage : MonoBehaviour
         
         if (NuitrackManager.Instance.GetSensorIdBySerialNumber(sensorSerialNumber, out sensorId))
         {
-            nuitrack.ColorFrame frame = NuitrackManager.ColorFrames[sensorId];
+            nuitrack.ColorFrame frame = NuitrackManager.sensorsData[sensorId].ColorFrame;
 
             if (frame != null)
                 GetComponent<RawImage>().texture = frame.ToTexture2D(cache);
