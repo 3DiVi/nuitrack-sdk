@@ -1,3 +1,12 @@
+# Release v0.36.17
+
+**Release Date**: 01 Sep 2023  
+**Nuitrack Runtime version**: 0.36.17  
+**Nuitrack SDK version**: 1.12.17  
+
+## Bug Fixes and Improvements
+* Fixed cases of incorrect setting of frame resolution
+
 # Release v0.36.16
 
 **Release Date**: 25 Aug 2023  
