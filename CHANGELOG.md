@@ -1,3 +1,16 @@
+# Release v0.37.0
+
+**Release Date**: 06 Oct 2023  
+**Nuitrack Runtime version**: 0.37.0  
+**Nuitrack SDK version**: 1.13.0  
+
+## New Features
+* Nuitrack.exe was slighty redesigned, error messages should be more informative now
+* Orbbec Gemini 2: added support on desktop Windows and Linux
+
+## Bug Fixes and Improvements
+* Orbbec Astra: incorrect RGB data streaming from additional/built-in webcam (instead of depth sensor) was fixed
+
 # Release v0.36.17
 
 **Release Date**: 01 Sep 2023  

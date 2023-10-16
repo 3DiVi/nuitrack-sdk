@@ -3,10 +3,10 @@
 ## What's New ?
 - :soon: *Holistic skeletal tracking with multiple sensors*
 - :soon: *Major update on tracking accuracy*
-- :soon: *Native UE5 support* 
-- :new: **TouchDesigner** :fireworks: package is in beta, please follow [this post](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) to try it out !
-- :white_check_mark: Jul'23 - 0.36.13 - **Orbbec Persee+ and Femto (W)** are finally supported !
 ---
+- :new: [**Unreal Engine 5** (Beta)](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349?u=nuitrack) :rocket: is now available !
+- :new: [**TouchDesigner** (Beta)](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) :fireworks:
+- :white_check_mark: Jul'23 - 0.36.13 - **Orbbec Persee+ and Femto (W)** are finally supported !
 - :white_check_mark: Oct'22 - 0.36.7 - :movie_camera: [**Multisensor tracking**](/doc/Multiple_Depth_Sensors.md)  
 This opens up a huge opportunities like room-scale tracking with increased accuracy. Please stay tuned to get a firsthand experience of the coming **Nuitrack Holistic**.
 - :white_check_mark: Sep'22 - 0.36.4 - :gear: [Failure cases recorder](/doc/Failure_Case_Recorder.md)
@@ -40,12 +40,12 @@ After being launched with [any supported depth sensor](https://nuitrack.com/#sen
 
 Interpret a depth map as 3D Point Cloud | Perform scene analysis, detect key elements like floor plane | Detect/track persons in the scene and provide pixel-perfect masks for each of them |
 :------------: |  :----------: | :-------------:  |
-[![Depth Map](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/5aab9268-6170-4d1e-9c47-c4ed8b03e00a)](https://youtu.be/nX7kLXv65kU)  | [![Floor plane](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/37eac24c-0f88-45e0-b134-c1930a80fbd0)](https://youtu.be/5ehEcfCIBAU)  | [![Segmentation](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/4b944bf7-7df3-4110-a12f-0706b0f5ffcc)](/doc/Unity_Segment.md)  |
+[![Depth Map](https://dl.3divi.com/Nuitrack/img/3dcloud.jpg)](https://youtu.be/nX7kLXv65kU) | [![Floor plane](https://dl.3divi.com/Nuitrack/img/floor_detection.png)](https://youtu.be/5ehEcfCIBAU)  | [![Segmentation](https://dl.3divi.com/Nuitrack/img/segment.png)](/doc/Unity_Segment.md)  |
 
 
 Perform a highly-sophisticated full body _Skeletal Tracking_ for each person | Perform a basic _Facial Analysis_ like age and emotion detection | Provide a _Hand Tracker_ and _Gesture Recognition_ higher-level APIs for the development of gesture-based user interfaces |
 :------------: |  :----------: | :-------------:  |
-[![Skeleton tracking](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/d9c92f22-638c-4b55-b0a9-6e787848add0)](https://youtu.be/-PSN1AWc5Ro) | [![Face Tracking](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/3cbbda69-d68c-4f49-b267-1c5e199975dd)](https://youtu.be/HOm0-7qL5hk) | [![Hand Tracking and Gesture Recognition](https://github.com/3DiVi/nuitrack-sdk/assets/50783230/8f2b289b-7d06-4718-a377-e40dd77db713)](/doc/Unity_Gallery.md) |
+[![Skeleton tracking](https://dl.3divi.com/Nuitrack/img/skeleton.jpg)](https://youtu.be/-PSN1AWc5Ro) | [![Face Tracking](https://dl.3divi.com/Nuitrack/img/facetracking.jpg)](https://youtu.be/HOm0-7qL5hk) | [![Hand Tracking and Gesture Recognition](https://dl.3divi.com/Nuitrack/img/gallery.gif)](/doc/Unity_Gallery.md) |
 
 Nuitrack has two **Skeletal Tracking** engines:
    - "classical" - fast, stable and lightweight, highly-optimized for embedded hardware and limited CPU usage
@@ -89,7 +89,7 @@ If you have any questions, issues or feature ideas - feel free to engage with Nu
 | **[iOS [beta]](/iOS-beta)** | Get started developing for **iOS** with **Nuitrack** ||
 | **[Code Samples](/Examples)** | These basic examples demonstrate how to use **Nuitrack SDK** |
 | **[Unity Package](/doc/readme.md#unity-tutorials)** | This package allows you to easily integrate **Nuitrack SDK** into your Unity project |
-| **[Unreal Engine Plugin](/doc/readme.md#unreal-engine-tutorials)** | This plugin allows you to develop applications with **UE 4.20** |
+| **[Unreal Engine Plugin (C++)](/doc/readme.md#unreal-engine-tutorials)** | This plugin allows you to develop applications with **UE 4.20** (**Blueprint** version for **UE5** is [here](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349)!) |
 
 ## Nuitrack in Academia 
 Nuitrack is widely used in serious research, here are just a few selected references:

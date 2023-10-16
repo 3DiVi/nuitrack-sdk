@@ -8,6 +8,33 @@ namespace nuitrack
 
 /**
 * @ingroup DepthSensor_group
+* @brief Stores sensor intrinsic values.
+*/
+struct Intrinsics
+{
+	/**
+	 * @brief Focal length in X direction
+	 */
+	float fx;
+
+	/**
+	 * @brief Focal length in Y direction
+	 */
+	float fy;
+
+	/**
+	 * @brief Optical center abscissa
+	 */
+	float cx;
+
+	/**
+	 * @brief Optical center ordinate
+	 */
+	float cy;
+};
+
+/**
+* @ingroup DepthSensor_group
 * @brief Stores sensor data properties.
 */
 struct OutputMode
@@ -31,6 +58,11 @@ struct OutputMode
 	 * @brief Horizontal field of view in radians.
 	 */
 	float hfov;
+
+	/**
+	 * @brief Sensor intrinsics for current xres, yres.
+	 */
+	Intrinsics intrinsics;
 };
 
 } /* namespace nuitrack */

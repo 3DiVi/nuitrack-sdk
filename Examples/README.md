@@ -12,5 +12,4 @@ Nuitrack SDK includes a set of sample C++ and C# demo programs that you can buil
 | [Nuitrack Device API sample](/Examples/nuitrack_device_api_sample) | This example shows how to use Nuitrack С++ Device API to select and activate a device with the Nuitrack C++ API. |
 | [Nuitrack C# Device API sample](/Examples/nuitrack_csharp_device_api_sample) | This example shows how to use Nuitrack С# Device API to select and activate a device with the Nuitrack C# API. |
 | [Nuitrack Android Studio GL sample](/Examples/nuitrack_android_studio_gl_sample) | This example shows how to use Nuitrack in Android Studio to get a depth map, data on the tracking of users, skeletons, hands, and gesture recognition. In the example, the resulting data is rendered using OpenGL. |
-| [Room Demo (Unity)](/Examples/Room_Unity3D_Demo.zip) | This is a sample VR application for VicoVR. In this project, a user's skeleton is detected and tracked. The avatar is standing in front of a mirror in a virtual room. |
-| [VicoVR Demo (Unity)](/Examples/VicoVR_Unity3D_Demo.zip) | This Unity sample shows you how to use Nuitrack to track a user's skeleton and segment, get a depth map from the sensor, and create a point cloud. |
+

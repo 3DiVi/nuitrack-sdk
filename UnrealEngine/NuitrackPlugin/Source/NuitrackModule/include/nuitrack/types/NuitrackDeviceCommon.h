@@ -19,6 +19,7 @@ struct ActivationInfo
 		NONE = 0,	///< no valid license
 		TRIAL,		///< time-limited license
 		PRO,		///< unlimited license types
+		AI,		    ///< AI license types
 	};
 };
 typedef ActivationInfo::Status ActivationStatus;
