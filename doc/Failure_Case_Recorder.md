@@ -9,6 +9,7 @@ _Nuitrack saves only sensor settings, depth and rgb frames._
 ### Supported platforms
 - Linux x64
 - Windows x64/x86
+- Android arm32/arm64
 
 ### To use Failure Case Recorder:
 - launch the Nuitrack application
@@ -18,7 +19,7 @@ _Nuitrack saves only sensor settings, depth and rgb frames._
 - you will see a message `Record Saving Started`
 - the last 15 seconds of sensor data will be saved to your computer's hard drive
 - wait until you see the message `Record Saving Ended`, after which you can close the application or record a new case
-- compress recorded case (recorded case saves to `%NUITRACK_HOME%\data\NuitrackFrameDump\<your records>` by default) and send it to our support: support-nuitrack@3divi.com
+- compress recorded case (recorded case saves to `%NUITRACK_HOME%\data\NuitrackFrameDump\<your records>` on Desktop platforms and to `Android/data/com.tdv.nuitrack.sdk/files/nuitrack/NuitrackFrameDump` on Android) and send it to our support: support-nuitrack@3divi.com
 
 ### Hardware requirements:
 The required amount of free Memory and Hard Drive space directly depends on the resolution and frame rate that you use for the sensor.  

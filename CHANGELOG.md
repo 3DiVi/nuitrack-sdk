@@ -1,3 +1,12 @@
+# Release v0.37.1
+
+**Release Date**: 21 Oct 2023  
+**Nuitrack Runtime version**: 0.37.1  
+**Nuitrack SDK version**: 1.13.1  
+
+## New Features
+* Added the [**failure case recorder**](doc/Failure_Case_Recorder.md) feature for Android platforms
+
 # Release v0.37.0
 
 **Release Date**: 06 Oct 2023  
