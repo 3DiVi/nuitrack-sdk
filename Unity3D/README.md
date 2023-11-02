@@ -27,5 +27,6 @@
 - [Development](doc/Development.md)
 
 ## Troubleshooting
-- If you tried everything, but still nothing started, look at the page https://github.com/3DiVi/nuitrack-sdk/blob/master/doc/Troubleshooting.md
-- If you have any problems with NuitrackSDK components, you can contact our support team. Please provide as much information as possible in your request, including your OS, Nuitrack version, Unity version, the editor's log, perhaps an archive with the minimum version of your project on which we could repeat your problem, etc.
+- In case of any issues, please take a look at the [Troubleshooting page](https://bit.ly/NuitrackTroubleshooting)
+- If you have any issues with NuitrackSDK components, you can [contact us](https://community.nuitrack.com).  
+Please provide as much information as possible in your request, including your OS, Nuitrack version, Unity version, the editor's log, perhaps an archive with the minimized version of your project on which we could reproduce the issue, etc.

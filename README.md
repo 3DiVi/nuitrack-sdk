@@ -37,14 +37,11 @@ Now it's all yours - try it, use it, challenge it!
 After being launched with [any supported depth sensor](https://nuitrack.com/#sensors) **Nuitrack** provides:
 
 
-Depth map / 3D Point Cloud | Scene analysis, key elements like floor plane | Persons tracking and pixel-perfect segmentation for each of them |
-:------------: |  :----------: | :-------------:  |
-[![Depth Map](https://dl.3divi.com/Nuitrack/img/3dcloud.jpg)](https://youtu.be/nX7kLXv65kU) | [![Floor plane](https://dl.3divi.com/Nuitrack/img/floor_detection.png)](https://youtu.be/5ehEcfCIBAU)  | [![Segmentation](https://dl.3divi.com/Nuitrack/img/segment.png)](/doc/Unity_Segment.md)  |
-
-
-Highly-sophisticated _3D Skeletal Tracking_ for each person | Basic _Facial Analysis_ like age and emotion detection | _Hand Tracker_ and _Gesture Recognition_ high-level APIs for UI control |
-:------------: |  :----------: | :-------------:  |
-[![Skeleton tracking](https://dl.3divi.com/Nuitrack/img/skeleton.jpg)](https://youtu.be/-PSN1AWc5Ro) | [![Face Tracking](https://dl.3divi.com/Nuitrack/img/facetracking.jpg)](https://youtu.be/HOm0-7qL5hk) | [![Hand Tracking and Gesture Recognition](/doc/img/Ugallery_15.gif)](/doc/Unity_Gallery.md) |
+| **Depth map / 3D Point Cloud** | **Scene analysis, key elements like floor plane** | **Persons tracking and pixel-perfect segmentation for each of them** |
+| :------------: |  :----------: | :-------------:  |
+| [![Depth Map](https://dl.3divi.com/Nuitrack/img/3dcloud.jpg)](https://youtu.be/nX7kLXv65kU) | [![Floor plane](https://dl.3divi.com/Nuitrack/img/floor_detection.png)](https://youtu.be/5ehEcfCIBAU)  | [![Segmentation](https://dl.3divi.com/Nuitrack/img/segment.png)](/doc/Unity_Segment.md)  |
+| **Highly-sophisticated _3D Skeletal Tracking_ for each person** | **Basic _Facial Analysis_ like age and emotion detection** | **_Hand Tracker_ and _Gesture Recognition_ high-level APIs for UI control** |
+| [![Skeleton tracking](https://dl.3divi.com/Nuitrack/img/skeleton.jpg)](https://youtu.be/-PSN1AWc5Ro) | [![Face Tracking](https://dl.3divi.com/Nuitrack/img/facetracking.jpg)](https://youtu.be/HOm0-7qL5hk) | [![Hand Tracking and Gesture Recognition](/doc/img/Ugallery_15.gif)](/doc/Unity_Gallery.md) |
 
 Nuitrack has two **Skeletal Tracking** engines:
    - "classical" - fast, stable and lightweight, highly-optimized for embedded hardware and limited CPU usage
@@ -72,17 +69,19 @@ It's as quick and simple as 1-2-3:
 
 If you have any questions, issues or feature ideas - feel free to engage with Nuitrack Team at our [Community Forum](https://community.nuitrack.com/).
 
-## What’s included in the SDK:
-| What | Description |
+### Additional resources
+
+| Resource | Description |
 | --------- | ----------- | 
-| **[Documentation](doc/readme.md)** | **Nuitrack** documentation ||
-| **[Runtime Components](/Platforms)** | **Nuitrack Runtime** packages for all supported platforms ||
-| **[C#/.NET and C++ API](https://download.3divi.com/Nuitrack/doc/annotated.html)** | It allows you to integrate **Nuitrack** with your **C#/C++** applications ||
-| **[Python Wrapper [beta]](/PythonNuitrack-beta)** | **Nuitrack** supports **Python API** that allows you to integrate **Nuitrack** with your Python applications ||
-| **[iOS [beta]](/iOS-beta)** | Get started developing for **iOS** with **Nuitrack** ||
-| **[Code Samples](/Examples)** | These basic examples demonstrate how to use **Nuitrack SDK** |
-| **[Unity Package](/doc/readme.md#unity-tutorials)** | This package allows you to easily integrate **Nuitrack SDK** into your Unity project |
-| **[Unreal Engine Plugin (C++)](/doc/readme.md#unreal-engine-tutorials)** | This plugin allows you to develop applications with **UE 4.20** (**Blueprint** version for **UE5** is [here](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349)!) |
+| [Nuitrack.com](https://nuitrack.com) | general information and license purchasing ||
+| [Licensing Dashboard](https://cognitive.3divi.com) | licenses/subscriptions management ||
+| [Troubleshooting page](https://bit.ly/NuitrackTroubleshooting) | known issues with resolution ||
+| [Community Forum](https://community.nuitrack.com) | troubleshooting, feature discussions ||
+| [Documentation](doc/readme.md) | documentation index ||
+| [Runtime Components](/Platforms) | packages for all supported platforms ||
+| [C++/C# API](https://download.3divi.com/Nuitrack/doc/annotated.html) | auto-generated API reference (Doxygen) ||
+| [C++/C# Examples](/Examples) | These basic examples demonstrate how to use **Nuitrack SDK** |
+| [iOS [beta]](/iOS-beta) | Get started with **Nuitrack** for **iOS** ||
 
 ## Application Areas
 - Games and Training (Fitness, Dance Lessons)

@@ -84,4 +84,5 @@ For **Windows** and **Linux**, `nuitrack_device_api_sample` is included into the
 
 ## Troubleshooting
 
-In the [Troubleshooting](/doc/Troubleshooting.md) section, you can find the information about the most common errors related to Nuitrack installation and usage and possible solutions. If you cannot find your problem there, please take a look at the [Knowledge Base](https://community.nuitrack.com/t/nuitrack-knowledge-base/807) in the [Nuitrack community](https://community.nuitrack.com/) or contact support-nuitrack@3divi.com
+At the [Troubleshooting](https://bit.ly/NuitrackTroubleshooting) page, you can find the most common errors related to Nuitrack installation / usage with possible solutions.  
+If you can't find your issue there, please feel free to create a topic at the [Nuitrack community](https://community.nuitrack.com/)
