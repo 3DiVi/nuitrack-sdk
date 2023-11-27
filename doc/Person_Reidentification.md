@@ -21,6 +21,12 @@ You will see unique person identifier next to person skeleton, as well as time o
 
 <p align="center"><a href="https://nuitrack.com/"><img src="img/reid.gif" width="70%" /></a></p>
 
+### Preconditions for triggering Re-identification
+- A person should stand still at a distance of 3 meters or less from the sensor.
+- A person should look directly into the sensor. The face should not be covered by clothes, hands, etc. 
+
+**If all the conditions above are met**, re-identification will not take longer than 1 second. After the re-identification is completed, a unique identifier (UUID) will be assigned to the person, which will be fixed regardless of the direction of the person's face and his movement.
+
 ### Getting Re-identification data using SDK
 
 Follow these steps to get Re-identification data from Nuitrack.

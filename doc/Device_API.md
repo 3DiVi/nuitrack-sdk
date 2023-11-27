@@ -10,4 +10,4 @@ There's also `nuitrack_device_api_sample` in the Nuitrack runtime that allows yo
 
 _**Note:** If you want to run Nuitrack with several depth sensors, we recommend you to use the sensors of the same type, for example, 2 RealSense D435. You can see the list of all supported sensors and platforms [at our website](https://nuitrack.com/#sensors)._
 
-Please refer also to the [Linking Nuitrack to your application](/doc/Nuitrack_linking.md) page. See an example of Nuitrack integration in our tutorial [Integrating Nuitrack with your application (Windows/Ubuntu)](/doc/Tutorial_integration.md).
+See an example of Nuitrack integration in our tutorial [Integrating Nuitrack with your application (Windows/Ubuntu)](/doc/Nuitrack_Integration.md).

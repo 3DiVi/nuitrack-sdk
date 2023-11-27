@@ -57,6 +57,10 @@ It's as quick and simple as 1-2-3:
 2. Install it, in case of any issues please follow the [Installation Instructions](/doc/Install.md)
 3. Just plug-in your sensor and launch Nuitrack executable from start menu
 
+## Integration/Embedded
+
+* Nuitrack provides the ability to embed it into your application, which means it does not need to be installed on the PC of your customers, for more information, see [here](doc/Nuitrack_Integration.md)
+
 ## Develop with Nuitrack
 
 | C++ | C# | Python |

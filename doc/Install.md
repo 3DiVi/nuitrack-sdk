@@ -32,6 +32,10 @@ Download and install the Nuitrack Debian package for your platform:
 * [Ubuntu/Debian arm64](/Platforms/nuitrack-linux-arm64.deb)
 * [Ubuntu/Debian arm32](/Platforms/nuitrack-linux-armhf.deb)
 
+## Integration option
+
+* Nuitrack provides two integration options, for more information, see [here](Nuitrack_Integration.md)
+
 ## Android
 
 1. Allow your device to install applications from unknown sources. To do this, go to **Settings → Security and tick "Unknown sources"**.

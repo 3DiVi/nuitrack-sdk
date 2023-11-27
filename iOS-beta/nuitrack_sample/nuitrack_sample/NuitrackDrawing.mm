@@ -302,8 +302,9 @@ void NuitrackDrawing::DrawOrientations(CGContextRef ctx, const std::vector<Joint
     {
         if (joints[j].type == JOINT_NONE)
             continue;
-
         if (joints[j].confidence < 0.15)
+            continue;
+        if (joints[j].real.z <= 0)
             continue;
 
         Orientation orient = joints[j].orient;

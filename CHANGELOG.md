@@ -1,3 +1,26 @@
+# Release v0.37.4
+
+**Release Date**: 24 Nov 2023  
+**Nuitrack Runtime version**: 0.37.4  
+**Nuitrack SDK version**: 1.13.4  
+
+## Bug Fixes and Improvements
+* Object Detection (feature): proper operation in Nuitrack.exe
+* Kinect v2: sensor detection for additional VID/PID
+
+# Release v0.37.3
+
+**Release Date**: 8 Nov 2023  
+**Nuitrack Runtime version**: 0.37.3  
+**Nuitrack SDK version**: 1.13.3  
+
+## New Features
+* Nuitrack AI Hybrid Mode: now you could get a 2D coordinates for skeleton joints when depth data is not available 
+* The [**integration process**](doc/Nuitrack_Integration.md) with Nuitrack has been greatly simplified
+
+## Bug Fixes and Improvements
+* Fixed head position detection in **Nuitrack AI Skeletal Tracking** in a case when a person is turned left profile to the camera
+
 # Release v0.37.2
 
 **Release Date**: 28 Oct 2023  
