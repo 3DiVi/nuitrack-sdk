@@ -1,3 +1,13 @@
+# Release v0.37.5
+
+**Release Date**: 5 Dec 2023  
+**Nuitrack Runtime version**: 0.37.5  
+**Nuitrack SDK version**: 1.13.5  
+
+## Bug Fixes and Improvements
+* Added hints on manual license activation in case of problems with activation in Nuitrack.exe
+* Updated `NuitrackSDK.unitypackage`: improved samples and fixed bugs
+
 # Release v0.37.4
 
 **Release Date**: 24 Nov 2023  
