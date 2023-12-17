@@ -1,3 +1,15 @@
+# Release v0.37.6
+
+**Release Date**: 16 Dec 2023  
+**Nuitrack Runtime version**: 0.37.6  
+**Nuitrack SDK version**: 1.13.6  
+
+## New Features
+* [beta] Added the ability to run a demo from multiple cameras at the same time in Nuitrack.exe
+
+## Bug Fixes and Improvements
+* Nuitrack AI Hybrid Mode: improved detection of skeletal limbs
+
 # Release v0.37.5
 
 **Release Date**: 5 Dec 2023  
