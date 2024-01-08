@@ -1,3 +1,15 @@
+# Release v0.37.7
+
+**Release Date**: 30 Dec 2023  
+**Nuitrack Runtime version**: 0.37.7  
+**Nuitrack SDK version**: 1.13.7  
+
+## New Features
+* Orbbec Gemini 2XL and Femto Bolt: added support on desktop Windows and Linux
+
+## Bug Fixes and Improvements
+* Fixed crash when using Face Recognition via Python API
+
 # Release v0.37.6
 
 **Release Date**: 16 Dec 2023  
