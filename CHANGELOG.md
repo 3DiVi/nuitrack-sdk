@@ -1,3 +1,15 @@
+# Release v0.37.8
+
+**Release Date**: 13 Jan 2024  
+**Nuitrack Runtime version**: 0.37.8  
+**Nuitrack SDK version**: 1.13.8  
+
+## New Features
+* [beta] Added support for Orbbec Gemini 2L and Astra 2
+
+## Bug Fixes and Improvements
+* Fixed the display of the depth map in the demo visualization in Nuitrack.exe
+
 # Release v0.37.7
 
 **Release Date**: 30 Dec 2023  
