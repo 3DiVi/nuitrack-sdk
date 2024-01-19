@@ -1,3 +1,13 @@
+# Release v0.37.9
+
+**Release Date**: 19 Jan 2024  
+**Nuitrack Runtime version**: 0.37.9  
+**Nuitrack SDK version**: 1.13.9  
+
+## Bug Fixes and Improvements
+* Fixed simultaneous operation of multiple Orbbec sensors (multi-sensor mode)
+* Fixed problem opening *.bag files recorded by Intel Realsense L515
+
 # Release v0.37.8
 
 **Release Date**: 13 Jan 2024  
