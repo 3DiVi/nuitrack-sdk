@@ -195,12 +195,28 @@ void activateDevice(NuitrackDevice::Ptr device) {
 
 void onNewDepthFrameCallback(DepthFrame::Ptr frame) {
 	if (frame)
-		std::cout << "Depth frame [" << frame->getTimestamp() << "]: " << frame->getCols() <<  " x " << frame->getRows() << '\n';
+		std::cout << "Nuitrack received Depth Frame [" << frame->getTimestamp() << "]: " << frame->getCols() <<  " x " << frame->getRows() << '\n';
 }
 
 void onNewColorFrameCallback(RGBFrame::Ptr frame) {
 	if (frame)
-		std::cout << "Color frame [" << frame->getTimestamp() << "]: " << frame->getCols() <<  " x " << frame->getRows() << '\n';
+		std::cout << "Nuitrack received Color Frame [" << frame->getTimestamp() << "]: " << frame->getCols() <<  " x " << frame->getRows() << '\n';
+}
+
+void onNewSkeletonCallback(SkeletonData::Ptr skeletonData)
+{
+	if (skeletonData)
+	{
+		std::cout << "Nuitrack detected " << skeletonData->getNumSkeletons() << " skeletons" << '\n';
+		for (const auto& skeleton : skeletonData->getSkeletons())
+		{
+			printf("Skeleton (ID: %d) at position - X: %d, Y: %d, Z: %d\n",
+				   skeleton.id, (int)skeleton.joints[JOINT_LEFT_COLLAR].real.x,
+				   				(int)skeleton.joints[JOINT_LEFT_COLLAR].real.y,
+				   				(int)skeleton.joints[JOINT_LEFT_COLLAR].real.z);
+		}
+		std::cout << "-----------------------\n";
+	}
 }
 
 bool finished;
@@ -227,15 +243,17 @@ int main(int argc, char* argv[]) {
 
 			auto depthSensor = DepthSensor::create();
 			auto colorSensor = ColorSensor::create();
+			auto skeletonTracker = SkeletonTracker::create();
 
 			depthSensor->connectOnNewFrame(onNewDepthFrameCallback);
 			colorSensor->connectOnNewFrame(onNewColorFrameCallback);
+			skeletonTracker->connectOnUpdate(onNewSkeletonCallback);
 
 			Nuitrack::run();
 
 			signal(SIGINT, &signalHandler);
 			while (!finished)
-				Nuitrack::waitUpdate(depthSensor);
+				Nuitrack::waitUpdate(skeletonTracker);
 		}
 	}
 	catch (const LicenseNotAcquiredException& e)

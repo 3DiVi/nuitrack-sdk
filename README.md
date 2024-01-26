@@ -4,6 +4,7 @@
 - :soon: *Holistic skeletal tracking with multiple sensors*
 - :soon: *Major update on tracking accuracy*
 ---
+- :new: [**Nuitrack now supports Docker**](https://hub.docker.com/repository/docker/nuitrack/nuitrack/general)
 - :new: [**Unreal Engine 5** (Beta)](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349?u=nuitrack) :rocket: is now available !
 - :new: [**TouchDesigner** (Beta)](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) :fireworks:
 - :white_check_mark: Jul'23 - 0.36.13 - **Orbbec Persee+ and Femto (W)** are finally supported !

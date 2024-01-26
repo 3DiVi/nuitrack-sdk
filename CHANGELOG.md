@@ -1,3 +1,13 @@
+# Release v0.37.10
+
+**Release Date**: 26 Jan 2024  
+**Nuitrack Runtime version**: 0.37.10  
+**Nuitrack SDK version**: 1.13.10  
+
+## New Features
+* Added support for **Docker** _(you can find the official Docker image [here](https://hub.docker.com/repository/docker/nuitrack/nuitrack/general))_  
+* Added **Python API** for [Linux arm64](PythonNuitrack-beta/pip_packages/dist/linux/py_nuitrack_ubuntu_arm64-0.1.0-py3-none-any.whl)  
+
 # Release v0.37.9
 
 **Release Date**: 19 Jan 2024  
