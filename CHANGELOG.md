@@ -1,3 +1,12 @@
+# Release v0.37.11
+
+**Release Date**: 3 Feb 2024  
+**Nuitrack Runtime version**: 0.37.11  
+**Nuitrack SDK version**: 1.13.11  
+
+## Bug Fixes and Improvements
+* Kinect v1: sensor detection for additional VID/PID  
+
 # Release v0.37.10
 
 **Release Date**: 26 Jan 2024  
@@ -5,7 +14,7 @@
 **Nuitrack SDK version**: 1.13.10  
 
 ## New Features
-* Added support for **Docker** _(you can find the official Docker image [here](https://hub.docker.com/repository/docker/nuitrack/nuitrack/general))_  
+* Added support for **Docker** _(you can find the official Docker image [here](https://hub.docker.com/r/nuitrack/nuitrack))_   
 * Added **Python API** for [Linux arm64](PythonNuitrack-beta/pip_packages/dist/linux/py_nuitrack_ubuntu_arm64-0.1.0-py3-none-any.whl)  
 
 # Release v0.37.9
