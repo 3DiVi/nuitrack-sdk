@@ -1,3 +1,15 @@
+# Release v0.37.12
+
+**Release Date**: 16 Feb 2024  
+**Nuitrack Runtime version**: 0.37.12  
+**Nuitrack SDK version**: 1.13.12  
+
+## New Features
+* Added **[Docker](https://hub.docker.com/r/nuitrack/nuitrack)** support for **Linux arm64**
+
+## Bug Fixes and Improvements
+* Added intrinsic camera parameters to the OutputMode structure for the C# API  
+
 # Release v0.37.11
 
 **Release Date**: 3 Feb 2024  

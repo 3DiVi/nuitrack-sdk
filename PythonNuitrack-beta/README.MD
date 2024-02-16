@@ -2,6 +2,10 @@
 
 PyNuitrack is a python wrapper for Nuitrack. You can this wrapper to detect skeletons and faces of users on frame. The Skeleton is represented as a set of joints, each of which has its position and orientation.
 
+## Supported platforms
+- Linux x64, arm64
+- Windows x64
+
 ## PyNuitrack Installation
 
 ### Ubuntu Linux

@@ -143,7 +143,6 @@ namespace nuitrack
 			// Create and configure the Bitmap object according to the depth sensor output mode
 			OutputMode mode = _depthSensor.GetOutputMode();
 			OutputMode colorMode = _colorSensor.GetOutputMode();
-
 			if (mode.XRes < colorMode.XRes)
 				mode.XRes = colorMode.XRes;
 			if (mode.YRes < colorMode.YRes)
@@ -247,7 +246,7 @@ namespace nuitrack
 					foreach (var joint in skeleton.Joints)
 					{
 						args.Graphics.FillEllipse(brush, joint.Proj.X * _bitmap.Width - jointSize / 2,
-												  joint.Proj.Y * _bitmap.Height - jointSize / 2, jointSize, jointSize);
+								joint.Proj.Y * _bitmap.Height - jointSize / 2, jointSize, jointSize);
 					}
 				}
 			}
