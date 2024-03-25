@@ -27,7 +27,10 @@ enum ExceptionType
 	MODUDLE_NOT_FOUND_EXCEPTION, ///< tdv::nuitrack::ModuleNotFoundException
 	LICENSE_NOT_ACQUIRED_EXCEPTION, ///< tdv::nuitrack::LicenseNotAcquiredException
 	MODULE_NOT_INITIALIZED_EXCEPTION, ///< tdv::nuitrack::ModuleNotInitializedException
-	MODULE_NOT_STARTED_EXCEPTION ///< tdv::nuitrack::ModuleNotStartedException
+	MODULE_NOT_STARTED_EXCEPTION, ///< tdv::nuitrack::ModuleNotStartedException
+	NETWORK_EXCEPTION, ///< tdv::nuitrack::NetworkException
+	NETWORK_UNAVAILABLE_EXCEPTION, ///< tdv::nuitrack::NetworkUnavailableException
+	SENSOR_DISCONNECTED_EXCEPTION ///< tdv::nuitrack::SensorDisconnectedException
 };
 
 /**
@@ -168,6 +171,57 @@ public:
 	virtual ExceptionType type() const
 	{
 		return MODULE_NOT_STARTED_EXCEPTION;
+	}
+};
+
+/**
+ * @ingroup CommonElements_group
+ */
+class NetworkException : public TerminateException
+{
+public:
+	NetworkException(const std::string& msg = "")
+			: TerminateException(msg)
+	{
+	}
+
+	virtual ExceptionType type() const
+	{
+		return NETWORK_EXCEPTION;
+	}
+};
+
+/**
+ * @ingroup CommonElements_group
+ */
+class NetworkUnavailableException : public TerminateException
+{
+public:
+	NetworkUnavailableException(const std::string& msg = "")
+			: TerminateException(msg)
+	{
+	}
+
+	virtual ExceptionType type() const
+	{
+		return NETWORK_UNAVAILABLE_EXCEPTION;
+	}
+};
+
+/**
+ * @ingroup CommonElements_group
+ */
+class SensorDisconnectedException : public TerminateException
+{
+public:
+	SensorDisconnectedException(const std::string& msg = "")
+			: TerminateException(msg)
+	{
+	}
+
+	virtual ExceptionType type() const
+	{
+		return SENSOR_DISCONNECTED_EXCEPTION;
 	}
 };
 

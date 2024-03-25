@@ -33,6 +33,12 @@ public:
 			throw tdv::nuitrack::ModuleNotInitializedException();
 		case MODULE_NOT_STARTED_EXCEPTION:
 			throw tdv::nuitrack::ModuleNotStartedException();
+		case NETWORK_EXCEPTION:
+			throw tdv::nuitrack::NetworkException();
+		case NETWORK_UNAVAILABLE_EXCEPTION:
+			throw tdv::nuitrack::NetworkUnavailableException();
+		case SENSOR_DISCONNECTED_EXCEPTION:
+			throw tdv::nuitrack::SensorDisconnectedException();
 		}
 #else
 		if (errorCode != ExceptionType::OK)
@@ -62,6 +68,12 @@ public:
 			throw tdv::nuitrack::ModuleNotInitializedException("NuitrackException (ModuleNotInitializedException): " + message);
 		case MODULE_NOT_STARTED_EXCEPTION:
 			throw tdv::nuitrack::ModuleNotStartedException("NuitrackException (ModuleNotStartedException): " + message);
+		case NETWORK_EXCEPTION:
+			throw tdv::nuitrack::NetworkException("NuitrackException (NetworkException): " + message);
+		case NETWORK_UNAVAILABLE_EXCEPTION:
+			throw tdv::nuitrack::NetworkUnavailableException("NuitrackException (NetworkUnavailableException): " + message);
+		case SENSOR_DISCONNECTED_EXCEPTION:
+			throw tdv::nuitrack::SensorDisconnectedException("NuitrackException (SensorDisconnectedException): " + message);
 		}
 #else
 		if (errorCode != ExceptionType::OK)

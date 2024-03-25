@@ -1,3 +1,17 @@
+# Release v0.37.13
+
+**Release Date**: 25 Mar 2024  
+**Nuitrack Runtime version**: 0.37.13  
+**Nuitrack SDK version**: 1.13.13  
+
+## New Features
+* Now, during execution, Nuitrack notifies when the sensor is disconnected from the USB port
+
+## Bug Fixes and Improvements
+* Fixed an issue that made it impossible to use drag n drop in the Unity editor after initializing Nuitrack
+* Fixed crash when disconnecting the sensor while Nuitrack is running (for Orbbec Astra/Astra Pro sensors)
+* Fixed Kinect v2 detection issue on Windows leading to the need to restart the computer
+
 # Release v0.37.12
 
 **Release Date**: 16 Feb 2024  
