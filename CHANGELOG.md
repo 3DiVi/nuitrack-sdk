@@ -1,3 +1,21 @@
+# Release v0.37.14
+
+**Release Date**: 05 Apr 2024  
+**Nuitrack Runtime version**: 0.37.14  
+**Nuitrack SDK version**: 1.13.14
+
+## New Features
+* Nuitrack AI Skeletal Tracking now supports latest Ryzen CPU's (series 7000/8000)
+* Significant reduction in CPU usage (up to 60% less) for Nuitrack AI Skeletal Tracking
+* Improved inference performance for Nuitrack AI Skeletal Tracking
+
+## Bug Fixes and Improvements
+* Fixed Kinect V1.8 (PID: 0x02bf) detection on Windows
+* Fixed RealSense L515 re-activation if the license was initially activated on Nuitrack versions before v0.37.9
+
+## Known Issues
+* Unity applications will crash  on Android (arm32) for versions v0.37.13 / v0.37.14
+
 # Release v0.37.13
 
 **Release Date**: 25 Mar 2024  
