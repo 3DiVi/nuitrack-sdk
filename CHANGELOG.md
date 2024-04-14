@@ -1,3 +1,14 @@
+# Release v0.37.15
+
+**Release Date**: 13 Apr 2024  
+**Nuitrack Runtime version**: 0.37.15  
+**Nuitrack SDK version**: 1.13.15
+
+## Bug Fixes and Improvements
+* Fixed Unity applications crash on Android (arm32)
+* Fixed compatibility with TouchDesigner 2023 and later versions
+* Improved stability of [Kinect v2](https://nuitrack.notion.site/Microsoft-Kinect-v2-655f2c8ad72e422097eea8d85fd09316) on Windows
+
 # Release v0.37.14
 
 **Release Date**: 05 Apr 2024  

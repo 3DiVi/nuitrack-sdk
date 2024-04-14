@@ -15,7 +15,7 @@ _Nuitrack saves only sensor settings, depth and rgb frames._
 - launch the Nuitrack application
 - make sure that the `Failure Case Recorder` checkbox is checked 
 - press on `Try Nuitrack!` button
-- reproduce your failure case and press `p` button on your keyboard
+- reproduce your failure case and press `r` button on your keyboard
 - you will see a message `Record Saving Started`
 - the last 15 seconds of sensor data will be saved to your computer's hard drive
 - wait until you see the message `Record Saving Ended`, after which you can close the application or record a new case
