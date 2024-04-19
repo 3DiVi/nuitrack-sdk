@@ -20,6 +20,8 @@ struct ActivationInfo
 		TRIAL,		///< time-limited license
 		PRO,		///< unlimited license types
 		AI,		    ///< AI license types
+		AI_ONLINE,
+		PRO_ONLINE
 	};
 };
 typedef ActivationInfo::Status ActivationStatus;

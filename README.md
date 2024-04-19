@@ -4,6 +4,7 @@
 - :soon: *Holistic skeletal tracking with multiple sensors*
 - :soon: *Major update on tracking accuracy*
 ---
+- :new: [**Write CSV files using Nuitrack App. No knowledge of C++ is required!**](doc/CSV_Recorder.md)
 - :new: [**Nuitrack now supports Docker**](https://hub.docker.com/r/nuitrack/nuitrack)
 - :new: [**Unreal Engine 5** (Beta)](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349?u=nuitrack) :rocket: is now available !
 - :new: [**TouchDesigner** (Beta)](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) :fireworks:

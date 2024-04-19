@@ -1,3 +1,13 @@
+# Release v0.37.16
+
+**Release Date**: 19 Apr 2024  
+**Nuitrack Runtime version**: 0.37.16  
+**Nuitrack SDK version**: 1.13.16  
+
+## Bug Fixes and Improvements
+* Added the ability [to write a skeleton data to CSV](doc/CSV_Recorder.md) via Nuitrack.exe
+* `NuitrackSDK.unitypackage`: improved stability of avatar's legs in the frontal case
+
 # Release v0.37.15
 
 **Release Date**: 13 Apr 2024  
