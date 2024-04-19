@@ -6,7 +6,7 @@ it in `.csv` file format.
 In order to do so, tick the checkbox as shown on the picture below:
 
 <p align="center">
-![Picutre](img/csv_dumping_checkbox.png)
+<img width="600" src="img/csv_dumping_checkbox.png">
 </p>
 
 > Note: this feature requires Nuitrack Online [license](https://nuitrack.com/) to work.
@@ -26,7 +26,9 @@ The data is arranged according to the format: XXXX.{x, y, z, [rot]}, where x, y,
 
 Joint scheme:
 
-![skeleton scheme](doc/img/skeleton_scheme.jpg)
+<p align="center">
+<img width="900" src="img/skeleton_scheme.jpg">
+</p>
 
 Sample data:
 
