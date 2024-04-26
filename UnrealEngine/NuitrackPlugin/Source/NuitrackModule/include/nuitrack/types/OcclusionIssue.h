@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef NUITRACK_OCCLUSIONISSUE_H_
 #define NUITRACK_OCCLUSIONISSUE_H_
 

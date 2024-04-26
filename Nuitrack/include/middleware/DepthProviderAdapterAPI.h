@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef DEPTHPROVIDERADAPTERAPI_H_
 #define DEPTHPROVIDERADAPTERAPI_H_
 
@@ -8,7 +10,7 @@
  */
 typedef struct
 {
-	// PFS
+	// FPS
 	int fps;
 
 	// X resolution

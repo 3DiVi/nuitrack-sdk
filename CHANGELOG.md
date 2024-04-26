@@ -1,3 +1,13 @@
+# Release v0.37.17
+
+**Release Date**: 26 Apr 2024  
+**Nuitrack Runtime version**: 0.37.17  
+**Nuitrack SDK version**: 1.13.17  
+
+## Bug Fixes and Improvements
+* Fixed bugs in the user interface of the Nuitrack application (activation tool)
+* CSV Recorder now records a full set of skeletal joints
+
 # Release v0.37.16
 
 **Release Date**: 19 Apr 2024  

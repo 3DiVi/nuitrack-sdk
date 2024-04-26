@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef STRUCTURE_CALLBACK_PROVIDER_CAPI_H_
 #define STRUCTURE_CALLBACK_PROVIDER_CAPI_H_
 

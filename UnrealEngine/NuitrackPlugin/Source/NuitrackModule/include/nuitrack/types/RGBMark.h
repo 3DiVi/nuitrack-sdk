@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef NUITRACK_RGBMARKDATA_H_
 #define NUITRACK_RGBMARKDATA_H_
 

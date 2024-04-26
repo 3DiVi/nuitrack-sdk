@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef EXCEPTIONTRANSLATOR_H_
 #define EXCEPTIONTRANSLATOR_H_
 

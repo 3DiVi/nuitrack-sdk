@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef USBGATEKEEPER_H_
 #define USBGATEKEEPER_H_
 

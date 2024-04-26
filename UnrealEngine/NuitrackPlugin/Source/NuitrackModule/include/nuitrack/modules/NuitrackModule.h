@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef NUITRACKMODULE_H_
 #define NUITRACKMODULE_H_
 

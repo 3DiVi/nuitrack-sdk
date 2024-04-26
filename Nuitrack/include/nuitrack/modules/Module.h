@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef NUITRACK_MODULE_H_
 #define NUITRACK_MODULE_H_
 

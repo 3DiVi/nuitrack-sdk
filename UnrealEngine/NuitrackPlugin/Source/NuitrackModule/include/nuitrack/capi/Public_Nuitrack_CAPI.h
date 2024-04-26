@@ -1,3 +1,5 @@
+// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+
 #ifndef PUBLIC_NUITRACK_CAPI_H_
 #define PUBLIC_NUITRACK_CAPI_H_
 
