@@ -108,6 +108,7 @@ int main(int argc, char* argv[])
         {
             std::cerr << "Nuitrack update failed (ExceptionType: " << e.type() << ")" << std::endl;
             errorCode = EXIT_FAILURE;
+            break;
         }
     }
 

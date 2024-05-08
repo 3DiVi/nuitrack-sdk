@@ -1,3 +1,14 @@
+# Release v0.37.18
+
+**Release Date**: 8 May 2024  
+**Nuitrack Runtime version**: 0.37.18  
+**Nuitrack SDK version**: 1.13.18  
+
+## Bug Fixes and Improvements
+* CSV Recorder: [Data Import and 3D Skeleton Visualization python example](doc/CSV_Recorder.md#example-of-use-in-python)
+* CSV Recorder: Positions of unobserved joints are filtered out from the export result
+* New Tutorial: [Recommended approach to precisely track palms 3D positions](doc/Hand_Tracking.md)
+
 # Release v0.37.17
 
 **Release Date**: 26 Apr 2024  

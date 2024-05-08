@@ -22,10 +22,12 @@
 * [Nuitrack Samples](Samples.md)
 * [Using Nuitrack with Multiple Depth Sensors](Multiple_Depth_Sensors.md)
 * [Person Re-identification](Person_Reidentification.md)
+* [CSV Recorder](CSV_Recorder.md)
 * [Failure Case Recorder](Failure_Case_Recorder.md)
 * [Nuitrack Daemon [Beta]](Nuitrack_Daemon.md)
 * ###### Nuitrack Best Practices
   * [How to make a VR App with Nuitrack](VR_app.md)
+  * [Recommended approach to precisely track palms 3D positions](Hand_Tracking.md)
 * ###### Unreal Engine Tutorials
   * [Basic Project (Windows)](Unreal_Engine_Windows_Tutorial.md)
   * [Basic Project (Android)](Unreal_Engine_Android_Tutorial.md) 
