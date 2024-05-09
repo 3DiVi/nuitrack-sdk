@@ -68,9 +68,9 @@ You can try 2D hand tracking in our UE-plugin on sample "NuitrackPlugin Content/
 
 ### C#
 
-- [Usage Example](Examples/nuitrack_csharp_sample/Program.cs)
+- [Usage Example](/Examples/nuitrack_csharp_sample/Program.cs)
 
 ### C++
 
-- [Usage Example](Examples/nuitrack_console_sample/src/main.cpp)
-- [The Hands Data Structure](Nuitrack/include/nuitrack/types/Hand.h)
+- [Usage Example](/Examples/nuitrack_console_sample/src/main.cpp)
+- [The Hands Data Structure](/Nuitrack/include/nuitrack/types/Hand.h)
