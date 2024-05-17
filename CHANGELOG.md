@@ -1,3 +1,13 @@
+# Release v0.37.19
+
+**Release Date**: 17 May 2024  
+**Nuitrack Runtime version**: 0.37.19  
+**Nuitrack SDK version**: 1.13.19  
+
+## Bug Fixes and Improvements
+* Skeleton Tracking on Kinect v2 (Windows), Orbbec Astra 2 and Gemini 2/2L sensors: 
+  * Improved quality and fixed problem with sudden track disappearance
+
 # Release v0.37.18
 
 **Release Date**: 8 May 2024  

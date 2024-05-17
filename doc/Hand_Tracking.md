@@ -2,7 +2,7 @@
 
 In addition to the Skeletal Tracker, which is primarily designed for full-body cases, we provide access to a separate algorithm that is designed to more accurately detect the position of a person's palm (Hand Tracker).  
 The purpose of the Nuitrack Hand Tracker module is to track user hands and to interpret the actions performed by hands.  
-Currently, this module can determine projective coordinates (2D), real world coordinates (3d), the rate of hand clenching and detect the "click" event.  
+Currently, this module can determine projective coordinates (2D), real world coordinates (3D), the rate of hand clenching and detect the "click" event.  
 
 ### 2D positions
 
