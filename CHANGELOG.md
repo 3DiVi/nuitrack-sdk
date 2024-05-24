@@ -1,3 +1,12 @@
+# Release v0.37.20
+
+**Release Date**: 24 May 2024  
+**Nuitrack Runtime version**: 0.37.20  
+**Nuitrack SDK version**: 1.13.20  
+
+## Bug Fixes and Improvements
+* Nuitrack Installer for Windows: fixed a bug that caused the installation to hang at 66%
+
 # Release v0.37.19
 
 **Release Date**: 17 May 2024  
