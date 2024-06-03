@@ -4,10 +4,11 @@
 - :soon: *Holistic skeletal tracking with multiple sensors*
 - :soon: *Major update on tracking accuracy*
 ---
+- :new: [**TouchDesigner**](/TouchDesigner) - the official release is now available.  
+Now you can activate [Nuitrack AI Subscription](https://cognitive.3divi.com/app/nuitrack/basket/license-selection/) and start using the plugin without restrictions. :fireworks:
 - :new: [**Write CSV files using Nuitrack App. No knowledge of C++ is required!**](doc/CSV_Recorder.md)
 - :new: [**Nuitrack now supports Docker**](https://hub.docker.com/r/nuitrack/nuitrack)
 - :new: [**Unreal Engine 5** (Beta)](https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349?u=nuitrack) :rocket: is now available !
-- :new: [**TouchDesigner** (Beta)](https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108) :fireworks:
 - :white_check_mark: Jul'23 - 0.36.13 - **Orbbec Persee+ and Femto (W)** are finally supported !
 - :white_check_mark: Oct'22 - 0.36.7 - :movie_camera: [**Multisensor tracking**](/doc/Multiple_Depth_Sensors.md)  
 This opens up a huge opportunities like room-scale tracking with increased accuracy. Please stay tuned to get a firsthand experience of the coming **Nuitrack Holistic**.
@@ -69,9 +70,9 @@ It's as quick and simple as 1-2-3:
 | ----| -- | ------ |
 | <div align="center"><a href="doc/readme.md"><img src="https://dl.3divi.com/Nuitrack/img/cpp.png" width="70%" alt="" /></a></div> | <div align="center"><a href="doc/readme.md"><img src="https://dl.3divi.com/Nuitrack/img/csharp.png" width="70%" alt="" /></a></div> | <div align="center"><a href="/PythonNuitrack-beta"><img src="https://dl.3divi.com/Nuitrack/img/python.png" width="70%" alt="" /></a></div> | 
 
-| Unity | Unreal Engine 4.20 | :new: UE 5 Blueprints (beta) | :new: Touch Designer (beta) | :new: Docker |
+| Unity | Unreal Engine 4.20 | :new: UE 5 Blueprints (beta) | :new: Touch Designer | :new: Docker |
 | ----- | ------------------ | ---------------------------- | --------------------------- | ------------ |
-| <div align="center"><a href="/doc/readme.md#unity-tutorials"><img src="https://dl.3divi.com/Nuitrack/img/unity.png" width="70%" alt="" /></a></div> | <div align="center"><a href="/doc/readme.md#unreal-engine-tutorials"><img src="https://dl.3divi.com/Nuitrack/img/ue.png" width="70%" alt="" /></a></div> | <div align="center"><a href="https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349"><img src="https://dl.3divi.com/Nuitrack/img/ue.png" width="70%" alt="" /></a></div> | <div align="center"><a href="https://forum.derivative.ca/t/nuitrack-skeleton-tracking-plugin-for-touchdesigner/352108"><img src="https://dl.3divi.com/Nuitrack/img/touchdesigner.png" width="70%" alt="" /></a></div> | <div align="center"><a href="https://hub.docker.com/r/nuitrack/nuitrack"><img src="https://dl.3divi.com/Nuitrack/img/3rdparty/docker/PNG/01-symbol_blue-docker-logo.png" width="70%" alt="" /></a></div>
+| <div align="center"><a href="/doc/readme.md#unity-tutorials"><img src="https://dl.3divi.com/Nuitrack/img/unity.png" width="70%" alt="" /></a></div> | <div align="center"><a href="/doc/readme.md#unreal-engine-tutorials"><img src="https://dl.3divi.com/Nuitrack/img/ue.png" width="70%" alt="" /></a></div> | <div align="center"><a href="https://forums.unrealengine.com/t/real-time-body-tracking-plugin-for-ue5-nuitrack/1331349"><img src="https://dl.3divi.com/Nuitrack/img/ue.png" width="70%" alt="" /></a></div> | <div align="center"><a href="/TouchDesigner"><img src="https://dl.3divi.com/Nuitrack/img/touchdesigner.png" width="70%" alt="" /></a></div> | <div align="center"><a href="https://hub.docker.com/r/nuitrack/nuitrack"><img src="https://dl.3divi.com/Nuitrack/img/3rdparty/docker/PNG/01-symbol_blue-docker-logo.png" width="70%" alt="" /></a></div>
 
 If you have any questions, issues or feature ideas - feel free to engage with Nuitrack Team at our [Community Forum](https://community.nuitrack.com/).
 

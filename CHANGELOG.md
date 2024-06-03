@@ -1,3 +1,13 @@
+# Release v0.37.21
+
+**Release Date**: 1 Jun 2024  
+**Nuitrack Runtime version**: 0.37.21  
+**Nuitrack SDK version**: 1.13.21  
+
+## Bug Fixes and Improvements
+* [**TouchDesigner plugin**](TouchDesigner): The official release is now available 
+  * Now you can activate [Nuitrack AI Subscription](https://cognitive.3divi.com/app/nuitrack/basket/license-selection/) and start using the plugin without restrictions
+
 # Release v0.37.20
 
 **Release Date**: 24 May 2024  
