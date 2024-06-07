@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- init section is always evaluated once per architecture -->
+	<init>
+		<log text="VicoVR APL init"/>
+		<!-- <trace enable="true"/> -->
+	</init>
+
+	<!-- optional updates applied to AndroidManifest.xml  -->
+	<androidManifestUpdates>
+	 <loopElements tag="activity">
+		<!-- remove LAUNCHER category -->
+		<loopElements tag="category">
+			<setStringFromAttribute result="categoryName" tag="$" name="android:name"/>
+			<setBoolIsEqual result="bLauncher" arg1="$S(categoryName)" arg2="android.intent.category.LAUNCHER"/>
+			<if condition="bLauncher">
+				<true>
+					<removeElement tag="$"/>
+				</true>
+			</if>
+			
+		</loopElements>
+		<!-- remove MAIN action -->
+		<loopElements tag="action">
+			<setStringFromAttribute result="actionName" tag="$" name="android:name"/>
+			<setBoolIsEqual result="bAction" arg1="$S(actionName)" arg2="android.intent.action.MAIN"/>
+			<if condition="bAction">
+				<true>
+					<removeElement tag="intent-filter"/>
+				</true>
+			</if>
+		</loopElements>
+	</loopElements>
+	<!-- Add NuiActivity -->
+	<addElements tag="application">
+		<activity android:name="com.epicgames.ue4.NuiActivity" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:launchMode="singleTask" android:screenOrientation="landscape" android:debuggable="true">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+				<category android:name="com.nuitrack.intent.category.VICOVR"/>
+			</intent-filter>
+		</activity>
+	</addElements>
+	</androidManifestUpdates>
+
+	<!-- optional additions to GameActivity onCreate in GameActivity.java -->
+	<gameActivityOnCreateAdditions>
+		<insert>
+			AndroidThunkJava_KeepScreenOn(true);
+		</insert>
+	</gameActivityOnCreateAdditions>
+
+	<!-- optional files or directories to copy to Intermediate/Android/APK -->
+	<resourceCopies>
+		<copyFile src="$S(PluginDir)/NuiActivity.java"
+					dst="$S(BuildDir)/src/com/epicgames/ue4/NuiActivity.java" />
+
+		<copyFile src="$S(PluginDir)/lib/android/nuitrackhelper.jar"
+					dst="$S(BuildDir)/libs/nuitrackhelper.jar" />
+	</resourceCopies>
+</root>

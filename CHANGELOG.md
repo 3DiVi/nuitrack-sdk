@@ -1,3 +1,14 @@
+# Release v0.37.22
+
+**Release Date**: 7 Jun 2024  
+**Nuitrack Runtime version**: 0.37.22  
+**Nuitrack SDK version**: 1.13.22  
+
+## Bug Fixes and Improvements
+* [Docker](https://hub.docker.com/r/nuitrack/nuitrack): Improved support
+* Unreal Engine: Nuitrack runtime now supports the newest 5.4 version
+  * Updated Nuitrack package is available from the [official marketplace](https://www.unrealengine.com/marketplace/en-US/product/nuitrack-real-time-body-tracking)
+
 # Release v0.37.21
 
 **Release Date**: 1 Jun 2024  
