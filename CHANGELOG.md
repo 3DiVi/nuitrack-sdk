@@ -1,3 +1,14 @@
+# Release v0.37.23
+
+**Release Date**: 15 Jun 2024  
+**Nuitrack Runtime version**: 0.37.23  
+**Nuitrack SDK version**: 1.13.23  
+
+## Bug Fixes and Improvements
+* Classical Skeleton Tracking: 
+  * Improved stability on Kinect v2
+  * Improved tracking quality
+
 # Release v0.37.22
 
 **Release Date**: 7 Jun 2024  
