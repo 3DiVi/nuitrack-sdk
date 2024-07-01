@@ -97,8 +97,8 @@ _**Note**: If you observe memory leak, try to delete the old texture (for exampl
 
 ## Displaying the Skeleton
 
-1. All right, color image from the sensor is fun, but we're interested in the skeletons of users (otherwise, what do we need Nuitrack for?) Let's start tracking and displaying skeletons. First of all, turn on **depth-to-color registration** because a depth map doesn't accurately match an RGB image and we have to align them. To turn on depth-to-color registration, you have to open `nuitrack.config` and set `DepthProvider.Depth2ColorRegistration` to `true`. 
-2. Create two prefabs to display a user's skeleton (a ball for a joint and a line for a connection). As an option, you can use the prefabs from **NuitrackSDK.unitypackage** (**Assets/NuitrackSDK/Tutorials/RGBandSkeletons/Prefabs (JointUI and ConnectionUI)**). 
+1. All right, color image from the sensor is fun, but we're interested in the skeletons of users (otherwise, what do we need Nuitrack for?) Let's start tracking and displaying skeletons. First of all, make sure that the **depth-to-color registration** is enabled, because the depth map may not exactly match the RGB image, and we need to align them. Check the **Depth 2 Color Registration** checkbox on the **NuitrackScripts** prefab on your Scene
+2. Create two prefabs to display a user's skeleton (a ball for a joint and a line for a connection). As an option, you can use the prefabs from **NuitrackSDK.unitypackage** (**NuitrackSDK/Avatar/UI Avatar/Prefabs/SubPrefabs (JointUI and ConnectionUI)**).
 3. Create a new script and name it `SimpleSkeletonAvatar`. In this script, determine tracking and displaying of a single skeleton. 
 4. Create a new bool variable `autoProcessing`. If we need to process only one skeleton, we set the value of this variable to `true` and Nuitrack passes all data about this skeleton. At this stage, this is quite sufficient because we want to display only one skeleton. However, when it comes to displaying several skeletons, we'll need additional components, because multiple skeletons cannot be processed automatically. 
 5. Create two fields for the joint and connection prefabs: `jointPrefab` and `connectionPrefab`. And field `parentRect` where the avatar RectTransform will be stored
@@ -338,7 +338,7 @@ public class SimpleSkeletonAvatar : MonoBehaviour
 </p>
 
 16. Create a child object to the **SkeletonsCanvas** (**Create Empty**) and name it **Simple Skeleton Avatar**. We'll use this object to display the skeleton. Drag-and-drop the `SimpleSkeletonAvatar` script to this object. 
-17. Drag-and-drop the **jointUI** prefab (**Tutorials/RGBandSkeletons/Prefabs**) to the **Joint Prefab** field.  Drag-and-drop the **ConnectionUI** prefab (from the same folder) to the **Connection Prefab** field. 
+17. Drag-and-drop the **jointUI** prefab (**NuitrackSDK/Avatar/UI Avatar/Prefabs/SubPrefabs**) to the **Joint Prefab** field.  Drag-and-drop the **ConnectionUI** prefab (from the same folder) to the **Connection Prefab** field.
 
 <p align="center">
 <img width="400" src="img/Urgb_8.png">

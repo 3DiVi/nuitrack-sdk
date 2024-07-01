@@ -1,3 +1,13 @@
+# Release v0.37.24
+
+**Release Date**: 1 Jul 2024  
+**Nuitrack Runtime version**: 0.37.24  
+**Nuitrack SDK version**: 1.13.24  
+
+## Bug Fixes and Improvements
+* Kinect v2 (Windows): Fixed an issue that confused the left and right sides of a skeleton
+* Kinect Azure: Fixed an issue with Unreal Engine 5 plugin startup
+
 # Release v0.37.23
 
 **Release Date**: 15 Jun 2024  

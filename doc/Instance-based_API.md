@@ -10,7 +10,7 @@ Currently supported platforms:
 	* Ubuntu amd64
 	* Windows x86_64
 
-_**Note**: Face modules are by default disabled. To enable face modules, open *nuitrack.config* file and set ```Faces.ToUse``` and ```DepthProvider.Depth2ColorRegistration``` to `true`._
+_**Note**: Face modules are by default disabled. To enable face modules, open *nuitrack.config* file and set ```Faces.ToUse``` to `true`._
 
 ## Getting Information about Instances
 

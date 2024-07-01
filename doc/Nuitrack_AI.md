@@ -25,7 +25,6 @@ Nuitrack AI Skeleton Tracking is the Nuitrack AI feature that provides full body
 To turn on Nuitrack AI skeleton tracking: 
   * open the `nuitrack.config` file from `%NUITRACK_HOME%/data`
   * set the `"Skeletonization.Type"` parameter to `"CNN_HPE"`
-  * set the `"DepthProvider.Depth2ColorRegistration"` parameter to `true`
 
 To test skeleton tracking, run `nuitrack_sample.exe` from `%NUITRACK_HOME%/bin` (`/usr/bin/nuitrack_sample` for Ubuntu).
 
