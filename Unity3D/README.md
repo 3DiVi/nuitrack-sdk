@@ -1,8 +1,9 @@
 ## How to use?
-- Install Nuitrack Runtime https://github.com/3DiVi/nuitrack-sdk/blob/master/README.md
-- Create new Project in Unity (Or open your project)
+- Download Nuitrack Runtime for your platform of choice and corresponding Unity package at the [Releases page](https://github.com/3DiVi/nuitrack-sdk/releases)
+- Install Nuitrack Runtime
+- Create new Project in Unity (or open your project)
 - Import NuitrackSDK.unitypackage into your project (Main menu: "Assets/Import Package/Custom Package..." and click "import" button)
-- Connect supported sensor (https://nuitrack.com/#sensors)
+- Connect supported depth sensor (https://nuitrack.com/#sensors)
 - In the main menu, select "Nuitrack/Activate Nuitrack"
 - In the main menu, select "Nuitrack/Play Test Unity Scene" (or manually open in Project Tab "Assets/NuitrackSDK/NuitrackDemos/AllModulesScene" and click Play button) (If something doesn't work, follow the on-screen instructions)
 - Сheck out the tutorials "Nuitrack/Help/Open Tutorials List"
