@@ -9,7 +9,7 @@ In order to do so, tick the checkbox as shown on the picture below:
 <img width="600" src="img/csv_dumping_checkbox.png">
 </p>
 
-> Note: this feature requires Nuitrack Online [license](https://nuitrack.com/) to work.
+> Note: this feature requires [Nuitrack AI Subscription](https://nuitrack.com/) to work.
 
 ## Columns description
 
@@ -38,7 +38,7 @@ In order to do so, tick the checkbox as shown on the picture below:
 |  3 | 1715151474946595 | AS3M323001D |    1 |       -0.232392 |        0.263494 |         3.38308 |       -0.228697 |        0.456517 |         3.37942 |           179.599 |      -0.220009 |       0.788914 |        3.29064 |          175.195 |      -0.227042 |       0.910631 |        3.27723 |              -0.222133 |               0.707663 |                3.31234 |             -0.222133 |              0.707663 |               3.31234 |              -0.0596571 |                0.694581 |                 3.29623 |                   108.484 |           0.00261217 |             0.442607 |              3.35736 |                176.409 |            0.0488466 |             0.187955 |              3.26607 |           0.0580935 |            0.137024 |             3.24781 |                -0.3833   |                 0.70601  |                  3.32388 |                    108.184 |             -0.461983 |              0.457914 |               3.38188 |                 165.319 |             -0.475417 |              0.194095 |               3.30744 |            -0.478103 |             0.141332 |              3.29256 |          -0.122677 |           0.198701 |            3.41591 |              125.464 |          -0.088168  |           -0.203826 |             3.31374 |               178.677 |           -0.0643232 |            -0.585311 |              3.42346 |           -0.345828 |            0.201264 |             3.40837 |               122.612 |            -0.373596 |            -0.209911 |              3.34655 |                178.494 |             -0.4093   |             -0.589791 |               3.4586  |
 |  4 | 1715151474946595 | AS3M323001D |    1 |       -0.232392 |        0.263494 |         3.38308 |       -0.228697 |        0.456517 |         3.37942 |           179.599 |      -0.220009 |       0.788914 |        3.29064 |          175.195 |      -0.227042 |       0.910631 |        3.27723 |              -0.222133 |               0.707663 |                3.31234 |             -0.222133 |              0.707663 |               3.31234 |              -0.0596571 |                0.694581 |                 3.29623 |                   108.484 |           0.00261217 |             0.442607 |              3.35736 |                176.409 |            0.0488466 |             0.187955 |              3.26607 |           0.0580935 |            0.137024 |             3.24781 |                -0.3833   |                 0.70601  |                  3.32388 |                    108.184 |             -0.461983 |              0.457914 |               3.38188 |                 165.319 |             -0.475417 |              0.194095 |               3.30744 |            -0.478103 |             0.141332 |              3.29256 |          -0.122677 |           0.198701 |            3.41591 |              125.464 |          -0.088168  |           -0.203826 |             3.31374 |               178.677 |           -0.0643232 |            -0.585311 |              3.42346 |           -0.345828 |            0.201264 |             3.40837 |               122.612 |            -0.373596 |            -0.209911 |              3.34655 |                178.494 |             -0.4093   |             -0.589791 |               3.4586  |
 
-## Example of use in Python:  
+## Python Example:
 
 ```python
 import pandas as pd
@@ -124,3 +124,73 @@ plt.show()
 <p align="center">
 <img width="425" src="img/skeleton_animation.gif">
 </p>
+
+
+## Convert for OpenSim
+
+This script converts a csv file to a [trc file](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089972) for OpenSim. You'll also need [markers.xml](/doc/resource/markers.xml) during OpenSim import.
+
+For a detailed guide - take a look at [this video](https://bit.ly/nuitrack-opensim-tutorial)
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('SkeletonData.csv')
+
+def get_joint_coords_by_idx(dataframe, idx, joint_name):
+    return dataframe.filter(regex=(f'{joint_name}\..$')).iloc[idx]
+
+joint_map = [
+    ('JOINT_HEAD', 'JOINT_HEAD.x', 'JOINT_HEAD.y', 'JOINT_HEAD.z'),
+    ('JOINT_NECK', 'JOINT_NECK.x', 'JOINT_NECK.y', 'JOINT_NECK.z'),
+    ('JOINT_LEFT_COLLAR', 'JOINT_LEFT_COLLAR.x', 'JOINT_LEFT_COLLAR.y', 'JOINT_LEFT_COLLAR.z'),
+    ('JOINT_RIGHT_SHOULDER', 'JOINT_RIGHT_SHOULDER.x', 'JOINT_RIGHT_SHOULDER.y', 'JOINT_RIGHT_SHOULDER.z'),
+    ('JOINT_LEFT_SHOULDER', 'JOINT_LEFT_SHOULDER.x', 'JOINT_LEFT_SHOULDER.y', 'JOINT_LEFT_SHOULDER.z'),
+    ('JOINT_RIGHT_ELBOW', 'JOINT_RIGHT_ELBOW.x', 'JOINT_RIGHT_ELBOW.y', 'JOINT_RIGHT_ELBOW.z'),
+    ('JOINT_LEFT_ELBOW', 'JOINT_LEFT_ELBOW.x', 'JOINT_LEFT_ELBOW.y', 'JOINT_LEFT_ELBOW.z'),
+    ('JOINT_LEFT_WRIST', 'JOINT_LEFT_WRIST.x', 'JOINT_LEFT_WRIST.y', 'JOINT_LEFT_WRIST.z'),
+    ('JOINT_RIGHT_WRIST', 'JOINT_RIGHT_WRIST.x', 'JOINT_RIGHT_WRIST.y', 'JOINT_RIGHT_WRIST.z'),
+    ('JOINT_RIGHT_HAND', 'JOINT_RIGHT_HAND.x', 'JOINT_RIGHT_HAND.y', 'JOINT_RIGHT_HAND.z'),
+    ('JOINT_LEFT_HAND', 'JOINT_LEFT_HAND.x', 'JOINT_LEFT_HAND.y', 'JOINT_LEFT_HAND.z'),
+    ('JOINT_TORSO', 'JOINT_TORSO.x', 'JOINT_TORSO.y', 'JOINT_TORSO.z'),
+    ('JOINT_WAIST', 'JOINT_WAIST.x', 'JOINT_WAIST.y', 'JOINT_WAIST.z'),
+    ('JOINT_RIGHT_HIP', 'JOINT_RIGHT_HIP.x', 'JOINT_RIGHT_HIP.y', 'JOINT_RIGHT_HIP.z'),
+    ('JOINT_LEFT_HIP', 'JOINT_LEFT_HIP.x', 'JOINT_LEFT_HIP.y', 'JOINT_LEFT_HIP.z'),
+    ('JOINT_RIGHT_KNEE', 'JOINT_RIGHT_KNEE.x', 'JOINT_RIGHT_KNEE.y', 'JOINT_RIGHT_KNEE.z'),
+    ('JOINT_LEFT_KNEE', 'JOINT_LEFT_KNEE.x', 'JOINT_LEFT_KNEE.y', 'JOINT_LEFT_KNEE.z'),
+    ('JOINT_RIGHT_ANKLE', 'JOINT_RIGHT_ANKLE.x', 'JOINT_RIGHT_ANKLE.y', 'JOINT_RIGHT_ANKLE.z'),
+    ('JOINT_LEFT_ANKLE', 'JOINT_LEFT_ANKLE.x', 'JOINT_LEFT_ANKLE.y', 'JOINT_LEFT_ANKLE.z')
+]
+
+time, fps = 0.0, 30
+lines = []
+
+for i in df.index:
+    joints = [get_joint_coords_by_idx(df, i, joint[0]) for joint in joint_map]
+    line = f'{i+1}\t{round(time, 6)}\t'
+    line += "\t".join(
+        f"{round(joints[coords][joint_map[coords][1]] * 1000, 6)}\t"
+        f"{round(joints[coords][joint_map[coords][2]] * 1000, 6)}\t"
+        f"{round(joints[coords][joint_map[coords][3]] * -1000, 6)}"
+        for coords in range(len(joints))
+    )
+    lines.append(line + '\n')
+    time += 1 / fps
+
+xyz = ['X', 'Y', 'Z']
+joint_line = "Frame#\tTime\t" + "\t\t\t".join(joint[0] for joint in joint_map)
+coords_line = "\t".join(f'{axis}{i+1}' for i in range(len(joint_map)) for axis in xyz)
+
+header = (
+    f"PathFileType\t4\t(X/Y/Z)\tskeleton.trc\n"
+    f"DataRate\tCameraRate\tNumFrames\tNumMarkers\tUnits\tOrigDataRate\tOrigDataStartFrame\tOrigNumFrames\n"
+    f"{fps}\t{fps}\t{len(df)}\t19\tmm\t{fps}\t1\t{len(df)}\n"
+    f"{joint_line}\n\t\t{coords_line}\n\n"
+)
+
+with open("skeleton.trc", "w") as f:
+    f.write(header)
+    f.writelines(lines)
+
+```
