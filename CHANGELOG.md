@@ -1,3 +1,16 @@
+# Release v0.38.0
+
+**Release Date**: 8 Jan 2025  
+**Nuitrack Runtime version**: 0.38.0  
+**Nuitrack SDK version**: 1.14.0  
+
+## Bug Fixes and Improvements
+* Depth sensing - numerous fixes, in particular for Azure Kinect, Orbbec Astra (multiple revisions)
+* Scene segmentation and user tracking - improved robustness, additional options for floor detection / scene segmentation
+
+## Known Issues
+* Nuitrack.exe works unstable when depth map rotation is set (examples and other applications are not impacted)
+
 # Release v0.37.24
 
 **Release Date**: 1 Jul 2024  

@@ -44,25 +44,36 @@ In order to do so, tick the checkbox as shown on the picture below:
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.animation import FuncAnimation
-from matplotlib.animation import PillowWriter 
+from matplotlib.animation import FuncAnimation, PillowWriter
 
 df = pd.read_csv('SkeletonData.csv')
 
-max_z = np.nanmax(df.filter(regex='.*\.z$').max().to_numpy())
+max_z = np.nanmax(df.filter(regex='.*\.z$').to_numpy())
 
 fig = plt.figure()
 ax = plt.axes(projection='3d')
 
 def get_joint_coords_by_idx(dataframe, idx, joint_name):
-    coords = df.filter(regex=(f'{joint_name}\..$'))
-    return coords.iloc[idx]
+    return dataframe.filter(regex=f'{joint_name}\..$').iloc[idx]
 
 def draw_line(ax, origin, to):
-    x = np.array([origin[0], to[0]])
-    y = np.array([origin[1], to[1]])
-    z = np.array([origin[2], to[2]])
-    ax.plot3D(x, y, z)
+    ax.plot3D(*zip(origin, to))
+
+joints = ['JOINT_HEAD', 'JOINT_NECK', 'JOINT_LEFT_COLLAR', 'JOINT_RIGHT_SHOULDER', 'JOINT_LEFT_SHOULDER', 
+          'JOINT_RIGHT_ELBOW', 'JOINT_LEFT_ELBOW', 'JOINT_LEFT_WRIST', 'JOINT_RIGHT_WRIST', 'JOINT_RIGHT_HAND', 
+          'JOINT_LEFT_HAND', 'JOINT_TORSO', 'JOINT_WAIST', 'JOINT_RIGHT_HIP', 'JOINT_LEFT_HIP', 'JOINT_RIGHT_KNEE', 
+          'JOINT_LEFT_KNEE', 'JOINT_RIGHT_ANKLE', 'JOINT_LEFT_ANKLE']
+
+connections = [
+    ('JOINT_HEAD', 'JOINT_NECK'), ('JOINT_NECK', 'JOINT_LEFT_COLLAR'), 
+    ('JOINT_LEFT_COLLAR', 'JOINT_RIGHT_SHOULDER'), ('JOINT_LEFT_COLLAR', 'JOINT_LEFT_SHOULDER'),
+    ('JOINT_RIGHT_SHOULDER', 'JOINT_RIGHT_ELBOW'), ('JOINT_LEFT_SHOULDER', 'JOINT_LEFT_ELBOW'),
+    ('JOINT_LEFT_ELBOW', 'JOINT_LEFT_HAND'), ('JOINT_RIGHT_ELBOW', 'JOINT_RIGHT_HAND'),
+    ('JOINT_LEFT_COLLAR', 'JOINT_TORSO'), ('JOINT_TORSO', 'JOINT_WAIST'),
+    ('JOINT_WAIST', 'JOINT_LEFT_HIP'), ('JOINT_WAIST', 'JOINT_RIGHT_HIP'),
+    ('JOINT_LEFT_HIP', 'JOINT_LEFT_KNEE'), ('JOINT_RIGHT_HIP', 'JOINT_RIGHT_KNEE'),
+    ('JOINT_RIGHT_KNEE', 'JOINT_RIGHT_ANKLE'), ('JOINT_LEFT_KNEE', 'JOINT_LEFT_ANKLE')
+]
 
 def animate(i):
     ax.clear()
@@ -70,53 +81,19 @@ def animate(i):
     ax.set_ylim3d(-1, 1)
     ax.set_zlim3d(0, max_z)
     ax.set_title(f'timestamp: {df.iloc[i]["timestamp"]:.0f}')
-
     ax.view_init(elev=290, azim=120, roll=-30)
 
-    head           = get_joint_coords_by_idx(df, i, 'JOINT_HEAD')
-    neck           = get_joint_coords_by_idx(df, i, 'JOINT_NECK')
-    collar         = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_COLLAR')
-    right_shoulder = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_SHOULDER')
-    left_shoulder  = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_SHOULDER')
-    right_elbow    = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_ELBOW')
-    left_elbow     = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_ELBOW')
-    left_wrist     = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_WRIST')
-    right_wrist    = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_WRIST')
-    right_hand     = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_HAND')
-    left_hand      = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_HAND')
-    torso          = get_joint_coords_by_idx(df, i, 'JOINT_TORSO')
-    waist          = get_joint_coords_by_idx(df, i, 'JOINT_WAIST')
-    right_hip      = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_HIP')
-    left_hip       = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_HIP')
-    right_knee     = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_KNEE')
-    left_knee      = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_KNEE')
-    right_ankle    = get_joint_coords_by_idx(df, i, 'JOINT_RIGHT_ANKLE')
-    left_ankle     = get_joint_coords_by_idx(df, i, 'JOINT_LEFT_ANKLE')
+    joint_coords = {joint: get_joint_coords_by_idx(df, i, joint) for joint in joints}
 
-    draw_line(ax, head, neck)
-    draw_line(ax, neck, collar)
-    draw_line(ax, collar, right_shoulder)
-    draw_line(ax, collar, left_shoulder)
-    draw_line(ax, right_shoulder, right_elbow)
-    draw_line(ax, left_shoulder, left_elbow)
-    draw_line(ax, left_elbow, left_hand)
-    draw_line(ax, right_elbow, right_hand)
-    draw_line(ax, collar, torso)
-    draw_line(ax, torso, waist)
-    draw_line(ax, waist, left_hip)
-    draw_line(ax, waist, right_hip)
-    draw_line(ax, left_hip, left_knee)
-    draw_line(ax, right_hip, right_knee)
-    draw_line(ax, right_knee, right_ankle)
-    draw_line(ax, left_knee, left_ankle)
+    for joint1, joint2 in connections:
+        draw_line(ax, joint_coords[joint1], joint_coords[joint2])
 
-anim = FuncAnimation(fig, animate, frames=len(df.index), interval=15, repeat=True)
+anim = FuncAnimation(fig, animate, frames=len(df.index), interval=1, repeat=True)
 
-#  To save the animation using Pillow as a gif
-#  writer = PillowWriter(fps=30,
-#                                 metadata=dict(artist='Me'),
-#                                 bitrate=1800)
-#  anim.save('skeleton_animation.gif', writer=writer)
+# To save the animation using Pillow as a gif:
+#
+# writer = PillowWriter(fps=30, metadata=dict(artist='Me'), bitrate=1800)
+# anim.save('skeleton_animation.gif', writer=writer)
 
 plt.show()
 ```
