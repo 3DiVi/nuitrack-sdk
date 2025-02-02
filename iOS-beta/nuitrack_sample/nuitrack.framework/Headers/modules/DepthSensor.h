@@ -1,5 +1,4 @@
-#ifndef NUITRACK_DEPTHSENSOR_H_
-#define NUITRACK_DEPTHSENSOR_H_
+#pragma once
 
 #include <vector>
 
@@ -173,7 +172,7 @@ public:
 	* @param[in] depth Depth map.
 	* @return Converted real world point.
 	*/
-	virtual Vector3 convertProjToRealCoords(size_t x, size_t y, DepthFrame::DataType depth) const
+	virtual Vector3 convertProjToRealCoords(int x, int y, DepthFrame::DataType depth) const
 	{
 		return Vector3(nuitrack_ctypes_ConvertProjToRealCoordsXYZ(_pimpl, x, y, depth));
 	}
@@ -232,5 +231,3 @@ private:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_DEPTHSENSOR_H_ */

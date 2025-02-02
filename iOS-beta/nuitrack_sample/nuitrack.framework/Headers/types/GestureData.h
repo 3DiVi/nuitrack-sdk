@@ -1,5 +1,4 @@
-#ifndef NUITRACK_GESTUREDATA_H_
-#define NUITRACK_GESTUREDATA_H_
+#pragma once
 
 #include "nuitrack/types/ObjectData.h"
 #include "nuitrack/types/Gesture.h"
@@ -60,9 +59,9 @@ public:
 		GestureRecognizerData* dataHolder  = _pimpl;
 
 
-		size_t numUsers = nuitrack_GetUserGesturesNumGestures(dataHolder);
+		int numUsers = nuitrack_GetUserGesturesNumGestures(dataHolder);
 
-		for(size_t i = 0; i < numUsers; i++)
+		for(int i = 0; i < numUsers; i++)
 		{
 			Gesture g;
 			nuitrack_GetUserGesture(dataHolder, i, &g);
@@ -127,9 +126,9 @@ public:
 
 		UsersStateChanges* dataHolder = _pimpl;
 
-		size_t numUsers = nuitrack_GetNumUsersStateChanges(dataHolder);
+		int numUsers = nuitrack_GetNumUsersStateChanges(dataHolder);
 
-		for(size_t i = 0; i < numUsers; i++)
+		for(int i = 0; i < numUsers; i++)
 		{
 			UserState g;
 			nuitrack_GetUserStateChange(dataHolder, i, &g);
@@ -227,5 +226,3 @@ private:
 
 } // namespace nuitrack
 } // namespace tdv
-
-#endif /* NUITRACK_GESTUREDATA_H_ */

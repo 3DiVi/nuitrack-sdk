@@ -1,5 +1,4 @@
-#ifndef NUITRACKGLSAMPLE_H_
-#define NUITRACKGLSAMPLE_H_
+#pragma once
 
 #include <nuitrack/Nuitrack.h>
 
@@ -45,7 +44,7 @@ public:
 
 	void nextViewMode()
 	{
-		_viewMode = (ViewMode)(((uint32_t)_viewMode + 1) % _modesNumber);
+		_viewMode = ViewMode((uint32_t(_viewMode) + 1) % _modesNumber);
 	}
 
 	tdv::nuitrack::OutputMode getOutputMode() const
@@ -88,12 +87,12 @@ private:
 	void onNewDepthFrame(tdv::nuitrack::DepthFrame::Ptr frame);
 	void onNewRGBFrame(tdv::nuitrack::RGBFrame::Ptr frame);
 	void onUserUpdateCallback(tdv::nuitrack::UserFrame::Ptr frame);
-	void onLostUserCallback(int id);
-	void onNewUserCallback(int id);
-	void onSkeletonUpdate(tdv::nuitrack::SkeletonData::Ptr userSkeletons);
-	void onHandUpdate(tdv::nuitrack::HandTrackerData::Ptr handData);
-	void onNewGesture(tdv::nuitrack::GestureData::Ptr gestureData);
-	void onIssuesUpdate(tdv::nuitrack::IssuesData::Ptr issuesData);
+	static void onNewUserCallback(int id);
+	static void onLostUserCallback(int id);
+	void onSkeletonUpdate(const tdv::nuitrack::SkeletonData::Ptr &userSkeletons);
+	void onHandUpdate(const tdv::nuitrack::HandTrackerData::Ptr &handData);
+	void onIssuesUpdate(const tdv::nuitrack::IssuesData::Ptr &issuesData);
+	static void onNewGesture(const tdv::nuitrack::GestureData::Ptr &gestureData);
 	
 	/**
 	 * Draw methods
@@ -101,10 +100,8 @@ private:
 	void drawSkeleton(const std::vector<tdv::nuitrack::Joint>& joints);
 	void drawBone(const tdv::nuitrack::Joint& j1, const tdv::nuitrack::Joint& j2);
 	void renderTexture();
-	void renderLines();
-	
-	int power2(int n);
+	void renderLines() const;
+
+	static int power2(int n);
 	void initTexture(int width, int height);
 };
-
-#endif /* NUITRACKGLSAMPLE_H_ */

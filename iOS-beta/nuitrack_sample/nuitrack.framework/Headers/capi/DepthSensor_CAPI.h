@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_DEPTHSENSOR_CAPI_H_
-#define NUITRACK_DEPTHSENSOR_CAPI_H_
+#pragma once
 
 #include <stdint.h>
 
@@ -58,9 +57,9 @@ extern "C" void NUITRACK_API nuitrack_AddDepthSensorDataRef(DepthSensorDataPtr);
 extern "C" uint16_t NUITRACK_API nuitrack_GetDepthFrameValueAtIndex(DepthSensorDataPtr ptr, int i);
 extern "C" uint16_t NUITRACK_API nuitrack_GetDepthFrameValue(DepthSensorDataPtr ptr, int x, int y);
 
-extern "C" size_t NUITRACK_API nuitrack_GetDepthFrameRows(DepthSensorDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetDepthFrameRows(DepthSensorDataPtr);
 
-extern "C" size_t NUITRACK_API nuitrack_GetDepthFrameCols(DepthSensorDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetDepthFrameCols(DepthSensorDataPtr);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetDepthFrameID(DepthSensorDataPtr);
 
@@ -80,6 +79,3 @@ extern "C" tdv::nuitrack::CVector3 NUITRACK_API nuitrack_ctypes_ConvertRealToPro
 
 extern "C" bool NUITRACK_API nuitrack_IsDepthSensorMirror(NuitrackModulePtr);
 extern "C" void NUITRACK_API nuitrack_SetDepthSensorMirror(NuitrackModulePtr, bool);
-
-
-#endif /* NUITRACK_DEPTHSENSOR_CAPI_H_ */

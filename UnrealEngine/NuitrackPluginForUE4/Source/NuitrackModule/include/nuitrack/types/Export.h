@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_EXPORT_H
-#define NUITRACK_EXPORT_H
+#pragma once
 
 #ifdef _WIN32
 
@@ -26,5 +25,3 @@
 #define NUITRACK_LOCAL __attribute__ ((visibility ("hidden")))
 #define NUITRACK_DEPRECATED __attribute__ ((deprecated))
 #endif
-
-#endif /* NUITRACK_EXPORT_H */

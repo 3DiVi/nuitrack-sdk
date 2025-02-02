@@ -52,16 +52,16 @@ public:
 
 		std::vector<Skeleton> usersVector;
 
-		size_t numUsers = nuitrack_GetNumUsers(dataHolder);
-		size_t maxJoints = 25;
+		int numUsers = nuitrack_GetNumUsers(dataHolder);
+		int maxJoints = 25;
 
-		for (size_t i = 0; i < numUsers; i++)
+		for (int i = 0; i < numUsers; i++)
 		{
 			Skeleton skeleton;
 			int id = nuitrack_GetSkeletonID(dataHolder, i);
 			skeleton.id = id;
 
-			for (size_t j = 0; j < maxJoints; j++)
+			for (int j = 0; j < maxJoints; j++)
 			{
 				Joint joint;
 				nuitrack_GetSkeletonJoint(dataHolder, i, (JointType)j, &joint);

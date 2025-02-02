@@ -1,5 +1,4 @@
-#ifndef NUITRACK_USERFRAME_H_
-#define NUITRACK_USERFRAME_H_
+#pragma once
 
 #include <vector>
 
@@ -52,7 +51,7 @@ public:
 
 		size_t numUsers = nuitrack_GetUserFrameNumUsers(dataHolder);
 
-		for(size_t i = 0; i < numUsers; i++)
+		for(int i = 0; i < numUsers; i++)
 		{
 			User user;
 			nuitrack_GetUserFrameUser(dataHolder, i, &user);
@@ -131,5 +130,3 @@ private:
 
 }
 }
-
-#endif /* NUITRACK_USERFRAME_H_ */

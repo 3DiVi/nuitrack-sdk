@@ -13,7 +13,7 @@ using namespace tdv::nuitrack;
 
 NuitrackGLSample::NuitrackGLSample() :
 	_textureID(0),
-	_textureBuffer(0),
+	_textureBuffer(nullptr),
 	_width(640),
 	_height(480),
 	_viewMode(DEPTH_SEGMENT_MODE),
@@ -27,7 +27,7 @@ NuitrackGLSample::~NuitrackGLSample()
 	{
 		Nuitrack::release();
 	}
-	catch (const Exception& e)
+	catch (const Exception&)
 	{
 		// Do nothing
 	}
@@ -69,8 +69,8 @@ void NuitrackGLSample::init(const std::string& config)
 	_userTracker = UserTracker::create();
 	// Binds to user tracker events
 	_userTracker->connectOnUpdate(std::bind(&NuitrackGLSample::onUserUpdateCallback, this, std::placeholders::_1));
-	_userTracker->connectOnNewUser(std::bind(&NuitrackGLSample::onNewUserCallback, this, std::placeholders::_1));
-	_userTracker->connectOnLostUser(std::bind(&NuitrackGLSample::onLostUserCallback, this, std::placeholders::_1));
+	_userTracker->connectOnNewUser(&NuitrackGLSample::onNewUserCallback);
+	_userTracker->connectOnLostUser(&NuitrackGLSample::onLostUserCallback);
 
 	_skeletonTracker = SkeletonTracker::create();
 	// Bind to event update skeleton tracker
@@ -81,7 +81,7 @@ void NuitrackGLSample::init(const std::string& config)
 	_handTracker->connectOnUpdate(std::bind(&NuitrackGLSample::onHandUpdate, this, std::placeholders::_1));
 
 	_gestureRecognizer = GestureRecognizer::create();
-	_gestureRecognizer->connectOnNewGestures(std::bind(&NuitrackGLSample::onNewGesture, this, std::placeholders::_1));
+	_gestureRecognizer->connectOnNewGestures(&NuitrackGLSample::onNewGesture);
 
 	_onIssuesUpdateHandler = Nuitrack::connectOnIssuesUpdate(std::bind(&NuitrackGLSample::onIssuesUpdate,
 	                                                                  this, std::placeholders::_1));
@@ -151,7 +151,7 @@ void NuitrackGLSample::release()
 	if (_textureBuffer)
 	{
 		delete[] _textureBuffer;
-		_textureBuffer = 0;
+		_textureBuffer = nullptr;
 	}
 }
 
@@ -164,8 +164,8 @@ void NuitrackGLSample::onNewDepthFrame(DepthFrame::Ptr frame)
 	uint8_t* texturePtr = _textureBuffer;
 	const uint16_t* depthPtr = frame->getData();
 	
-	float wStep = (float)_width / frame->getCols();
-	float hStep = (float)_height / frame->getRows();
+	float wStep = float(_width) / frame->getCols();
+	float hStep = float(_height) / frame->getRows();
 	
 	float nextVerticalBorder = hStep;
 	
@@ -189,10 +189,8 @@ void NuitrackGLSample::onNewDepthFrame(DepthFrame::Ptr frame)
 				nextHorizontalBorder += wStep;
 				depthValue = *(depthPtr + col) >> 5;
 			}
-			
-			texturePtr[0] = depthValue;
-			texturePtr[1] = depthValue;
-			texturePtr[2] = depthValue;
+
+			texturePtr[0] = texturePtr[1] = texturePtr[2] = uint8_t(depthValue);
 		}
 	}
 #if defined(ANDROID) || defined(__ANDROID__)
@@ -264,26 +262,20 @@ void NuitrackGLSample::onUserUpdateCallback(UserFrame::Ptr frame)
 	
 	std::vector<uint8_t> labelIssueState(MAX_LABELS, 0);
 	for (uint16_t label = 0; label < MAX_LABELS; ++label)
-	{
-		labelIssueState[label] = 0;
 		if (_issuesData)
-		{
-			FrameBorderIssue::Ptr frameBorderIssue = _issuesData->getUserIssue<FrameBorderIssue>(label);
-			labelIssueState[label] = (frameBorderIssue != 0);
-		}
-	}
-	
+			labelIssueState[label] = _issuesData->getUserIssue<FrameBorderIssue>(label) != nullptr;
+
 	uint8_t* texturePtr = _textureBuffer;
 	const uint16_t* labelPtr = frame->getData();
 	
-	float wStep = (float)_width / frame->getCols();
-	float hStep = (float)_height / frame->getRows();
+	float wStep = float(_width) / frame->getCols();
+	float hStep = float(_height) / frame->getRows();
 	
 	float nextVerticalBorder = hStep;
 	
 	for (size_t i = 0; i < _height; ++i)
 	{
-		if (i == (int)nextVerticalBorder)
+		if (i == int(nextVerticalBorder))
 		{
 			nextVerticalBorder += hStep;
 			labelPtr += frame->getCols();
@@ -295,7 +287,7 @@ void NuitrackGLSample::onUserUpdateCallback(UserFrame::Ptr frame)
 		
 		for (size_t j = 0; j < _width; ++j, texturePtr += 3)
 		{
-			if (j == (int)nextHorizontalBorder)
+			if (j == int(nextHorizontalBorder))
 			{
 				++col;
 				nextHorizontalBorder += wStep;
@@ -305,11 +297,11 @@ void NuitrackGLSample::onUserUpdateCallback(UserFrame::Ptr frame)
 			if (!label)
 				continue;
 			
-			for (int i = 0; i < 3; ++i)
+			for (int k = 0; k < 3; ++k)
 			{
-				texturePtr[i] = colors[label & 7][i];
+				texturePtr[k] = colors[label & 7][k];
 				if (labelIssueState[label])
-					texturePtr[i] /= 2;
+					texturePtr[k] /= 2;
 			}
 		}
 	}
@@ -328,19 +320,17 @@ void NuitrackGLSample::onNewUserCallback(int id)
 }
 
 // Prepare visualization of skeletons, received from Nuitrack
-void NuitrackGLSample::onSkeletonUpdate(SkeletonData::Ptr userSkeletons)
+void NuitrackGLSample::onSkeletonUpdate(const SkeletonData::Ptr &userSkeletons)
 {
 	_lines.clear();
 	
 	auto skeletons = userSkeletons->getSkeletons();
 	for (auto skeleton: skeletons)
-	{
 		drawSkeleton(skeleton.joints);
-	}
 }
 
 // Prepare visualization of tracked hands
-void NuitrackGLSample::onHandUpdate(HandTrackerData::Ptr handData)
+void NuitrackGLSample::onHandUpdate(const HandTrackerData::Ptr &handData)
 {
 	_leftHandPointers.clear();
 	_rightHandPointers.clear();
@@ -372,16 +362,13 @@ void NuitrackGLSample::onHandUpdate(HandTrackerData::Ptr handData)
 }
 
 // Display information about gestures in the console
-void NuitrackGLSample::onNewGesture(GestureData::Ptr gestureData)
+void NuitrackGLSample::onNewGesture(const GestureData::Ptr &gestureData)
 {
-	_userGestures = gestureData->getGestures();
-	for (int i = 0; i < _userGestures.size(); ++i)
-	{
-		printf("Recognized %d from %d\n", _userGestures[i].type, _userGestures[i].userId);
-	}
+	for (auto gesture : gestureData->getGestures())
+		printf("Recognized %d from %d\n", gesture.type, gesture.userId);
 }
 
-void NuitrackGLSample::onIssuesUpdate(IssuesData::Ptr issuesData)
+void NuitrackGLSample::onIssuesUpdate(const IssuesData::Ptr &issuesData)
 {
 	_issuesData = issuesData;
 }
@@ -451,7 +438,7 @@ void NuitrackGLSample::renderTexture()
 
 int NuitrackGLSample::power2(int n)
 {
-	unsigned int m = 2;
+	int m = 2;
 	while (m < n)
 		m <<= 1;
 	
@@ -459,7 +446,7 @@ int NuitrackGLSample::power2(int n)
 }
 
 // Visualize bones, joints and hand positions
-void NuitrackGLSample::renderLines()
+void NuitrackGLSample::renderLines() const
 {
 	if (_lines.empty())
 		return;
@@ -471,7 +458,7 @@ void NuitrackGLSample::renderLines()
 	glLineWidth(6);
 	
 	glVertexPointer(2, GL_FLOAT, 0, _lines.data());
-	glDrawArrays(GL_LINES, 0, _lines.size() / 2);
+	glDrawArrays(GL_LINES, 0, GLsizei(_lines.size()) / 2);
 	
 	glLineWidth(1);
 	
@@ -479,7 +466,7 @@ void NuitrackGLSample::renderLines()
 	glPointSize(16);
 	
 	glVertexPointer(2, GL_FLOAT, 0, _lines.data());
-	glDrawArrays(GL_POINTS, 0, _lines.size() / 2);
+	glDrawArrays(GL_POINTS, 0, GLsizei(_lines.size()) / 2);
 	
 	if (!_leftHandPointers.empty())
 	{
@@ -522,37 +509,36 @@ void NuitrackGLSample::initTexture(int width, int height)
 	
 	width = power2(width);
 	height = power2(height);
-	
-	if (_textureBuffer != 0)
-		delete[] _textureBuffer;
+
+	delete[] _textureBuffer; // just in case - deleting nullptr doesn't have an effect
 	
 	_textureBuffer = new uint8_t[width * height * 3];
 	memset(_textureBuffer, 0, sizeof(uint8_t) * width * height * 3);
 	
 	glBindTexture(GL_TEXTURE_2D, _textureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, nullptr);
 	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	
 	// Set texture coordinates [0, 1] and vertexes position
 	{
-		_textureCoords[0] = (float) _width / width;
-		_textureCoords[1] = (float) _height / height;
-		_textureCoords[2] = (float) _width / width;
+		_textureCoords[0] = float(_width) / width;
+		_textureCoords[1] = float(_height) / height;
+		_textureCoords[2] = float(_width) / width;
 		_textureCoords[3] = 0.0;
 		_textureCoords[4] = 0.0;
 		_textureCoords[5] = 0.0;
 		_textureCoords[6] = 0.0;
-		_textureCoords[7] = (float) _height / height;
+		_textureCoords[7] = float(_height) / height;
 		
-		_vertexes[0] = _width;
-		_vertexes[1] = _height;
-		_vertexes[2] = _width;
+		_vertexes[0] = GLfloat(_width);
+		_vertexes[1] = GLfloat(_height);
+		_vertexes[2] = GLfloat(_width);
 		_vertexes[3] = 0.0;
 		_vertexes[4] = 0.0;
 		_vertexes[5] = 0.0;
 		_vertexes[6] = 0.0;
-		_vertexes[7] = _height;
+		_vertexes[7] = GLfloat(_height);
 	}
 }

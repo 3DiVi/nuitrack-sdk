@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_GESTURE_RECOGNITZER_CAPI_H_
-#define NUITRACK_GESTURE_RECOGNITZER_CAPI_H_
+#pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 
@@ -73,7 +72,7 @@ extern "C" uint64_t NUITRACK_API nuitrack_OnNewGestures(NuitrackModulePtr, Gestu
 extern "C" void NUITRACK_API nuitrack_OnNewGesturesDisconnect(NuitrackModulePtr, uint64_t);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetUserGesturesTimestamp(GestureRecognizerDataPtr);
-extern "C" size_t NUITRACK_API nuitrack_GetUserGesturesNumGestures(GestureRecognizerDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetUserGesturesNumGestures(GestureRecognizerDataPtr);
 extern "C" void NUITRACK_API nuitrack_GetUserGesture(GestureRecognizerDataPtr, int, tdv::nuitrack::Gesture*);
 extern "C" void NUITRACK_API nuitrack_DestroyGestureRecognizerData(GestureRecognizerDataPtr);
 extern "C" void NUITRACK_API nuitrack_AddGestureRecognizerDataRef(GestureRecognizerDataPtr);
@@ -86,7 +85,7 @@ extern "C" uint64_t NUITRACK_API nuitrack_OnUsersStateChanged(NuitrackModulePtr,
 extern "C" void NUITRACK_API nuitrack_OnUsersStateChangedDisconnect(NuitrackModulePtr, uint64_t);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetUsersStateChangesTimestamp(UsersStateChangesPtr);
-extern "C" size_t NUITRACK_API nuitrack_GetNumUsersStateChanges(UsersStateChangesPtr);
+extern "C" int NUITRACK_API nuitrack_GetNumUsersStateChanges(UsersStateChangesPtr);
 extern "C" void NUITRACK_API nuitrack_GetUserStateChange(UsersStateChangesPtr, int, tdv::nuitrack::UserState*);
 extern "C" void NUITRACK_API nuitrack_DestroyUsersStateChanges(UsersStateChangesPtr);
 extern "C" void NUITRACK_API nuitrack_AddUsersStateChangesRef(UsersStateChangesPtr);
@@ -107,5 +106,3 @@ extern "C" void NUITRACK_API nuitrack_GetUserStateData(GestureRecognizerUserGest
 
 extern "C" int NUITRACK_API nuitrack_GetNumUserGestureState(GestureRecognizerUserGesturesStateDataPtr, int);
 extern "C" void NUITRACK_API nuitrack_GetUserGestureState(GestureRecognizerUserGesturesStateDataPtr, int, int, tdv::nuitrack::GestureState*);
-
-#endif /* NUITRACK_GESTURE_RECOGNITZER_CAPI_H_ */

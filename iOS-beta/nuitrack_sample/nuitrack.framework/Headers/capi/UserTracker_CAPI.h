@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_USERTRACKER_CAPI_H_
-#define NUITRACK_USERTRACKER_CAPI_H_
+#pragma once
 
 #include <stdint.h>
 
@@ -79,9 +78,9 @@ extern "C" void NUITRACK_API nuitrack_AddUserTrackerDataRef(UserTrackerDataPtr);
 extern "C" uint16_t NUITRACK_API nuitrack_GetUserFrameValueAtIndex(UserTrackerDataPtr ptr, int i);
 extern "C" uint16_t NUITRACK_API nuitrack_GetUserFrameValue(UserTrackerDataPtr ptr, int x, int y);
 
-extern "C" size_t NUITRACK_API nuitrack_GetUserFrameRows(UserTrackerDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetUserFrameRows(UserTrackerDataPtr);
 
-extern "C" size_t NUITRACK_API nuitrack_GetUserFrameCols(UserTrackerDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetUserFrameCols(UserTrackerDataPtr);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetUserFrameID(UserTrackerDataPtr);
 
@@ -98,5 +97,3 @@ extern "C" void NUITRACK_API nuitrack_GetUserFrameFloor(UserTrackerDataPtr, tdv:
 extern "C" void NUITRACK_API nuitrack_GetUserFrameFloorNormal(UserTrackerDataPtr, tdv::nuitrack::Vector3*);
 
 extern "C" float NUITRACK_API nuitrack_GetUserTrackerProcessingTime(NuitrackModulePtr);
-
-#endif /* NUITRACK_USERTRACKER_CAPI_H_ */

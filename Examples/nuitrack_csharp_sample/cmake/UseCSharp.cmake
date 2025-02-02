@@ -92,7 +92,7 @@ macro( CSHARP_ADD_PROJECT target output_directory type name defs flags)
     string( REPLACE "/" "\\" sources ${sources} )
 #  else (UNIX)
 #    string( REPLACE "\\" "/" sources ${sources} )
-  endif (WIN32)
+  endif (WIN32 AND NOT CMAKE_CROSSCOMPILING)
 
     file(MAKE_DIRECTORY ${output_directory})
 

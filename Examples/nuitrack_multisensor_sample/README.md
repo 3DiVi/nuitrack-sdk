@@ -1,8 +1,6 @@
 # Nuitrack Multi-Sensor sample
 ## Ubuntu
-- Before build
-  - Extract `opencv_3.4_header.zip` in `Nuitrack/include` 
-	
+
 - Build sample:
 
 	```

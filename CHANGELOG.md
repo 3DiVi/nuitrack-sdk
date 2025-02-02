@@ -1,3 +1,13 @@
+# Release v0.38.1
+
+**Release Date**: 3 Feb 2025  
+**Nuitrack Runtime version**: 0.38.1  
+**Nuitrack SDK version**: 1.14.1  
+
+* Femto Mega - added initial support
+* Femto Bolt and other Orbbec sensors - Depth/RGB syncronization issue handling
+* Nuitrack.exe - proper support for portrait mode 
+
 # Release v0.38.0
 
 **Release Date**: 8 Jan 2025  

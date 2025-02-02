@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_SKELETONTRACKER_CAPI_H_
-#define NUITRACK_SKELETONTRACKER_CAPI_H_
+#pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 #include "nuitrack/types/Skeleton.h"
@@ -100,6 +99,4 @@ extern "C" void NUITRACK_API nuitrack_SetNumActiveUsers(NuitrackModulePtr, int);
 
 extern "C" float NUITRACK_API nuitrack_GetSkeletonTrackerProcessingTime(NuitrackModulePtr);
 
-extern "C" float NUITRACK_API nuitrack_GetSkeletonTrackerTimestamp(SkeletonTrackerDataPtr);
-
-#endif /* NUITRACK_SKELETONTRACKER_CAPI_H_ */
+extern "C" uint64_t NUITRACK_API nuitrack_GetSkeletonTrackerTimestamp(SkeletonTrackerDataPtr);

@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_COLORSENSOR_CAPI_H_
-#define NUITRACK_COLORSENSOR_CAPI_H_
+#pragma once
 
 #include <stdint.h>
 
@@ -57,9 +56,9 @@ extern "C" void NUITRACK_API nuitrack_AddColorSensorDataRef(ColorSensorDataPtr);
 extern "C" tdv::nuitrack::Color3 NUITRACK_API nuitrack_GetColorFrameValueAtIndex(ColorSensorDataPtr ptr, int i);
 extern "C" tdv::nuitrack::Color3 NUITRACK_API nuitrack_GetColorFrameValue(ColorSensorDataPtr ptr, int x, int y);
 
-extern "C" size_t NUITRACK_API nuitrack_GetColorFrameRows(ColorSensorDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetColorFrameRows(ColorSensorDataPtr);
 
-extern "C" size_t NUITRACK_API nuitrack_GetColorFrameCols(ColorSensorDataPtr);
+extern "C" int NUITRACK_API nuitrack_GetColorFrameCols(ColorSensorDataPtr);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetColorFrameID(ColorSensorDataPtr);
 
@@ -68,5 +67,3 @@ extern "C" uint64_t NUITRACK_API nuitrack_GetColorFrameTimestamp(ColorSensorData
 extern "C" NUITRACK_API const tdv::nuitrack::Color3* nuitrack_GetColorFrameData(ColorSensorDataPtr);
 
 extern "C" void NUITRACK_API nuitrack_GetColorSensorOutputMode(NuitrackModulePtr, tdv::nuitrack::OutputMode*);
-
-#endif /* NUITRACK_COLORSENSOR_CAPI_H_ */

@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_HAND_TRACKER_CAPI_H_
-#define NUITRACK_HAND_TRACKER_CAPI_H_
+#pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 
@@ -49,12 +48,8 @@ extern "C" uint64_t NUITRACK_API nuitrack_OnHandTrackerUpdate(NuitrackModulePtr,
 extern "C" void NUITRACK_API nuitrack_OnHandTrackerUpdateDisconnect(NuitrackModulePtr, uint64_t);
 
 extern "C" uint64_t NUITRACK_API nuitrack_GetHandTrackerDataTimestamp(HandTrackerDataPtr);
-extern "C" size_t NUITRACK_API nuitrack_HandTrackerGetNumUsers(HandTrackerDataPtr);
+extern "C" int NUITRACK_API nuitrack_HandTrackerGetNumUsers(HandTrackerDataPtr);
 extern "C" void NUITRACK_API nuitrack_HandTrackerGetUserHands(HandTrackerDataPtr, int, int*, tdv::nuitrack::Hand*, tdv::nuitrack::Hand*);
 extern "C" void NUITRACK_API nuitrack_DestroyHandTrackerData(HandTrackerDataPtr);
 extern "C" void NUITRACK_API nuitrack_AddHandTrackerDataRef(HandTrackerDataPtr);
 extern "C" void NUITRACK_API nuitrack_ReceiveInnerHandTrackerData(NuitrackModule*, HandTrackerDataInner**);
-
-
-
-#endif /* NUITRACK_HAND_TRACKER_CAPI_H_ */

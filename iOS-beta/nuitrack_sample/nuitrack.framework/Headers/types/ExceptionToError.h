@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_EXCEPTION_TO_NUITRACK_ERROR_H_
-#define NUITRACK_EXCEPTION_TO_NUITRACK_ERROR_H_
+#pragma once
 
 #include "nuitrack/types/Error.h"
 
@@ -37,5 +36,3 @@ inline nuitrack_error* exceptionToNuitrackError(const Exception &e)
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_EXCEPTION_TO_NUITRACK_ERROR_H_ */

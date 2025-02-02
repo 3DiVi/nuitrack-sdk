@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_CAPI_H_
-#define NUITRACK_CAPI_H_
+#pragma once
 
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/Error.h"
@@ -69,5 +68,3 @@ NUITRACK_API const char* nuitrack_GetErrorMessage(nuitrack_error* e);
 NUITRACK_API void nuitrack_DestroyError(nuitrack_error* e);
 
 }
-
-#endif /* NUITRACK_CAPI_H_ */

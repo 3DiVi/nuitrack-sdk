@@ -1,5 +1,4 @@
-#ifndef NUITRACK_HANDTRACKERDATA_H_
-#define NUITRACK_HANDTRACKERDATA_H_
+#pragma once
 
 #include "nuitrack/types/ObjectData.h"
 #include "nuitrack/types/Hand.h"
@@ -58,14 +57,14 @@ public:
 	{
     	HandTrackerDataInner* dataHolder = _pimpl;
 
-    	size_t numUsers = nuitrack_HandTrackerGetNumUsers(dataHolder);
+    	int numUsers = nuitrack_HandTrackerGetNumUsers(dataHolder);
 
     	std::vector<UserHands> userHands;
 
     	int userId = 0;
     	tdv::nuitrack::Hand leftHand;
     	tdv::nuitrack::Hand rightHand;
-    	for(size_t i = 0; i < numUsers; i++)
+    	for(int i = 0; i < numUsers; i++)
     	{
     		nuitrack_HandTrackerGetUserHands(dataHolder, i, &userId, &leftHand, &rightHand);
     		UserHands newHand;
@@ -84,5 +83,3 @@ private:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_HANDTRACKERDATA_H_ */
