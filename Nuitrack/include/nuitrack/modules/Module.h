@@ -1,9 +1,8 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_MODULE_H_
-#define NUITRACK_MODULE_H_
+#pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 namespace tdv
 {
@@ -16,7 +15,7 @@ class ModuleFunctions;
 class Module
 {
 public:
-	virtual ~Module() {}
+	virtual ~Module() = default;
 
 private:
 
@@ -30,5 +29,3 @@ private:
 
 }
 }
-
-#endif /* NUITRACK_MODULE_H_ */

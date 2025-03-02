@@ -1,5 +1,4 @@
-#ifndef NUITRACK_DEPTHFRAME_H_
-#define NUITRACK_DEPTHFRAME_H_
+#pragma once
 
 #include "nuitrack/types/Frame.h"
 #include "nuitrack/capi/DepthSensor_CAPI.h"
@@ -74,5 +73,3 @@ private:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_DEPTHFRAME_H_ */

@@ -1,5 +1,4 @@
-#ifndef NUITRACK_ERROR_H_
-#define NUITRACK_ERROR_H_
+#pragma once
 
 #include <stdexcept>
 
@@ -231,5 +230,3 @@ struct nuitrack_error
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_ERROR_H_ */

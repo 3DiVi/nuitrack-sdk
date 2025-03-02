@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_COLOR3_H_
-#define NUITRACK_COLOR3_H_
+#pragma once
 
 namespace tdv
 {
@@ -21,5 +20,3 @@ struct Color3
 
 }
 }
-
-#endif /* NUITRACK_COLOR3_H_ */

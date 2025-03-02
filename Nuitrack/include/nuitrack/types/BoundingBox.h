@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_BOUNDING_BOX_H_
-#define NUITRACK_BOUNDING_BOX_H_
+#pragma once
 
 namespace tdv
 {
@@ -25,5 +24,3 @@ struct BoundingBox
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_BOUNDING_BOX_H_ */

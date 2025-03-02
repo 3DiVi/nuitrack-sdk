@@ -1,26 +1,19 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_FRAMEBORDERISSUE_H_
-#define NUITRACK_FRAMEBORDERISSUE_H_
+#pragma once
 
 #include "Issue.h"
-#ifdef __aarch64__
 #include "nuitrack/types/Export.h"
-#endif
+
 namespace tdv
 {
 namespace nuitrack
 {
 /**
  * @ingroup CommonElements_group
- * @brief Represents the frame bodrer issue.
+ * @brief Represents the frame border issue.
  */
-#if defined(ANDROID) && defined(__aarch64__)
 class MIDDLEWARE_API FrameBorderIssue : public Issue
-#else
-class FrameBorderIssue : public Issue
-#endif
-
 {
 public:
 	/**
@@ -47,7 +40,7 @@ public:
 	}
 	bool isRight() const
 	{
-		return right;
+		return _right;
 	}
 	void setTop(bool isTop)
 	{
@@ -59,39 +52,22 @@ public:
 	}
 	void setRight(bool isRight)
 	{
-		this->right = isRight;
+		this->_right = isRight;
 	}
 
-#if defined(ANDROID) && defined(__aarch64__)
-	virtual ~FrameBorderIssue();
-#endif
-	/**
-	 * @brief Constructs a default frame border issue object.
-	 */
-	FrameBorderIssue() :
-		Issue(FRAME_BORDER_ISSUE, "FrameBorderIssue"),
-		_top(false),
-		_left(false),
-		right(false)
-	{}
+	~FrameBorderIssue() override;
 
 	/**
 	 * @brief Constructs a frame border issue object from its properties.
 	 */
-	FrameBorderIssue(bool left, bool right, bool top) :
-		Issue(FRAME_BORDER_ISSUE, "FrameBorderIssue"),
-		_top(top),
-		_left(left),
-		right(right)
-	{}
+	FrameBorderIssue(bool left = false, bool right = false, bool top = false) : Issue(FRAME_BORDER_ISSUE, "FrameBorderIssue"),
+		_top(top), _left(left), _right(right) {}
 
 private:
-	bool _top;
-	bool _left;
-	bool right;
+	bool _top = false;
+	bool _left = false;
+	bool _right = false;
 };
 
 }
 }
-
-#endif /* NUITRACK_FRAMEBORDERISSUE_H_ */

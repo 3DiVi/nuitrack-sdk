@@ -1,10 +1,9 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_USER_H_
-#define NUITRACK_USER_H_
+#pragma once
 
-#include "nuitrack/types/Vector3.h"
 #include "nuitrack/types/BoundingBox.h"
+#include "nuitrack/types/Vector3.h"
 
 namespace tdv
 {
@@ -46,5 +45,3 @@ struct User
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_USER_H_ */

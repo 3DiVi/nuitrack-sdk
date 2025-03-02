@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_HUMANDATA_LEGACY_H_
-#define NUITRACK_HUMANDATA_LEGACY_H_
+#pragma once
 
 #include "nuitrack/types/Human.h"
 #include "nuitrack/types/ObjectData.h"
@@ -21,5 +20,3 @@ public:
 
 }
 }
-
-#endif //NUITRACK_HUMANDATA_LEGACY_H_

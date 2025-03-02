@@ -1,5 +1,4 @@
-#ifndef NUITRACK_RGBFRAME_H_
-#define NUITRACK_RGBFRAME_H_
+#pragma once
 
 #include "nuitrack/types/Color3.h"
 #include "nuitrack/types/Frame.h"
@@ -75,5 +74,3 @@ private:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_RGBFRAME_H_ */

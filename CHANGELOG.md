@@ -1,3 +1,13 @@
+# Release v0.38.2
+
+**Release Date**: 3 Mar 2025  
+**Nuitrack Runtime version**: 0.38.2  
+**Nuitrack SDK version**: 1.14.2  
+
+* Redesigned Nuitrack app - now it includes a *Nuitrack Viewer*, fully-featured testing tool for any supported sensor(s)
+  * You can choose RGB & Depth resolution and framerate, album or portrait orientation, control sensor position, etc.
+* Nuitrack now is significantly more stable on any non-default resolution modes (more fixes/optimizations are coming)
+
 # Release v0.38.1
 
 **Release Date**: 3 Feb 2025  

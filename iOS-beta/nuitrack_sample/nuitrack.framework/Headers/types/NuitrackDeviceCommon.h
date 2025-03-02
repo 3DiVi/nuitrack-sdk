@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_DEVICE_COMMON_H_
-#define NUITRACK_DEVICE_COMMON_H_
+#pragma once
 
 namespace tdv
 {
@@ -73,5 +72,3 @@ struct VideoMode
 }
 }
 }
-
-#endif

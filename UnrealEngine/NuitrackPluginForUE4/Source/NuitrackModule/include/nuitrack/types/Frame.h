@@ -1,5 +1,4 @@
-#ifndef NUITRACK_FRAME_H_
-#define NUITRACK_FRAME_H_
+#pragma once
 
 #include "nuitrack/types/ObjectData.h"
 
@@ -42,5 +41,3 @@ public:
 
 }
 }
-
-#endif /* NUITRACK_IMAGE_H_ */

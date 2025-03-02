@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_SKELETON_H_
-#define NUITRACK_SKELETON_H_
+#pragma once
 
 #include <vector>
 
@@ -122,5 +121,3 @@ struct Skeleton
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_SKELETON_H_ */

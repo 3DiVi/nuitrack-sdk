@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_HUMAN_H_
-#define NUITRACK_HUMAN_H_
+#pragma once
 
 #include <string>
 #include <map>
@@ -24,5 +23,3 @@ struct Human
 
 }
 }
-
-#endif //NUITRACK_HUMAN_H_

@@ -1,5 +1,4 @@
-#ifndef NUITRACK_OBJECTDATA_H_
-#define NUITRACK_OBJECTDATA_H_
+#pragma once
 
 #include <memory>
 #include <cstdint>
@@ -47,5 +46,3 @@ public:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_OBJECTDATA_H_ */

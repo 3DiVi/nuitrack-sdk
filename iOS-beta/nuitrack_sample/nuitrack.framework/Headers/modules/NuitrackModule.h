@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACKMODULE_H_
-#define NUITRACKMODULE_H_
+#pragma once
 
 #include <memory>
 #include <mutex>
@@ -57,5 +56,3 @@ struct NuitrackModule
 	std::shared_ptr<tdv::nuitrack::Module> impl;
 	std::shared_ptr<ExceptionHolder> exceptionInfo;
 };
-
-#endif /* NUITRACKMODULE_H_ */

@@ -1,7 +1,6 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_HAND_H_
-#define NUITRACK_HAND_H_
+#pragma once
 
 #include <memory>
 
@@ -48,5 +47,3 @@ struct UserHands
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_HAND_H_ */

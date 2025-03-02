@@ -1,5 +1,4 @@
-#ifndef NUITRACK_MIDDLEWARE_ISSUES_DATA_H_
-#define NUITRACK_MIDDLEWARE_ISSUES_DATA_H_
+#pragma once
 
 #include <map>
 #include <memory>
@@ -51,20 +50,16 @@ public:
 		std::shared_ptr<T> result;
 		if(strcmp(T::getType().c_str(), "SensorIssue") == 0)
 		{
-			Issue* issue = NULL;
-
 			const int bufferSize = 300;
 			std::string buffer;
 			buffer.resize(bufferSize);
 			if(nuitrack_GetSensorIssue(_pimpl, (char *)buffer.c_str(), bufferSize))
 			{
 				buffer.resize(strlen(buffer.c_str()));
-				issue = new SensorIssue(SENSOR_ISSUE, buffer);
+                return std::make_shared<SensorIssue>(SENSOR_ISSUE, buffer);
 			}
-
-			result = std::shared_ptr<T>(static_cast<T*>(issue));
 		}
-		return result;
+		return nullptr;
 	}
 
 	/**
@@ -112,5 +107,3 @@ protected:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_MIDDLEWARE_ISSUES_DATA_H_ */
