@@ -1,3 +1,28 @@
+# Release v0.38.4
+
+**Release Date**: 6 Jun 2025  
+**Nuitrack Runtime version**: 0.38.4  
+**Nuitrack SDK version**: 1.14.4  
+
+## Improvements and Bug Fixes
+
+* *(Motionless detection)* UserTracker now detect users without additional movements towards the sensor
+* UserTracker: floor segmentation (and user segmentation as a consequence) improved for complex cases 
+* Major *Nuitrack Viewer* update
+  * You can choose timestamp source to control stream synchronization through new combined (RGB, depth) visualization
+  * Increased rendering performance
+  * Visualization for raw depth data and tracking results was streamlined
+* Added support for Orbbec sensors with the latest firmware version (updated OrbbecSDK)
+* Unity / C# wrapper:
+  * Fixed activation statuses 
+  * Fixed a crash that occurred when activating via C# without an internet connection
+* Android packages which were unstable on recent versions are now significantly stabilized
+* Python packages revisited with multiple fixes, will be out of beta status in next revision
+
+## Known Issues
+* Linux ARM64 package behaves unstable on some devices (i.e. Jetson Nano), will be fixed in next revision.
+
+
 # Release v0.38.2
 
 **Release Date**: 3 Mar 2025  

@@ -1,11 +1,9 @@
-#ifndef NUITRACK_HEADER_ONLY_API_H_
-#define NUITRACK_HEADER_ONLY_API_H_
+#pragma once
 
+#include <cstring>
 #include <string>
 #include <memory>
 #include <functional>
-
-#include <stdio.h>
 
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/Error.h"
@@ -23,11 +21,10 @@
 #include "nuitrack/capi/Public_Nuitrack_CAPI.h"
 #include "nuitrack/capi/IssueTracker_CAPI.h"
 #include "nuitrack/capi/NuitrackDevice_CAPI.h"
+#include "nuitrack/utils/CallbackStruct.h"
+#include "nuitrack/utils/ExceptionTranslator.h"
 
-namespace tdv
-{
-namespace nuitrack
-{
+namespace tdv { namespace nuitrack {
 
 /**
  * @ingroup CommonElements_group
@@ -132,11 +129,10 @@ public:
 	 */
 	static void release()
 	{
-		CallbackStruct<IssuesData::Ptr>* callbackStruct =
-				(CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
-		if(callbackStruct != NULL)
+		auto* callbackStruct = (CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
+		if (callbackStruct != nullptr)
 		{
-			nuitrack_setIssuesCallbackStruct(NULL);
+			nuitrack_setIssuesCallbackStruct(nullptr);
 			delete callbackStruct;
 		}
 		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_Release());
@@ -219,7 +215,8 @@ public:
 	static int getVersion()
 	{
 		int version;
-		ExceptionTranslator::generateExceptionByErrorCode(nuitrack_GetVersion(&version));
+		auto e = nuitrack_GetVersion(&version);
+		ExceptionTranslator::generateExceptionByErrorCode(e);
 
 		return version;
 	}
@@ -242,14 +239,13 @@ public:
 	 */
 	static uint64_t connectOnIssuesUpdate(const OnIssueUpdate& callback)
 	{
-		IssueTracker* issueTracker = NULL;
+		IssueTracker* issueTracker = nullptr;
 		nuitrack_getIssueTracker(&issueTracker);
-		if(issueTracker == NULL)
-			return 0;
+		if (issueTracker == nullptr) return 0;
 
-		if(nuitrack_getIssuesCallbackStruct() == NULL)
+		if (nuitrack_getIssuesCallbackStruct() == nullptr)
 		{
-			CallbackStruct<IssuesData::Ptr>* ptr = new CallbackStruct<IssuesData::Ptr>();
+			auto* ptr = new CallbackStruct<IssuesData::Ptr>();
 			nuitrack_setIssuesCallbackStruct(ptr);
 
 			IssueTrackerCallbackWrapper* callbackWrapper = new IssueTrackerCallbackWrapper();
@@ -264,11 +260,9 @@ public:
 	/** @warning For internal use only. */
 	static void onIssuesUpdateCallback(IssueTrackerData* data)
 	{
-		IssuesData::Ptr newData = IssuesData::Ptr(new IssuesData(data));
-		CallbackStruct<IssuesData::Ptr>* callbackStruct =
-				(CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
-		if(callbackStruct == NULL)
-			return;
+		auto newData = std::make_shared<IssuesData>(data);
+		auto* callbackStruct = (CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
+		if (callbackStruct == nullptr) return;
 		callbackStruct->executeAllCallbacks(newData);
 	}
 
@@ -280,10 +274,9 @@ public:
 	 */
 	static void disconnectOnIssuesUpdate(uint64_t handler)
 	{
-		CallbackStruct<IssuesData::Ptr>* callbackStruct =
-				(CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
-		if(callbackStruct == NULL)
-			return;
+		auto* callbackStruct = (CallbackStruct<IssuesData::Ptr>*)nuitrack_getIssuesCallbackStruct();
+		if (callbackStruct == nullptr) return;
+
 		callbackStruct->deleteCallback(handler);
 	}
 
@@ -303,8 +296,7 @@ public:
 
 		for(int i = 0; i < device_limit; i++)
 		{
-			if(bufferOfDevices[i] == NULL)
-				break;
+			if (bufferOfDevices[i] == nullptr) break;
 			result.emplace_back(new device::NuitrackDevice(bufferOfDevices[i]));
 		}
 
@@ -336,12 +328,9 @@ public:
 		ExceptionTranslator::generateExceptionByErrorCode(
 					nuitrack_GetLicense((char *)result.c_str(), bufferSize));
 
-		result.resize(strlen(result.c_str()));
+		result.resize(std::strlen(result.c_str()));
 		return result;
 	}
 };
 
-} /* namespace nuitrack */
-} /* namespace tdv */
-
-#endif /* NUITRACK_HEADER_ONLY_API_H_ */
+}}

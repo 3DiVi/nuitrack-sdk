@@ -42,7 +42,7 @@ void NuitrackGLSample::init(const std::string& config)
 	}
 	catch (const Exception& e)
 	{
-		std::cerr << "Can not initialize Nuitrack (ExceptionType: " << e.type() << ")" << std::endl;
+		std::cerr << "Can not initialize Nuitrack (ExceptionType: " << int(e.type()) << ")" << std::endl;
 		exit(EXIT_FAILURE);
 	}
 	
@@ -101,7 +101,7 @@ bool NuitrackGLSample::update()
 		}
 		catch (const Exception& e)
 		{
-			std::cerr << "Can not start Nuitrack (ExceptionType: " << e.type() << ")" << std::endl;
+			std::cerr << "Can not start Nuitrack (ExceptionType: " << int(e.type()) << ")" << std::endl;
 			release();
 			exit(EXIT_FAILURE);
 		}
@@ -118,13 +118,13 @@ bool NuitrackGLSample::update()
 	catch (const LicenseNotAcquiredException& e)
 	{
 		// Update failed, negative result
-		std::cerr << "LicenseNotAcquired exception (ExceptionType: " << e.type() << ")" << std::endl;
+		std::cerr << "LicenseNotAcquired exception (ExceptionType: " << int(e.type()) << ")" << std::endl;
 		return false;
 	}
 	catch (const Exception& e)
 	{
 		// Update failed, negative result
-		std::cerr << "Nuitrack update failed (ExceptionType: " << e.type() << ")" << std::endl;
+		std::cerr << "Nuitrack update failed (ExceptionType: " << int(e.type()) << ")" << std::endl;
 		return false;
 	}
 	
@@ -143,7 +143,7 @@ void NuitrackGLSample::release()
 	}
 	catch (const Exception& e)
 	{
-		std::cerr << "Nuitrack release failed (ExceptionType: " << e.type() << ")" << std::endl;
+		std::cerr << "Nuitrack release failed (ExceptionType: " << int(e.type()) << ")" << std::endl;
 	}
 
 	_isInitialized = false;

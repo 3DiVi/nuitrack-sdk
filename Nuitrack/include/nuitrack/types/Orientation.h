@@ -28,10 +28,7 @@ struct Orientation
 		matrix[8] = 0;
 	}
 
-	/**
-	 * @brief Flattened 3x3 rotation matrix.
-	 */
-	float matrix[9];
+	float matrix[9]; /** @brief Flattened 3x3 rotation matrix. */
 };
 
 }

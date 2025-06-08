@@ -1,14 +1,12 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
-#ifndef CALLBACKSTRUCT_H_
-#define CALLBACKSTRUCT_H_
+#pragma once
 
 #include <functional>
 #include <mutex>
 #include <vector>
 
-namespace tdv {
-namespace nuitrack {
+namespace tdv { namespace nuitrack {
 
 template <typename ParamType>
 class CallbackStruct
@@ -16,10 +14,7 @@ class CallbackStruct
 	typedef std::function<void (ParamType)> CallbackType;
 public:
 
-	CallbackStruct()
-	{
-		_maxHandle = 0;
-	}
+	CallbackStruct() { _maxHandle = 0; }
 
 	uint64_t addCallback(const CallbackType& callback)
 	{
@@ -35,8 +30,8 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 
-		for(uint64_t i = 0; i < (uint64_t)_handles.size(); i++)
-			if(_handles[i] == handle)
+		for(uint64_t i = 0; i < _handles.size(); i++)
+			if (_handles[i] == handle)
 			{
 				_callbacks.erase(_callbacks.begin() + i);
 				_handles.erase(_handles.begin() + i);
@@ -48,8 +43,8 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 
-		for(uint64_t i = 0; i < _callbacks.size(); i++)
-				(_callbacks[i])(param);
+		for (auto callback : _callbacks)
+			callback(param);
 	}
 
 	uint64_t getCallbacksCount()
@@ -72,10 +67,7 @@ class CallbackStruct2p
 
 public:
 
-	CallbackStruct2p()
-	{
-		_maxHandle = 0;
-	}
+	CallbackStruct2p() { _maxHandle = 0; }
 
 	uint64_t addCallback(const CallbackType& callback)
 	{
@@ -91,8 +83,8 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 
-		for(uint64_t i = 0; i < (uint64_t)_handles.size(); i++)
-			if(_handles[i] == handle)
+		for (uint64_t i = 0; i < _handles.size(); i++)
+			if (_handles[i] == handle)
 			{
 				_callbacks.erase(_callbacks.begin() + i);
 				_handles.erase(_handles.begin() + i);
@@ -104,14 +96,11 @@ public:
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 
-		for(uint64_t i = 0; i < _callbacks.size(); i++)
-				(_callbacks[i])(param1, param2);
+		for (auto callback : _callbacks)
+			callback(param1, param2);
 	}
 
-	uint64_t getCallbacksCount()
-	{
-		return _callbacks.size();
-	}
+	uint64_t getCallbacksCount() { return _callbacks.size(); }
 
 private:
 	std::vector<CallbackType> _callbacks;
@@ -120,7 +109,4 @@ private:
 	std::mutex _mutex;
 };
 
-} /* namespace nuitrack */
-} /* namespace tdv */
-
-#endif /* CALLBACKSTRUCT_H_ */
+}}

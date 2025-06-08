@@ -4,10 +4,7 @@
 
 #include "nuitrack/types/Error.h"
 
-namespace tdv
-{
-namespace nuitrack
-{
+namespace tdv { namespace nuitrack {
 
 inline nuitrack_error* exceptionToNuitrackError(const Exception &e)
 {
@@ -15,24 +12,29 @@ inline nuitrack_error* exceptionToNuitrackError(const Exception &e)
 
 	switch(e.type())
 	{
-	case EXCEPTION:
+	case ExceptionType::EXCEPTION:
 		return new nuitrack_error(new Exception(message));
-	case TERMINATE_EXCEPTION:
+	case ExceptionType::TERMINATE_EXCEPTION:
 		return new nuitrack_error(new TerminateException(message));
-	case BAD_CONFIG_VALUE_EXCEPTION:
+	case ExceptionType::BAD_CONFIG_VALUE_EXCEPTION:
 		return new nuitrack_error(new BadConfigValueException(message));
-	case CONFIG_NOT_FOUND_EXCEPTION:
+	case ExceptionType::CONFIG_NOT_FOUND_EXCEPTION:
 		return new nuitrack_error(new ConfigNotFoundException(message));
-	case MODUDLE_NOT_FOUND_EXCEPTION:
+	case ExceptionType::MODUDLE_NOT_FOUND_EXCEPTION:
 		return new nuitrack_error(new ModuleNotFoundException(message));
-	case LICENSE_NOT_ACQUIRED_EXCEPTION:
+	case ExceptionType::LICENSE_NOT_ACQUIRED_EXCEPTION:
 		return new nuitrack_error(new LicenseNotAcquiredException(message));
-	case MODULE_NOT_INITIALIZED_EXCEPTION:
+	case ExceptionType::MODULE_NOT_INITIALIZED_EXCEPTION:
 		return new nuitrack_error(new ModuleNotInitializedException(message));
-	case MODULE_NOT_STARTED_EXCEPTION:
+	case ExceptionType::MODULE_NOT_STARTED_EXCEPTION:
 		return new nuitrack_error(new ModuleNotStartedException(message));
+	case ExceptionType::NETWORK_EXCEPTION:
+		return new nuitrack_error(new NetworkException(message));
+	case ExceptionType::NETWORK_UNAVAILABLE_EXCEPTION:
+		return new nuitrack_error(new NetworkUnavailableException(message));
+	default:
+		return new nuitrack_error(new Exception(message));
 	}
 }
 
-} /* namespace nuitrack */
-} /* namespace tdv */
+}}

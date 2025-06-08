@@ -1,8 +1,5 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_NUITRACKMODULE_CAPI_H_
-#define NUITRACK_NUITRACKMODULE_CAPI_H_
+#pragma once
 
 #include "nuitrack/modules/Module.h"
-
-#endif /* NUITRACK_NUITRACKMODULE_CAPI_H_ */

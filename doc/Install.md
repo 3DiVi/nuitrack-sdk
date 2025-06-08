@@ -15,9 +15,10 @@ There are no strict requirements for hardware performance with Nuitrack. RAM usa
 
 ### Nuitrack Installation  
 
-Download and install Nuitrack for your platform:
-* [Windows x64](/Platforms/nuitrack-windows-x64.exe)
-* [Windows x86](/Platforms/nuitrack-windows-x86.exe)
+Download and install Nuitrack for your platform from [GitHub Releases](https://github.com/3DiVi/nuitrack-sdk/releases/latest).  
+Available versions:
+* Windows x64: `nuitrack-windows-x64.exe`
+* Windows x86: `nuitrack-windows-x86.exe`
 
 ## Linux 
 
@@ -27,10 +28,11 @@ Download and install Nuitrack for your platform:
 
 ### Nuitrack Installation 
 
-Download and install the Nuitrack Debian package for your platform:
-* [Ubuntu x64](/Platforms/nuitrack-ubuntu-amd64.deb)
-* [Ubuntu/Debian arm64](/Platforms/nuitrack-linux-arm64.deb)
-* [Ubuntu/Debian arm32](/Platforms/nuitrack-linux-armhf.deb)
+Download and install the Nuitrack Debian package for your platform from [GitHub Releases](https://github.com/3DiVi/nuitrack-sdk/releases/latest).  
+Available versions:
+* Ubuntu x64: `nuitrack-ubuntu-amd64.deb`
+* Ubuntu/Debian arm64: `nuitrack-linux-arm64.deb`
+* Ubuntu/Debian arm32: `nuitrack-linux-armhf.deb`
 
 ## Integration option
 
@@ -39,10 +41,11 @@ Download and install the Nuitrack Debian package for your platform:
 ## Android
 
 1. Allow your device to install applications from unknown sources. To do this, go to **Settings → Security and tick "Unknown sources"**.
-2. Download and install the Nuitrack APK package for your platform (to install the APK package, locate it in a file manager, open and tap "INSTALL"):
-   * [Android arm64](/Platforms/Nuitrack_arm64.apk)
-   * [Android arm32](/Platforms/Nuitrack.apk)
-   * [Android (TVico)](/Platforms/TVico.apk)
+2. Download and install the Nuitrack APK package for your platform from [GitHub Releases](https://github.com/3DiVi/nuitrack-sdk/releases/latest) (to install the APK package, locate it in a file manager, open and tap "INSTALL").  
+   Available versions:
+   * Android arm64: `Nuitrack_arm64.apk`
+   * Android arm32: `Nuitrack.apk`
+   * Android (TVico): `TVico.apk`
 3. Launch the Nuitrack application. 
    <p align="center">
    <img width="400" src="img/install_1.png">

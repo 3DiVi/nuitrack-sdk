@@ -1,4 +1,4 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -12,8 +12,7 @@ typedef struct UserTrackerData* UserTrackerDataPtr;
 typedef void(*UserTrackerUserCallback)(int);
 typedef void(*UserTrackerUpdateCallback)(UserTrackerDataPtr);
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class UserTracker;
 class UserFrame;
 }
@@ -27,22 +26,10 @@ class UserTrackerCallbackWrapper{
  public:
 	UserTrackerCallbackWrapper():_tracker(NULL), _onUpdatePtr(NULL), _onNewUserPtr(NULL),
 															_onLostUserPtr(NULL){}
-	void setUserTracker(tdv::nuitrack::UserTracker* tracker)
-	{
-		_tracker = tracker;
-	}
-	void setOnUpdateAddress(OnUpdateRawFunctionPtr funcPtr)
-	{
-		_onUpdatePtr = funcPtr;
-	}
-	void setOnNewUserAddress(OnNewUserRawFunctionPtr funcPtr)
-	{
-		_onNewUserPtr = funcPtr;
-	}
-	void setOnLostUserAddress(OnLostUserRawFunctionPtr funcPtr)
-	{
-		_onLostUserPtr = funcPtr;
-	}
+	void setUserTracker(tdv::nuitrack::UserTracker* tracker) { _tracker = tracker; }
+	void setOnUpdateAddress(OnUpdateRawFunctionPtr funcPtr) { _onUpdatePtr = funcPtr; }
+	void setOnNewUserAddress(OnNewUserRawFunctionPtr funcPtr) { _onNewUserPtr = funcPtr; }
+	void setOnLostUserAddress(OnLostUserRawFunctionPtr funcPtr) { _onLostUserPtr = funcPtr; }
 
 	void executeOnUpdate(std::shared_ptr<tdv::nuitrack::UserFrame> userFrame);
 	void executeOnNewUser(int id);

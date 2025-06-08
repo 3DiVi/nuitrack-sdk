@@ -1,5 +1,4 @@
-#ifndef NUITRACK_COLORSENSOR_H_
-#define NUITRACK_COLORSENSOR_H_
+#pragma once
 
 #include <vector>
 
@@ -157,5 +156,3 @@ private:
 
 } /* namespace nuitrack */
 } /* namespace tdv */
-
-#endif /* NUITRACK_COLORSENSOR_H_ */

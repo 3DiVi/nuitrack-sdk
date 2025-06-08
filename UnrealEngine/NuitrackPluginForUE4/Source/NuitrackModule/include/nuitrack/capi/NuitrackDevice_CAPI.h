@@ -1,7 +1,6 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_DEVICE_CAPI_H_
-#define NUITRACK_DEVICE_CAPI_H_
+#pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 #include "nuitrack/types/NuitrackDeviceCommon.h"
@@ -11,21 +10,15 @@ typedef struct NuitrackDeviceData* NuitrackDeviceDataPtr;
 extern "C"
 {
 
-NUITRACK_API  tdv::nuitrack::ExceptionType nuitrack_GetDeviceList(
-		NuitrackDeviceDataPtr* bufferOfDevices, int bufferSize);
-
-NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_SetDevice(
-		NuitrackDeviceDataPtr dev);
-
-NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_deleteNuitrackDeviceImpl(
-		NuitrackDeviceDataPtr dev);
+NUITRACK_API  tdv::nuitrack::ExceptionType nuitrack_GetDeviceList(NuitrackDeviceDataPtr* bufferOfDevices, int bufferSize);
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_SetDevice(NuitrackDeviceDataPtr dev);
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_deleteNuitrackDeviceImpl(NuitrackDeviceDataPtr dev);
 
 /*
  * NuitrackDeviceImpl functions
  */
 
-NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getInfo(
-		NuitrackDeviceDataPtr dev, int info_type, char* out);
+NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getInfo(NuitrackDeviceDataPtr dev, int info_type, char* out);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getVideoModeList(
 		NuitrackDeviceDataPtr dev, int stream_type, int list_index, tdv::nuitrack::device::VideoMode& out);
@@ -44,10 +37,8 @@ NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getStringBuffe
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getDeviceListLimitConst(int &out);
 
 NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_nuitrackDevice_getActivationStatus(
-		NuitrackDeviceDataPtr dev, int &out);
+		NuitrackDeviceDataPtr dev, tdv::nuitrack::device::ActivationStatus &out);
 
 NUITRACK_API void nuitrack_nuitrackDevice_activate(
 		NuitrackDeviceDataPtr dev, const char* activation_key, tdv::nuitrack::nuitrack_error** e);
 }
-
-#endif /* NUITRACK_DEVICE_CAPI_H_ */

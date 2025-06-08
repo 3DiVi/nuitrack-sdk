@@ -1,6 +1,6 @@
 #include <nuitrack/Nuitrack.h>
 
-#include <signal.h>
+#include <csignal>
 #include <iomanip>
 #include <iostream>
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
     }
     catch (const Exception& e)
     {
-        std::cerr << "Can not initialize Nuitrack (ExceptionType: " << e.type() << ")" << std::endl;
+        std::cerr << "Can not initialize Nuitrack (ExceptionType: " << int(e.type()) << ")" << std::endl;
         return EXIT_FAILURE;
     }
     auto devices = Nuitrack::getDeviceList();
@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
     }
     catch (const Exception& e)
     {
-        std::cerr << "Can not start Nuitrack (ExceptionType: " << e.type() << ")" << std::endl;
+        std::cerr << "Can not start Nuitrack (ExceptionType: " << int(e.type()) << ")" << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -100,13 +100,13 @@ int main(int argc, char* argv[])
         }
         catch (LicenseNotAcquiredException& e)
         {
-            std::cerr << "LicenseNotAcquired exception (ExceptionType: " << e.type() << ")" << std::endl;
+            std::cerr << "LicenseNotAcquired exception (ExceptionType: " << int(e.type()) << ")" << std::endl;
             errorCode = EXIT_SUCCESS;
             break;
         }
         catch (const Exception& e)
         {
-            std::cerr << "Nuitrack update failed (ExceptionType: " << e.type() << ")" << std::endl;
+            std::cerr << "Nuitrack update failed (ExceptionType: " << int(e.type()) << ")" << std::endl;
             errorCode = EXIT_FAILURE;
             break;
         }
@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
     }
     catch (const Exception& e)
     {
-        std::cerr << "Nuitrack release failed (ExceptionType: " << e.type() << ")" << std::endl;
+        std::cerr << "Nuitrack release failed (ExceptionType: " << int(e.type()) << ")" << std::endl;
         errorCode = EXIT_FAILURE;
     }
 

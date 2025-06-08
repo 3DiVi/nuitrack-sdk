@@ -1,16 +1,13 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
-#ifndef PUBLIC_NUITRACK_CAPI_H_
-#define PUBLIC_NUITRACK_CAPI_H_
+#pragma once
 
-#include <string>
 #include <memory>
 #include <functional>
 #include "nuitrack/types/Export.h"
 #include "nuitrack/types/Error.h"
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class IssuesData;
 class IssueTracker;
 }
@@ -27,7 +24,4 @@ NUITRACK_API tdv::nuitrack::ExceptionType nuitrack_WaitSyncUpdatePublic(tdv::nui
 
 NUITRACK_API void nuitrack_getIssueTracker(tdv::nuitrack::IssueTracker**);
 
-
 }
-
-#endif /* PUBLIC_NUITRACK_CAPI_H_ */

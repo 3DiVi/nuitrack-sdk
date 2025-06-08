@@ -10,10 +10,8 @@
 class ExceptionHolder
 {
 public:
-	ExceptionHolder(tdv::nuitrack::ExceptionType type = tdv::nuitrack::OK, std::string message = "")
-		: _type(type), _message(message)
-	{
-	}
+	ExceptionHolder(tdv::nuitrack::ExceptionType type = tdv::nuitrack::ExceptionType::OK, std::string message = "")
+		: _type(type), _message(message) {}
 
 	virtual ~ExceptionHolder() {}
 

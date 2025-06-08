@@ -1,4 +1,4 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -12,8 +12,7 @@ typedef struct DepthSensorData* DepthSensorDataPtr;
 
 typedef void(*DepthSensorUpdateCallback)(DepthSensorDataPtr);
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class DepthSensor;
 class DepthFrame;
 }
@@ -25,14 +24,8 @@ class DepthSensorCallbackWrapper
 {
  public:
 	DepthSensorCallbackWrapper():_sensor(NULL), _funcPtr(NULL) {}
-	void setDepthSensor(tdv::nuitrack::DepthSensor* sensor)
-	{
-		_sensor = sensor;
-	}
-	void setFunctionAddress(OnNewFrameRawFunctionPtr funcPtr)
-	{
-		_funcPtr = funcPtr;
-	}
+	void setDepthSensor(tdv::nuitrack::DepthSensor* sensor) { _sensor = sensor; }
+	void setFunctionAddress(OnNewFrameRawFunctionPtr funcPtr) { _funcPtr = funcPtr; }
 
 	void execute(std::shared_ptr<tdv::nuitrack::DepthFrame> depthFrame);
  private:

@@ -15,12 +15,12 @@
 #include <string>
 
 
-typedef enum
+enum  ViewMode
 {
 	DEPTH_SEGMENT_MODE = 0,
 	RGB_MODE = 1,
 	MODES_MAX_COUNT
-} ViewMode;
+};
 
 
 

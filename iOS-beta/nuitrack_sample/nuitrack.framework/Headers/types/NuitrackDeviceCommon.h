@@ -1,12 +1,9 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
-namespace tdv
-{
-namespace nuitrack
-{
-namespace device
+#include <ostream>
+namespace tdv { namespace nuitrack { namespace device
 {
 
 /**
@@ -15,16 +12,31 @@ namespace device
  */
 struct ActivationInfo
 {
-	enum Status
+	enum class Status // please also refer to NuitrackDeviceCommon.cs
 	{
 		NONE = 0,	///< no valid license
 		TRIAL,		///< time-limited license
-		PRO,		///< unlimited license types
-		AI,		    ///< AI license types
-		AI_ONLINE,
-		PRO_ONLINE
+		PRO,		///< Pro license types
+		AI,			///< AI license types 
+		AI_ONLINE,  ///< AI subscription license types
+		PRO_ONLINE  ///< Pro subscription license types
 	};
 };
+
+inline std::ostream& operator<< (std::ostream& s, const ActivationInfo::Status status)
+{
+	switch (status)
+	{
+		case ActivationInfo::Status::NONE: s << "None"; break;
+		case ActivationInfo::Status::TRIAL: s << "Trial"; break;
+		case ActivationInfo::Status::AI: s << "AI"; break;
+		case ActivationInfo::Status::AI_ONLINE: s << "AI_Online"; break;
+		case ActivationInfo::Status::PRO: s << "Pro"; break;
+		case ActivationInfo::Status::PRO_ONLINE: s << "Pro_Online"; break;
+	}
+	return s;
+}
+
 typedef ActivationInfo::Status ActivationStatus;
 
 /**
@@ -69,6 +81,4 @@ struct VideoMode
 	int fps;	///< frame rate in FPS
 };
 
-}
-}
-}
+} } }

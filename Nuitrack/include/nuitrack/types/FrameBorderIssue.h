@@ -1,4 +1,4 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -30,30 +30,12 @@ public:
 		return _type;
 	}
 
-	bool isTop() const
-	{
-		return _top;
-	}
-	bool isLeft() const
-	{
-		return _left;
-	}
-	bool isRight() const
-	{
-		return _right;
-	}
-	void setTop(bool isTop)
-	{
-		this->_top = isTop;
-	}
-	void setLeft(bool isLeft)
-	{
-		this->_left = isLeft;
-	}
-	void setRight(bool isRight)
-	{
-		this->_right = isRight;
-	}
+	bool isTop() const { return _top; }
+	bool isLeft() const { return _left; }
+	bool isRight() const { return _right; }
+	void setTop(bool isTop) { this->_top = isTop; }
+	void setLeft(bool isLeft) { this->_left = isLeft; }
+	void setRight(bool isRight) { this->_right = isRight; }
 
 	~FrameBorderIssue() override = default;
 

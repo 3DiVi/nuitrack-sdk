@@ -1,12 +1,11 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 #include "nuitrack/types/Skeleton.h"
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class SkeletonTracker;
 class SkeletonData;
 }
@@ -26,22 +25,10 @@ class SkeletonTrackerCallbackWrapper{
 	SkeletonTrackerCallbackWrapper():_tracker(NULL), _onUpdatePtr(NULL), _onNewUserPtr(NULL),
 	_onLostUserPtr(NULL) {}
 
-	void setSkeletonTracker(tdv::nuitrack::SkeletonTracker* tracker)
-	{
-		_tracker = tracker;
-	}
-	void setOnUpdateAddress(SkeletonOnUpdateRawFunctionPtr funcPtr)
-	{
-		_onUpdatePtr = funcPtr;
-	}
-	void setOnNewUserAddress(SkeletonOnNewUserRawFunctionPtr funcPtr)
-	{
-		_onNewUserPtr = funcPtr;
-	}
-	void setOnLostUserAddress(SkeletonOnLostUserRawFunctionPtr funcPtr)
-	{
-		_onLostUserPtr = funcPtr;
-	}
+	void setSkeletonTracker(tdv::nuitrack::SkeletonTracker* tracker) { _tracker = tracker; }
+	void setOnUpdateAddress(SkeletonOnUpdateRawFunctionPtr funcPtr) { _onUpdatePtr = funcPtr; }
+	void setOnNewUserAddress(SkeletonOnNewUserRawFunctionPtr funcPtr) { _onNewUserPtr = funcPtr; }
+	void setOnLostUserAddress(SkeletonOnLostUserRawFunctionPtr funcPtr) { _onLostUserPtr = funcPtr; }
 
 	void executeOnUpdate(std::shared_ptr<tdv::nuitrack::SkeletonData> data);
 	void executeOnNewUser(std::shared_ptr<tdv::nuitrack::SkeletonTracker>, int id);

@@ -13,25 +13,11 @@ namespace nuitrack
 */
 struct Intrinsics
 {
-	/**
-	 * @brief Focal length in X direction
-	 */
-	float fx;
+	float fx; /** @brief Focal length in X direction */
+	float fy; /** @brief Focal length in Y direction */
 
-	/**
-	 * @brief Focal length in Y direction
-	 */
-	float fy;
-
-	/**
-	 * @brief Optical center abscissa
-	 */
-	float cx;
-
-	/**
-	 * @brief Optical center ordinate
-	 */
-	float cy;
+	float cx; /** @brief Optical center abscissa */
+	float cy; /** @brief Optical center ordinate */
 };
 
 /**
@@ -40,30 +26,14 @@ struct Intrinsics
 */
 struct OutputMode
 {
-	/**
-	 * @brief Count of frames transferred per second.
-	 */
-	int fps;
+	int fps; /** @brief Count of frames transferred per second. */
 
-	/**
-	 * @brief X resolution (frame width).
-	 */
-	int xres;
+	int xres; /** @brief X resolution (frame width). */
+	int yres; /** @brief Y resolution (frame height). */
 
-	/**
-	 * @brief Y resolution (frame height).
-	 */
-	int yres;
+	float hfov; /** @brief Horizontal field of view in radians. */
 
-	/**
-	 * @brief Horizontal field of view in radians.
-	 */
-	float hfov;
-
-	/**
-	 * @brief Sensor intrinsics for current xres, yres.
-	 */
-	Intrinsics intrinsics;
+	Intrinsics intrinsics; /** @brief Sensor intrinsics for current xres, yres. */
 };
 
 } /* namespace nuitrack */

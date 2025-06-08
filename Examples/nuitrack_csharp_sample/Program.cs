@@ -101,7 +101,7 @@ namespace nuitrack
 			// the location automatically.
 			try
 			{
-				Nuitrack.Init("");
+				Nuitrack.Init();
 			}
 			catch (Exception exception)
 			{
@@ -226,7 +226,7 @@ namespace nuitrack
 			catch (LicenseNotAcquiredException exception)
 			{
 				Console.WriteLine("LicenseNotAcquired exception. Exception: ", exception);
-				throw exception;
+				Application.Exit();
 			}
 			catch (Exception exception)
 			{

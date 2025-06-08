@@ -1,8 +1,8 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 #include "nuitrack/types/OutputMode.h"
@@ -12,8 +12,7 @@ typedef struct ColorSensorData* ColorSensorDataPtr;
 
 typedef void(*ColorSensorUpdateCallback)(ColorSensorDataPtr);
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class ColorSensor;
 class RGBFrame;
 }
@@ -23,15 +22,9 @@ typedef void (*OnNewRGBFrameRawFunctionPtr)(ColorSensorData*, tdv::nuitrack::Col
 
 class ColorSensorCallbackWrapper{
  public:
-	ColorSensorCallbackWrapper():_sensor(NULL), _funcPtr(NULL) {}
-	void setColorSensor(tdv::nuitrack::ColorSensor* sensor)
-	{
-		_sensor = sensor;
-	}
-	void setFunctionAddress(OnNewRGBFrameRawFunctionPtr funcPtr)
-	{
-		_funcPtr = funcPtr;
-	}
+	ColorSensorCallbackWrapper(): _sensor(nullptr), _funcPtr(nullptr) {}
+	void setColorSensor(tdv::nuitrack::ColorSensor* sensor) { _sensor = sensor; }
+	void setFunctionAddress(OnNewRGBFrameRawFunctionPtr funcPtr) { _funcPtr = funcPtr; }
 
 	void execute(std::shared_ptr<tdv::nuitrack::RGBFrame> rgbFrame);
  private:

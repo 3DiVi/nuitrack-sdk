@@ -1,9 +1,7 @@
 // Copyright 3DiVi 2024, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_GESTURE_H_
-#define NUITRACK_GESTURE_H_
+#pragma once
 
-#include <memory>
 #include <vector>
 
 namespace tdv
@@ -42,15 +40,8 @@ enum UserStateType
  */
 struct Gesture
 {
-	/*
-	 * ID of the user
-	 */
-	int userId;
-
-	/*
-	 * Type of the gesture
-	 */
-	GestureType type;
+	int userId; /* ID of the user */
+	GestureType type; /* Type of the gesture */
 };
 
 /**
@@ -59,15 +50,8 @@ struct Gesture
  */
 struct UserState
 {
-	/*
-	 * ID of the user
-	 */
-	int userId;
-
-	/*
-	 * State of the user
-	 */
-	UserStateType state;
+	int userId; /* ID of the user */
+	UserStateType state; /* State of the user */
 };
 
 /**
@@ -76,15 +60,8 @@ struct UserState
  */
 struct GestureState
 {
-	/*
-	 * Type of the gesture
-	 */
-	GestureType type;
-
-	/*
-	 * Execution progress (in percents)
-	 */
-	int progress;
+	GestureType type; /* Type of the gesture */
+	int progress; /* Execution progress (in percents) */
 };
 
 /**
@@ -94,13 +71,8 @@ struct GestureState
  */
 struct UserGesturesState : public UserState
 {
-	/*
-	 * Gesture information
-	 */
-	std::vector<GestureState> gestures;
+	std::vector<GestureState> gestures; /* Gesture information */
 };
 
 } // namespace nuitrack
 } // namespace tdv
-
-#endif /* NUITRACK_GESTURE_H_ */

@@ -1,11 +1,10 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class GestureRecognizer;
 class GestureData;
 class UserStateData;
@@ -25,23 +24,11 @@ class GestureRecognizerCallbackWrapper{
  public:
 	GestureRecognizerCallbackWrapper():_recognizer(NULL), _onUpdatePtr(NULL), _onStateChangePtr(NULL),
 	_onNewGesturesPtr(NULL) {}
-	void setGestureRecognizer(tdv::nuitrack::GestureRecognizer* recognizer)
-	{
-		_recognizer = recognizer;
-	}
+	void setGestureRecognizer(tdv::nuitrack::GestureRecognizer* recognizer) { _recognizer = recognizer; }
 
-	void setOnNewGestureAddress(OnNewGesturesRawFunctionPtr funcPtr)
-	{
-		_onNewGesturesPtr = funcPtr;
-	}
-	void setOnUserStateChangeAddress(OnUserStateChangeRawFunctionPtr funcPtr)
-	{
-		_onStateChangePtr = funcPtr;
-	}
-	void setOnUpdateAddress(OnGestureUpdateRawFunctionPtr funcPtr)
-	{
-		_onUpdatePtr = funcPtr;
-	}
+	void setOnNewGestureAddress(OnNewGesturesRawFunctionPtr funcPtr) { _onNewGesturesPtr = funcPtr; }
+	void setOnUserStateChangeAddress(OnUserStateChangeRawFunctionPtr funcPtr) { _onStateChangePtr = funcPtr; }
+	void setOnUpdateAddress(OnGestureUpdateRawFunctionPtr funcPtr) { _onUpdatePtr = funcPtr; }
 
 	void executeOnUpdate(std::shared_ptr<tdv::nuitrack::UserGesturesStateData> data);
 	void executeOnNewGestures(std::shared_ptr<tdv::nuitrack::GestureData> data);

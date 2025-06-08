@@ -1,4 +1,5 @@
 ## How to use?
+- Download the Unity package from [GitHub Releases](https://github.com/3DiVi/nuitrack-sdk/releases/latest)
 - Install Nuitrack Runtime https://github.com/3DiVi/nuitrack-sdk/blob/master/README.md
 - Create new Project in Unity (Or open your project)
 - Import NuitrackSDK.unitypackage into your project (Main menu: "Assets/Import Package/Custom Package..." and click "import" button)

@@ -1,12 +1,10 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
-#ifndef NUITRACK_ISSUE_TRACKER_CAPI_H_
-#define NUITRACK_ISSUE_TRACKER_CAPI_H_
+#pragma once
 
 #include <memory>
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv{ namespace nuitrack {
 class Issue;
 class IssuesData;
 class IssueTracker;
@@ -23,17 +21,12 @@ class IssueTrackerCallbackWrapper
 public:
 	typedef std::shared_ptr<IssueTrackerCallbackWrapper> Ptr;
 
-	IssueTrackerCallbackWrapper() : _sensor(NULL), _funcPtr(NULL) {}
-	void setIssueTracker(tdv::nuitrack::IssueTracker* sensor)
-	{
-		_sensor = sensor;
-	}
-	void setFunctionAddress(OnNewIssueRawFunctionPtr funcPtr)
-	{
-		_funcPtr = funcPtr;
-	}
+	IssueTrackerCallbackWrapper() : _sensor(nullptr), _funcPtr(nullptr) {}
+	void setIssueTracker(tdv::nuitrack::IssueTracker* sensor) { _sensor = sensor; }
+	void setFunctionAddress(OnNewIssueRawFunctionPtr funcPtr) { _funcPtr = funcPtr; }
 
 	void execute(std::shared_ptr<tdv::nuitrack::IssuesData> issuesData);
+
 private:
 	tdv::nuitrack::IssueTracker* _sensor;
 	OnNewIssueRawFunctionPtr _funcPtr;
@@ -58,9 +51,4 @@ extern "C" bool NUITRACK_API nuitrack_GetOcclusionIssue(IssueTrackerDataPtr data
 extern "C" void NUITRACK_API nuitrack_GetFrameBorderIssue(IssueTrackerDataPtr dataPtr, int userId,
 	bool* left, bool* right, bool* top);
 
-extern "C" bool NUITRACK_API nuitrack_GetSensorIssue(IssueTrackerDataPtr dataPtr,
-										  char* buffer,
-										  int bufferSize);
-
-
-#endif /* NUITRACK_ISSUE_TRACKER_CAPI_H_ */
+extern "C" bool NUITRACK_API nuitrack_GetSensorIssue(IssueTrackerDataPtr dataPtr, char* buffer, int bufferSize);

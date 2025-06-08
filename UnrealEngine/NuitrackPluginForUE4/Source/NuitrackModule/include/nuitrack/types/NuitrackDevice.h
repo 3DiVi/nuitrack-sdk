@@ -1,15 +1,10 @@
-#ifndef NUITRACK_NUITRAKDEVICE_H_
-#define NUITRACK_NUITRAKDEVICE_H_
+#pragma once
 #include <vector>
 
 #include "nuitrack/capi/NuitrackDevice_CAPI.h"
 #include "nuitrack/utils/ExceptionTranslator.h"
 
-namespace tdv
-{
-namespace nuitrack
-{
-namespace device
+namespace tdv { namespace nuitrack { namespace device
 {
 
 /**
@@ -24,15 +19,9 @@ public:
 	/**
 	 * @brief For internal use only.
 	 */
-	NuitrackDevice(NuitrackDeviceData* pimpl)
-	{
-		_pimpl = pimpl;
-	}
+	NuitrackDevice(NuitrackDeviceData* pimpl) { _pimpl = pimpl; }
 
-	~NuitrackDevice()
-	{
-		nuitrack_deleteNuitrackDeviceImpl(_pimpl);
-	}
+	~NuitrackDevice() { nuitrack_deleteNuitrackDeviceImpl(_pimpl); }
 
 	/**
 	 * @brief Provides device info by type.
@@ -95,10 +84,7 @@ public:
 	 * @param [in] stream_type Stream type of VideoMode.
 	 * @param [in] video_mode Video mode.
 	 */
-	void setVideoMode(StreamType stream_type, VideoMode video_mode)
-	{
-		nuitrack_nuitrackDevice_setVideoMode(_pimpl, stream_type, video_mode);
-	}
+	void setVideoMode(StreamType stream_type, VideoMode video_mode) { nuitrack_nuitrackDevice_setVideoMode(_pimpl, stream_type, video_mode); }
 
 	/**
 	 * @brief Get license activation status.
@@ -107,9 +93,9 @@ public:
 	 */
 	ActivationStatus getActivationStatus()
 	{
-		int res = ActivationStatus::NONE;
+		auto res = ActivationStatus::NONE;
 		nuitrack_nuitrackDevice_getActivationStatus(_pimpl, res);
-		return (ActivationStatus)res;
+		return res;
 	}
 
 	/**
@@ -131,8 +117,4 @@ private:
 	NuitrackDeviceData* _pimpl;
 };
 
-}
-}
-}
-
-#endif /* NUITRACK_USERFRAME_H_ */
+} } }

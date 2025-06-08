@@ -1,11 +1,10 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
 #include "nuitrack/capi/Nuitrack_CAPI.h"
 
-namespace tdv{
-namespace nuitrack{
+namespace tdv { namespace nuitrack {
 class HandTracker;
 class HandTrackerData;
 }
@@ -18,14 +17,8 @@ typedef void (*OnHandUpdateRawFunctionPtr)(HandTrackerDataInner*, tdv::nuitrack:
 class HandTrackerCallbackWrapper{
  public:
 	HandTrackerCallbackWrapper():_tracker(NULL), _funcPtr(NULL) {}
-	void setHandTracker(tdv::nuitrack::HandTracker* tracker)
-	{
-		_tracker = tracker;
-	}
-	void setFunctionAddress(OnHandUpdateRawFunctionPtr funcPtr)
-	{
-		_funcPtr = funcPtr;
-	}
+	void setHandTracker(tdv::nuitrack::HandTracker* tracker) { _tracker = tracker; }
+	void setFunctionAddress(OnHandUpdateRawFunctionPtr funcPtr) { _funcPtr = funcPtr; }
 
 	void execute(std::shared_ptr<tdv::nuitrack::HandTrackerData> data);
  private:

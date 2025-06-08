@@ -1,4 +1,4 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -13,7 +13,7 @@ namespace nuitrack
  * @ingroup CommonElements_group
  * @brief Represents the frame border issue.
  */
-class MIDDLEWARE_API FrameBorderIssue : public Issue
+class FrameBorderIssue : public Issue
 {
 public:
 	/**
@@ -30,32 +30,14 @@ public:
 		return _type;
 	}
 
-	bool isTop() const
-	{
-		return _top;
-	}
-	bool isLeft() const
-	{
-		return _left;
-	}
-	bool isRight() const
-	{
-		return _right;
-	}
-	void setTop(bool isTop)
-	{
-		this->_top = isTop;
-	}
-	void setLeft(bool isLeft)
-	{
-		this->_left = isLeft;
-	}
-	void setRight(bool isRight)
-	{
-		this->_right = isRight;
-	}
+	bool isTop() const { return _top; }
+	bool isLeft() const { return _left; }
+	bool isRight() const { return _right; }
+	void setTop(bool isTop) { this->_top = isTop; }
+	void setLeft(bool isLeft) { this->_left = isLeft; }
+	void setRight(bool isRight) { this->_right = isRight; }
 
-	~FrameBorderIssue() override;
+	~FrameBorderIssue() override = default;
 
 	/**
 	 * @brief Constructs a frame border issue object from its properties.

@@ -6,10 +6,7 @@
 #include "nuitrack/types/User.h"
 #include "nuitrack/capi/UserTracker_CAPI.h"
 
-namespace tdv
-{
-namespace nuitrack
-{
+namespace tdv { namespace nuitrack {
 
 /**
  * @ingroup UserTracker_group
@@ -33,10 +30,7 @@ public:
 		nuitrack_AddUserTrackerDataRef(pimpl);
 	}
 
-	virtual ~UserFrame()
-	{
-		nuitrack_DestroyUserTrackerData(_pimpl);
-	}
+	virtual ~UserFrame() { nuitrack_DestroyUserTrackerData(_pimpl); }
 
 	/**
 	 * @brief Returns additional information about detected users.
@@ -64,39 +58,24 @@ public:
 	/**
 	 * @brief Returns the number of rows in the user frame.
 	 */
-	int getRows() const
-	{
-		return nuitrack_GetUserFrameRows(_pimpl);
-	}
+	int getRows() const { return nuitrack_GetUserFrameRows(_pimpl); }
 
 	/**
 	 * @brief Returns the number of columns in the user frame.
 	 */
-	int getCols() const
-	{
-		return nuitrack_GetUserFrameCols(_pimpl);
-	}
+	int getCols() const { return nuitrack_GetUserFrameCols(_pimpl); }
 
 	/**
 	 * @brief Returns the user frame ID.
 	 */
-	uint64_t getID() const
-	{
-		return nuitrack_GetUserFrameID(_pimpl);
-	}
+	uint64_t getID() const { return nuitrack_GetUserFrameID(_pimpl); }
 
 	/**
 	 * @brief Returns the user frame data.
 	 */
-	const DataType* getData() const
-	{
-		return nuitrack_GetUserFrameData(_pimpl);
-	}
+	const DataType* getData() const { return nuitrack_GetUserFrameData(_pimpl); }
 
-	uint64_t getTimestamp() const
-	{
-		return nuitrack_GetUserFrameTimestamp(_pimpl);
-	}
+	uint64_t getTimestamp() const { return nuitrack_GetUserFrameTimestamp(_pimpl); }
 
 	/**
 	 * @brief Get point of floor.
@@ -127,6 +106,4 @@ private:
 
 };
 
-
-}
-}
+}}
