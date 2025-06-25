@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <cstring>
 
 #include "nuitrack/capi/NuitrackDevice_CAPI.h"
 #include "nuitrack/utils/ExceptionTranslator.h"
