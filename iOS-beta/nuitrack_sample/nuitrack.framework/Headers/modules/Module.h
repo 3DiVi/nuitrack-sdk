@@ -3,6 +3,7 @@
 #pragma once
 
 #include <cstdint>
+#include <memory>
 
 namespace tdv
 {
@@ -15,6 +16,7 @@ class ModuleFunctions;
 class Module
 {
 public:
+	using Ptr = std::shared_ptr<Module>;
 	virtual ~Module() = default;
 
 private:

@@ -27,12 +27,12 @@ inline std::ostream& operator<< (std::ostream& s, const ActivationInfo::Status s
 {
 	switch (status)
 	{
-		case ActivationInfo::Status::NONE: s << "None"; break;
-		case ActivationInfo::Status::TRIAL: s << "Trial"; break;
-		case ActivationInfo::Status::AI: s << "AI"; break;
-		case ActivationInfo::Status::AI_ONLINE: s << "AI_Online"; break;
-		case ActivationInfo::Status::PRO: s << "Pro"; break;
-		case ActivationInfo::Status::PRO_ONLINE: s << "Pro_Online"; break;
+		case ActivationInfo::Status::NONE:			s << "None"; break;
+		case ActivationInfo::Status::TRIAL:			s << "Trial"; break;
+		case ActivationInfo::Status::AI:			s << "AI"; break;
+		case ActivationInfo::Status::AI_ONLINE:		s << "AI Subscription"; break;
+		case ActivationInfo::Status::PRO:			s << "Pro"; break;
+		case ActivationInfo::Status::PRO_ONLINE:	s << "Pro Subscription"; break;
 	}
 	return s;
 }

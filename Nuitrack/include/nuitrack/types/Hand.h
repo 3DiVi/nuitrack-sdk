@@ -1,4 +1,4 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
@@ -14,11 +14,7 @@ namespace nuitrack
  */
 struct Hand
 {
-    /**
-     * Smart pointer to access the Hand instance.
-     */
 	typedef std::shared_ptr<Hand> Ptr;
-
 
     float x; ///< The normalized projective x coordinate of the hand (in range [0, 1]).
     float y; ///< The normalized projective y coordinate of the hand (in range [0, 1]).
@@ -36,14 +32,8 @@ struct Hand
  */
 struct UserHands
 {
-    /*
-     * The ID of a user to which this hand information applies.
-     */
     int userId;
-
-    Hand::Ptr leftHand; ///< User left hand data.
-    Hand::Ptr rightHand; ///< User right hand data.
+    Hand::Ptr leftHand, rightHand;
 };
 
-} /* namespace nuitrack */
-} /* namespace tdv */
+}}

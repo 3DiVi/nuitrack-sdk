@@ -1,11 +1,8 @@
-// Copyright 3DiVi 2024, Inc. All Rights Reserved.
+// Copyright 3DiVi 2025, Inc. All Rights Reserved.
 
 #pragma once
 
-namespace tdv
-{
-namespace nuitrack
-{
+namespace tdv { namespace nuitrack {
 
 /**
 * @ingroup DepthSensor_group
@@ -18,6 +15,9 @@ struct Intrinsics
 
 	float cx; /** @brief Optical center abscissa */
 	float cy; /** @brief Optical center ordinate */
+
+	Intrinsics(float fx = -1.0f, float fy = -1.0f, float cx = -1.0, float cy = -1.0f):
+		fx(fx), fy(fy), cx(cx), cy(cy) {}
 };
 
 /**
@@ -34,7 +34,9 @@ struct OutputMode
 	float hfov; /** @brief Horizontal field of view in radians. */
 
 	Intrinsics intrinsics; /** @brief Sensor intrinsics for current xres, yres. */
+
+	OutputMode(int fps = -1, int xres = -1, int yres = -1, float hfov = -1.0f, Intrinsics intr = Intrinsics()):
+		fps(fps), xres(xres), yres(yres), hfov(hfov), intrinsics(intr) {}
 };
 
-} /* namespace nuitrack */
-} /* namespace tdv */
+}}

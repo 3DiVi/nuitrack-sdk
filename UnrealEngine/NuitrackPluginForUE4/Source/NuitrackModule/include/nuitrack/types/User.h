@@ -5,6 +5,8 @@
 #include "nuitrack/types/BoundingBox.h"
 #include "nuitrack/types/Vector3.h"
 
+#include <memory>
+
 namespace tdv { namespace nuitrack {
 /**
  * @ingroup UserTracker_group
@@ -12,6 +14,8 @@ namespace tdv { namespace nuitrack {
  */
 struct User
 {
+	using Ptr = std::shared_ptr<User>;
+
 	int id; /** @brief %User identifier. */
 
 	Vector3 proj; /** @brief Center of mass in projective coordinates. */

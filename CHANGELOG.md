@@ -1,3 +1,12 @@
+# Release v0.38.5
+
+**Release Date**: 11 Jul 2025  
+**Nuitrack Runtime version**: 0.38.5  
+**Nuitrack SDK version**: 1.14.5  
+
+* *Nuitrack Viewer*: Stream Mirroring Added and Stream Rotation Refined
+* Stability Improved for all supported platforms 
+
 # Release v0.38.4
 
 **Release Date**: 6 Jun 2025  
