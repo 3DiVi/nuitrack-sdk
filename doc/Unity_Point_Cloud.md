@@ -105,25 +105,25 @@ void Start()
 }
 ```
 
-8. In the `Initialize()` method, use the `nuitrack.OutputMode mode = NuitrackManager.DepthSensor.GetOutputMode()` method to get the struct with resolution, FPS and FOV of the sensor. Check that `frameStep` > 0. The greater the `frameStep` value, the better the image quality but slower performance. Then, create mesh (cube) instances:
+8. In the `Initialize()` method, use the `var mode = NuitrackManager.DepthSensor.GetOutputMode()` method to get the struct with camera parameters. Check that `frameStep` > 0. The greater the `frameStep` value, the better the image quality but slower performance. Then, create mesh (cube) instances:
 
 ```cs
 void Initialize()
 {
     initialized = true;
 
-    nuitrack.OutputMode mode = NuitrackManager.DepthSensor.GetOutputMode(); // Return the struct with resolution, FPS and FOV of the sensor
-    frameStep = mode.XRes / hRes;
+    var mode = NuitrackManager.DepthSensor.GetOutputMode();
+    frameStep = mode.Size.Width / hRes;
 
     if (frameStep <= 0) 
         frameStep = 1; // frameStep must be > 0
 
-    hRes = mode.XRes / frameStep;
+    hRes = mode.Size.Width / frameStep;
 
     // Define height and width, create mesh (cube) instances
     InitMeshes(
-      (mode.XRes / frameStep), // Width
-      (mode.YRes / frameStep),  // Height
+      (mode.Size.Width / frameStep), // Width
+      (mode.Size.Height / frameStep),  // Height
       mode.HFOV);
 }
 ```

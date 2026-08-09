@@ -11,7 +11,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 ## Setting up the Environment
 
 1. As a first step, download and install Nuitrack following our [installation instructions](Install.md). 
-2. Download Unity [from the official website](https://unity3d.com/get-unity/download).
+2. Download Unity [from the official website](https://unity.com/).
 
 _**Note**: To ensure stable operation of a project, we recommend you to use Unity version from Readme https://github.com/3DiVi/nuitrack-sdk/tree/master/Unity3D._
 
@@ -25,7 +25,7 @@ _**Note**: To ensure stable operation of a project, we recommend you to use Unit
 
 _**Note**:_  
 **What sensors can I use with my app?**  
-*You can use any of the supported sensors for your application (see the list of supported sensors at the [Nuitrack official website](https://nuitrack.com/#sensors)). For example, you can use [**TVico**](https://tvico.io/), which is an interactive Android computer with pre-installed Nuitrack. You can find the [TVico User Guide](/doc/TVico_User_Guide.md) in our documentation.*
+*You can use any of the supported sensors for your application (see the list of supported sensors at the [Nuitrack official website](https://nuitrack.com/#sensors)). For example, you can use **TVico**, which is an interactive Android computer with pre-installed Nuitrack. You can find the [TVico User Guide](/doc/TVico_User_Guide.md) in our documentation.*
 
 5.  As a result, you will have a configured development environment with all the necessary components for the build.
 

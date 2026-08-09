@@ -1,9 +1,5 @@
 //
-//  ViewController.mm
-//  nuitrack_sample
-//
-//  Created by 3DiVi on 04.06.2019.
-//  Copyright © 2019 3divi. All rights reserved.
+//  Copyright © 2025 3divi. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -41,13 +37,10 @@ using namespace tdv::nuitrack::device;
     [super viewDidLoad];
 
     _workInProccess = false;
-    _performColor = false;
+    _performColor   = false;
 
     int version = Nuitrack::getVersion();
-    self.labelVersionNumber.text = [NSString stringWithFormat:@"v%d.%d.%d",
-                                        version / 10000,
-                                        (version / 100) % 100,
-                                        version % 100];
+    self.labelVersionNumber.text = [NSString stringWithFormat:@"v%d.%d.%d", version / 10000, (version / 100) % 100, version % 100];
 
     [AVCaptureDevice
         requestAccessForMediaType:AVMediaTypeVideo
@@ -74,7 +67,7 @@ using namespace tdv::nuitrack::device;
                 i,
                 devices[i]->getInfo(DeviceInfoType::SERIAL_NUMBER).c_str(),
                 devices[i]->getInfo(DeviceInfoType::DEVICE_NAME).c_str(),
-                (devices[i]->getActivationStatus() ? "ACTIVATED" : "NO-LICENSE"));
+                (devices[i]->getActivationStatus() != ActivationStatus::NONE ? "ACTIVATED" : "NO-LICENSE"));
 
         int dev_index = 0; //choose first one (should be only one there)
 
@@ -88,19 +81,12 @@ using namespace tdv::nuitrack::device;
                 continue;
 
             for(int i = 0; i < modes.size(); i++)
-                printf("    [%d] %d x %d @ %d\n",
-                    i,
-                    modes[i].width,
-                    modes[i].height,
-                    modes[i].fps);
+                printf("    [%d] %d x %d @ %d\n", i, modes[i].width, modes[i].height, modes[i].fps);
 
             int vm_index = 0; //set first video mode
 
             if(vm_index != -1)
-                devices[dev_index]->setVideoMode(
-                                                 static_cast<StreamType>(vm),
-                                                 modes[vm_index]
-                                                 );
+                devices[dev_index]->setVideoMode(static_cast<StreamType>(vm), modes[vm_index]);
         }
 
         //Nuitrack::setConfigValue("Network.ProxyUrl", "192.168.1.2:1234");
@@ -111,11 +97,14 @@ using namespace tdv::nuitrack::device;
         else
         {
             printf("Try to activate sensor\n");
-            try {
+            try
+            {
                 devices[dev_index]->activate(activationKey);
-                bool activationStatus = devices[dev_index]->getActivationStatus();
+                bool activationStatus = devices[dev_index]->getActivationStatus() != ActivationStatus::NONE;
                 printf("Activation status: %s\n", (activationStatus ? "ACTIVATED" : "NO-LICENSE"));
-            } catch(Exception &e) {
+            }
+            catch(Exception &e)
+            {
                 printf("Activation Error: %s\n", e.what());
             }
         }
@@ -139,9 +128,9 @@ using namespace tdv::nuitrack::device;
     va_start(args, format);
     NSLogv(format, args);
     NSString *text = [[NSString alloc] initWithFormat:format arguments:args];
-    dispatch_async(dispatch_get_main_queue(), [self, text](){
-        self.labelError.text = text;
-    });
+        dispatch_async(dispatch_get_main_queue(), [self, text](){
+            self.labelError.text = text;
+        });
     va_end(args);
 }
 
@@ -192,9 +181,12 @@ using namespace tdv::nuitrack::device;
         // main update cycle
         while(true)
         {
-            try{
+            try
+            {
                 NuitrackModules::instance()->waitForUpdate(SKELETON_TRACKER);
-            } catch (const LicenseNotAcquiredException& e) {
+            }
+            catch (const LicenseNotAcquiredException& e)
+            {
                 [self logMessage:@"Error: LicenseNotAcquiredException (ExceptionType: %d): %s", e.type(), e.what()];
                 break;
             }
@@ -237,7 +229,9 @@ using namespace tdv::nuitrack::device;
         // finish nuitrack
         Nuitrack::release();
 
-    } catch (const std::exception& e) {
+    }
+    catch (const std::exception& e)
+    {
         [self logMessage:@"Error: %s", e.what()];
     }
 }

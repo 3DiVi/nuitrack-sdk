@@ -3,11 +3,11 @@ cmake_minimum_required(VERSION 3.14)
 set(PROJECT_NAME nuitrack_csharp_device_api_sample)
 project(${PROJECT_NAME})
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_LIST_DIR}/../cmake)
 
 find_package(CSharp)
-include(UseCSharp)
-include(FindMono)
+include(${CMAKE_CURRENT_LIST_DIR}/../cmake/UseCSharp.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/../cmake/FindMono.cmake)
 
 set(SOURCES ${CMAKE_CURRENT_LIST_DIR}/Program.cs)
 

@@ -12,3 +12,4 @@ link_directories(${CMAKE_CURRENT_LIST_DIR}/../../Nuitrack/lib/${PLATFORM_DIR})
 
 add_executable(nuitrack_console_sample src/main.cpp)
 target_link_libraries(nuitrack_console_sample nuitrack)
+target_compile_definitions(nuitrack_console_sample PUBLIC -DHPP) 

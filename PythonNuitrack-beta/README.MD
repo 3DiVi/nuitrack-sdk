@@ -83,9 +83,10 @@ def draw_face(image):
 
 def draw_skeleton(image):
 	point_color = (59, 164, 0)
+	w, h, _ = image.shape
 	for skel in data.skeletons:
 		for el in skel[1:]:
-			x = (round(el.projection[0]), round(el.projection[1]))
+			x = (round(el.projection[0] * h), round(el.projection[1] * w))
 			cv2.circle(image, x, 8, point_color, -1)
 
 nuitrack = py_nuitrack.Nuitrack()

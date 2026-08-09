@@ -124,10 +124,8 @@ public class NuiSample : ModuleRules
 #include <iostream>
 #include <vector>
 
+#define HPP
 #include "nuitrack/Nuitrack.h"
-#include "nuitrack/modules/SkeletonTracker.h"
-#include "nuitrack/types/Skeleton.h"
-#include "nuitrack/types/SkeletonData.h"
 ```
 
 

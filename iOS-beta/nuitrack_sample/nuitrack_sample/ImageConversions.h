@@ -1,9 +1,5 @@
 //
-//  ImageConversions.hpp
-//  nuitrack_sample
-//
-//  Created by 3DiVi on 13.06.2019.
-//  Copyright © 2019 3divi. All rights reserved.
+//  Copyright © 2025 3divi. All rights reserved.
 //
 
 #ifndef ImageConversions_hpp

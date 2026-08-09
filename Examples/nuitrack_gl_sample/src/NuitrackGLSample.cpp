@@ -57,14 +57,14 @@ void NuitrackGLSample::init(const std::string& config)
 	_colorSensor->connectOnNewFrame(std::bind(&NuitrackGLSample::onNewRGBFrame, this, std::placeholders::_1));
 
 	_outputMode = _depthSensor->getOutputMode();
-	OutputMode colorOutputMode = _colorSensor->getOutputMode();
-	if (colorOutputMode.xres > _outputMode.xres)
-		_outputMode.xres = colorOutputMode.xres;
-	if (colorOutputMode.yres > _outputMode.yres)
-		_outputMode.yres = colorOutputMode.yres;
+	auto colorOutputMode = _colorSensor->getOutputMode();
+	if (colorOutputMode.size.width > _outputMode.size.width)
+		_outputMode.size.width = colorOutputMode.size.width;
+	if (colorOutputMode.size.height > _outputMode.size.height)
+		_outputMode.size.height = colorOutputMode.size.height;
 
-	_width = _outputMode.xres;
-	_height = _outputMode.yres;
+	_width = _outputMode.size.width;
+	_height = _outputMode.size.height;
 
 	_userTracker = UserTracker::create();
 	// Binds to user tracker events

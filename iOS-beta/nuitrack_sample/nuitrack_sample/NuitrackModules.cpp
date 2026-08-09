@@ -1,9 +1,5 @@
 //
-//  NuitrackModules.cpp
-//  nuitrack_sample
-//
-//  Created by 3DiVi on 13.06.2019.
-//  Copyright © 2019 3divi. All rights reserved.
+//  Copyright © 2025 3divi. All rights reserved.
 //
 
 #include "NuitrackModules.h"
@@ -22,50 +18,26 @@ using namespace sample;
 template<>
 NuitrackModules::Ptr Singleton<NuitrackModules>::_instance = NuitrackModules::Ptr(new NuitrackModules);
 
-NuitrackModules::NuitrackModules():
-_issueUpdateHandle(0)
+NuitrackModules::NuitrackModules(): _issueUpdateHandle(0)
 {
     clearCallbackData();
 }
 
-NuitrackModules::~NuitrackModules()
-{
-    clearCallbackData();
-}
+NuitrackModules::~NuitrackModules() { clearCallbackData(); }
 
-void NuitrackModules::onIssuesUpdate(IssuesData::Ptr data)
-{
-    _issuesData = data;
-}
+void NuitrackModules::onIssuesUpdate(IssuesData::Ptr _) { _issuesData = _; }
 
-void NuitrackModules::onNewDepthFrame(DepthFrame::Ptr frame)
-{
-    _depthFrame = frame;
-}
+void NuitrackModules::onNewDepthFrame(DepthFrame::Ptr _) { _depthFrame = _; }
 
-void NuitrackModules::onNewRGBFrame(RGBFrame::Ptr frame)
-{
-    _colorFrame = frame;
-}
+void NuitrackModules::onNewRGBFrame(RGBFrame::Ptr _) { _colorFrame = _; }
 
-void NuitrackModules::onUserUpdate(UserFrame::Ptr frame)
-{
-    _userFrame = frame;
-}
+void NuitrackModules::onUserUpdate(UserFrame::Ptr _) { _userFrame = _; }
 
-void NuitrackModules::onSkeletonUpdate(SkeletonData::Ptr userSkeletons)
-{
-    _skeletons = userSkeletons;
-}
+void NuitrackModules::onSkeletonUpdate(SkeletonData::Ptr _) { _skeletons = _; }
 
-void NuitrackModules::onHandUpdate(HandTrackerData::Ptr handData)
-{
-    _handTrackerData = handData;
-}
+void NuitrackModules::onHandUpdate(HandTrackerData::Ptr _) { _handTrackerData = _; }
 
-void NuitrackModules::onNewGesture(GestureData::Ptr gestureData)
-{
-}
+void NuitrackModules::onNewGesture(GestureData::Ptr _) { }
 
 void NuitrackModules::init()
 {
@@ -97,6 +69,7 @@ void NuitrackModules::init()
     _userTracker = UserTracker::create();
     _userTracker->connectOnUpdate([=](UserFrame::Ptr data){this->onUserUpdate(data);});
 #endif
+
 #ifndef SKELETONTRACKER_ENABLED
     _skeletonTracker = 0;
 #else
@@ -125,38 +98,32 @@ void NuitrackModules::release()
 
     clearCallbackData();
 
-    _depthSensor = 0;
-    _colorSensor = 0;
-    _userTracker = 0;
-    _skeletonTracker = 0;
-    _gestureRecognizer = 0;
-    _handTracker = 0;
+    _depthSensor        = 0;
+    _colorSensor        = 0;
+    _userTracker        = 0;
+    _skeletonTracker    = 0;
+    _gestureRecognizer  = 0;
+    _handTracker        = 0;
 }
 
-std::shared_ptr<MODULE_CLASS_NAME> NuitrackModules::getModule(NuitrackModule module)
+std::shared_ptr<Module> NuitrackModules::getModule(NuitrackModule module)
 {
     switch(module)
     {
-        case DEPTH_SENSOR: return _depthSensor;
-        case COLOR_SENSOR: return _colorSensor;
-        case USER_TRACKER: return _userTracker;
-        case SKELETON_TRACKER: return _skeletonTracker;
-        case HAND_TRACKER: return _handTracker;
+        case DEPTH_SENSOR:       return _depthSensor;
+        case COLOR_SENSOR:       return _colorSensor;
+        case USER_TRACKER:       return _userTracker;
+        case SKELETON_TRACKER:   return _skeletonTracker;
+        case HAND_TRACKER:       return _handTracker;
         case GESTURE_RECOGNIZER: return _gestureRecognizer;
         default:
             return 0;
     }
 }
 
-DepthSensor::Ptr NuitrackModules::getDepthSensorModule()
-{
-    return _depthSensor;
-}
+DepthSensor::Ptr NuitrackModules::getDepthSensorModule() { return _depthSensor; }
 
-bool NuitrackModules::checkModule(NuitrackModule module)
-{
-    return (bool)getModule(module);
-}
+bool NuitrackModules::checkModule(NuitrackModule module) { return (bool)getModule(module); }
 
 void NuitrackModules::waitForUpdate(NuitrackModule module)
 {
@@ -168,9 +135,9 @@ float NuitrackModules::getProcessingTime(NuitrackModule module)
 {
     switch(module)
     {
-        case USER_TRACKER: return _userTracker->getProcessingTime();
-        case SKELETON_TRACKER: return _skeletonTracker->getProcessingTime();
-        case HAND_TRACKER: return _handTracker->getProcessingTime();
+        case USER_TRACKER:       return _userTracker->getProcessingTime();
+        case SKELETON_TRACKER:   return _skeletonTracker->getProcessingTime();
+        case HAND_TRACKER:       return _handTracker->getProcessingTime();
         case GESTURE_RECOGNIZER: return _gestureRecognizer->getProcessingTime();
         default:
             return 0;
@@ -179,40 +146,22 @@ float NuitrackModules::getProcessingTime(NuitrackModule module)
 
 void NuitrackModules::clearCallbackData()
 {
-    _depthFrame = 0;
-    _colorFrame = 0;
-    _userFrame = 0;
-    _skeletons = 0;
+    _depthFrame      = 0;
+    _colorFrame      = 0;
+    _userFrame       = 0;
+    _skeletons       = 0;
     _handTrackerData = 0;
-    _issuesData = 0;
+    _issuesData      = 0;
 }
 
-DepthFrame::Ptr NuitrackModules::getDepthFrame()
-{
-    return _depthFrame;
-}
+DepthFrame::Ptr NuitrackModules::getDepthFrame() { return _depthFrame; }
 
-RGBFrame::Ptr NuitrackModules::getColorFrame()
-{
-    return _colorFrame;
-}
+RGBFrame::Ptr NuitrackModules::getColorFrame() { return _colorFrame; }
 
-UserFrame::Ptr NuitrackModules::getUserFrame()
-{
-    return _userFrame;
-}
+UserFrame::Ptr NuitrackModules::getUserFrame() { return _userFrame; }
 
-SkeletonData::Ptr NuitrackModules::getSkeletonData()
-{
-    return _skeletons;
-}
+SkeletonData::Ptr NuitrackModules::getSkeletonData() { return _skeletons; }
 
-HandTrackerData::Ptr NuitrackModules::getHandTrackerData()
-{
-    return _handTrackerData;
-}
+HandTrackerData::Ptr NuitrackModules::getHandTrackerData() { return _handTrackerData; }
 
-IssuesData::Ptr NuitrackModules::getIssuesData()
-{
-    return _issuesData;
-}
+IssuesData::Ptr NuitrackModules::getIssuesData() { return _issuesData; }

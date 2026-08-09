@@ -8,7 +8,7 @@ Nuitrack SDK uses the following open source libraries:
 * [GLM](<https://glm.g-truc.net/0.9.8/index.html>)
 * [Google logging module](<https://github.com/google/glog>)
 * [libLBFGS](<http://www.chokkan.org/software/liblbfgs/>)
-* [librealsense](<https://realsense.intel.com/sdk-2/>)
+* [librealsense](<https://www.realsenseai.com/developers/sdk-2/>)
 * [LIBSVM](https://www.csie.ntu.edu.tw/~cjlin/libsvm/))
 * [OpenCV](<https://opencv.org/>)
 * [OpenNI](<https://github.com/OpenNI/OpenNI>)

@@ -20,6 +20,8 @@ If you’re interested in Skeleton Tracking :man_dancing: with any [supported de
 ## Unreal Engine 4 
 The Nuitrack plugin for Unreal Engine 4 can be downloaded [here](/UnrealEngine/NuitrackPluginForUE4).
 
+_Note: Before starting, сopy the contents from the `Nuitrack` folder to `NuitrackPluginForUE4/Source/NuitrackModule/`_
+
 Tutorials:  
 * [Basic Project (Windows)](/doc/Unreal_Engine_Windows_Tutorial.md)
 * [Basic Project (Android)](/doc/Unreal_Engine_Android_Tutorial.md) 

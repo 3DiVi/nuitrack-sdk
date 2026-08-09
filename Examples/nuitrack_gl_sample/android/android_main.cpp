@@ -64,7 +64,7 @@ int init_display(struct engine* engine)
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();
-	glOrthof(0, outputMode.xres, outputMode.yres, 0, -1, 1);
+	glOrthof(0, outputMode.size.width, outputMode.size.height, 0, -1, 1);
 
 	engine->display = display;
 	engine->context = context;

@@ -73,8 +73,8 @@ public:
         colorSensor = ColorSensor::create();
         depthSensor = DepthSensor::create();
 
-        OutputMode mode = depthSensor->getOutputMode();
-        window = cv::Mat(mode.yres, mode.xres, CV_8UC3, cv::Scalar());
+        auto mode = depthSensor->getOutputMode();
+        window = cv::Mat(mode.size.to<cv::Size>(), CV_8UC3, cv::Scalar());
         // Bind to event new depth frame
         depthSensor->connectOnNewFrame(std::bind(depthCallback, std::placeholders::_1, window));
         // Bind to event new rgb frame

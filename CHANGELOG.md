@@ -1,3 +1,40 @@
+# Release v2026.1 (new streamlined versioning)
+
+**Release Date**: 06 Jul 2026
+
+This release presents a major year-in-the-making Nuitrack update including  
+a range of internal changes laying the groundwork for future updates  
+as well as certain new features.
+
+
+* Depth Sensing:
+  * the camera model was extended to include vendor/camera-specific parameters such as distortion coefficients
+  * sensor-agnostic access to IMU capabilities provided by certain 3D sensors (in beta)
+* SkeletonTracker:
+  * new "AI Beta" tracking engine with extended coverage of lying and seated poses
+  * tracking fixes for modern wide-angle 3D sensors 
+* Basic Multisensor (without spatial fusion):
+  * now compatible with Subscription licenses 
+* Nuitrack Viewer - new "True 3D" visualization options:
+  * 3D joint orientations/rotations can now be viewed without relying on Unity/Unreal Engine
+  * real-world user height estimation based on user segmentation
+  * user contour derived from the depth stream can now be overlaid on the RGB stream, helping to ensure correct stream registration 
+* API & Versioning:
+  * Nuitrack Runtime and SDK versions were combined into a single unified version number (Calendar Versioning)
+  * major simplification/repackaging of native C/C++ interfaces for increased stability across 
+  all packages (Python, Unity, Unreal Engine, etc.)
+  * support for the new TouchDesigner package and the Creative Bundle license   
+  
+
+While we recommend basing future development on this version,  
+it includes breaking changes, so depending on 
+- the specific development package used 
+- and your integration/distribution model  
+
+rebuilding your application and additional testing may be required.  
+
+---
+
 # Release v0.38.5
 
 **Release Date**: 11 Jul 2025  

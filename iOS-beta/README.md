@@ -14,17 +14,19 @@ Requirements:
 
 ## Setup XCode Project:
 
-1. Create an XCode project (we'll use a "Single View App" with Objective-C language). Also you can set *"General -> Deployment Target"* to *"11.4"* (it's minimum for Nuitrack).
+1. Before starting, сopy the contents from the `Nuitrack/include/nuitrack` folder to `nuitrack_sample/nuitrack.framework/Headers`.
 
-2. Drag-and-drop `nuitrack.framework` and `Structure.framework` to *"Project navigator -> %project name%"*. Make sure that the frameworks were copied to the project directory (next to your `*.xcodeproj` file) because it's a default search path for external frameworks. If you use a different way to include the frameworks to your project, make sure that *"Build Settings -> Framework Search Path"* is correct.
+2. Create an XCode project (we'll use a "Single View App" with Objective-C language). Also you can set *"General -> Deployment Target"* to *"11.4"* (it's minimum for Nuitrack).
 
-3. To avoid the build error "... has C-linkage specified, but returns user-defined type ...", go to *"Build Settings -> Apple Clang - Custom Compiler Flags -> Other Warning Flags"* and add *"-Wno-return-type-c-linkage"*.
+3. Drag-and-drop `nuitrack.framework` and `Structure.framework` to *"Project navigator -> %project name%"*. Make sure that the frameworks were copied to the project directory (next to your `*.xcodeproj` file) because it's a default search path for external frameworks. If you use a different way to include the frameworks to your project, make sure that *"Build Settings -> Framework Search Path"* is correct.
 
-4. Disable Bitcode: go to *"Build Settings -> Build Options -> Enable Bitcode"* and tick *"No"*.
+4. To avoid the build error "... has C-linkage specified, but returns user-defined type ...", go to *"Build Settings -> Apple Clang - Custom Compiler Flags -> Other Warning Flags"* and add *"-Wno-return-type-c-linkage"*.
 
-5. Copy the framework: click *"General -> Embedded Binaries -> +"* and select `nuitrack.framework` and `Structure.framework`. After that, check *"General -> Linked Frameworks and Libraries"*: if you see two `nuitrack.framework` or `Structure.framework` in the list, remove one of them.
+5. Disable Bitcode: go to *"Build Settings -> Build Options -> Enable Bitcode"* and tick *"No"*.
 
-6. Update your project `Info.plist` to work with Structure Sensor. Add a new key `"SupportedExternalAccessoryProtocols"` (if it doesn't exist) and add 3 items into this key: `"io.structure.depth"`, `"io.structure.infrared"`, `"io.structure.control"`. As an option, you can insert the lines below into the source code of `into.plist`:
+6. Copy the framework: click *"General -> Embedded Binaries -> +"* and select `nuitrack.framework` and `Structure.framework`. After that, check *"General -> Linked Frameworks and Libraries"*: if you see two `nuitrack.framework` or `Structure.framework` in the list, remove one of them.
+
+7. Update your project `Info.plist` to work with Structure Sensor. Add a new key `"SupportedExternalAccessoryProtocols"` (if it doesn't exist) and add 3 items into this key: `"io.structure.depth"`, `"io.structure.infrared"`, `"io.structure.control"`. As an option, you can insert the lines below into the source code of `into.plist`:
 
         	...
         
@@ -37,7 +39,7 @@ Requirements:
         
         	...
 
-7. Make sure that the project can use Nuitrack: `"#include <nuitrack/Nuitrack.h>"`, `"tdv::nuitrack::Nuitrack::init();"` (don't forget to set the source file extension to `*.mm` instead of `*.m`).
+8. Make sure that the project can use Nuitrack: `"#include <nuitrack/Nuitrack.h>"`, `"tdv::nuitrack::Nuitrack::init();"` (don't forget to set the source file extension to `*.mm` instead of `*.m`).
 
 _**Note:** The Structure SDK uses the main thread at least during the initialization step. Try to use Nuitrack from a different thread and do not keep the main thread always busy or synchronized to Nuitrack._
 
@@ -135,6 +137,8 @@ Please refer to *Nuitrack Device API* [C++ example](/Examples/nuitrack_device_ap
 _**Note**: "Network.ProxyUrl" parameter should be set immediately after Nuitrack initialization._
 
 ## Nuitrack Sample
+
+_Note: Before starting, сopy the contents from the `Nuitrack/include/nuitrack` folder to `nuitrack_sample/nuitrack.framework/Headers`._
 
 There is an XCode project `nuitrack_sample` next to this `README` file. The sample was created by following the above steps and includes all Nuitrack modules. You could use it as a reference example. All you need to do is to setup *"General -> Signing -> Team"* and connect your device to XCode in development mode.
 

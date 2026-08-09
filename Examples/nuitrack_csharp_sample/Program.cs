@@ -3,8 +3,10 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 using nuitrack;
+using nuitrack.device;
 using nuitrack.issues;
 
 namespace nuitrack
@@ -33,43 +35,41 @@ namespace nuitrack
 	{
 		public Bitmap Bitmap { get; private set; }
 
-		public Int32[] Bits { get; private set; }
+		public Int32[] Bits  { get; private set; }
 		public bool Disposed { get; private set; }
-		public int Height { get; private set; }
-		public int Width { get; private set; }
+		public int Height    { get; private set; }
+		public int Width     { get; private set; }
 
 		protected GCHandle BitsHandle { get; private set; }
 
 		public DirectBitmap(int width, int height)
 		{
-			Width = width;
-			Height = height;
-			Bits = new Int32[width * height];
+			Width      = width;
+			Height     = height;
+			Bits       = new Int32[width * height];
 			BitsHandle = GCHandle.Alloc(Bits, GCHandleType.Pinned);
-			Bitmap = new Bitmap(width, height, width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject());
+			Bitmap     = new Bitmap(width, height, width * 4, PixelFormat.Format32bppPArgb, BitsHandle.AddrOfPinnedObject());
 		}
 
 		public void SetPixel(int x, int y, Color colour)
 		{
 			int index = x + (y * Width);
-			int col = colour.ToArgb();
+			int col   = colour.ToArgb();
 
 			Bits[index] = col;
 		}
 
 		public Color GetPixel(int x, int y)
 		{
-			int index = x + (y * Width);
-			int col = Bits[index];
-			Color result = Color.FromArgb(col);
+			int index    = x + (y * Width);
+			int col      = Bits[index];
 
-			return result;
+			return Color.FromArgb(col);
 		}
 
 		public void Dispose()
 		{
-			if (Disposed)
-				return;
+			if (Disposed) return;
 			Disposed = true;
 			Bitmap.Dispose();
 			BitsHandle.Free();
@@ -79,20 +79,20 @@ namespace nuitrack
 	public class MainForm : Form
 	{
 		private DirectBitmap _bitmap;
-		private bool _visualizeColorImage = false;
-		private bool _colorStreamEnabled = false;
+		private bool         _visualizeColorImage = false;
+		private bool         _colorStreamEnabled  = false;
 
-		private DepthSensor _depthSensor;
-		private ColorSensor _colorSensor;
-		private UserTracker _userTracker;
-		private SkeletonTracker _skeletonTracker;
+		private DepthSensor       _depthSensor;
+		private ColorSensor       _colorSensor;
+		private UserTracker       _userTracker;
+		private SkeletonTracker   _skeletonTracker;
 		private GestureRecognizer _gestureRecognizer;
-		private HandTracker _handTracker;
+		private HandTracker       _handTracker;
 
-		private DepthFrame _depthFrame;
-		private SkeletonData _skeletonData;
+		private DepthFrame      _depthFrame;
+		private SkeletonData    _skeletonData;
 		private HandTrackerData _handTrackerData;
-		private IssuesData _issuesData;
+		private IssuesData      _issuesData;
 
 		public MainForm()
 		{
@@ -108,16 +108,20 @@ namespace nuitrack
 				Console.WriteLine("Cannot initialize Nuitrack.");
 				throw exception;
 			}
+			var devices = Nuitrack.GetDeviceList();
+			if(devices.Count == 0)
+				throw new nuitrack.Exception("No devices found.");
+			Nuitrack.SetDevice(devices[0]);
 
 			try
 			{
 				// Create and setup all required modules
-				_depthSensor = DepthSensor.Create();
-				_colorSensor = ColorSensor.Create();
-				_userTracker = UserTracker.Create();
-				_skeletonTracker = SkeletonTracker.Create();
-				_handTracker = HandTracker.Create();
-				_gestureRecognizer = GestureRecognizer.Create();
+				_depthSensor 		= DepthSensor.Create();
+				_colorSensor 		= ColorSensor.Create();
+				_userTracker 		= UserTracker.Create();
+				_skeletonTracker 	= SkeletonTracker.Create();
+				_handTracker 		= HandTracker.Create();
+				_gestureRecognizer 	= GestureRecognizer.Create();
 			}
 			catch (Exception exception)
 			{
@@ -128,35 +132,35 @@ namespace nuitrack
 			//_depthSensor.SetMirror(false);
 
 			// Add event handlers for all modules
-			_depthSensor.OnUpdateEvent += onDepthSensorUpdate;
-			_colorSensor.OnUpdateEvent += onColorSensorUpdate;
-			_userTracker.OnUpdateEvent += onUserTrackerUpdate;
-			_userTracker.OnNewUserEvent += onUserTrackerNewUser;
-			_userTracker.OnLostUserEvent += onUserTrackerLostUser;
+			_depthSensor.OnUpdateEvent             += onDepthSensorUpdate;
+			_colorSensor.OnUpdateEvent             += onColorSensorUpdate;
+			_userTracker.OnUpdateEvent             += onUserTrackerUpdate;
+			_userTracker.OnNewUserEvent            += onUserTrackerNewUser;
+			_userTracker.OnLostUserEvent           += onUserTrackerLostUser;
 			_skeletonTracker.OnSkeletonUpdateEvent += onSkeletonUpdate;
-			_handTracker.OnUpdateEvent += onHandTrackerUpdate;
-			_gestureRecognizer.OnNewGesturesEvent += onNewGestures;
+			_handTracker.OnUpdateEvent             += onHandTrackerUpdate;
+			_gestureRecognizer.OnNewGesturesEvent  += onNewGestures;
 
 			// Add an event handler for the IssueUpdate event
 			Nuitrack.onIssueUpdateEvent += onIssueDataUpdate;
 
 			// Create and configure the Bitmap object according to the depth sensor output mode
-			OutputMode mode = _depthSensor.GetOutputMode();
-			OutputMode colorMode = _colorSensor.GetOutputMode();
-			if (mode.XRes < colorMode.XRes)
-				mode.XRes = colorMode.XRes;
-			if (mode.YRes < colorMode.YRes)
-				mode.YRes = colorMode.YRes;
+			var depthSize = _depthSensor.GetOutputMode().Size;
+			var colorSize = _colorSensor.GetOutputMode().Size;
+			if (depthSize.Width < colorSize.Width)
+				depthSize.Width = colorSize.Width;
+			if (depthSize.Height < colorSize.Height)
+				depthSize.Height = colorSize.Height;
 
-			_bitmap = new DirectBitmap(mode.XRes, mode.YRes);
-			for (int y = 0; y < mode.YRes; ++y)
+			_bitmap = new DirectBitmap(depthSize.Width, depthSize.Height);
+			for (int y = 0; y < depthSize.Height; ++y)
 			{
-				for (int x = 0; x < mode.XRes; ++x)
+				for (int x = 0; x < depthSize.Width; ++x)
 					_bitmap.SetPixel(x, y, Color.FromKnownColor(KnownColor.Aqua));
 			}
 
 			// Set fixed form size
-			this.MinimumSize = this.MaximumSize = new Size(mode.XRes, mode.YRes);
+			this.MinimumSize = this.MaximumSize = new System.Drawing.Size(depthSize.Width, depthSize.Height);
 
 			// Disable unnecessary caption bar buttons
 			this.MinimizeBox = this.MaximizeBox = false;
@@ -188,14 +192,14 @@ namespace nuitrack
 			// Release Nuitrack and remove all modules
 			try
 			{
-				Nuitrack.onIssueUpdateEvent -= onIssueDataUpdate;
+				Nuitrack.onIssueUpdateEvent            -= onIssueDataUpdate;
 
-				_depthSensor.OnUpdateEvent -= onDepthSensorUpdate;
-				_colorSensor.OnUpdateEvent -= onColorSensorUpdate;
-				_userTracker.OnUpdateEvent -= onUserTrackerUpdate;
+				_depthSensor.OnUpdateEvent             -= onDepthSensorUpdate;
+				_colorSensor.OnUpdateEvent             -= onColorSensorUpdate;
+				_userTracker.OnUpdateEvent             -= onUserTrackerUpdate;
 				_skeletonTracker.OnSkeletonUpdateEvent -= onSkeletonUpdate;
-				_handTracker.OnUpdateEvent -= onHandTrackerUpdate;
-				_gestureRecognizer.OnNewGesturesEvent -= onNewGestures;
+				_handTracker.OnUpdateEvent             -= onHandTrackerUpdate;
+				_gestureRecognizer.OnNewGesturesEvent  -= onNewGestures;
 
 				Nuitrack.Release();
 			}
@@ -259,16 +263,16 @@ namespace nuitrack
 					if (userHands.LeftHand != null)
 					{
 						HandContent hand = userHands.LeftHand.Value;
-						int size = hand.Click ? 20 : 30;
-						Brush brush = new SolidBrush(Color.Aquamarine);
+						int size         = hand.Click ? 20 : 30;
+						Brush brush      = new SolidBrush(Color.Aquamarine);
 						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size / 2, hand.Y * _bitmap.Height - size / 2, size, size);
 					}
 
 					if (userHands.RightHand != null)
 					{
 						HandContent hand = userHands.RightHand.Value;
-						int size = hand.Click ? 20 : 30;
-						Brush brush = new SolidBrush(Color.DarkBlue);
+						int size         = hand.Click ? 20 : 30;
+						Brush brush      = new SolidBrush(Color.DarkBlue);
 						args.Graphics.FillEllipse(brush, hand.X * _bitmap.Width - size / 2, hand.Y * _bitmap.Height - size / 2, size, size);
 					}
 				}
@@ -296,8 +300,7 @@ namespace nuitrack
 		// Event handler for the ColorSensorUpdate event
 		private void onColorSensorUpdate(ColorFrame colorFrame)
 		{
-			if (!_visualizeColorImage)
-				return;
+			if (!_visualizeColorImage) return;
 
 			_colorStreamEnabled = true;
 
@@ -306,18 +309,18 @@ namespace nuitrack
 
 			float nextVerticalBorder = hStep;
 
-			int colorPtr = 0;
-			int bitmapPtr = 0;
+			int colorPtr              = 0;
+			int bitmapPtr             = 0;
 			const int elemSizeInBytes = 3;
 
 			unsafe
 			{
-				byte* data = (byte*)colorFrame.Data.ToPointer();
+				var data = (byte*)colorFrame.Data.ToPointer();
 				for (int i = 0; i < _bitmap.Height; ++i)
 				{
 					if (i == (int)nextVerticalBorder)
 					{
-						colorPtr += colorFrame.Cols * elemSizeInBytes;
+						colorPtr           += colorFrame.Cols * elemSizeInBytes;
 						nextVerticalBorder += hStep;
 					}
 
@@ -350,12 +353,9 @@ namespace nuitrack
 		{
 			using (UserFrame _userFrame = (UserFrame)userFrame.Clone())
 			{
-				if (_visualizeColorImage && _colorStreamEnabled)
-					return;
-				if (_depthFrame == null)
-					return;
+				if ((_visualizeColorImage && _colorStreamEnabled) || _depthFrame == null) return;
 
-				const int MAX_LABELS = 7;
+				const int MAX_LABELS   = 7;
 				bool[] labelIssueState = new bool[MAX_LABELS];
 				for (UInt16 label = 0; label < MAX_LABELS; ++label)
 				{
@@ -363,7 +363,7 @@ namespace nuitrack
 					if (_issuesData != null)
 					{
 						FrameBorderIssue frameBorderIssue = _issuesData.GetUserIssue<FrameBorderIssue>(label);
-						labelIssueState[label] = (frameBorderIssue != null);
+						labelIssueState[label]            = (frameBorderIssue != null);
 					}
 				}
 
@@ -374,30 +374,30 @@ namespace nuitrack
 
 				unsafe
 				{
-					byte* dataDepth = (byte*)_depthFrame.Data.ToPointer();
-					byte* dataUser = (byte*)_userFrame.Data.ToPointer();
-					int dataPtr = 0;
-					int bitmapPtr = 0;
+					var dataDepth             = (byte*)_depthFrame.Data.ToPointer();
+					var dataUser              = (byte*)_userFrame.Data.ToPointer();
+					int dataPtr               = 0;
+					int bitmapPtr             = 0;
 					const int elemSizeInBytes = 2;
 					for (int i = 0; i < _bitmap.Height; ++i)
 					{
 						if (i == (int)nextVerticalBorder)
 						{
-							dataPtr += _depthFrame.Cols * elemSizeInBytes;
+							dataPtr            += _depthFrame.Cols * elemSizeInBytes;
 							nextVerticalBorder += hStep;
 						}
 
-						int offset = 0;
-						int argb = 0;
-						int label = dataUser[dataPtr] | dataUser[dataPtr + 1] << 8;
-						int depth = Math.Min(255, (dataDepth[dataPtr] | dataDepth[dataPtr + 1] << 8) / 32);
+						int offset                 = 0;
+						int argb                   = 0;
+						int label                  = dataUser[dataPtr] | dataUser[dataPtr + 1] << 8;
+						int depth                  = Math.Min(255, (dataDepth[dataPtr] | dataDepth[dataPtr + 1] << 8) / 32);
 						float nextHorizontalBorder = wStep;
 						for (int j = 0; j < _bitmap.Width; ++j)
 						{
 							if (j == (int)nextHorizontalBorder)
 							{
 								offset += elemSizeInBytes;
-								label = dataUser[dataPtr + offset] | dataUser[dataPtr + offset + 1] << 8;
+								label   = dataUser[dataPtr + offset] | dataUser[dataPtr + offset + 1] << 8;
 								if (label == 0)
 									depth = Math.Min(255, (dataDepth[dataPtr + offset] | dataDepth[dataPtr + offset + 1] << 8) / 32);
 								nextHorizontalBorder += wStep;

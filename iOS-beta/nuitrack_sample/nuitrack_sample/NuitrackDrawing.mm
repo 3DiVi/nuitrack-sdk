@@ -1,14 +1,11 @@
 //
-//  NuitrackDrawing.cpp
-//  nuitrack_sample
-//
-//  Created by 3DiVi on 07.06.2019.
-//  Copyright © 2019 3divi. All rights reserved.
+//  Copyright © 2025 3divi. All rights reserved.
 //
 
 #include "NuitrackDrawing.h"
 #include "NuitrackModules.h"
 #include "ImageConversions.h"
+#include <map>
 
 using namespace sample;
 using namespace detail;
@@ -39,20 +36,17 @@ struct Point3f{
         z = obj2.z;
         return *this;
     }
-    Point3f operator+(const Point3f obj2){
-        return Point3f(x + obj2.x, y + obj2.y, z + obj2.z);
-    }
-    Point3f operator*(float mult){
-        return Point3f(x * mult, y * mult, z * mult);
-    }
+    Point3f operator+(const Point3f _){ return Point3f(x + _.x, y + _.y, z + _.z); }
+
+    Point3f operator*(float _){ return Point3f(x * _, y * _, z * _); }
 };
 
-CGContextRef NuitrackDrawing::StartDrawing(UIImage* image)
+CGContextRef NuitrackDrawing::StartDrawing(UIImage* _)
 {
     // begin a graphics context of sufficient size
-    UIGraphicsBeginImageContext(image.size);
+    UIGraphicsBeginImageContext(_.size);
     // draw original image into the context
-    [image drawAtPoint:CGPointZero];
+    [_ drawAtPoint:CGPointZero];
     // get the context for CoreGraphics
     return UIGraphicsGetCurrentContext();
 }
@@ -68,21 +62,17 @@ void NuitrackDrawing::DrawNuitrackInfo(CGContextRef ctx)
 {
     NSString* msg = @"";
     if (NuitrackModules::instance()->checkModule(USER_TRACKER))
-    {
         msg = [NSString stringWithFormat:@"%@U : %1.1f ms\n", msg, NuitrackModules::instance()->getProcessingTime(USER_TRACKER)];
-    }
+
     if (NuitrackModules::instance()->checkModule(SKELETON_TRACKER))
-    {
        msg = [NSString stringWithFormat:@"%@S : %1.1f ms\n", msg, NuitrackModules::instance()->getProcessingTime(SKELETON_TRACKER)];
-    }
+
     if (NuitrackModules::instance()->checkModule(GESTURE_RECOGNIZER))
-    {
         msg = [NSString stringWithFormat:@"%@G : %1.1f ms\n", msg, NuitrackModules::instance()->getProcessingTime(GESTURE_RECOGNIZER)];
-    }
+
     if (NuitrackModules::instance()->checkModule(HAND_TRACKER))
-    {
         msg = [NSString stringWithFormat:@"%@H : %1.1f ms\n", msg, NuitrackModules::instance()->getProcessingTime(HAND_TRACKER)];
-    }
+
     printf("%s", [msg UTF8String]);
 }
 
@@ -120,14 +110,10 @@ void NuitrackDrawing::DrawHandState(CGContextRef ctx)
             continue;
 
         if (userHands.leftHand)
-        {
             DrawHand(ctx, userHands.leftHand, userSkeleton, JOINT_LEFT_WRIST, [UIColor blueColor]);
-        }
 
         if (userHands.rightHand)
-        {
             DrawHand(ctx, userHands.rightHand, userSkeleton, JOINT_RIGHT_WRIST, [UIColor redColor]);
-        }
     }
 }
 
@@ -154,12 +140,7 @@ void NuitrackDrawing::DrawHand(CGContextRef ctx, Hand::Ptr hand, Skeleton userSk
                4, [UIColor whiteColor]);
 
     if (hand->click)
-    {
-        DrawCircle(ctx,ctx_size.width *
-                    proj.x,
-                    ctx_size.height *
-                    proj.y, 10.0, color);
-    }
+        DrawCircle(ctx,ctx_size.width * proj.x, ctx_size.height * proj.y, 10.0, color);
 }
 
 void NuitrackDrawing::DrawCircle(CGContextRef ctx, float x, float y, float r, UIColor* color, float thickness, UIColor* thickness_color)
@@ -184,10 +165,9 @@ void NuitrackDrawing::DyeUsers(CGContextRef ctx)
 {
     auto userFrame = NuitrackModules::instance()->getUserFrame();
 
-    if(!userFrame)
-        return;
+    if(!userFrame) return;
 
-    auto users = userFrame->getUsers();
+    auto users       = userFrame->getUsers();
     uint8_t* userMap = (uint8_t*)userFrame->getData();
 
     auto issuesData = NuitrackModules::instance()->getIssuesData();
@@ -198,21 +178,18 @@ void NuitrackDrawing::DyeUsers(CGContextRef ctx)
     ctx_size.height = CGBitmapContextGetHeight(ctx);
 
     if (issuesData)
-    {
         for (auto user: users)
         {
-            sample::detail::OcclusionIssue::Ptr oi = issuesData->getUserIssue<sample::detail::OcclusionIssue>(user.id);
+            sample::detail::OcclusionIssue::Ptr oi   = issuesData->getUserIssue<sample::detail::OcclusionIssue>(user.id);
             sample::detail::FrameBorderIssue::Ptr fi = issuesData->getUserIssue<sample::detail::FrameBorderIssue>(user.id);
             userIssue[user.id] = (fi || oi);
         }
-    }
 
     unsigned char* ctx_data = (unsigned char *)CGBitmapContextGetData(ctx);
-    size_t rowBytes = CGBitmapContextGetBytesPerRow(ctx);
+    size_t rowBytes         = CGBitmapContextGetBytesPerRow(ctx);
     const int bytes_per_pixel = 4;
 
     for(int i = 0; i < ctx_size.height; i++)
-    {
         for(int j = 0; j < ctx_size.width; j++)
         {
             uint16_t userID = *((uint16_t*)(userMap + i*(int)ctx_size.width*2 + j*2));
@@ -224,18 +201,16 @@ void NuitrackDrawing::DyeUsers(CGContextRef ctx)
                 ctx_data[i*rowBytes + j*bytes_per_pixel + 2] = userColor[userID & 7][0] * coeff;
             }
         }
-    }
 }
 
 void NuitrackDrawing::IncreaseAllPixelsValue(CGContextRef ctx, float coef)
 {
     unsigned char *p = (unsigned char *)CGBitmapContextGetData(ctx);
-    size_t rowBytes = CGBitmapContextGetBytesPerRow(ctx);
-    size_t rowCount = CGBitmapContextGetHeight(ctx);
+    size_t rowBytes  = CGBitmapContextGetBytesPerRow(ctx);
+    size_t rowCount  = CGBitmapContextGetHeight(ctx);
     const int bytes_per_pixel = 4;
 
     for(int i = 0; i < rowCount; i++)
-    {
         for(int j = 0; j < rowBytes; j += bytes_per_pixel)
         {
             p[i*rowBytes + j + 0] *= coef;  //blue
@@ -243,7 +218,6 @@ void NuitrackDrawing::IncreaseAllPixelsValue(CGContextRef ctx, float coef)
             p[i*rowBytes + j + 2] *= coef;  //red
             //p[bytes_per_pixel*i + 3];     //alpha
         }
-    }
 }
 
 void NuitrackDrawing::DrawSkeletons(CGContextRef ctx)
@@ -262,30 +236,30 @@ void NuitrackDrawing::DrawSkeletons(CGContextRef ctx)
 
 void NuitrackDrawing::DrawLimbs(CGContextRef ctx, const std::vector<Joint>& joints)
 {
-    DrawLine(ctx, joints[JOINT_HEAD], joints[JOINT_NECK]);
-    DrawLine(ctx, joints[JOINT_NECK], joints[JOINT_LEFT_COLLAR]);
-    DrawLine(ctx, joints[JOINT_LEFT_COLLAR], joints[JOINT_TORSO]);
-    DrawLine(ctx, joints[JOINT_LEFT_COLLAR], joints[JOINT_LEFT_SHOULDER]);
-    DrawLine(ctx, joints[JOINT_LEFT_COLLAR], joints[JOINT_RIGHT_SHOULDER]);
-    DrawLine(ctx, joints[JOINT_WAIST], joints[JOINT_LEFT_HIP]);
-    DrawLine(ctx, joints[JOINT_WAIST], joints[JOINT_RIGHT_HIP]);
-    DrawLine(ctx, joints[JOINT_TORSO], joints[JOINT_WAIST]);
-    DrawLine(ctx, joints[JOINT_LEFT_SHOULDER], joints[JOINT_LEFT_ELBOW]);
-    DrawLine(ctx, joints[JOINT_LEFT_ELBOW], joints[JOINT_LEFT_WRIST]);
-    DrawLine(ctx, joints[JOINT_LEFT_WRIST], joints[JOINT_LEFT_HAND]);
+    DrawLine(ctx, joints[JOINT_HEAD],           joints[JOINT_NECK]);
+    DrawLine(ctx, joints[JOINT_NECK],           joints[JOINT_LEFT_COLLAR]);
+    DrawLine(ctx, joints[JOINT_LEFT_COLLAR],    joints[JOINT_TORSO]);
+    DrawLine(ctx, joints[JOINT_LEFT_COLLAR],    joints[JOINT_LEFT_SHOULDER]);
+    DrawLine(ctx, joints[JOINT_LEFT_COLLAR],    joints[JOINT_RIGHT_SHOULDER]);
+    DrawLine(ctx, joints[JOINT_WAIST],          joints[JOINT_LEFT_HIP]);
+    DrawLine(ctx, joints[JOINT_WAIST],          joints[JOINT_RIGHT_HIP]);
+    DrawLine(ctx, joints[JOINT_TORSO],          joints[JOINT_WAIST]);
+    DrawLine(ctx, joints[JOINT_LEFT_SHOULDER],  joints[JOINT_LEFT_ELBOW]);
+    DrawLine(ctx, joints[JOINT_LEFT_ELBOW],     joints[JOINT_LEFT_WRIST]);
+    DrawLine(ctx, joints[JOINT_LEFT_WRIST],     joints[JOINT_LEFT_HAND]);
     DrawLine(ctx, joints[JOINT_RIGHT_SHOULDER], joints[JOINT_RIGHT_ELBOW]);
-    DrawLine(ctx, joints[JOINT_RIGHT_ELBOW], joints[JOINT_RIGHT_WRIST]);
-    DrawLine(ctx, joints[JOINT_RIGHT_WRIST], joints[JOINT_RIGHT_HAND]);
-    DrawLine(ctx, joints[JOINT_RIGHT_HIP], joints[JOINT_RIGHT_KNEE]);
-    DrawLine(ctx, joints[JOINT_LEFT_HIP], joints[JOINT_LEFT_KNEE]);
-    DrawLine(ctx, joints[JOINT_RIGHT_KNEE], joints[JOINT_RIGHT_ANKLE]);
-    DrawLine(ctx, joints[JOINT_LEFT_KNEE], joints[JOINT_LEFT_ANKLE]);
+    DrawLine(ctx, joints[JOINT_RIGHT_ELBOW],    joints[JOINT_RIGHT_WRIST]);
+    DrawLine(ctx, joints[JOINT_RIGHT_WRIST],    joints[JOINT_RIGHT_HAND]);
+    DrawLine(ctx, joints[JOINT_RIGHT_HIP],      joints[JOINT_RIGHT_KNEE]);
+    DrawLine(ctx, joints[JOINT_LEFT_HIP],       joints[JOINT_LEFT_KNEE]);
+    DrawLine(ctx, joints[JOINT_RIGHT_KNEE],     joints[JOINT_RIGHT_ANKLE]);
+    DrawLine(ctx, joints[JOINT_LEFT_KNEE],      joints[JOINT_LEFT_ANKLE]);
 }
 
 void NuitrackDrawing::DrawOrientations(CGContextRef ctx, const std::vector<Joint>& joints, float length, int width)
 {
     auto depthSensor = NuitrackModules::instance()->getDepthSensorModule();
-    auto depthFrame = depthSensor->getDepthFrame();
+    auto depthFrame  = depthSensor->getDepthFrame();
 
     if (!depthSensor || !depthFrame)
         return;
@@ -300,12 +274,9 @@ void NuitrackDrawing::DrawOrientations(CGContextRef ctx, const std::vector<Joint
 
     for (int j = 0; j < joints.size(); ++j)
     {
-        if (joints[j].type == JOINT_NONE)
-            continue;
-        if (joints[j].confidence < 0.15)
-            continue;
-        if (joints[j].real.z <= 0)
-            continue;
+        if (joints[j].type == JOINT_NONE) continue;
+        if (joints[j].confidence < 0.15)  continue;
+        if (joints[j].real.z <= 0)        continue;
 
         Orientation orient = joints[j].orient;
 

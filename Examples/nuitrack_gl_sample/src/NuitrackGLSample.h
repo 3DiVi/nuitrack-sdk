@@ -47,7 +47,7 @@ public:
 		_viewMode = ViewMode((uint32_t(_viewMode) + 1) % _modesNumber);
 	}
 
-	tdv::nuitrack::OutputMode getOutputMode() const
+	tdv::nuitrack::CameraModel getOutputMode() const
 	{
 		return _outputMode;
 	}
@@ -61,11 +61,10 @@ private:
 	GLfloat _textureCoords[8];
 	GLfloat _vertexes[8];
 	std::vector<GLfloat> _lines;
-	std::vector<GLfloat> _leftHandPointers;
-	std::vector<GLfloat> _rightHandPointers;
+	std::vector<GLfloat> _leftHandPointers, _rightHandPointers;
 	std::vector<tdv::nuitrack::Gesture> _userGestures;
 	
-	tdv::nuitrack::OutputMode _outputMode;
+	tdv::nuitrack::CameraModel _outputMode;
 	
 	tdv::nuitrack::DepthSensor::Ptr _depthSensor;
 	tdv::nuitrack::ColorSensor::Ptr _colorSensor;

@@ -14,7 +14,7 @@ You can find the finished project in **Nuitrack SDK: Unity 3D → NuitrackSDK.un
 <img width="500" src="img/Uface_1.gif">
 </p>
 
-_**Note:** Nuitrack displays the info about a face **only after the user's skeleton is detected**. So, if only your face is visible, Nuitrack won't display the information. If you're only interested in face tracking (without any info about skeletons), you can take a look at [3DiVi Face SDK](https://facesdk.3divi.com/), which is a software for face tracking, detection, and matching. Unlike Nuitrack SDK, **3DiVi Face SDK** focuses on processing the data about faces and provides more advanced features in this field._
+_**Note:** Nuitrack displays the info about a face **only after the user's skeleton is detected**. So, if only your face is visible, Nuitrack won't display the information. If you're only interested in face tracking (without any info about skeletons), you can take a look at [3DiVi Face SDK](https://3divi.ai/products/software/face-sdk), which is a software for face tracking, detection, and matching. Unlike Nuitrack SDK, **3DiVi Face SDK** focuses on processing the data about faces and provides more advanced features in this field._
 
 ## Setting Up the Scene
 

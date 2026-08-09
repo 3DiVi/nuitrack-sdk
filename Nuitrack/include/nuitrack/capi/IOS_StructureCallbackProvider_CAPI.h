@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "nuitrack/types/Export.h"
+#include "nuitrack/cpp/Export.h"
 #include <cstdint>
 
 extern "C" NUITRACK_API void StructureCallbackProvider_addDelegate(uint64_t delegate);

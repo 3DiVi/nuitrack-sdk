@@ -33,8 +33,8 @@
 #include <sstream>
 #include <iomanip>
 #include <memory>
-#include "nuitrack/middleware/android/NuitrackManager.h"
-#include "nuitrack/middleware/android/USBGateKeeper.h"
+#include "nuitrack/android/NuitrackManager.h"
+#include "nuitrack/android/USBGateKeeper.h"
 #endif
 
 #ifdef ANDROID

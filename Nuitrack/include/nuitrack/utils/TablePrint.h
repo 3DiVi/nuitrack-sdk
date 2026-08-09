@@ -1,4 +1,5 @@
 #pragma once
+
 #include <cstring>
 #include <iostream>
 #include <sstream>
@@ -6,8 +7,7 @@
 #include <array>
 #include <vector>
 
-namespace tdv { namespace nuitrack
-{
+namespace tdv { namespace nuitrack {
 
 template<size_t Columns, typename HeaderType = std::string, typename CellType = std::string>
 class Table 
@@ -94,5 +94,4 @@ private:
     std::array<size_t, Columns> _maxColumnLengths{};
 };
 
-} // tdv
-} // nuitrack
+}}

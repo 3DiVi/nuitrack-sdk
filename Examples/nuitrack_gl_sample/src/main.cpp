@@ -80,7 +80,7 @@ int main(int argc, char* argv[])
 	// Initialize GLUT window
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(outputMode.xres, outputMode.yres);
+	glutInitWindowSize(outputMode.size.width, outputMode.size.height);
 	glutCreateWindow("Nuitrack GL Sample (Nuitrack API)");
 	//glutSetCursor(GLUT_CURSOR_NONE);
 
@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
 	glDisableClientState(GL_COLOR_ARRAY);
 
 
-	glOrtho(0, outputMode.xres, outputMode.yres, 0, -1.0, 1.0);
+	glOrtho(0, outputMode.size.width, outputMode.size.height, 0, -1.0, 1.0);
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
 	glLoadIdentity();

@@ -6,11 +6,11 @@ So, my friend, now that you visited this page means that you're interested in de
 
 First of all, the hardware, which is:  
 
-* [**TVico**](https://tvico.io/);
+* **TVico**;
 * a rather powerful **Android smartphone** with at least 5" screen for comfortable perception;
 * a suitable **VR headset**. To make it perfect, you can use the Gear VR or Google Cardboard set.
 
-_**Note:** If you use TVico, you have to connect your Android smartphone to TVico via Wi-Fi. See the detailed information in our [TVico User Guide](TVico_User_Guide.md#wireless-case). You can also use other Android device (with one of supported USB sensors for Android platform (see the full list at [Nuitrack website](https://nuitrack.com/#sensors)) provided that you installed [TVico.apk](/Platforms/TVico.apk) on this device and connected your Android smartphone to this device via Wi-Fi._
+_**Note:** If you use TVico, you have to connect your Android smartphone to TVico via Wi-Fi. See the detailed information in our [TVico User Guide](TVico_User_Guide.md#wireless-case). You can also use other Android device (with one of supported USB sensors for Android platform (see the full list at [Nuitrack website](https://nuitrack.com/#sensors)) provided that you installed [TVico.apk](https://github.com/3DiVi/nuitrack-sdk/releases) on this device and connected your Android smartphone to this device via Wi-Fi._
 
 Secondly, the software, which is:  
 

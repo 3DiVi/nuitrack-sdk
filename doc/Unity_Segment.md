@@ -16,7 +16,7 @@ You can find the finished project in **Nuitrack SDK**: **Unity 3D → NuitrackSD
 
 ## Visualizing a User Segment
 
-In this part of our tutorial, we'll describe the process of segment visualization. To create a user segment, you'll only need **Nuitrack SDK** and compatible sensor (for example, [TVico](https://tvico.io/))).
+In this part of our tutorial, we'll describe the process of segment visualization. To create a user segment, you'll only need **Nuitrack SDK** and compatible sensor (for example, TVico).
 
 ### Checking User Presence 
 
@@ -146,9 +146,9 @@ void Start()
 
 ```cs
 ...
-nuitrack.OutputMode mode = NuitrackManager.DepthSensor.GetOutputMode();
-cols = mode.XRes;
-rows = mode.YRes;
+var mode = NuitrackManager.DepthSensor.GetOutputMode();
+cols = mode.Size.Width;
+rows = mode.Size.Height;
 ...
 ```
 
